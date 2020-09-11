@@ -84,7 +84,7 @@ div#article{
   font-weight: 900;
   border-left: 3px solid #2EA9DF;
   text-align: left;
-  margin: 0px 0px 50px 0px;
+  margin: 20px 0px 50px 0px;
   padding :15px 0px 15px 10px;
 }
 
@@ -92,6 +92,7 @@ div#article{
   font-size: 25px;
   border-left: 3px solid #2EA9DF;
   padding-left: 10px;
+  margin-top: 20px;
 }
 
 #article h3 {
@@ -217,4 +218,9 @@ div#Showtags{
 
 div#TagsText{
   float: left;
+}
+
+blockquote{
+  border-left: 2px solid rgba(225,225,225,1);
+  padding-left: 10px;
 }

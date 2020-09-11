@@ -195,46 +195,14 @@ img#icons{
   float: right;
 
 }
-
-div#nav{
-  position: relative;
-  width: 100%;
-  height: 45px;
-  z-index: 3;
-  box-shadow: 2px 0 3px rgba(200,200,200,1);
-  background-color: white;
-  animation: getOut 0.1s;
-  overflow: hidden;
-}
-.navItem{
-  display: flex;
-  width: 50px;
-  float: right;
-}
-.navImg{
-  height: auto;
-  width: auto;
-  max-width: 40px;
-  float: top;
-}
-.navItem{
-  padding: 0 0 0 5px;
-}
-.navText{
-  writing-mode: vertical-lr;
-  float: top;
-  font-size: 20px;
-  padding-left:5px;
-}
 div#Content{
-  float: left;
-  left: 0;
+  margin-top: 5px;
+  width: 100%;
   position: absolute;
-  top: 50px;
+  top:20px;
   background-color:rgba(255,255,255,1);
   z-index: 1;
   bottom: 10px;
-  right: 0;
 }
 
 div#asidePart{
@@ -254,33 +222,6 @@ div#content{
   height: 100%;
   overflow:auto;
 }
-
-/*接下来是动画*/
-div#nav:hover
-{
-  animation: getIn 0.1s;
-  height: 140px;
-}
-div#nav:hover .navText{
-  animation: textIn 0.1s;
-  color: black;
-}
-
-@keyframes getIn {
-  0%{height: 50px}
-  100%{ height: 140px;}
-}
-
-@keyframes getOut {
-  0%{ height: 140px;}
-  100%{height: 50px}
-}
-@keyframes textIn {
-  0%{color: white}
-  100%{color: black}
-}
-
-
 
 /* 接下来设置滚动条样式*/
 ::-webkit-scrollbar
@@ -315,6 +256,7 @@ a:active {color:  #58B2DC;}	/* 正在被点击的链接 */
 a{
   text-decoration:none;
 }
+
 
 
 /*ArticleHead*/
