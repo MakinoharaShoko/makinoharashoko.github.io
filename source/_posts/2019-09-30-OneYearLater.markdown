@@ -7,7 +7,7 @@ author:     "Makinohara"
 featured_image: http://msfasr.com/img/One_year_later.png
 catalog: true
 tags:
-    - Life
+    - 生活感想
     
 ---
 

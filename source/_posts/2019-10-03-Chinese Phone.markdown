@@ -7,7 +7,7 @@ author:     "Makinohara"
 featured_image: http://msfasr.com/img/DSC_0392.jpg
 catalog: true
 tags:
-    - Life
+    - 生活感想
     
 ---
 

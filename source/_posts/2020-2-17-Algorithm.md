@@ -6,8 +6,7 @@ date:       2020-2-17 16:13:00
 author:     "Makinohara"
 catalog: true
 tags:
-    - Algorithm
-    - 学习笔记
+    - 计算机基础
 
 ---
 

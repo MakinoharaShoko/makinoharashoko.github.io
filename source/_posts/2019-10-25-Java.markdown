@@ -7,8 +7,7 @@ author:     "Makinohara"
 featured_image: http://msfasr.com/img/Java.jpg
 catalog: true
 tags:
-    - 学习笔记
-    - Java
+    - 编程语言
 ---
 
 
@@ -672,7 +671,7 @@ int n = list.get(i);  //Autounboxing
 
 
 ```java
-class Employee implements Comparable<Employee>	 //use keyword implements
+class Employee implements Comparable<Employee>	 //在实现接口时加上类名，可以可以防止对Object类型转换
 {
     //......
     public int compareTo(Employee other)
@@ -696,6 +695,92 @@ public class Main {
 
     }
 }
+
+```
+
+接口不是一种类，所以不能使用new实例化接口。
+
+接口的一个样例：
+
+```
+public interface Comparable<T>{
+	default int compareTo(T other){  //一种默认方法。
+		return 0;
+	}
+}
+```
+
+
+
+### 接口与回调
+
+一个Listener接口：
+
+```
+public interface ActionListener
+{
+	void actionPerformed(ActionEvent event);
+}
+```
+
+如果想要调用这个接口，则可以在一个类中实现：
+
+```
+class TimePrinter implements ActionListener{
+	public void actionPerformed(ActionEvent event){          //在类中实现这个接口
+		System.out.println(123);
+	}
+}
+```
+
+实现回调的方法：
+
+```
+var listener = new TimePrinter;
+var timer = new Timer(1000,listener);
+//......
+//timer每1000毫秒通知实现了ActionListener接口的类，这个类就会实现接口提供的函数actionPerformed，完成一个回调。
+```
+
+## Lambda 表达式
+
+一种自定义代码块，用于实现某些计算或执行某些函数
+
+```
+//比如，要计算a.length() - b.length()
+(String a, String b)
+	->a.length()-b.length()
+//或者：
+(String a, String b)->
+{
+	if(a.length<b.length)
+		return -1;
+	//......
+}
+//执行函数：
+var timer = new Timer(1000,event ->System.out.println(event))
+```
+
+使用lambda来使方法实现函数式接口，避免多余的重写方法：
+
+```
+package com.icsii.interfaceDemo;
+
+public interface printer {
+    void printString(String something);
+}
+public class print {
+    public void printSomething(String something,printer aPrinter){
+        aPrinter.printString(something);
+    }
+
+    public static void main(String[] args) {
+        print Demo1 = new print();
+        Demo1.printSomething("123",(String something)->System.out.println(something));
+    }
+}
+
+(接口接收的参数)->{接口实现的方法}
 ```
 
 

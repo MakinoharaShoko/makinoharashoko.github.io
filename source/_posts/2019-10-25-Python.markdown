@@ -7,10 +7,96 @@ author:     "Makinohara"
 featured_image: http://msfasr.com/img/py.jfif
 catalog: true
 tags:
-    - 学习笔记
-    - Python
+    - 编程语言
 ---
 
 
 
-This project has not started yet.
+
+
+
+
+
+
+## 查看支持的包版本
+
+python -m pip debug --verbose
+
+## Python 变量
+
+Python的变量是自动推断的，但是Python仍旧是强类型语言。
+
+判断变量种类：
+
+```python
+type()#判断变量类型
+isinstance(var,type)#判断对象是否为制定类型的实例
+```
+
+Python允许多个对象指向一个值
+
+```python
+x = 3
+id(x)
+y = x
+id(y)#此时x，y指向同一对象
+x += 3
+id(x)
+y
+id(y)
+#此时x，y不指向同一对象
+#Python中，每一个值或对象总是有固定的空间，当没有变量指向时，Python将将其删除
+```
+
+变量名命名：
+
+以字母或下划线开头（一般以字母），可带数字和下划线，不能以关键字命名
+
+
+
+### Python 序列
+
+列表[1,2,'file']
+
+sort:原地排序
+
+sorted:返回排序后的列表
+
+range(start,stop,step)返回一个可迭代对象
+
+a = list(range(10))
+
+#### Python运算
+
+字符串：单、双、三引号（三引号包含的字符串可以换行）
+
+字符串合并：+；字符串重复"a"*5>>> aaaaa
+
+逻辑运算符：x or y x and y  not x 
+
+x in y, x not in y:
+
+Python除法：/除法，//整除
+
+-13//10 >>>-2（本质向下取整）
+
+逗号,仅用于分隔，使用逗号连接的元素会成为元组，优先级低于所有，高于赋值
+
+#### 常用内置函数
+
+max min sum
+
+输入/输出：
+
+```python
+input()
+raw_input()#python 2 ,只接受字符串
+input()#在Python3中仅支持字符串输入，输入后再进行处理
+print()
+for i in range(10,20):
+    print(i,end=' ')#终结符为空格
+```
+
+## 模块的使用
+
+pip install:安装模块

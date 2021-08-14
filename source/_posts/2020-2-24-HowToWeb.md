@@ -6,8 +6,8 @@ date:       2020-2-24 14:00:00
 author:     "Makinohara"
 catalog: true
 tags:
-    - Life
-    - Web Developing
+    - 生活感想
+    - 工程开发
 ---
 
 # 职位需求
@@ -206,6 +206,8 @@ tags:
 | 掌握至少一门服务端编程语言，并有实战经验。熟悉 NodeJS / Python 者优先； | 0%               | 字节跳动       |
 | 熟悉MVC，MVVM，Flux，Redux等相关工程知识                     | 0%               | 字节跳动       |
 
+
+
 # 设计师如何学习前端技术（转载自：黄玄的知乎回答）
 
 > *作者：黄玄*
@@ -240,17 +242,11 @@ p { color: red;}
 - [w3school 在线教程](https://link.zhihu.com/?target=http%3A//www.w3school.com.cn/) (中文，一个很 Low 但是又很好的入门学习网站）
 - [Learn to code](https://link.zhihu.com/?target=http%3A//www.codecademy.com/) (Codecademy，如果你英文 OK，**强烈建议**你使用它进行交互式的学习！里面从 HTML/CSS 到搭建网站的课程都有，免费，生动直观）
 
-
-
 **这个阶段的练习主要是“临摹”：用代码画出你想画的网站，越多越好。**
 
 对于书，我**非常不推荐**上来就去看各种厚厚的入门/指南书，没必要！这一个阶段应该快速上手，培养兴趣，培养成就感。先做出可以看的东西再说，掌握常用的 HTML/CSS 就够用了
 
 如果完成的好，这个阶段过后你大概就可以写出一些简单又好看的“静态网页”了，比如这个作品集/简历：[Portfolio - 黄玄的博客](https://link.zhihu.com/?target=http%3A//huangxuan.me/portfolio/) （好久没更新了…丢人现眼）
-
-
-
-
 
 **入门篇（JavaScript/jQuery）**
 
@@ -284,10 +280,6 @@ $('.className').click(function(){
 
 最后，我想推荐下 [Bootstrap · The world's most popular mobile-first and respons](https://link.zhihu.com/?target=http%3A//getbootstrap.com/) ，这是世界上最知名的前端 UI 框架之一，提供了大量 CSS 样式与 jQuery 插件。它非常容易学习并且中英文教程都非常健全，你并不需要理解它背后的工作原理就能很好的使用它，让你快速达到“可以建站的水平”。有余力的话，你不但可以学习如何使用它，还可以学习它背后的设计思想。
 
-
-
-
-
 **转职方向一：前端重构 （Web Rebuild）**
 
 业内通常把专精 HTML/CSS 的前端从业人员称为重构，而对于注重视觉效果的设计师来说，在掌握基本的 HTML/CSS 后，就可以朝着这个方向发展了。
@@ -304,10 +296,6 @@ HTML 方面，要开始注重语义化、可访问性与结构的合理，你要
 
 配合上你的设计功力，你可以开始尝试创作一些好玩的东西，比如这种富含交互和动画的网站 [绅宝 SENOVA](https://link.zhihu.com/?target=http%3A//huangxuan.me/senova/) ，它仍然是基于 [Huxpro/jquery.HSlider · GitHub](https://link.zhihu.com/?target=https%3A//github.com/Huxpro/jquery.HSlider)  实现的！或者给自己做个小小的个人网站试试
 
-
-
-
-
 **转职方向二：前端工程师（Front-end Engineer）**
 
 如果你觉得上述的这些都还满足不了你，你渴望做出更多了不起的交互，甚至你已经喜欢上了编程，想要转行做工程师，或者成为一名全栈设计师，那么你可以朝着这个方向继续发展！
@@ -323,15 +311,9 @@ HTML 方面，要开始注重语义化、可访问性与结构的合理，你要
 -  《[JavaScript高级程序设计（第3版） (豆瓣)](https://link.zhihu.com/?target=http%3A//book.douban.com/subject/10546125/) 》或 《[JavaScript权威指南 (豆瓣)](https://link.zhihu.com/?target=http%3A//book.douban.com/subject/2228378/)》，大而全的书只需要一本就够了
 - 如果上面这本你觉得太难，你可以先看 《[JavaScript DOM编程艺术 （第2版） (豆瓣)](https://link.zhihu.com/?target=http%3A//book.douban.com/subject/6038371/)》来过渡一下，这本书比较容易，它会教给你 “优雅降级、渐进增强”的优秀思想
 
-
-
 如果你能顺利得渡过了这个阶段，我想你已经能做出很多令你自豪的网站了！试着向身边的工程师朋友询问如何购买域名、配置简单的静态服务器，或者搜搜“Github Pages”，然后把你的作品挂在网络上让大家欣赏吧！
 
 你还可以试着用 JavaScript 写写小游戏，这不但能锻炼你的编程水平还非常有趣～比如这是我刚学 JS 不久后 hack 一晚的产物 —— 用 DOM 实现的打飞机：[Hux - Aircraft](https://link.zhihu.com/?target=http%3A//huangxuan.me/aircraft) （不支持手机）
-
-
-
-
 
 **入行篇**
 
@@ -352,7 +334,7 @@ HTML 方面，要开始注重语义化、可访问性与结构的合理，你要
 
 **你需要熟悉并且习惯使用 Node**，包括了解 npm、使用 Grunt/Gulp/Browserify/Webpack 优化你的工作流、对你的代码进行打包、混淆、压缩、发布，你还可以使用 Express/Koa 配合 MongoDB/Redis 涉足到后端领域，或者尝试用 Node 做后端渲染优化你的首屏体验
 
-**你需要了解各种 HTML 5 的新 API**，包括 <video>/<audio>，包括 Canvas，webGL、File API、App Cache、localStorage、IndexedDB、Drag & Drop、更高级的 DOM API、Fetch API 等等
+**你需要了解各种 HTML 5 的新 API**，包括 video、audio，包括 Canvas，webGL、File API、App Cache、localStorage、IndexedDB、Drag & Drop、更高级的 DOM API、Fetch API 等等
 
 **你需要学习 JavaScript 的单线程与异步编程方法**，因为它们非常非常常用、包括 setTimeout/setInterval，回调与回调地狱、事件与event loop、还有 Promise 甚至 Async/Await
 
@@ -368,19 +350,11 @@ HTML 方面，要开始注重语义化、可访问性与结构的合理，你要
 
 **你需要了解业内的大神并阅读它们的博客/知乎/微博**，比如  
 
-[@尤雨溪](http://www.zhihu.com/people/cfdec6226ece879d2571fbc274372e9f)
-
-[@贺师俊](http://www.zhihu.com/people/3ec3b166992a5a90a1083945d2490d38)[@张云龙](http://www.zhihu.com/people/3212f9044005e9306aab1b61e74e7ae6)[@徐飞](http://www.zhihu.com/people/c5198d4e9c0145aee04dd53cc6590edd)[@张克军](http://www.zhihu.com/people/20fdd386a6e59d178b8fe14e2863cb40)[@玉伯](http://www.zhihu.com/people/c11336b8607d86bc9090bed90757a34c)[@拔赤](http://www.zhihu.com/people/64458d15a75902cd0425732b7b757705)[@寸志](http://www.zhihu.com/people/0d9b98af12015c94cff646a6fc0773b5)[@题叶](http://www.zhihu.com/people/790dccce26904cdcd11b0fad3bac37b7)[@郭达峰](http://www.zhihu.com/people/85de6407f2219137df29b4249b91cfd5) 等等等等，很多思想和新东西只有从他们身上才能学到。我还推荐你多参加技术交流会，多认识一些可以一起学习的小伙伴，你们可以互相交流并且一起成长
-
-
+[@尤雨溪](http://www.zhihu.com/people/cfdec6226ece879d2571fbc274372e9f)[@贺师俊](http://www.zhihu.com/people/3ec3b166992a5a90a1083945d2490d38)[@张云龙](http://www.zhihu.com/people/3212f9044005e9306aab1b61e74e7ae6)[@徐飞](http://www.zhihu.com/people/c5198d4e9c0145aee04dd53cc6590edd)[@张克军](http://www.zhihu.com/people/20fdd386a6e59d178b8fe14e2863cb40)[@玉伯](http://www.zhihu.com/people/c11336b8607d86bc9090bed90757a34c)[@拔赤](http://www.zhihu.com/people/64458d15a75902cd0425732b7b757705)[@寸志](http://www.zhihu.com/people/0d9b98af12015c94cff646a6fc0773b5)[@题叶](http://www.zhihu.com/people/790dccce26904cdcd11b0fad3bac37b7)[@郭达峰](http://www.zhihu.com/people/85de6407f2219137df29b4249b91cfd5) 等等等等，很多思想和新东西只有从他们身上才能学到。我还推荐你多参加技术交流会，多认识一些可以一起学习的小伙伴，你们可以互相交流并且一起成长
 
 **你需要具备很强的自学能力、对技术有热情并且不断跟进**。因为 JavaScript/前端的社区非常非常活跃，有太多的新东西需要你自己来发现与学习：比如 Universal JavaScript、Isomorphic JavaScript、前端测试、HTML5 页游、WebRTC、WebSocket、CSS 4、SVG、HTTP/2、ES 7、React Native、Babel、TypeScript、Electron 等等等等…
 
-
-
 虽然一下扯得有点多，但这些确实就是你未来将会遇到的。你并不需要全部掌握它们，但是却多多益善；你也可以专精在某几个方面，这已经足以让你成为非常专业的前端工程师。
-
-
 
 
 

@@ -7,7 +7,7 @@ author:     "Makinohara"
 featured_image: http://msfasr.com/img/maths.jpg
 catalog: true
 tags:
-    - Study
+    - 学习
 ---
 
 多少年来一直都是这样,从初中开始一路到大学,数学都是我的心头之痛.算不对的表达式,理解不了的计算方法.记不住的公式,看不出来的形式......好像我天生就没有数学方面的天赋,或者是我天生就在数学上不仅没有天赋反而有很严重的负加成......

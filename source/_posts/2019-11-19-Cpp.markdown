@@ -7,8 +7,7 @@ author:     "Makinohara"
 featured_image: http://msfasr.com//img/cpp.jpg
 catalog: true
 tags:
-    - 学习笔记
-    - C++
+    - 编程语言
 ---
 
 > I'm refactoring this note into English version. This may spend me lots of time.
@@ -42,7 +41,388 @@ for(auto s:str1)
 
 By using range for, you can process each element in an array or a sequence .
 
+## C++ 类
 
+众所周知，支持面向对象编程是C++的一个重要特性，接下来我们来看类。
+
+```c++
+class Box
+{
+   public:
+      double length;   // 盒子的长度
+      double breadth;  // 盒子的宽度
+      double height;   // 盒子的高度
+};
+```
+
+带成员函数声明和定义：
+
+```c++
+class Box
+{
+   public:
+      double length;   // 长度
+      double breadth;  // 宽度
+      double height;   // 高度
+      // 成员函数声明
+      double get(void);
+      void set( double len, double bre, double hei );
+};
+// 成员函数定义
+double Box::get(void)
+{
+    return length * breadth * height;
+}
+ 
+void Box::set( double len, double bre, double hei)
+{
+    length = len;
+    breadth = bre;
+    height = hei;
+}
+```
+
+### 析构函数：
+
+```c++
+class String{
+private:
+    char* p;
+public:
+    String(int n);
+    ~String();
+};
+String::~String(){   //析构函数
+    delete[] p;
+}
+String::String(int n){
+    p = new char[n];
+}
+```
+
+
+
+### c++继承
+
+```c++
+// 基类
+class Shape 
+{
+   public:
+      void setWidth(int w)
+      {
+         width = w;
+      }
+      void setHeight(int h)
+      {
+         height = h;
+      }
+   protected:
+      int width;
+      int height;
+};
+ 
+// 派生类
+class Rectangle: public Shape
+{
+   public:
+      int getArea()
+      { 
+         return (width * height); 
+      }
+};
+
+//多继承
+class <派生类名>:<继承方式1><基类名1>,<继承方式2><基类名2>,…
+{
+<派生类类体>
+};
+```
+
+
+
+重载：
+
+```c++
+//运算符重载：
+Box operator+(const Box& b)
+      {
+         Box box;
+         box.length = this->length + b.length;
+         box.breadth = this->breadth + b.breadth;
+         box.height = this->height + b.height;
+         return box;
+      }
+
+//函数重载：
+class printData
+{
+   public:
+      void print(int i) {
+        cout << "整数为: " << i << endl;
+      }
+ 
+      void print(double  f) {
+        cout << "浮点数为: " << f << endl;
+      }
+ 
+      void print(char c[]) {
+        cout << "字符串为: " << c << endl;
+      }
+};
+```
+
+
+
+## 命名空间
+
+```c++
+// 第一个命名空间
+namespace first_space{
+   void func(){
+      cout << "Inside first_space" << endl;
+   }
+}
+// 第二个命名空间
+namespace second_space{
+   void func(){
+      cout << "Inside second_space" << endl;
+   }
+}
+int main ()
+{
+ 
+   // 调用第一个命名空间中的函数
+   first_space::func();
+   
+   // 调用第二个命名空间中的函数
+   second_space::func(); 
+ 
+   return 0;
+}
+```
+
+## 王氏C++——应付考试内容
+
+```c++
+//自由函数与成员函数，运算符重载的不同
+
+#include<bits/stdc++.h>
+class complex{
+    public:
+    complex(int ri = 0, int ii = 0){
+        r = ri;
+        i = ii;
+    }
+    int r;
+    int i;
+    friend complex operator+(const complex &b) ;//友元函数
+    //complex operator+(const complex &b) const;  成员函数
+};
+
+complex operator+(const complex &a,const complex &b) {
+    return complex(a.r+b.r,a.i+b.i);
+}
+
+/*
+成员函数
+complex complex::operator+(const complex &b) const{
+    return complex(r+b.r,i+b.i);
+}
+*/
+
+int main(){
+    complex c1(1,1);
+    complex c2(2,2);
+    complex c3 = c1+c2;
+    complex c4 = c2+3;//成员函数无法执行此操作，而友元函数会得出结果c4.r = c2.r+3,c4.r = c2.r;
+    return 0;
+}
+
+//有关数组一说
+float[2] x[100];//这是每个元素为2个float元素为元素的数组的数组。但是是错的，编译不通过。
+```
+
+### 引用：
+
+```c++
+int x = 5;
+int &rx = x;
+//rx = 7->x = 7
+```
+
+### 函数：
+
+```c++
+datatype func_name(datatype a){
+	
+}
+
+datatype func_name(datatype &rr){
+    rr = 2;
+}
+
+datatype func_name(const float &rr){
+    rr = 2;//ERROR
+}
+
+//example:
+int fun(int &i){
+    i = 36;
+    return i;
+}
+
+int main(){
+    int i = 3;
+    int f = fun(i);
+    return 0;
+}
+
+//数组名做参数
+int calcsum(int x[],int size){
+    int sum;
+    for (int i = 0; i < size; i++)
+    {
+        sum+=x[i];
+    }
+    return sum;
+}
+
+int main(){
+    int x[2]={1,2};
+    int sum = calcsum(x,2);
+    return 0;
+}
+
+
+```
+
+
+
+### 有关类的四个基本函数
+
+```c++
+class Clock{
+    private:
+    int a;
+    int b;
+    public:
+    clock(int a, int b);//构造函数
+    clock();//默认构造函数
+    clock(int i,int j){
+        a = i;
+        b = j;
+    }
+    
+    //初始化列表：
+    clock(int s, int i):a(s), b(i){};
+    
+    //析构函数
+    ~clock;
+    
+    //拷贝构造函数
+    clock(const clock &c){
+        a = c.a;
+        b = c.b;
+    }
+    
+    //拷贝赋值函数
+    clock& operator=(const clock &c){
+        if (&c!= this){   //避免自己拷贝自己的情况
+            a = c.a;
+            b = c.b;
+        }
+        return *this;
+    }
+    
+}
+```
+
+### 常函数：
+
+
+
+```c++
+class circle{
+    private:
+    int r;
+    public:
+    int getR(){
+        return r;
+    }
+    circle(int i){
+        r = i;
+    }
+
+    float getArea() /*(const)*/{
+        return 3.1415926 *r*r;
+    }
+    float getAreaC() const){
+        return 3.1415926 *r*r;
+    }
+};
+
+
+
+int main(){
+    const circle c1(1);
+    float area = c1.getArea();//错误，不是常函数无法访问const修饰的对象
+    float area = c1.getAreaC();//正确
+    return 0;
+}
+```
+
+
+
+### 继承：
+
+```c++
+class circle2:/*(private or protected or public)*/circle{
+    ......
+}
+```
+
+### 虚函数：
+
+```c++
+#include<iostream>
+
+class Base1{
+	public:
+    virtual void display() const;
+};
+
+void Base1::display() const{
+    std::cout<<1<<std::endl;
+}
+
+class Base2:public Base1{
+    public:
+    void display() const ;
+};
+void Base2::display() const{
+    std::cout<<2<<std::endl;
+}
+
+void function(Base1 *ptr){//一个指向父类的指针
+    ptr->display();
+}
+
+int main(){
+    Base1 b1;
+    Base2 b2;
+    function(&b1);//调用 void Base1::display() const
+    function(&b2);//调用 void Base2::display() const
+}
+```
+
+三种继承方式：父类成员对子类的可见性：
+
+| 父类访问控制/继承方式： | public    | protected | private |
+| ----------------------- | --------- | --------- | ------- |
+| public                  | public    | protected | private |
+| protected               | protected | protected | private |
+| private                 | private   | private   | private |
 
 
 

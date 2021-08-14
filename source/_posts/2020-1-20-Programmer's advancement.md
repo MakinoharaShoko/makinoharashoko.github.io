@@ -7,8 +7,8 @@ author:     "Makinohara"
 featured_image: http://msfasr.com/img/about-bg-walle.jpg
 catalog: true
 tags:
-    - Life
-    - Coding
+    - 生活感想
+    - 计算机基础
 
 ---
 
