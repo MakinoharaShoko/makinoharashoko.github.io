@@ -1,0 +1,814 @@
+---
+layout:     post
+title:      "C++语言学习笔记"
+intro:   ""
+date:       2019-11-19 16:00:00
+author:     "Makinohara"
+featured_image: http://msfasr.com//img/cpp.jpg
+catalog: true
+tags:
+    - 学习笔记
+    - C++
+---
+
+> I'm refactoring this note into English version. This may spend me lots of time.
+>
+> But I believe it will be a good form for me to learn English.
+>
+> Carry on! 
+
+# C++ Language Studying(Section 1)
+
+## Basic C++ Knowledge
+
+### Some tiny knowledge points
+
+1B=8bit(B refers byte and b refers bit)
+
+## C++ I/O
+
+
+
+## C++ Sentences
+
+#### Range for
+
+```c++
+for(auto s:str1)
+{
+    cout<<S<<endl;
+}
+```
+
+By using range for, you can process each element in an array or a sequence .
+
+
+
+
+
+## C++ Variable
+
+#### C++ Variable types:
+
+| Type        | Implication                                   | size                 |
+| ----------- | --------------------------------------------- | -------------------- |
+| bool        | bool type                                     | undefined            |
+| char        | character                                     | 8b                   |
+| wchar_t     | wide character                                | 16b                  |
+| char16_t    | Unicode character                             | 16b                  |
+| char32_t    | Unicode character                             | 32b                  |
+| short       | short integer                                 | 16b                  |
+| int         | integer                                       | 16b                  |
+| long        | long integer                                  | 32b                  |
+| long long   | long long integer                             | 64b                  |
+| float       | single-precision floating point number        | 6 significant digit  |
+| double      | double-precision floating point number        | 10 significant digit |
+| long double | expand double-precision floating point number | 10 significant digit |
+
+Use `unsigned` to state an unsigned variable type, an unsigned variable do not have a sign digit.
+
+#### Type conversion
+
+```c++
+bool a =42;// 0 refers true and the others refer false.
+int i =3.14;// the value of i is 3,the fractional digit has been dropped.
+double pi =i;//the value of pi is 3
+unsigned char c = -1; //the value of c is 255
+```
+
+`WARNING`: **DO NOT USE UNSIGNED TYPE AND  SIGNED TYPE VARIABLE AT THE SAME TIME !!!**
+
+#### Reference
+
+```c++
+int a=3;
+int &num = a;// num is a reference of a
+int &num2;//ERROR: reference must be initialized
+```
+
+#### Pointer
+
+Pointers point to a pointer:
+
+```c++
+int a=1024;
+int *ptr1 = &a;
+int **ptr2 = &ptr1;
+cout<<**ptr2<<endl;// output 1024
+```
+
+C++ Standard Library :: begin, end
+
+```c++
+int ia[]={1,2,3,4,5,6,7,8,9};
+int *beg = begin(ia);//refer a[0]
+int *end = end(ia);//refer the next position after the last element of an array
+```
+
+Pointer with custom size:
+
+```c++
+int a[2][2];
+int *p[2];//NOT THIS: It created a pointer array
+int (*p2)[2];//a pointer which can point to an array with 2 ints.
+//use decltype or auto:
+decltype *p3 = a;
+```
+
+
+
+#### Const
+
+You can use `const` to make a variable unchangeable.
+
+**Top-level-const and Low-level-const:**
+
+```c++
+int i=0;
+int *const p1 = &i;//the value of pointer can not be changed,top-level-const
+const int ci =42;//the value of ci can not be changed.
+const int *p2 = &ci;//the value of pointer can not be changed
+```
+
+#### Typedef
+
+```c++
+typedef double wages;
+```
+
+#### Decltype
+
+Use decltype to get a type that a function returns.
+
+```c++
+decltype(f()) sum =0;//the type of sum is just the type that f() returns.
+```
+
+#### Write your own head file
+
+You'd better define your struct and class in a head file .
+
+## Data Structure(STL)
+
+#### Using statement
+
+Before using C++ Standard Library, you can:
+
+```c++
+//method 1
+std::cout<<"Test"<<std::endl;
+//method 2:
+using namespace std;
+cout<<"123"<<endl;
+```
+
+
+
+#### Using iterator
+
+A sort of intelligence pointer , used for STD .
+
+C++ example:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    vector<int> vec1;//Statement
+    for (int i = 0; i < 5; i++)
+    {
+        vec1.push_back(i);
+    }
+    auto it = vec1.begin();//Auto Statement
+    vector<int>:: iterator it = vec1.begin();//Standard statement
+
+    cout << *it << endl;
+    for (; it != vec1.end(); it++)
+    {
+        cout << *it << endl;
+    }
+    
+    return 0;
+    
+}
+```
+
+Operations:
+
+```c++
+it = v1.begin();//set v1 refer to the first
+*it;//return value
+it++;//point to the next
+*it = 1234;//change value
+it2 = it + 2;//send the address + 2 to another
+```
+
+
+
+#### Stack: a LIFO(Last in First out) data structure
+
+Statement in C++:
+
+```c++
+stack<int> stack_name;
+```
+
+Basic operations:
+
+```c++
+stack_name.push(data);//push a data into the stack
+cout<<stack_name.top();//read the data at top
+stack_name.pop();//pop out the data at top
+```
+
+#### Queue: a FIFO(First in First out) data structure
+
+Statement in C++:
+
+```c++
+queue<int> q;
+```
+
+Basic operations:
+
+```c++
+q.front();//read the data at the front
+q.push();//push a data at the end of the queue
+q.pop();//pop out the data at the front
+q = queue<int>();//empty the queue
+```
+
+Then, let's see a sample of using queue.
+
+Cruel torture (AHU77)
+
+------
+
+Please read the question at [bofcOJ](oj.bofc.tech)
+
+------
+
+Code:
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int qty_children = 0, k;
+    cin >> qty_children >> k;
+
+    
+    int sum = 0;
+    queue<int> children;
+    for (int i = 1; i <= qty_children; i++)
+    {
+        children.push(i);
+    } //statement queue
+    while (sum < qty_children-1)
+    {
+
+        for (int i = 0; i < k-1; i++)
+        {
+            children.push(children.front());//if we do not pull out the line, thus we let this wild kid get to the back.
+            children.pop();
+        }
+        children.pop();//when it comes to pull out the line, this wild kid is over.
+        sum++;
+    }
+    cout << children.front();
+
+    return 0;
+}
+```
+
+
+
+#### Using dynamic array with pointer
+
+Code demo:
+
+```c++
+int *p = new int[10];//Create an array when running.
+delete[] p;//the realease of a dynamic array method is not same with a variable
+```
+
+#### bitset
+
+A data structure which storages bit.
+
+```c++
+    bitset<4> bitset1;//construct without parameter:set space 4
+
+    bitset<8> bitset2(12);//the space is 8, storge 12 into binary system,use 0 to fill the blank bit.
+
+    string s = "100101";
+    bitset<10> bitset3(s);//the space is 10,use 0 to fill the blank bit,the string CAN ONLY CONTAINS 0 and 1.
+    
+    char s2[] = "10101";
+    bitset<13> bitset4(s2);//the space is 13,use 0 to fill the blank bit
+
+    cout << bitset1 << endl;//0000
+    cout << bitset2 << endl;//00001100
+    cout << bitset3 << endl;//0000100101
+    cout << bitset4 << endl;//0000000010101
+    bitset3[0];//Simular as array,use subscript to access the elements.
+    
+```
+
+There's so many ways to use bitset, but let's see struct first.
+
+#### Struct
+
+A struct is a data structure which contains serval variable type. The struct can also form an array!
+
+C++ examples
+
+```c++
+struct Books
+{
+   char  title[50];
+   char  author[50];
+   char  subject[100];
+   int   book_id;
+} book = {"C Language", "RUNOOB", "Programing Language", 123456};//define a struct and initialize
+
+
+```
+
+//Of course, you can use it as below: No initialize.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct student //define the struct of single student
+{
+    int number;
+    int score;
+};
+
+int main()
+{
+	student students[10000];
+       for (int i = 0; i < total; i++) //input scores
+      {
+        cin >> students[i].number >> students[i].score;//See the examples here!
+      }
+
+    return 0;
+
+}
+//It means you can only define a struct and use it as a data type!
+```
+
+##### Struct pointer
+
+```c++
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct student //define the struct of single student
+{
+    int number;
+    int score;
+};
+
+int main()
+{
+    struct student students[100];
+
+    scanf("%d%d", &students[0].number, &students[0].score); //See the examples here!
+
+    struct student *p = students; //initialize the pointer.
+    printf("%d", p->number);      
+    p++;                          //go to next student.
+    return 0;
+}
+
+```
+
+
+
+```c
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+struct student
+{
+    int id;
+    int maths;
+};
+
+int main()
+{
+    struct student stu1[2];
+    struct student *p ;
+    p=stu1;
+    
+    printf("%d",p->id);
+
+    return 0;
+}
+```
+
+
+
+#### Vector
+
+This is a significant data structure in  C++ standard library , equals an array that can change memory size at will,and you can also CRUD in it in will.
+
+Basic operations:
+
+```c++
+vector<int> c;
+c.push_back(1);//place the element at the end of the vector.
+
+```
+
+```c++
+vector<Sales_item> sales_vec;//vector can also store class or struct
+vector<vector<string>>;//the elements in this vector are also vector objects.
+```
+
+Other operations:
+
+```c++
+vector<T> v1{1,2,3,4,5};
+vector<T> v2(5,5);//{5,5,5,5,5}
+vector<string> v3={"Hello","World","!"};
+vector<int> v4(10); //Create a vector have 10 elements, initialized by 0.
+v4.push_back(1);//put an elemnet to the back of the vector;
+v4.size();
+```
+
+Use array to initialize a vector 
+
+```c++
+int a[]={1,2,3,4,5};
+vector<int> v1(begin(a),end(arr));//send the begin and end to construct.
+```
+
+
+
+#### String
+
+String is a **char** sequence whose size is changeable .
+
+Initialize:
+
+```c++
+string s1;//an empty string has been created
+string s2(10,'c');//"cccccccccc"
+```
+
+Operations:
+
+| Operation | Action                          |
+| --------- | ------------------------------- |
+| os<<s;    | Write s to ostream              |
+| is>>s;    | Write instream to s             |
+| s.size(); | Return the length;              |
+| s1+s2     | Connect two strings             |
+| s1>=s2    | compare, use *dictionary order* |
+
+**Get line**
+
+```c++
+while(getline(cin,line)&&line.size()>0)
+{
+    //code
+}
+```
+
+**Character type:**
+
+```c++
+tolower(c);//change into lower size
+toupper(c);//change into upper size
+```
+
+`Warning`: Do not do this:
+
+```c++
+char a[]="fff";
+char b[]="aaa";
+string c = a+b;//ERROR: you are trying to add two pointers!!!
+```
+
+
+
+#### Set
+
+An example:
+
+```c++
+#include <iostream>
+#include <set>
+
+using namespace std;
+
+int main()
+{
+    int case_number;
+    cin >> case_number; //Input the amount
+    set<int> numbers;
+    int put_number;
+    set<int> :: iterator out_number;
+    for (int i = 0; i < case_number; i++) // Input data
+    {
+        cin >> put_number;
+        numbers.insert(put_number);
+    }
+    cout << numbers.size() << endl;
+    int count=0;
+    for (out_number = numbers.begin(); out_number != numbers.end(); out_number++) 
+    {
+        
+        cout << *out_number ;
+        count++;
+        if(count <= numbers.size()-1) cout<<" ";
+    }
+
+    return 0;
+}
+```
+
+Set can automatically sort, and the elements are strictly diverse .
+
+#### 优先队列:优先级最高的元素先出的队列
+
+C++的标准库中包含了一个很好用的数据结构:优先队列.该结构可以将优先级大的元素排到前面.
+
+```c++
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+	priority_queue<int> que_apples; //默认使用vector,大的数字优先
+	priority_queue<int, vector<int>, greater<int>> app_que;//小的数字优先
+	
+	return 0;
+}
+```
+
+自定义优先级:重载运算符
+
+```c++
+class Student
+{
+    int id;
+    char name[20];
+    bool gender;
+    bool operator < (Student &a) const
+    {
+        return id > a.id;
+    }
+};
+```
+
+
+
+## STL算法
+
+#### 快排(sort),包含在algorithm
+
+这个算法极其牛逼,解放了万千程序员的双手(赞美)!!!
+
+快排作用的内容:数组/向量容器等
+
+C++使用实例
+
+```c++
+vector<int> v1;
+int numbers[2][5];
+struct student
+{
+    int number;
+    int score;
+    string name;
+}
+//此处省略若干行插入数据代码,让我们假设这这里面有很多数据
+sort(v1.begin(),v1.end());//默认从小到大排列
+bool compare(int a , int b)//按某种排序方案排序
+{
+    return a>b;//这样是降序排列
+    return numbers[a][0]>numbers[b][0];//还能读取某些数据的元素排列
+    return student[a].score>student[b].score;//还能读取某些结构体的成员
+}
+```
+
+
+
+## 常用基础算法(一些很基本的,要背的)
+
+#### 公因数公倍数
+
+```c++
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    int m, n;
+    int s = 0;
+    int min = 0;
+    scanf("%d%d", &m, &n);
+    //最大公约数
+    if (m > n)
+    {
+        s = m;
+        min = n;
+    }
+    else
+    {
+        s = n;
+        min = m;
+    }
+    while (min != 0)
+    {
+        int t = s%min;
+        s = min;
+        min = t;
+    }
+    printf("%d\n",s);
+    //重置两个数
+    if (m > n)
+    {
+        s = m;
+        min = n;
+    }
+    else
+    {
+        s = n;
+        min = m;
+    }
+    //公倍数
+    for (int i = min;; i += min)
+    {
+        double resR = (double)i / s;
+        int floor = i / s;
+
+        if ((double)floor == resR)
+        {
+            printf("%d\n", i);
+            break;
+        }
+    }
+
+    return 0;
+}
+```
+
+
+
+#### 筛法判断质数
+
+上代码:
+
+```c++
+bool isPrime(int a)
+{
+    if (a == 2)
+        return true;
+    if (a % 2 == 0)
+        return false;
+    int x = sqrt(a);
+    for (int i = 2; i <= x; ++i)
+    {
+        if (a % i == 0)
+            return false;
+    }
+    return true;
+}
+```
+
+#### 素数的埃式筛法
+
+先确认一个数是素数,然后划掉其倍数,在找到下一个素数后,再划掉其倍数,最后只剩素数.
+
+```c++
+int main()
+{
+    int number_list[1000] = {0}; //we can get primes below 1000
+    bool break_flag = false;
+    number_list[0] = 1;
+    int pri = 2;
+    while (!break_flag)
+    {
+        // the non-prime will be mark 1
+        int count = pri;
+        while (count <= 1000)
+        {
+            count += pri;
+            if (count >= 1000)
+                break;
+            number_list[count] = 1;
+        }
+        int temp_pri = pri;
+        while (true)
+        {
+            temp_pri++;
+            if (temp_pri >= 999)
+            {
+                break_flag = true;
+                break;
+            }
+            if (number_list[temp_pri] == 0)
+            {
+                pri = temp_pri;
+                break;
+            }
+        }
+    }
+    for (int i = 0; i < 1000; i++)
+    {
+        if (number_list[i] == 0)
+        {
+            cout << i << " ";
+        }
+    }
+
+    return 0;
+}
+```
+
+#### 分解质因数(简便方法)
+
+```c
+#include <stdio.h>
+#include <math.h>
+//这个程序适合好好阅读并分析
+void foo(long long int n)
+{
+    long long int sqr = sqrt(n);//测试质数只需测到平方的取整
+    long long int i = 0;
+    for(i = 2; i <= sqr; i++)//从2开始测
+    {
+        if(n % i == 0 && (n /= i))//后面的表达式指的是除i留下剩余部分
+        {
+            printf("%lld ", i--);
+        }
+    }
+    if(n != 1)//不打印1作为因子
+    {
+        printf("%lld", n);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    long long int n ;
+    scanf("%lld", &n);
+    foo(n);
+    return 0;
+}
+
+```
+
+
+
+#### 查找字符(这是C标准库里的内容)
+
+用于在一个字符串(也就是char数组)中查找指定的字符
+
+```c++
+strchr(string_name, 'A');//在string name 这个字符串中寻找A这个字符
+//返回有多种可能,若找到,返回指向这个字符的指针,否则返回NULL(这个NULL是标识符,不是字符串之类的玩意)
+```
+
+#### 位运算
+
+位运算是一种直接操作位的运算,其包含多种运算符:
+
+上代码:
+
+```c++
+<<; //左移运算符,移动时丢弃左边的位,用0补充
+"11110000"<<"10000000";//左移了3位!!!
+>>; //右移运算符,移动时丢弃右边的位,左边用0或原来丢弃的左边的位补充!!!
+"11111111">>"00001111";//右移了四位!!!
+    
+//接下来看看逻辑位运算
+~;//按位非,倒置0/1
+|;//按位或,有一为1,否则为0
+^;//XOR,相同为0,不同为1
+&;//AND,都为1才为1,否则为0
+
+//一些常用的位逻辑运算:
+lottabits |= pow(2,3);//打开位,也就是将某一位置为1,其中后面的2的多少次方代表着打开的位置(2的0次方代表右起第一位,以此类推)
+lottabits ^= pow(2,3);//切换位:置反
+lottabits &= pow(2,3);//关闭位:置0
+bool isOpen = lottabits & pow(2,3);//测试某一位是否为1(打开),返回true or false.
+```
+

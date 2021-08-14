@@ -1,0 +1,92 @@
+
+
+
+
+
+<%
+const categoriesList = list_categories({ show_count: false });
+const tagsList = list_tags({ show_count: false });
+const archivesList = list_archives({ show_count: false });
+%>
+<%- css('/css/aside.css') %>
+
+<div id="Content">
+
+  <% if (is_year() === false) { %>
+    <div id="archive">
+
+
+
+      <div id="asidePart">
+        <h2 class="asideMenuText">归档列表</h2>
+        <% if (tagsList !== "") { %>
+        <%-tagsList%>
+        <% } else { %>
+          <p>None.</p>
+        <% } %>
+
+      </div>
+      <div id="content">
+        <div id="tag">
+          <h1>&nbsp;<%=page.tag%></h1>
+          <% page.posts.each(article => { %>
+          <div class="tag-item">
+            <div class="tags-text">
+              <a href="<%=url_for(article.path)%>" >
+                <div class="articleText">
+                  <%=article.title%>
+                </div>
+              </a>
+            </div>
+            <div class="tags-date">
+              <time datetime="<%=date_xml(article.date)%>">
+                <%=date(article.date)%>
+              </time>
+            </div>
+
+          </div>
+          <% }) %>
+        </div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+  <% } else { %>
+
+  <h1><%=page.month + '/' + page.year%></h1>
+
+  <% page.posts.each(article => { %>
+  <div class="archive-item">
+    <a href="<%=url_for(article.path)%>">
+      <%=article.title%>
+    </a>
+    <time datetime="<%=date_xml(article.date)%>">
+      <%=date(article.date)%>
+    </time>
+  </div>
+  <% }) %>
+
+  <div id="paginator">
+    <%-paginator()%>
+  </div>
+
+  <% } %>
+</div>
+
+<!-- 引入侧边栏 -->
+
+
+<div id="content">
+
+
+
+
+</div>
+
+
+

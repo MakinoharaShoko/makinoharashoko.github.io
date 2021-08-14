@@ -1,0 +1,27 @@
+---
+layout:     post
+title:      "Hello 2019"
+intro:   ""
+date:       2019-09-30 12:00:00
+author:     "Makinohara"
+featured_image: http://msfasr.com/img/post-bg-2015.jpg
+catalog: true
+tags:
+    - Life
+    
+---
+
+Makinohara 的 Blog 就这么开通了。
+
+这个博客的用途有二：一是分享自己的感想、写些技术类文章，二是用于实验自己学到的网页开发技术。
+
+至于写啥至今没想好,只是觉得找个地方写东西是极好的.
+
+这个无名小地方估摸着也没有人会来看,备份笔记,发发牢骚,写点杂谈应当都是很好的消遣------反正也没有人会注意的,整天净想着如何经营自己的形象,累不累......
+
+
+
+
+
+
+<p id = "build"></p>

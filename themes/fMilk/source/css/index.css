@@ -1,0 +1,25 @@
+img#nav{
+  float: left;
+  height: auto;
+  width: auto;
+  max-width: 65px;
+}
+div#noneOpen{
+  text-align: center;
+  font-size: large;
+  color: gray;
+}
+.headText{
+  font-size: 16px;
+  position: relative;
+  top:3px;
+}
+
+.post-url:link {color:black;}		/* 未被访问的链接 */
+.post-url:visited {color:black;}	/* 已被访问的链接 */
+.post-url:hover {color:#0089A7;
+}	/* 鼠标指针移动到链接上 */
+.post-url:active {color:gray;}	/* 正在被点击的链接 */
+.post-url{
+  text-decoration:none;
+}

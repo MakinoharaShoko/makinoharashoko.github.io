@@ -1,0 +1,855 @@
+---
+layout:     post
+title:      "Developing in Java"
+intro:   ""
+date:       2019-10-25 08:00:00
+author:     "Makinohara"
+featured_image: http://msfasr.com/img/Java.jpg
+catalog: true
+tags:
+    - 学习笔记
+    - Java
+---
+
+
+
+# Java Language
+
+#### Tiny notes
+
+1B=8bit
+
+Java have three systems：
+
+- Java SE（J2SE）（Java2 Platform Standard Edition）
+- Java EE  (J2EE)     (Java 2 Platform,Enterprise Edition)
+- Java ME (J2ME)   (Java 2 Platform Micro Edition)
+
+## Java class
+
+### The define of a java class
+
+You can see it's like C++ class in some ways.
+
+```java
+class Employee
+{
+    //status(variable)
+    private String name;
+    private double salary;
+    
+    //constructor
+    public Employee(String n,double s)
+    {
+        name = n;
+        salary = s;
+    }
+    
+    //method
+    public String getName()
+    {
+        return name;
+    }
+}
+```
+
+
+
+##### Class Fields
+
+```java
+private String name;//private refers this variable can only access by it's own method.
+private double salary;
+```
+
+##### Class constructor
+
+```java
+public Employee(String n , double s)
+{
+    name =n;
+    salary =s;
+
+
+//use constructor:
+new Employee("Jamws Bond",10000);
+//there can be serveral constructors in a class.
+}
+```
+
+### Constructor
+
+Java offers several mechanisms of constructing a new object.
+
+This function is called as **overloading**. If there's several functions with **same name but different parameters** ,  the complicator will choose a function .This called **overloading resolution** .
+
+Ok, let's see constructor.
+
+**Default field initialize:**
+
+```java
+Employee John = new Employee();
+```
+
+All the number will be 0, boolean will be `false`, object reference will be `null`. 
+
+Caution: This is **not a good habit** to initialize a new object with default field.
+
+#### **Constructor without parameter:**
+
+```java
+public Employee()
+{
+    name ="";
+    salary =0;
+    hireDay =LocalDate.now();
+}
+```
+
+#### Explicit field initialize 
+
+You can initialize field value in the declaration of a class.
+
+Before using constructor.
+
+```java
+public class Employee
+{
+    private String name =" ";
+    private static int nextId;
+    private int id = assignId();
+    
+    
+    private static int assignId()
+    {
+        int r= nextId;
+        nextId++;
+        return r;
+	}
+}
+```
+
+#### Calling another constructor
+
+Use **`this`** to call another constructor when you are just using a constructor.
+
+```java
+public Employee(double s)
+{
+    this("Employee" + nextId,s);
+    nextId++;
+}
+```
+
+#### Initialization block
+
+Initialize field values in the class define.
+
+```java
+class Employee
+{
+    //......
+    private int Id;
+    private String name;
+    private double salary;
+    //......
+    
+    //Use initialization block
+    {
+        id = nextId;
+        nextId++;
+    }
+}
+```
+
+#### Summary
+
+The Steps of Calling constrictor
+
+1.If the constructor calls another, construct by that one.
+
+2.a. All the field will be initialized by default.
+
+   b. According to the order in `class defination`, execute field initialize function and initialization block.
+
+### Class Operation
+
+##### Use `var` to state a local variable
+
+```java
+var harry = new Employee("Hurry",5000);
+```
+
+##### **Use `clone` to return a copy of an object**
+
+```java
+return (Date) hireDay.clone();
+```
+
+Tips: a private field is accessible to an object of same class.
+
+#### Static
+
+A field or method which is defined as `static` means there is **ONLY ONE** in the same class.
+
+```java
+public static final double PI = 3.141592653;
+```
+
+A static method do not use an object. Such as:
+
+```java
+Math.pow(10,3);
+```
+
+A static method can not access fields in an object ,but can access **static field**.
+
+**Use static initialization block**
+
+```java
+static
+{
+    var generator = new Radom();
+    nextId = generator.nextInt(10000);
+}
+```
+
+
+
+#### Main method 
+
+A class can have a main method, but it will not come into effect. It is used to **TEST** a class.
+
+#### Class Date
+
+```java
+System.out.println(new Date());
+String s = new Date.toString();
+Date deadline;//However,this variable does not refer to any object.
+deadline = new Date();//ok.
+deadline = null;// refer to no object
+deadline = birthday;//they refer to the same object
+
+```
+
+**Class LocalDate**
+
+```java
+package com.msfasr.java_startup;
+
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
+public class Calendar {
+    public static void main(String[] args)
+    {
+        LocalDate currentDate = LocalDate.now();
+        System.out.println("Mon Tue Wed Thu Fri Sat Sun");
+        int month=currentDate.getMonthValue();
+        int today=currentDate.getDayOfMonth();
+        currentDate = currentDate.minusDays(today-1);
+        int dayOfWeek = currentDate.getDayOfWeek().getValue();
+        for(int i=0;i<dayOfWeek-1;i++)
+            System.out.printf("    ");
+        while(currentDate.getMonthValue() == month)
+        {
+            if(currentDate.getDayOfMonth()==today)
+            {
+                System.out.printf("*");
+            }
+            else
+                System.out.printf(" ");
+            System.out.printf("%-3d",currentDate.getDayOfMonth());
+            if(currentDate.getDayOfWeek().getValue()==7)
+                System.out.println();
+            currentDate = currentDate.plusDays(1);
+        }
+    }
+}
+
+```
+
+
+
+### Java class methods
+
+#### Main method
+
+```java
+package com.msfasr.java_startup;//The code is included in a package
+
+import java.util.Scanner;//Inport Scanner for input
+
+
+public class HelloWorld {//The main method is contained in a class
+    public static void main(String[] args) {//Be aware of the define of the main method
+        System.out.println("Hello,world");
+    }
+}
+```
+
+#### Class Methods
+
+```java
+public static void printCalendar()
+{
+    ......
+}//static method, do not operate fields
+
+public void changeFormat()
+{
+    ......
+}//this method must based on an object
+```
+
+
+
+#### Method parameters
+
+Java programming language can only **Call by value** .
+
+However, when the parameter is an `OBJECT` , methods can change values of OBJECTS.
+
+```java
+public static void tripleSalary(Employee x)
+{
+    x.raiseSalary(200);
+}
+```
+
+So,a method **can**:
+
+Change the status of an object.
+
+**Can't**:
+
+Change values of variable.
+
+Make an object refer to an new object.
+
+### Package
+
+Java package is a sort of set contains several **class**.
+
+Package standard name:
+
+com.(company name).(project name)
+
+Such as:
+
+com.msfasr.javaStartup
+
+#### Importing package
+
+```java
+import java.util.Scanner;//import a class
+import java.util.*       //import a package
+```
+
+When there is a class name used by several package, you need to write the package name when using.
+
+```java
+import java.util.Date;
+import java.sql.Date;
+
+public class Main{
+    public static void main(String[] args){
+        var deadline = new java.util.Date();
+        var today = new java.sql.Date(. . . );
+    }
+
+}
+```
+
+#### Static importing
+
+By using static importing, you can import a sort of static method and field.
+
+```java
+import static java.lang.System.*;
+//then, you can use:
+out.println("123");//System.out
+exit(0);//System.exit
+
+```
+
+#### Adding class into a package
+
+```java
+package com.msfasr.javaStartup;
+//......
+```
+
+The class is now in the package.
+
+**Class annotation** 
+
+```java
+/**
+ * This class is built for Studying Java!
+ * This means I will enter a new field!
+ */
+
+public class Main {
+	//......
+}
+```
+
+
+
+### Class Designing tips
+
+1.Guarantee that the **data** is private.
+
+2.`Warning`: **You must initialize the field!!!**
+
+3.Do not use so much basic type variable!!!
+
+```java
+//......
+private String street;
+private String city;
+private String state;//bad
+//......
+
+
+private class address
+{
+    private String street;
+	private String city;
+	private String state;   //good
+}
+```
+
+4.not all the fields are changeable.
+
+5.Resolve the classes with so many responsibility.
+
+6.The name should refer their responsibility.
+
+7.Use classes unchangeable at first.
+
+### Class Inheritance
+
+#### Class, Superclass, Subclass
+
+**A subclass define:**
+
+```java
+public class Manager extends Employee
+{
+    private double bonus;
+    
+    private void setBonus(double aBonus)
+    {
+        bonus=aBonus;
+    }
+}
+```
+
+#### Covering methods
+
+```java
+public class Manager extends Employee
+{
+    //...
+    public double getSalary()
+    {
+        int aSalary= super.getSalary();
+        return aSalary + bonus;
+    }
+}
+```
+
+#### Subclass constructor
+
+```java
+public class Manager extends Employee
+{
+    public Manager(String name , double salary, int year, int month, int day)
+    {
+        super(name,salary,year, month, day);
+        bonus = 0 ;
+    }
+}
+```
+
+#### Class Array with dynamic binding
+
+```java
+//...
+Manager boss = new Manager("Makinohara",80000000,2001,4,13);
+boss.setBonus(200000);
+
+//then, define an array of employees
+
+var staff[] = new Employee[3];
+
+staff[0] = boss;
+staff[1] = new Employee("Mai",20000,2000,1,2);
+staff[2] = new Employee("Sakuta",10,2001,4,13);
+
+for(Employee e : staff)//for:each circulation
+{
+    System.out.println(e.getName()+":"+e.getSalary);
+}
+```
+
+The compiler will choose the right method to get salary, this is **Dynamic Binding**.
+
+#### Polymorphism
+
+In java, the object variable is **polymorphic**, it means a variable of an object can refer all the **subclass object**. 
+
+#### Java Method Calling
+
+1. The complier gets the method list of **a class and its superclass**.
+
+2. The complier confirms the **parameter types** of the method which is being called.
+
+3. The JVM calls the method.
+
+#### Stop Inheriting : `final`.
+
+```java
+public final class Boss extends Manager//the class can't be inheriting
+{
+    //...
+    public final String getName()//the method can't be covered.
+    {
+        //......
+    }
+}
+```
+
+### Forced type conversion 
+
+In *Class Array with dynamic binding*, we created an array contains Manager and Employee. However, the array is a Employee array, so we need to use Forced type conversion to convert a Employee object to a Manager object.
+
+```java
+Manager boss = (Manager)staff[0];
+```
+
+But, when you are trying to convert a object **from top to bottom**, it won't work.
+
+```java
+Manager boss = (Manager)staff[1];// Not work
+
+//So,we can avoid this case by using:
+if(staff[1] instanceof Manager)
+{
+    
+    boss = (Manager)staff[1];
+    
+    //......
+}
+```
+
+### Abstract Class
+
+Abstract class is a sort of class that is more general. Such as Person can contain Employee and Student.
+
+The define of an abstract class
+
+```java
+public abstract class Person
+{
+    private String name;
+    public Person (String name)
+    {
+        this.name = name;
+	}
+    
+    public abstract String getName()
+    {
+        return name;
+    }
+}
+```
+
+**Instantiation is not allowed in an Abstract class.** It means you can't :
+
+```java
+var aP = new Person("Deja vu");
+// you can do this:
+
+Person stu1 = new student("Deja vu","Computer Driving");
+```
+
+### Access modifier
+
+public : this method or field can be used by `all classes`.
+
+private: this method or field can only used by the `same class`, not for subclasses.
+
+protected: this method or field can used by `this package` and `all subclass`
+
+no modifier: this method or field can be used by all the methods in the `same package`!!
+
+### Object: the superclass of all classes
+
+You can use a variable whose type is `Object` to refer `objects of all classes`.
+
+```java
+Object obj = new Employee("Harry Potter",300000);
+```
+
+But, when you are trying to operate the object or using methods, you need to do `type conversing` .
+
+```java
+Employee e = (Employee)obj;
+```
+
+#### **`equals`**
+
+`equals` is a method to compare whether two objects are equal.
+
+The `equals` method in Class Object is used to compare two objects are equal or not, and if two objects reference are same, the method returns true.
+
+##### Equals method writing
+
+###### Standard:
+
+1. **Reflexivity** : x.equals(x) == true 
+2. **Symmetry** : x.equals(y) == y.equals(x)
+3. **Transitivity** : x.equals(y) == true , y.equals(z) == true -> x.equals(z) == true.
+4. **Consistency** : If x and y did not change , the equality do not change.
+5. **x.equals(null) == false.**
+
+###### Advice of designing an equals method
+
+See *Core Java Vol.1* , 11th edition , Page 178.
+
+#### Hash code
+
+hashcode() : returns an integer , the hash code , that refers the object.
+
+Object.hash(Obj1,Obj2,......,ObjN) ;
+
+Object.hashcode(Obj);
+
+#### toString
+
+Object.toString(); Print a string that consist of all fields. Needs you write yourself.	
+
+#### ArrayList
+
+```java
+ArrayList<Employee> staff = new ArrayList<Employee>();
+
+//add an object:
+staff.add(Object);
+staff.add(new Employee(......));
+
+staff.size();//returns the number of objects.
+```
+
+**Compare: ArrayList and Array**
+
+```java
+stuff.set(i,harry);//stuff[i] = hurry
+Employee ep = stuff.get(i);// Employee ep = stuff[i]
+stuff.add(i,E);//insert E to position i , move the rest. 
+stuff.remove(i);//delete Element at position i, move the rest
+```
+
+### Object Wrapper
+
+Wrapper class is a sort of class that **corresponding to basic data types**. 
+
+Such as:
+
+```java
+var list = new ArrayList<Integer>();
+list.add(3);          //Autoboxing
+int n = list.get(i);  //Autounboxing
+```
+
+## Interface
+
+### Realize an interface
+
+
+
+```java
+class Employee implements Comparable<Employee>	 //use keyword implements
+{
+    //......
+    public int compareTo(Employee other)
+    {
+        return Double.compare(salary,other.salary);
+    }
+    //......
+}
+```
+
+```java
+public class Main {
+
+    public static void main(String[] args)  {
+        var staff = new Employee[3];
+        staff[0] = new Employee("Mark",12000,2020,1,20);
+        staff[1] = new Employee("Lin",10000,2020,1,20);
+        staff[2] = new Employee("Coal",41230,2020,1,20);
+        Arrays.sort(staff);
+        return;
+
+    }
+}
+```
+
+
+
+## Java I/O
+
+#### Input(scanner)
+
+Firstly, import a class *scanner* .
+
+```java
+import java.util.Scanner;
+```
+
+This class has these basic operations :
+
+```java
+Scanner sc = new Scanner(System.in);//new a scanner
+String name = sc.nextLine();//Get a line
+int age = sc.nextInt();//Get the next int
+sc.close();//Close the scanner when used,or it will report an error.
+```
+
+##### Other measures
+
+```java
+String nextLine();//read next line;
+String next();//read next word, use blank as separator.
+int nextInt();//read next int
+boolean hasNext();//if there's words in line
+boolean hasNextInt();
+```
+
+##### Read files
+
+```java
+Scanner sc = new Scanner("Path",StandardCharsets.UTF_8);//read file
+PrintWriter out = new PrintWriter("Path",StandardCharsets.UTF_8);//Write file
+out.print();//Warning: this method will rewrite the file!!!
+```
+
+
+
+#### Output (System.out)
+
+```java
+System.out.println(1111);//Print and return
+System.out.print(1111);//Print without returning
+System.out.write(2222);//byte output
+System.out.printf("%+8.3f\n", 3.14);//Print according to format
+```
+
+
+
+## Java variable :
+
+### Variable types
+
+| Variable type | value                        |
+| ------------- | ---------------------------- |
+| int           | 4byte,-2147483648~2147483647 |
+| short         | 2byte                        |
+| long          | 8byte                        |
+| byte          | 1byte                        |
+| float         | 4byte                        |
+| double        | 8byte                        |
+| char(UTF-16)  | 16byte(UTF-16 character )    |
+| boolean       | true/false                   |
+
+Caution: A variable must be initialized ,or the compiler will put an ERROR.
+
+In java, key word `final` refers a variable is constant.
+
+**enum**:
+
+```java
+enum Size {Small,Medium};//enum is a CLASS!
+Size s = Size.Small;//it can only use values defined above.
+```
+
+#### String
+
+**str.substring** can extract a part of string .
+
+```java
+String greeting = "Hello";
+String s = greeting.substring(0,3);//s = "Hel"
+String str = greeting+s;
+```
+
+ str.equals compares two strings:
+
+```java
+"Hello".equals(greeting);
+```
+
+Caution: DO NOT USE == !
+
+##### Other measures 
+
+```java
+str.length(); //return length
+str.blank(); // judge if the string is empty
+str.join("/",str1,str2,str3......);// use / as separator , combine strings
+String.format("%f",a);//returns a String with format
+```
+
+#### Big numbers
+
+```java
+BigInteger;
+BigDecimal;
+num1.add(num2);
+//use add subtract multiply devide mod
+```
+
+### Array
+
+```java
+int[] a = new int[100];
+int[] a = new int[n];
+int[] a = {1,3,7,7,9};
+a = new int[] {1,3,5,7,9};
+a.length();
+Array.sort(a);
+Array.binarySearch(xxx[] a,xxx v);
+Array.binarySearch(xxx[] a,int start,int end,xxx v);
+Array.fill(xxx[] a,xxx v);
+int a[][] = new int[1][3];
+int[] temp = a[1];
+a[1]=a[2];
+a[2]=temp;//exchange 2 lines
+int[][] feb = new int[100][];
+for(int n=0;n<100;n++)
+    feb[n]=new int[n+1];//regard feb[n] as an array name.
+```
+
+**Array copy:**
+
+```java
+int[] a = {1};
+int[] b = a;
+a[0]=5;//now,b[0] is also 5
+int[] ca = Arrays.copyOf(a,5);//then we get a new array, the size is 5.
+```
+
+## Java sentences
+
+### For
+
+#### **For each**
+
+```java
+for(int element:a)
+	System.out.println(element);
+```
+

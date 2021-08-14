@@ -1,0 +1,223 @@
+@font-face {
+  font-family: Consolas;
+  src: url("/fonts/consola.ttf") /* TTF file for CSS3 browsers */
+}
+div#head {
+  background-color: rgba(225, 225, 225, 1);
+}
+.ArticleHead
+{
+  padding: 3% 5% 3% 3%;
+  border-left: 3px solid #2EA9DF;
+  width: 91%;
+  box-shadow: 4px 4px 15px  rgba(225,225,225,0.6);
+}
+
+.ArticleText
+{
+  font-size: 40px;
+  font-weight: 900;
+  color: black;
+}
+
+.ArticleTime
+{
+  padding: 20px 0 0 0 ;
+  color: black;
+  font-size: larger;
+  font-style: italic;
+}
+
+.menuText:hover .post-url{
+  color: white;
+}
+.menuText:hover{
+  background-color: rgba(3,76,218,1);
+}
+div#mainpage{border-bottom:1px solid rgba(0,0,0,0.1);}
+div#backToTop{border-bottom:1px solid rgba(0,0,0,0.1);}
+div#aboutMain{border-bottom:1px solid rgba(0,0,0,0.1);}
+div#twitter{border-bottom:1px solid rgba(0,0,0,0.1);}
+
+div#article{
+  font-size: medium;
+}
+
+#post-author {
+  font-size: 9px;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  color: #999;
+}
+
+#post-date {
+  font-size: 9px;
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  color: #999;
+}
+
+/* 文章各个元素间隔 */
+#article {
+  padding: 30px 0px 0px 0px;
+}
+
+
+#article h1,
+#article h2,
+#article h3,
+#article h4,
+#article h5,
+#article h6 {
+  line-height: 40px;
+  margin: 20px 0 15px;
+}
+
+
+#article h1 {
+  font-size: 32px;
+  font-weight: 900;
+  border-left: 3px solid #2EA9DF;
+  text-align: left;
+  margin: 20px 0px 50px 0px;
+  padding :15px 0px 15px 10px;
+}
+
+#article h2 {
+  font-size: 25px;
+  border-left: 3px solid #2EA9DF;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+#article h3 {
+  font-size: 22px
+}
+
+#article a {
+  color: #006284;
+  text-decoration: none;
+}
+
+#article a:hover {
+  border-bottom: 1px solid;
+
+}
+
+#article h1 a:hover{
+  border-bottom: none;
+}
+
+#article code {
+  font-family: Consolas;
+}
+
+.line{
+  font-family: Consolas;
+}
+#article img {
+  max-width: 65%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0px 0px 8px #999;
+}
+
+#article pre {
+  font-size: 14px;
+  margin: 20px 0 15px;
+}
+
+#article p {
+  margin: 0 0 10px;
+  line-height: 30px
+}
+
+/* 表格处理 */
+#article table {
+  width: 75%;
+  border: 0;
+  margin: 0px 0 0px 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  line-height: 35px;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px  rgba(225,225,225,0.8);
+  background-color: rgb(175,210,238);
+  overflow: auto;
+}
+
+#article table th {
+  background: #73b1e0;
+  font-weight: 800;
+  font-size: 18px;
+  text-align: left;
+  line-height: 35px;
+  color: white;
+  overflow: auto;
+}
+
+#article table td{
+  text-align: left;
+  line-height: 30px;
+  overflow: auto;
+}
+#article table tr:nth-child(odd) {
+  background: #f6f8fa;
+  color: black;
+  overflow: auto;
+
+}
+
+/* 鼠标移动到表格上*/
+#article table tr:hover{
+
+}
+
+#article table td:hover {
+   /*box-shadow: 0px 0px 10px  gray; */
+}
+
+#article table td, table th {
+  padding: 5px 5px 5px 5px;
+}
+
+#article table tr:first-child th:first-child {
+  border-top-left-radius: 3px;
+}
+
+#article table tr:first-child th:last-child {
+  border-top-right-radius: 3px;
+}
+
+#article table tr:last-child td:first-child {
+  border-bottom-left-radius: 3px;
+}
+
+#article table tr:last-child td:last-child {
+  border-bottom-right-radius: 3px;
+}
+
+.singleTag{
+  float: left;
+  padding: 3px 7px 3px 7px;
+  border-radius: 15px;
+  border: 1px solid black;
+  min-width: 45px;
+  text-align: center;
+  margin: 0 3px 0px 3px;
+}
+
+div#Showtags{
+  font-weight: bolder;
+}
+
+div#TagsText{
+  float: left;
+}
+
+blockquote{
+  border-left: 2px solid rgba(225,225,225,1);
+  padding-left: 10px;
+}

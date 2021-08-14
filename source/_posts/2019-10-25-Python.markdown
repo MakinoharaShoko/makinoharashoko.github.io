@@ -1,0 +1,16 @@
+---
+layout:     post
+title:      "Developing in Python"
+intro:   ""
+date:       2019-10-25 08:00:00
+author:     "Makinohara"
+featured_image: http://msfasr.com/img/py.jfif
+catalog: true
+tags:
+    - 学习笔记
+    - Python
+---
+
+
+
+This project has not started yet.
