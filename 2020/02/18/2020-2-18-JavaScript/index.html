@@ -139,7 +139,7 @@
                     <div class="post-box">
 
                         <div class="post-date" title="2021-09-12 12:00:01">2021/09/12</div>
-                        <div class="post-title" title="node.js">node.js</div>
+                        <div class="post-title" title="Node.js">Node.js</div>
                     </div>
 
                 </a>
@@ -622,6 +622,9 @@
 <p>其余部分参考DOM文档</p>
 <p>事件监听与处理</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> guessSubmit = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'.guessSubmit'</span>);<span class="hljs-comment">//选择一个页面元素</span><br>guessSubmit.addEventListener(<span class="hljs-string">'click'</span>,checkGuess);<span class="hljs-comment">//启动一个监听器并设置执行函数</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>XHR发送请求并处理：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBook</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> getBookRequest = <span class="hljs-keyword">new</span> XMLHttpRequest();<br>    <span class="hljs-keyword">let</span> bookID = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'ISBN'</span>).value;<br>    <span class="hljs-keyword">let</span> sendUrl = <span class="hljs-string">"http://localhost:3000/bookInfo/"</span> + bookID;<br>    getBookRequest.onreadystatechange=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)<br>    </span>&#123;<br>        <span class="hljs-keyword">if</span> (getBookRequest.status === <span class="hljs-number">200</span>)<span class="hljs-comment">//得到相应后的代码</span><br>        &#123;<br>            <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"bookName"</span>).innerText=getBookRequest.responseText;<br>        &#125;<br>    &#125;<br>    getBookRequest.open(<span class="hljs-string">"GET"</span>,sendUrl,<span class="hljs-literal">true</span>);<br>    getBookRequest.send();<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
         </div>
