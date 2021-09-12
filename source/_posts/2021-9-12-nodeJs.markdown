@@ -1,0 +1,100 @@
+---
+layout:     post
+title:      node.js
+intro:   ""
+date:       2021-9-12 12:00:01
+author:     "Makinohara"
+catalog: true
+tags:
+    - 工程开发
+    
+---
+
+# 入门
+
+机器学习的基本方法：任务T在得到经验E后提高性能度量P
+
+## 监督学习
+
+监督学习：找正确答案
+
+1、回归问题：找函数，预测连续值
+
+2、分类问题：预测离散值
+
+## 无监督学习
+
+无监督学习：自己找数据的结构和规律（并不提前给出正确答案）
+
+聚类算法：将不同的内容整合为几个集合
+
+## 神经网络
+
+神经网络是一个可以学习模式的函数集合。
+
+## 卷积
+
+通过某种方式处理图像，使之呈现出某种特征
+
+## 池化
+
+处理图像的一种方式，取某些像素的最大、平均值或其他特征值
+
+# TensorFlow
+
+### 实例1：图像分类
+
+```python
+import tensorflow as tf
+from tensorflow import keras
+import matplotlib.pyplot as plt
+import numpy as np
+
+#回调，当准确度达到80%时停止训练
+class callBack(tf.keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs={}):
+        if(logs.get('loss')<0.2):
+            print('\nReached 80%')
+            self.model.stop_training = True
+cb1 = callBack()
+
+#导入Fashion数据集
+mnist = tf.keras.datasets.fashion_mnist
+(training_images, training_labels), (test_images, test_labels) = mnist.load_data()
+
+#这里的没什么用
+plt.imshow(training_images[0])
+print(training_images[0])
+print((training_labels[0]))
+
+#将像素0-255表示转为更容易处理的0-1表示
+training_images = training_images/255
+test_images = test_images/255
+
+#升维，以便卷积
+training_images = np.expand_dims(training_images, axis=3)
+test_images = np.expand_dims(test_images, axis=3)
+
+#神经网络
+model = tf.keras.models.Sequential([
+    tf.keras.layers.Conv2D(64,(3,3),activation='relu',input_shape=(28,28,1)),#卷积1
+    tf.keras.layers.MaxPooling2D(2,2),#最大池化
+    tf.keras.layers.Conv2D(64,(3,3),activation='relu'),#卷积2
+    tf.keras.layers.MaxPooling2D(2,2),#最大池化
+    tf.keras.layers.Flatten(),
+    tf.keras.layers.Dense(256,activation=tf.nn.relu),#全连接层
+    tf.keras.layers.Dense(10,activation=tf.nn.softmax)]
+)
+
+#训练
+model.compile(optimizer=tf.optimizers.Adam(),
+              loss='sparse_categorical_crossentropy')
+model.summary()
+model.fit(training_images,training_labels,epochs=15,
+          callbacks=[cb1]
+          )
+
+#评估结果
+model.evaluate(test_images,test_labels)
+```
+
