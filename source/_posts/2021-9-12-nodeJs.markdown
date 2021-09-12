@@ -67,3 +67,15 @@ app.get('/userinfo/*', (req, res) => {
 })
 ```
 
+处理表单，返回token：
+
+```js
+app.post('/test_postForm', function (req, res) {
+  let receivedForm = req.body;
+  console.log('表单已获取');
+  let token = receivedForm['user_name'];
+  let resUrl = '/userMain?token='+token;
+  res.redirect(resUrl);
+});
+```
+
