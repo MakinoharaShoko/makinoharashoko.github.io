@@ -269,3 +269,24 @@ const guessSubmit = document.querySelector('.guessSubmit');//选择一个页面�
 guessSubmit.addEventListener('click',checkGuess);//启动一个监听器并设置执行函数
 ```
 
+## AJAX
+
+XHR发送请求并处理：
+
+```javascript
+function getBook() {
+    let getBookRequest = new XMLHttpRequest();
+    let bookID = document.getElementById('ISBN').value;
+    let sendUrl = "http://localhost:3000/bookInfo/" + bookID;
+    getBookRequest.onreadystatechange=function()
+    {
+        if (getBookRequest.status === 200)//得到相应后的代码
+        {
+            document.getElementById("bookName").innerText=getBookRequest.responseText;
+        }
+    }
+    getBookRequest.open("GET",sendUrl,true);
+    getBookRequest.send();
+}
+```
+
