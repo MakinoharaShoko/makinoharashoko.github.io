@@ -311,3 +311,27 @@ function getQueryVariable(variable)
 let dataRes = JSON.parse(Request.responseText);
 ```
 
+### ajax Post
+
+```js
+	// 异步对象
+    var xhr = new XMLHttpRequest();
+
+    // 设置属性
+    xhr.open('post', '02.post.php');
+
+    // 如果想要使用post提交数据,必须添加此行
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // 将数据通过send方法传递
+    xhr.send('name=fox&age=18');
+
+    // 发送并接受返回值
+    xhr.onreadystatechange = function () {
+        // 这步为判断服务器是否正确响应
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert(xhr.responseText);
+        }
+    };
+```
+
