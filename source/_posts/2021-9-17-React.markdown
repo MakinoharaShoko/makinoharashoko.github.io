@@ -1,0 +1,42 @@
+---
+layout:     post
+title:      React
+intro:   ""
+date:       2021-9-17 12:00:01
+author:     "Makinohara"
+catalog: true
+tags:
+    - 工程开发
+    
+---
+
+```js
+function Hello(props) {
+    return <div>Hello,{props.name}</div>
+}
+
+let elementList = [];
+for (let i = 0;i<3;i++){
+    elementList.push(<Hello name={i}/>);
+}
+
+let element = <div>{elementList}</div>
+
+function Time(props){
+    let now = new Date();
+    now = now.toLocaleTimeString();
+    return <div>{now}</div>;
+}
+
+ReactDOM.render(element,document.getElementById('root'));
+ReactDOM.render(<Time/>,document.getElementById('time'));
+
+function tick() {
+    const element = <Time/>
+    ReactDOM.render(element, document.getElementById('time'));
+}
+
+var interval = setInterval(tick, 1000);
+
+```
+
