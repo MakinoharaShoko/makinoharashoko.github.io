@@ -131,13 +131,13 @@
         <nav id="title-list-nav">
             
                 <a  class="post-url"
-                   href="/2021/09/27/2021-10-24-WG_3/"
+                   href="/2021/10/24/2021-10-24-WG_3/"
                    data-tag="工程开发"
                    data-author="" >
                     <div class="post-box">
 
-                        <div class="post-date" title="2021-09-27 12:00:01">2021/09/27</div>
-                        <div class="post-title" title="WebGAL开发日志2：存档系统、主界面上线！">WebGAL开发日志2：存档系统、主界面上线！</div>
+                        <div class="post-date" title="2021-10-24 12:00:01">2021/10/24</div>
+                        <div class="post-title" title="记一次前端项目的踩坑与开发经验">记一次前端项目的踩坑与开发经验</div>
                     </div>
 
                 </a>
@@ -584,17 +584,20 @@
             <br/>
             <br/>
             <div class="ArticleText">
-                WebGAL开发日志2：存档系统、主界面上线！
+                记一次前端项目的踩坑与开发经验
             </div>
             <div class="ArticleTime">
-                Published on Mon Sep 27 2021 12:00:01 GMT+0000
+                Published on Sun Oct 24 2021 12:00:01 GMT+0000
             </div>
 
 
         </div>
         <div id="article">
-            <p>项目地址：<a href="http://link.zhihu.com/?target=https%3A//github.com/MakinoharaShoko/WebGAL">https://github.com/MakinoharaShoko/WebGAL</a><br>演示地址（可能需要科学冲浪）：<a href="http://link.zhihu.com/?target=http%3A//msfasr.com/WebGAL_Demo_Page/">http://msfasr.com/WebGAL_Demo_Page/</a></p>
-<p>现在，WebGAL已经基本实现了大部分Galgame的传统功能：存档、读档、自动播放、快进、Title等功能，已经具备了发布的基础。</p>
+            <p>最近的一个月左右，我开始尝试做我的第一个真正具有实用价值的前端项目—— WebGAL 。在这个项目中，我使用了 React 作为我的前端框架。但是项目初期，我却没有使用 create-react-app 生成一个 React 项目，而是选择了静态引入 React 和 ReactDOM 作为一个静态网页的代码，然后再在一个单文件里写主要的业务代码，所有的存储管理、渲染、交互处理都在一个文件里进行。后来，随着开发的进度，我的文件已经达到了1000多行，并且有朝着2000行奔去的架势。所以，将模块拆分、重构，几乎是必然的了。</p>
+<p>在一开始的重构中，我只是粗暴地将业务代码按函数的功能分开了，但是却仍然用静态引入的方式在HTML中按照顺序分别引入了。这很显然是不合理的，因为这四舍五入等于没重构，顶多算是拆了下文件。后来当我试图如法炮制，创建了一个 React 项目并将其放入后，却出现了浩如烟海的 bug 。很显然，之前我飞全局变量的那一套不管用了。</p>
+<p>为了能够让各个模块都能良好地访问页面中的全局变量，我重新分出了一个类，用来管理存储与全局变量。这样一来，其他的模块只需要访问这个类的函数，就可以得到它们所需要的全局变量。然后，这个类再将其与 LocalStorage 同步。</p>
+<p>然后就是关于渲染的统一控制。在重构后的版本中，所有的渲染都通过一个专门用来控制渲染的类 ViewControl 来实现。这样一来，就可以降低业务代码与渲染视图之间的耦合度，让各个模块各司其职，同时也保证了代码的简洁。</p>
+<p>重构这个项目是一个漫长且痛苦的过程，因为我先前写的架构实在是过于混乱不堪了。不同模块之间、不同函数之间，充斥着随便的全局变量读写与杂乱无章的相互调用。实际上，在现在的版本中，许多问题并没有得到完全改善，所以在接下来的工作中，还需要继续优化以改善现有项目的结构状况。</p>
 
         </div>
 
