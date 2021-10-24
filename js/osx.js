@@ -3,6 +3,7 @@ clickMenu("blogMenu","blog");
 clickMenu("controlMenu","control");
 clickMenu("optionsMenu","options");
 clickMenu("aboutMenu","about");
+copyByID("shareThisPage");
 time();
 
 
@@ -30,7 +31,11 @@ function hideMenu(menuID,textID){
   document.getElementById(textID).style.backgroundColor ="rgba(0,0,0,0)";
   document.getElementById(textID).style.color = "black";
 }
-
+function copyByID(textID){
+  document.getElementById(textID).addEventListener("click",function () {
+    copySite();
+  });
+}
 
 
 document.onclick = function (event) {
@@ -90,5 +95,23 @@ function fenxiang() {
   str = str + '\r\n\r\n' +'引用标题：'+ document.title;
   str = str + '\r\n' + '引用地址：' + document.location.href;
   clipboardData.setData('text', str);
-  alert('本章标题与地址已经复制到您的粘贴板了，赶快将它粘贴到你要分享的地方吧：）');
+  alert('本章地址已经复制到您的粘贴板了，赶快将它粘贴到你要分享的地方吧：）');
+}
+
+function copySite() {
+
+    var str = "向您分享一篇来自msfasr.com的文章："
+    str = str + '\r\n' + '' + document.location.href;
+    let transfer = document.createElement('input');
+    document.body.appendChild(transfer);
+    transfer.value = str  // 这里表示想要复制的内容
+    transfer.focus();
+    transfer.select();
+    if (document.execCommand('copy')) {
+        document.execCommand('copy');
+    }
+    transfer.blur();
+    alert('本文章链接已复制到您的粘贴板，您可以在需要分享的地方粘贴。');
+    document.body.removeChild(transfer);
+
 }
