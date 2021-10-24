@@ -595,14 +595,12 @@
 
         </div>
         <div id="article">
-            <h2 id="查看支持的包版本"><a href="#查看支持的包版本" class="headerlink" title="查看支持的包版本"></a>查看支持的包版本</h2><p>python -m pip debug –verbose</p>
+            <h2 id="查看支持的包版本"><a href="#查看支持的包版本" class="headerlink" title="查看支持的包版本"></a>查看支持的包版本</h2><p>python -m pip debug —verbose</p>
 <h2 id="Python-变量"><a href="#Python-变量" class="headerlink" title="Python 变量"></a>Python 变量</h2><p>Python的变量是自动推断的，但是Python仍旧是强类型语言。</p>
 <p>判断变量种类：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">type()<span class="hljs-comment">#判断变量类型</span><br>isinstance(var,type)<span class="hljs-comment">#判断对象是否为制定类型的实例</span><br></code></pre></td></tr></table></figure>
-
 <p>Python允许多个对象指向一个值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">x = <span class="hljs-number">3</span><br>id(x)<br>y = x<br>id(y)<span class="hljs-comment">#此时x，y指向同一对象</span><br>x += <span class="hljs-number">3</span><br>id(x)<br>y<br>id(y)<br><span class="hljs-comment">#此时x，y不指向同一对象</span><br><span class="hljs-comment">#Python中，每一个值或对象总是有固定的空间，当没有变量指向时，Python将将其删除</span><br></code></pre></td></tr></table></figure>
-
 <p>变量名命名：</p>
 <p>以字母或下划线开头（一般以字母），可带数字和下划线，不能以关键字命名</p>
 <h3 id="Python-序列"><a href="#Python-序列" class="headerlink" title="Python 序列"></a>Python 序列</h3><p>列表[1,2,’file’]</p>
@@ -620,7 +618,6 @@
 <h4 id="常用内置函数"><a href="#常用内置函数" class="headerlink" title="常用内置函数"></a>常用内置函数</h4><p>max min sum</p>
 <p>输入/输出：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">input()<br>raw_input()<span class="hljs-comment">#python 2 ,只接受字符串</span><br>input()<span class="hljs-comment">#在Python3中仅支持字符串输入，输入后再进行处理</span><br>print()<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>,<span class="hljs-number">20</span>):<br>    print(i,end=<span class="hljs-string">' '</span>)<span class="hljs-comment">#终结符为空格</span><br></code></pre></td></tr></table></figure>
-
 <h2 id="模块的使用"><a href="#模块的使用" class="headerlink" title="模块的使用"></a>模块的使用</h2><p>pip install:安装模块</p>
 
         </div>

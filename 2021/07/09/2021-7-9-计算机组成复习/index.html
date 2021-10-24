@@ -595,12 +595,12 @@
 
         </div>
         <div id="article">
-            <h1 id="计算机技术指标"><a href="#计算机技术指标" class="headerlink" title="计算机技术指标"></a>计算机技术指标</h1><h2 id="CPU执行时间："><a href="#CPU执行时间：" class="headerlink" title="CPU执行时间："></a>CPU执行时间：</h2><p>$Te = m/F$</p>
-<p>$Te = m*T$</p>
-<p>m：CPU时钟周期数；T：时钟周期；F：频率</p>
-<h2 id="CPI-每条指令平均时钟周期数："><a href="#CPI-每条指令平均时钟周期数：" class="headerlink" title="CPI 每条指令平均时钟周期数："></a>CPI 每条指令平均时钟周期数：</h2><p>$CPI = m/IC$</p>
-<p>$CPI = \sum\limits_{i=1}^N (CPI_i*IC_i)/IC$</p>
-<p>IC：指令条数(总的)</p>
+            <h1 id="计算机技术指标"><a href="#计算机技术指标" class="headerlink" title="计算机技术指标"></a>计算机技术指标</h1><h2 id="CPU执行时间："><a href="#CPU执行时间：" class="headerlink" title="CPU执行时间："></a>CPU执行时间：</h2><script type="math/tex; mode=display">
+Te = m/F</script><script type="math/tex; mode=display">
+Te = m*T</script><p>m：CPU时钟周期数；T：时钟周期；F：频率</p>
+<h2 id="CPI-每条指令平均时钟周期数："><a href="#CPI-每条指令平均时钟周期数：" class="headerlink" title="CPI 每条指令平均时钟周期数："></a>CPI 每条指令平均时钟周期数：</h2><script type="math/tex; mode=display">
+CPI = m/IC</script><script type="math/tex; mode=display">
+CPI = \sum\limits_{i=1}^N (CPI_i*IC_i)/IC</script><p>IC：指令条数(总的)</p>
 <h2 id="MIPS每秒百万条指令数："><a href="#MIPS每秒百万条指令数：" class="headerlink" title="MIPS每秒百万条指令数："></a>MIPS每秒百万条指令数：</h2><p>$MIPS = IC/(Te*10^6)$</p>
 <p>$MIPS = F/(CPI*10^6)$</p>
 <h1 id="存储系统"><a href="#存储系统" class="headerlink" title="存储系统"></a>存储系统</h1><h2 id="半导体容量扩展："><a href="#半导体容量扩展：" class="headerlink" title="半导体容量扩展："></a>半导体容量扩展：</h2><p>1.线选法</p>
@@ -630,14 +630,12 @@
 <h3 id="Cache主存地址映像与变换"><a href="#Cache主存地址映像与变换" class="headerlink" title="Cache主存地址映像与变换"></a>Cache主存地址映像与变换</h3><p>1.全相连映像：</p>
 <p>将主存中的块映射到Cache中的任意一块，使用相联存储器按内容寻址。</p>
 <figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs lasso">主存:   主存块号+块内地址<br>          ↓      ↓<br>查不到  ←相连比较   ↓<br>         ↓       ↓<br>        查到      ↓<br>         ↓       ↓<br><span class="hljs-keyword">Cache</span>: <span class="hljs-keyword">Cache</span>块号+块内地址<br></code></pre></td></tr></table></figure>
-
 <p>2.直接映像：</p>
 <p>将主存映射到Cache中的一个固定块位置</p>
 <p>$i = j mod C $</p>
 <p>$i = j mod 2^c$</p>
 <p>i:Cache块号；j:主存块号 C:块数 c：Cache位数</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gcode">主存：主存字块标记<span class="hljs-comment">(t位)</span>+Cache字块地址<span class="hljs-comment">(c位)</span>+块内地址<span class="hljs-comment">(b位)</span><br>Cache：块号<span class="hljs-comment">(c位)</span>+块内地址<span class="hljs-comment">(b位)</span><br>其中，在主存通过Cache字块地址找到对应到Cache中哪一块后，<br>再通过标记表的t位标记是否和主存字块t位标记相等判断是否命中。<br></code></pre></td></tr></table></figure>
-
 <p>3.组相连映像：</p>
 <p>先把Cache分为Q组，每组R块</p>
 <p>$k = j\ mod\ Q$</p>
@@ -647,9 +645,7 @@
 <p>$2^r$:组内块号。r= 1, 每组2块；h:组内偏移，这个值是随机的，由于主存的一块会映射到Cache某组的任意一块。</p>
 <p>r=0:每组1块，此时直接映像；r=c:每组$2^c$块，也就是只分一组，此时组内块号就是块号（Cache块号与主存块号），此时为全相连映像。</p>
 <figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gcode">主存:主存字块标记<span class="hljs-comment">(t+r)</span>+组号<span class="hljs-comment">(c-r)</span>+块内地址<span class="hljs-comment">(b)</span><br>         ↓         ↓            ↓ <br>      相联比较↘     ↓            ↓<br>         ←←←←←←←←←←←            ↓             <br>         ↓       ↘              ↓ <br>Cache:组号<span class="hljs-comment">(c-r)</span>+组内块号<span class="hljs-comment">(r)</span>+块内地址<span class="hljs-comment">(b)</span><br><br>备注：r越大，组越少，r=c，全是主存字块标记，此时全相连;<br>r=<span class="hljs-number">0</span>，组号为c，此时组号等同于块号<span class="hljs-comment">(每组只有一块)</span>，而主存的t位标记仍然通过标记表的t位比较是否相等，相等则命中。<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">在此种模式中，每组有一个相连比较表（只有一组就只有一个，即全相连），<br>首先先得出是哪一组的相连比较表，用主存标记t位相连比较，如相等，则得出组内块号，命中，如不相等，失效。<br><br>主要思想：分组进行组内的全相连，<span class="hljs-attribute">c</span>=0就是只分一组，也就是正统的全相连。<br></code></pre></td></tr></table></figure>
-
 <h1 id="指令系统"><a href="#指令系统" class="headerlink" title="指令系统"></a>指令系统</h1><p>1、指令根据操作码数目分为零地址、一地址、二地址、三地址指令等。</p>
 <h2 id="指令系统设计"><a href="#指令系统设计" class="headerlink" title="指令系统设计"></a>指令系统设计</h2><p>固定长编码：所有操作码的长度都是相等的。</p>
 <p>Huffman编码：根据指令的出现概率编码，概率大的长，概率小的短。</p>
@@ -672,7 +668,7 @@
 <p>控制单元：将指令发出的各种控制信号按节拍分配。</p>
 <p>中断控制逻辑：控制中断。</p>
 <h3 id="寄存器："><a href="#寄存器：" class="headerlink" title="寄存器："></a>寄存器：</h3><p>通用+PC+IR+AR（记录主存单元地址）+DR（数据缓冲寄存器，在CPU和主存间形成缓冲）+PSW（记录各种条件码，比如进位）</p>
-<h2 id="微程序控制"><a href="#微程序控制" class="headerlink" title="微程序控制"></a>微程序控制</h2><h3 id="关于容量："><a href="#关于容量：" class="headerlink" title="关于容量："></a>关于容量：</h3><p>CS容量：$2^{N_{AR}} \cdot N_{IR} $，前者代表多少指令，后者代表每条指令多少位</p>
+<h2 id="微程序控制"><a href="#微程序控制" class="headerlink" title="微程序控制"></a>微程序控制</h2><h3 id="关于容量："><a href="#关于容量：" class="headerlink" title="关于容量："></a>关于容量：</h3><p>CS容量：$2^{N<em>{AR}} \cdot N</em>{IR} $，前者代表多少指令，后者代表每条指令多少位</p>
 <p>IR位数：微程序位数，否则放不下</p>
 <p>AR位数：下址位数</p>
 <h3 id="微指令编码方式："><a href="#微指令编码方式：" class="headerlink" title="微指令编码方式："></a>微指令编码方式：</h3><p>直接控制法：每一位代表一个微命令</p>
@@ -681,7 +677,6 @@
 <p>2、每个互斥类可能有多个编码，但是互斥类之间是平行排布的，平铺在控制字段。下址字段则是固定的，存下条指令地址。</p>
 <p>例如：</p>
 <figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">组1|<span class="hljs-string">组2</span>|<span class="hljs-string">组3</span>|<span class="hljs-string">......</span>|<span class="hljs-string">判别码</span>|<span class="hljs-string">下址</span>|<br>每个组是一个互斥类，代表2^n-1个指令。<br></code></pre></td></tr></table></figure>
-
 <h3 id="微指令执行方式："><a href="#微指令执行方式：" class="headerlink" title="微指令执行方式："></a>微指令执行方式：</h3><p>串行方式：在一条微指令执行完毕后才会执行下一条</p>
 <p>并行方式：在一条微指令执行时，就取下一条微指令</p>
 

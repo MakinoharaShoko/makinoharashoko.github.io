@@ -596,14 +596,16 @@
         </div>
         <div id="article">
             <h1 id="A-brief-introduction"><a href="#A-brief-introduction" class="headerlink" title="A brief introduction"></a>A brief introduction</h1><p>Linux是一套免费使用和自由传播的类Unix操作系统。</p>
-<h1 id="Linux系统结构"><a href="#Linux系统结构" class="headerlink" title="Linux系统结构"></a>Linux系统结构</h1><h2 id="关键文件夹"><a href="#关键文件夹" class="headerlink" title="关键文件夹"></a>关键文件夹</h2><table>
+<h1 id="Linux系统结构"><a href="#Linux系统结构" class="headerlink" title="Linux系统结构"></a>Linux系统结构</h1><h2 id="关键文件夹"><a href="#关键文件夹" class="headerlink" title="关键文件夹"></a>关键文件夹</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>文件夹</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>/bin</td>
 <td>bin是Binary的缩写, 这个目录存放着最经常使用的命令。</td>
 </tr>
@@ -695,7 +697,9 @@
 <td>/run</td>
 <td>是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>在 Linux 系统中，有几个目录是比较重要的，平时需要注意不要误删除或者随意更改内部文件。</p>
 <p><strong>/etc</strong>： 上边也提到了，这个是系统中的配置文件，如果你更改了该目录下的某个文件可能会导致系统不能启动。</p>
 <p><strong>/bin, /sbin, /usr/bin, /usr/sbin</strong>: 这是系统预设的执行文件的放置目录，比如 ls 就是在/bin/ls 目录下的。</p>
@@ -704,7 +708,6 @@
 <h2 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h2><p>Linux系统是一种典型的多用户系统，不同的用户处于不同的地位，拥有不同的权限。为了保护系统的安全性，Linux系统对不同的用户访问同一文件（包括目录文件）的权限做了不同的规定。</p>
 <p>在Linux中我们可以使用ll或者ls –l命令来显示一个文件的属性以及文件所属的用户和组，如：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>www /]# ls -l<br>total <span class="hljs-number">64</span><br>dr-xr-xr-x   <span class="hljs-number">2</span> root root <span class="hljs-number">4096</span> Dec <span class="hljs-number">14</span>  <span class="hljs-number">2012</span> bin<br>dr-xr-xr-x   <span class="hljs-number">4</span> root root <span class="hljs-number">4096</span> Apr <span class="hljs-number">19</span>  <span class="hljs-number">2012</span> boot<br>……<br></code></pre></td></tr></table></figure>
-
 <p>实例中，bin文件的第一个属性用”d”表示。”d”在Linux中代表该文件是一个目录文件。</p>
 <p>在Linux中第一个字符代表这个文件是目录、文件或链接文件等等。</p>
 <ul>
@@ -716,6 +719,7 @@
 </ul>
 <p>接下来的字符中，以三个为一组，且均为『rwx』 的三个参数的组合。其中，[ r ]代表可读(read)、[ w ]代表可写(write)、[ x ]代表可执行(execute)。 要注意的是，这三个权限的位置不会改变，如果没有权限，就会出现减号[ - ]而已。</p>
 <p>每个文件的属性由左边第一部分的10个字符来确定（如下表）。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -725,7 +729,8 @@
 <th>其他用户权限</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>0</td>
 <td>1 2 3</td>
 <td>4 5 6</td>
@@ -743,14 +748,15 @@
 <td>读 写 执行</td>
 <td>读 写 执行</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>从左至右用0-9这些数字来表示。</p>
 <p>第0位确定文件类型，第1-3位确定属主（该文件的所有者）拥有该文件的权限。</p>
 <p>第4-6位确定属组（所有者的同组用户）拥有该文件的权限，第7-9位确定其他用户拥有该文件的权限。</p>
 <p>其中，第1、4、7位表示读权限，如果用”r”字符表示，则有读权限，如果用”-“字符表示，则没有读权限；</p>
 <p>第2、5、8位表示写权限，如果用”w”字符表示，则有写权限，如果用”-“字符表示没有写权限；第3、6、9位表示可执行权限，如果用”x”字符表示，则有执行权限，如果用”-“字符表示，则没有执行权限。</p>
 <h3 id="Linux文件属主和属组"><a href="#Linux文件属主和属组" class="headerlink" title="Linux文件属主和属组"></a>Linux文件属主和属组</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>www /]# ls -l<br>total <span class="hljs-number">64</span><br>drwxr-xr-x <span class="hljs-number">2</span> root  root  <span class="hljs-number">4096</span> Feb <span class="hljs-number">15</span> <span class="hljs-number">14</span>:<span class="hljs-number">46</span> cron<br>drwxr-xr-x <span class="hljs-number">3</span> mysql mysql <span class="hljs-number">4096</span> Apr <span class="hljs-number">21</span>  <span class="hljs-number">2014</span> mysql<br>……<br></code></pre></td></tr></table></figure>
-
 <p>对于文件来说，它都有一个特定的所有者，也就是对该文件具有所有权的用户。</p>
 <p>同时，在Linux系统中，用户是按组分类的，一个用户属于一个或多个组。</p>
 <p>文件所有者以外的用户又可以分为文件所有者的同组用户和其他用户。</p>
@@ -759,20 +765,16 @@
 <p>对于 root 用户来说，一般情况下，文件的权限对其不起作用。</p>
 <h3 id="更改文件属性"><a href="#更改文件属性" class="headerlink" title="更改文件属性"></a>更改文件属性</h3><h4 id="1、chgrp：更改文件属组"><a href="#1、chgrp：更改文件属组" class="headerlink" title="1、chgrp：更改文件属组"></a>1、chgrp：更改文件属组</h4><p>语法：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">chgrp</span> <span class="hljs-selector-attr">[-R]</span> 属组名 文件名<br></code></pre></td></tr></table></figure>
-
 <p>参数选项</p>
 <ul>
 <li>-R：递归更改文件属组，就是在更改某个目录文件的属组时，如果加上-R的参数，那么该目录下的所有文件的属组都会更改。</li>
 </ul>
 <h4 id="2、chown：更改文件属主，也可以同时更改文件属组"><a href="#2、chown：更改文件属主，也可以同时更改文件属组" class="headerlink" title="2、chown：更改文件属主，也可以同时更改文件属组"></a>2、chown：更改文件属主，也可以同时更改文件属组</h4><p>语法：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">chown</span> <span class="hljs-selector-attr">[–R]</span> 属主名 文件名<br><span class="hljs-selector-tag">chown</span> <span class="hljs-selector-attr">[-R]</span> 属主名：属组名 文件名<br></code></pre></td></tr></table></figure>
-
 <p>进入 /root 目录（~）将install.log的拥有者改为bin这个账号：</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">[root@www ~] cd ~<br>[root@www ~]# chown bin install.log<br>[root@www ~]# ls -l<br>-rw-r--r--  1 bin <span class="hljs-built_in"> users </span>68495 Jun 25 08:53 install.log<br></code></pre></td></tr></table></figure>
-
 <p>将install.log的拥有者与群组改回为root：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>www ~]# chown root:root install.log<br>[<span class="hljs-symbol">root@</span>www ~]# ls -l<br>-rw-r--r--  <span class="hljs-number">1</span> root root <span class="hljs-number">68495</span> Jun <span class="hljs-number">25</span> <span class="hljs-number">08</span>:<span class="hljs-number">53</span> install.log<br></code></pre></td></tr></table></figure>
-
 <h4 id="3、chmod：更改文件9个属性"><a href="#3、chmod：更改文件9个属性" class="headerlink" title="3、chmod：更改文件9个属性"></a>3、chmod：更改文件9个属性</h4><p>Linux文件属性有两种设置方法，一种是数字，一种是符号。</p>
 <p>Linux文件的基本权限就有九个，分别是owner/group/others三种身份各有自己的read/write/execute权限。</p>
 <p>先复习一下刚刚上面提到的数据：文件的权限字符为：『-rwxrwxrwx』， 这九个权限是三个三个一组的！其中，我们可以使用数字来代表各个权限，各权限的分数对照表如下：</p>
@@ -781,15 +783,14 @@
 <li>w:2</li>
 <li>x:1</li>
 </ul>
-<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为： [-rwxrwx—] 分数则是：</p>
+<p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为： [-rwxrwx—-] 分数则是：</p>
 <ul>
 <li>owner = rwx = 4+2+1 = 7</li>
 <li>group = rwx = 4+2+1 = 7</li>
-<li>others= — = 0+0+0 = 0</li>
+<li>others= —- = 0+0+0 = 0</li>
 </ul>
 <p>所以等一下我们设定权限的变更时，该文件的权限数字就是770啦！变更权限的指令chmod的语法是这样的：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">chmod</span> <span class="hljs-selector-attr">[-R]</span> <span class="hljs-selector-tag">xyz</span> 文件或目录<br></code></pre></td></tr></table></figure>
-
 <p>选项与参数：</p>
 <ul>
 <li>xyz : 就是刚刚提到的数字类型的权限属性，为 rwx 属性数值的相加。</li>
@@ -797,8 +798,7 @@
 </ul>
 <p>举例来说，如果要将.bashrc这个文件所有的权限都设定启用，那么命令如下：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>www ~]# ls -al .bashrc<br>-rw-r--r--  <span class="hljs-number">1</span> root root <span class="hljs-number">395</span> Jul  <span class="hljs-number">4</span> <span class="hljs-number">11</span>:<span class="hljs-number">45</span> .bashrc<br>[<span class="hljs-symbol">root@</span>www ~]# chmod <span class="hljs-number">777</span> .bashrc<br>[<span class="hljs-symbol">root@</span>www ~]# ls -al .bashrc<br>-rwxrwxrwx  <span class="hljs-number">1</span> root root <span class="hljs-number">395</span> Jul  <span class="hljs-number">4</span> <span class="hljs-number">11</span>:<span class="hljs-number">45</span> .bashrc<br></code></pre></td></tr></table></figure>
-
-<p>那如果要将权限变成 <em>-rwxr-xr–</em> 呢？那么权限的分数就成为 [4+2+1][4+0+1][4+0+0]=754。</p>
+<p>那如果要将权限变成 <em>-rwxr-xr—</em> 呢？那么权限的分数就成为 [4+2+1][4+0+1][4+0+0]=754。</p>
 <h4 id="符号类型改变文件权限"><a href="#符号类型改变文件权限" class="headerlink" title="符号类型改变文件权限"></a>符号类型改变文件权限</h4><p>还有一个改变权限的方法，从之前的介绍中我们可以发现，基本上就九个权限分别是：</p>
 <ul>
 <li>(1)user</li>
@@ -807,6 +807,7 @@
 </ul>
 <p>那么我们就可以使用 <strong>u, g, o</strong> 来代表三种身份的权限！</p>
 <p>此外， <strong>a</strong> 则代表 <strong>all</strong>，即全部的身份。读写的权限可以写成 <strong>r, w, x</strong>，也就是可以使用下表的方式来看：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -817,7 +818,8 @@
 <th>项目</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>chmod</td>
 <td>u</td>
 <td>+(加入)</td>
@@ -843,15 +845,14 @@
 <td>a</td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>如果我们需要将文件权限设置为 <code>-rwxr-xr--</code> ，可以使用 <code>chmod u=rwx,g=rx,o=r 文件名</code> 来设定:</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">#  touch test1    <span class="hljs-comment">// 创建 test1 文件</span><br># ls -al test1    <span class="hljs-comment">// 查看 test1 默认权限</span><br>-rw-r--r-- <span class="hljs-number">1</span> root root <span class="hljs-number">0</span> Nov <span class="hljs-number">15</span> <span class="hljs-number">10</span>:<span class="hljs-number">32</span> test1<br># chmod u=rwx,g=rx,o=r  test1    <span class="hljs-comment">// 修改 test1 权限</span><br># ls -al test1<br>-rwxr-xr-- <span class="hljs-number">1</span> root root <span class="hljs-number">0</span> Nov <span class="hljs-number">15</span> <span class="hljs-number">10</span>:<span class="hljs-number">32</span> test1<br></code></pre></td></tr></table></figure>
-
 <p>而如果是要将权限去掉而不改变其他已存在的权限呢？例如要拿掉全部人的可执行权限，则：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment">#  chmod  a-x test1</span><br><span class="hljs-comment"># ls -al test1</span><br><span class="hljs-string">-rw-r--r--</span> <span class="hljs-number">1</span> <span class="hljs-string">root</span> <span class="hljs-string">root</span> <span class="hljs-number">0</span> <span class="hljs-string">Nov</span> <span class="hljs-number">15</span> <span class="hljs-number">10</span><span class="hljs-string">:32</span> <span class="hljs-string">test1</span><br></code></pre></td></tr></table></figure>
-
 <h2 id="文件与目录管理"><a href="#文件与目录管理" class="headerlink" title="文件与目录管理"></a>文件与目录管理</h2><ul>
 <li>ls: 列出目录</li>
 <li>cd：切换目录</li>

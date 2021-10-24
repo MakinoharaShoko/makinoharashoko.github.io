@@ -621,18 +621,12 @@
 <p>直接相互制约：源自进程间的合作，进程需要另一进程结果时发生。</p>
 <p>1、生产者——消费者问题</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">semaphore empty = n缓冲区剩余空间,full = <span class="hljs-number">0</span>缓冲区已写入空间,mutex = <span class="hljs-number">1</span>缓冲区访问;<br><br><span class="hljs-built_in">void</span> producer()&#123;<br>	wait(empty);<br>	wait(mutex);<br>	<span class="hljs-comment">//同时：使用and信号量</span><br>	wait(empty,mutex);<br>	<span class="hljs-comment">//使用信号量集</span><br>	wait(empty,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,mutex,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>)<span class="hljs-comment">//信号量类型,至少为多少,需要多少（分配后为信号量-需要）</span><br>	...生产...<br>	buffer[<span class="hljs-keyword">in</span>] = 产物;<br>	<span class="hljs-keyword">in</span> = (<span class="hljs-keyword">in</span>+<span class="hljs-number">1</span>)%n; <span class="hljs-comment">//缓冲区是一个循环缓冲区</span><br>	signal(mutex);<br>	signam(full);<br>&#125;<br><span class="hljs-built_in">void</span> customer()&#123;<br>	wait(full);<span class="hljs-comment">//等到有东西</span><br>	wait(mutex);<br>	...消费...<br>	消费 = buffer[<span class="hljs-keyword">out</span>];<br>	<span class="hljs-keyword">out</span> = (<span class="hljs-keyword">out</span>+<span class="hljs-number">1</span>)%n; <span class="hljs-comment">//缓冲区是一个循环缓冲区</span><br>	signal(mutex);<br>	signam(empty);<span class="hljs-comment">//腾出空间</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>2、读者——写者问题</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">semaphore L = Rn mutex = <span class="hljs-number">1</span>;<span class="hljs-comment">//最多支持Rn读者</span><br>reader()&#123;<br>wait(RN,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>);<br>wait(mutex,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);<span class="hljs-comment">//不影响其他读者读</span><br>...<br>signal(RN,<span class="hljs-number">1</span>);<br>&#125;<br>writer()&#123;<br>wait(mutex,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>；L,Rn,<span class="hljs-number">0</span>);<span class="hljs-comment">//写时不允许读，要求读者信号量数RN</span><br>...<br>signal(mutex,<span class="hljs-number">1</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p>3、哲♂学♂家问题</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">//使用and信号量防止死锁：</span><br><br>void <span class="hljs-constructor">Van()</span>&#123;<br>	...Boy next door!...<br>	...Change the boss <span class="hljs-keyword">of</span> gym...<br>	<br>	<span class="hljs-constructor">Swait(<span class="hljs-params">chopstick</span>[(<span class="hljs-params">i</span>+1)</span>%<span class="hljs-number">5</span>],chopstick<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>);<span class="hljs-comment">//只有同时获得筷子，才进餐，否则不要占用筷子。</span><br>	...eat...<br>	<span class="hljs-constructor">Ssignal(<span class="hljs-params">chopstick</span>[(<span class="hljs-params">i</span>+1)</span>%<span class="hljs-number">5</span>],chopstick<span class="hljs-literal">[<span class="hljs-identifier">i</span>]</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
-
-
-
 <h3 id="进程消息传递、线程（不是重点）"><a href="#进程消息传递、线程（不是重点）" class="headerlink" title="进程消息传递、线程（不是重点）"></a>进程消息传递、线程（不是重点）</h3><p>直接消息传递：</p>
 <figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">//缓冲区</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">buffer</span>&#123;</span><br><span class="hljs-keyword">int</span> sender;<br><span class="hljs-keyword">int</span> <span class="hljs-built_in">size</span>;<br><span class="hljs-built_in">string</span> message;<br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">buffer</span> *<span class="hljs-title">next</span>;</span><span class="hljs-comment">//指向下一个缓冲区指针</span><br>&#125;<br><br><span class="hljs-comment">//太难了，你要考我认了</span><br></code></pre></td></tr></table></figure>
-
 <h2 id="作业调度"><a href="#作业调度" class="headerlink" title="作业调度"></a>作业调度</h2><p>平均周转时间Ti:从作业提交到完成消耗的时间</p>
 <p>$1/n(\sum\limits_{i=1}^nT_i)$</p>
 <p>平均带权周转时间：其中Ts为系统为其提供的时间</p>
@@ -730,13 +724,15 @@
 <p>回收时：回收b号盘块，修改map[i,j] = 0；</p>
 <p>其中$i=(b-1)\ DIV\ n+1$ ; $j=(b-1)\ MOD\ n+1$（整除、模）</p>
 <h3 id="成组链接法："><a href="#成组链接法：" class="headerlink" title="成组链接法："></a>成组链接法：</h3><p>建立空闲盘块号栈，组织如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
 <th>属性:值</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>N(空闲盘块数):100</td>
 </tr>
 <tr>
@@ -757,7 +753,9 @@
 <tr>
 <td>…99:File</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>其中N还作为栈顶指针，100代表还有100个空闲块，其指向S.free(99)</p>
 <p>S.free(0)是栈底（第一个盘块），除存储数据外，后一组的盘块总数N和该组具有的盘块号也被记录于前一组的此处。</p>
 <p>至于第一组，其分配叫做“空闲盘块号栈”</p>
