@@ -14,17 +14,24 @@ tags:
 
 ## CPU执行时间：
 
-$Te = m/F$
-
-$Te = m*T$
+$$
+Te = m/F
+$$
+$$
+Te = m*T
+$$
 
 m：CPU时钟周期数；T：时钟周期；F：频率
 
 ## CPI 每条指令平均时钟周期数：
 
-$CPI = m/IC$
+$$
+CPI = m/IC
+$$
 
-$CPI = \sum\limits_{i=1}^N (CPI_i*IC_i)/IC$
+$$
+CPI = \sum\limits_{i=1}^N (CPI_i*IC_i)/IC
+$$
 
 IC：指令条数(总的)
 
