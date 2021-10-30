@@ -37,15 +37,12 @@ div#aboutMenu{
   left: 0px;
 }
 
-
-
-
-
-
-
-
-
-
+@font-face {
+	font-family: '萍方-简';
+    src:url('/苹方-简.ttf');
+        font-weight:normal;
+        font-style:normal;
+	}
 
 body{
   background-size: cover;
@@ -289,6 +286,13 @@ a#cate:hover{
   background-color: rgba(0,0,0,0.05);
 
 }
+
+@font-face {
+	font-family: 'Letter Gothic Std';
+    src:url('/LetterGothicStd.otf');
+        font-weight:normal;
+        font-style:normal;
+	}
 
 a#logo-text{
   border-bottom: 3px solid #B28FCE;
