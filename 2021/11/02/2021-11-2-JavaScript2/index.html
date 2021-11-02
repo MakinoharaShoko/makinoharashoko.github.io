@@ -69,14 +69,12 @@
 <!--                <a href="#Showtags" class="post-url">返回顶部</a>-->
 <!--            </div>-->
 <!--            <div  class="menuText">-->
-<!--                <a href="-->
-<!--        http://msfasr.com/2020/02/24/2020-2-24-HowToWeb/-->
-<!--        " class="post-url">上一篇-->
+<!--                <a href="" class="post-url">上一篇-->
 <!--                    </a>-->
 <!--            </div>-->
 <!--            <div  class="menuText">-->
 <!--                <a href="-->
-<!--        http://msfasr.com/2020/02/18/2020-2-18-JavaScript/-->
+<!--        http://msfasr.com/2021/10/24/2021-10-24-WG_3/-->
 <!--        " class="post-url">下一篇</a>-->
 <!--            </div>-->
 
@@ -586,9 +584,9 @@
                 
                     
                     
-                        <a href='/tags/工程开发/'>
+                        <a href='/tags/编程语言/'>
                             <div class="singleTag">
-                                工程开发
+                                编程语言
                             </div>
                         </a>
                     
@@ -598,16 +596,32 @@
             <br/>
             <br/>
             <div class="ArticleText">
-                Web开发基础：HTML与CSS
+                JavaScript高级程序设计
             </div>
             <div class="ArticleTime">
-                Published on Tue Feb 18 2020 09:00:00 GMT+0000
+                Published on Tue Nov 02 2021 08:00:00 GMT+0000
             </div>
 
 
         </div>
         <div id="article">
-            <h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="目录与相对目录"><a href="#目录与相对目录" class="headerlink" title="目录与相对目录"></a>目录与相对目录</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">根目录： /<br>上级目录： <span class="hljs-built_in">..</span>/<br>根目录下的路径：/img/<span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><br>当前目录下的下级目录：img/<span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><span class="hljs-built_in">..</span><br></code></pre></td></tr></table></figure>
+            <blockquote>
+<p>为系统学习 JavaScript ，重写有关 JavaScript 的笔记，使用教材《JavaScript高级程序设计》第四版。</p>
+</blockquote>
+<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><h2 id="1、DOM-amp-BOM"><a href="#1、DOM-amp-BOM" class="headerlink" title="1、DOM &amp; BOM"></a>1、DOM &amp; BOM</h2><p>DOM通过创建表示文档的树，让开发者可以随心所欲地控制网页的内容和结构。使用DOM API， 可以轻松地删除、添加、替换、修改节点。</p>
+<p>总体来说，BOM 主要针对浏览器窗口和子窗口（frame），不过人们通常会把任何特定于浏览器的 扩展都归在BOM的范畴内。比如，下面就是这样一些扩展：</p>
+<p> 弹出新浏览器窗口的能力；</p>
+<p> 移动、缩放和关闭浏览器窗口的能力；</p>
+<p> navigator 对象，提供关于浏览器的详尽信息；<br> location 对象，提供浏览器加载页面的详尽信息；</p>
+<p> screen 对象，提供关于用户屏幕分辨率的详尽信息；</p>
+<p> performance 对象，提供浏览器内存占用、导航行为和时间统计的详尽信息；</p>
+<p> 对 cookie的支持；<br> 其他自定义对象，如 XMLHttpRequest 和 IE的 ActiveXObject。</p>
+<h2 id="2、加载方式"><a href="#2、加载方式" class="headerlink" title="2、加载方式"></a>2、加载方式</h2><h3 id="1、行内"><a href="#1、行内" class="headerlink" title="1、行内"></a>1、行内</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"> <br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHi</span>(<span class="hljs-params"></span>) </span>&#123; <br>	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hi!"</span>);<br>&#125;<br></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="2、外部文件"><a href="#2、外部文件" class="headerlink" title="2、外部文件"></a>2、外部文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"example.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="3、加载位置"><a href="#3、加载位置" class="headerlink" title="3、加载位置"></a>3、加载位置</h3><p>推荐加载在 body 内容的最后，这样就会在渲染界面后加载JavaScript</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span> <br><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Example HTML Page<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span> <br>	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span> <br>	<span class="hljs-comment">&lt;!-- 这里是页面内容 --&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"example1.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> <br>	<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"example2.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> <br>	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>推迟到解析到结束标签 \&lt;/html&gt; 执行（只对外部脚本文件才有效）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"example1.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
         </div>
 
