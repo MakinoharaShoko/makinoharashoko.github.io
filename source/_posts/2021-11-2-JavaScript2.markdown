@@ -78,3 +78,105 @@ function sayHi() {
 <script defer src="example1.js"></script>
 ```
 
+# 语言基础
+
+### 变量声明提升
+
+var 提升，let不提升
+
+```
+console.log(name);//undefined
+var name = 'Matt';
+
+console.log(age);//ReferenceError,暂时性死区
+let age = 26;
+```
+
+let：声明范围是块作用域，所以不会造成循环定义的迭代变量渗透到外部。
+
+const声明：限制不能修改其值或引用的对象，但是可以修改该对象的内部属性。
+
+**尽可能使用let、const，避免使用var，const优先**
+
+### 变量类型
+
+```
+Undefined
+Null//typeof Null ==='object'
+Boolean
+Number
+String
+Symbol
+(Object)
+```
+
+undefined 是一个特殊值，在if判断为假
+
+null：可以看做是空对象指针
+
+### 数值
+
+特殊：NaN:not a number
+
+#### 转换函数：
+
+```
+Number()
+parseInt()
+parseFloat()
+```
+
+### 字符串
+
+字符串的特点：不可变，如果要修改只能销毁原有的字符串。
+
+转换函数：
+
+```
+toString()
+String()
+String(null) === 'null'
+String(undefined) === 'undefined'
+```
+
+#### 模板字面量
+
+模板字面量可用于字符串插值：
+
+```
+let value1 = 233;
+let value2 = 'sec'
+let str1 = `now is ${value1} ${value2}.`
+```
+
+模板字面量可以跨行定义字符串
+
+```
+let str2 = `the
+Kamome's humble abode`
+```
+
+原始字符串：
+
+```
+String.raw`\u00a9`
+```
+
+### Symbol
+
+TODO:写关于symbol的笔记
+
+### Object
+
+Object 的属性和方法
+
+```
+constructor:创建
+hasOwnProperty(propertyName):判断当前对象是否存在给定属性
+isPrototypeOf:
+propertyIsEnumerable(propertyName):判断给定的属性是否可用
+toLocaleString():返回对象的字符串表示（反映本地化执行环境）
+toString:返回对象的字符串表示
+valueOf():返回对应的字符串
+```
+
