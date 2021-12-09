@@ -180,3 +180,77 @@ toString:返回对象的字符串表示
 valueOf():返回对应的字符串
 ```
 
+# 异步编程
+
+## Promise
+
+### Promise的基本使用
+
+```
+let myFirstPromise = new Promise(function(resolve, reject){
+    //当异步代码执行成功时，我们才会调用resolve(...), 当异步代码失败时就会调用reject(...)
+    //在本例中，我们使用setTimeout(...)来模拟异步代码，实际编码时可能是XHR请求或是HTML5的一些API方法.
+    setTimeout(function(){
+        resolve("成功!"); //代码正常执行！
+    }, 250);
+});
+```
+
+### 函数返回Promise
+
+```
+function getUserInfo() {
+	//获取个人信息
+	return new Promise((resolve, reject) => {
+		dbo.collection('users').find({ eid: userEID }).toArray((err, result) => {
+			if (err) throw err;
+            returnMessage['userInfo'] = result;
+            resolve();
+        })
+    })
+}
+```
+
+### Promise.all的使用
+
+```
+//执行查询
+Promise.all([getUserInfo(), getMessage(), getFriendReq(), getFriendList()]).then(() => { closeAndSend() })
+```
+
+# 函数
+
+### 函数的几种描述：
+
+```
+function func1(){
+	return 1;
+}
+
+let func2 = function(){
+	return 1;
+}
+
+let func3 = () => {
+	return 1;
+}
+
+//立即执行的函数
+(()=>1)();
+```
+
+箭头函数(Lambda)
+
+```
+(param1, param2, …, paramN) => { statements }
+(param1, param2, …, paramN) => expression
+//相当于：(param1, param2, …, paramN) =>{ return expression; }
+
+// 当只有一个参数时，圆括号是可选的：
+(singleParam) => { statements }
+singleParam => { statements }
+
+// 没有参数的函数应该写成一对圆括号。
+() => { statements }
+```
+
