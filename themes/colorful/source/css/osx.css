@@ -287,6 +287,17 @@ a#cate:hover{
 
 }
 
+a#about{
+  border-bottom: 3px solid #DAC9A6;
+  /*color:#787878;*/
+
+}
+a#about:hover{
+  color:#BA9132;
+  background-color: rgba(0,0,0,0.05);
+
+}
+
 @font-face {
 	font-family: 'Letter Gothic Std';
     src:url('/LetterGothicStd.otf');
