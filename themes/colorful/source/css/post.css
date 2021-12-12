@@ -20,6 +20,10 @@ div#head {
   color: black;
 }
 
+span.line {
+  line-height: 0.5em;
+}
+
 .ArticleTime
 {
   padding: 20px 0 0 0 ;
@@ -80,9 +84,11 @@ div#article{
   font-size: 32px;
   font-weight: 900;
   border-left: 3px solid #66327C;
+  color: #66327C;
   text-align: left;
   margin: 20px 0px 50px 0px;
   padding :15px 0px 15px 10px;
+  background: linear-gradient(to right,rgba(102,50,124,0.05),rgba(0,0,0,0));
 }
 
 #article h2 {
@@ -163,7 +169,7 @@ div#article{
 
 #article table td{
   text-align: left;
-  line-height: 30px;
+  line-height: 35px;
   overflow: auto;
 }
 #article table tr:nth-child(odd) {
