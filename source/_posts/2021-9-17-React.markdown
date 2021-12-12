@@ -10,75 +10,116 @@ tags:
     
 ---
 
+## 创建一个函数组件
+
 ```js
-function Hello(props) {
-    return <div>Hello,{props.name}</div>
+const Hello = (props)=>{
+    return <div>
+        Hello,{props.name}
+        </div>
 }
 
-let elementList = [];
-for (let i = 0;i<3;i++){
-    elementList.push(<Hello name={i}/>);
-}
-
-let element = <div>{elementList}</div>
-
-function Time(props){
-    let now = new Date();
-    now = now.toLocaleTimeString();
-    return <div>{now}</div>;
-}
-
-ReactDOM.render(element,document.getElementById('root'));
-ReactDOM.render(<Time/>,document.getElementById('time'));
-
-function tick() {
-    const element = <Time/>
-    ReactDOM.render(element, document.getElementById('time'));
-}
-
-var interval = setInterval(tick, 1000);
-
+export default Hello;
 ```
 
-定义一个组件类：
+### 传参方法
+
+#### 父组件
 
 ```js
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
+import Hello from './components/hello/Hello'
 
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
+const Page = ()=>{
+    return <Hello name={"world"}/>
 }
 
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
+    export default Page;
+```
+
+#### 子组件
+
+```js
+const Hello = (props)=>{
+    return <div>
+        Hello,{props.name}
+        </div>
+}
+
+export default Hello;
+```
+
+### 参数传递函数（使用Hook）
+
+#### 父组件
+
+```js
+import React, { useState } from 'react';
+import Hello from '../Hello/Hello';
+
+const Page = ()=>{
+    const [count,setCount] = useState(0);
+    return <Hello setCount={setCount} count={count}/>
+}
+
+export default Page;
+```
+
+#### 子组件
+
+```js
+const Hello = (props) => {
+    return <div onClick={() => { props.setCount(props.count + 1) }
+    }>Hello,count is{props.count}
+    </div>
+}
+
+export default Hello;
+```
+
+
+
+## 使用Hook
+
+```js
+import React, { useState } from 'react';
+
+function Example() {
+  // 声明一个新的叫做 “count” 的 state 变量
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+```
+
+### 使用 Effect Hook
+
+```js
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
 ```
 
