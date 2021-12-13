@@ -48,3 +48,5 @@ $$  \\\int\int_{D} g(x,y)\ud x \ud y$$
 
 $$\begin{eqnarray} f(x) & = & \cos x \\ f’(x) & = & -\sin x \\ \int_{0}^{x} f(y)dy & = & \sin x \end{eqnarray}$$
 
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are
+  \[x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\]
