@@ -1,0 +1,32 @@
+---
+layout:     post
+title:      前端学习拉清单
+intro:   ""
+date:       2021-12-14 12:00:01
+author:     "Makinohara"
+catalog: true
+tags:
+    - 工程开发
+    
+---
+
+# 前端技术学习清单
+
+按照紧迫程度，在技术上遵循以下清单系统学习前端技术：
+
+1、JS 基础
+
+2、Webpack
+
+3、HTML 语义化、SASS/LESS 等 CSS 拓展语言
+
+4、React 进一步学习，尤其是 Redux
+
+5、TS 基础
+
+6、Next 的学习，到这一步基本上可以独立出页面了
+
+7、Nest 的学习，开始做较为正式的前后端对接
+
+8、待续
+
