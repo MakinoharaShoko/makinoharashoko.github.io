@@ -20,19 +20,21 @@ tags:
 
 3、HTML 语义化、SASS/LESS 等 CSS 拓展语言
 
-4、React 进一步学习，尤其是 Redux
+4、React 进一步学习，尤其是 Redux，其他生态相关的模块大概看看。
 
-5、TS 基础
+5、TS 基础（具体的待拉清单）
 
-6、Next 的学习，到这一步基本上可以独立出页面了
+6、Next 的学习，到这一步基本上可以独立出页面了，SSR也要看看。
 
-7、Nest 的学习，开始做较为正式的前后端对接
+7、express 的进一步学习（大概会用路由和中间件就行了，后面转 Java 后端）
 
 8、Java SE
 
-9、Spring、Spring Boot
+9、Spring、Spring Boot、SSM框架（按需）
 
-10、GO
+10、初步认识GO，大概了解其基本编程思路
 
-11、待续
+11、Redis Nginx
+
+12、待续......
 
