@@ -14,6 +14,14 @@ tags:
 
 > 为系统学习 JavaScript ，重写有关 JavaScript 的笔记，使用教材《JavaScript高级程序设计》第四版。
 
+
+
+# 新笔记：直接使用代码描述笔记
+
+注意：因此本博文不再更新
+
+https://github.com/MakinoharaShoko/Learning-Code/tree/main/JS
+
 # 基础概念
 
 ## 1、DOM & BOM
@@ -178,6 +186,17 @@ propertyIsEnumerable(propertyName):判断给定的属性是否可用
 toLocaleString():返回对象的字符串表示（反映本地化执行环境）
 toString:返回对象的字符串表示
 valueOf():返回对应的字符串
+```
+
+### 算符
+
+一元算符
+
+```
+//一元运算符
+let str1 = '123';
+str1 = +str1;
+console.log(typeof str1);//number
 ```
 
 # 异步编程
