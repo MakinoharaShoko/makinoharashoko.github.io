@@ -176,3 +176,7 @@ export default App;
 
 ```
 
+概念图：
+
+![redux](/img/redux.jpg)
+
