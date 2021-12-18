@@ -14,6 +14,10 @@ tags:
 
 # Redux初体验
 
+## 概念图
+
+![redux](/img/redux.jpg)
+
 ## 1、创建Store（类似于全局变量存储仓库）
 
 ```js
@@ -176,7 +180,5 @@ export default App;
 
 ```
 
-概念图：
 
-![redux](/img/redux.jpg)
 
