@@ -1,0 +1,99 @@
+---
+layout:     post
+title:      Redux初体验
+intro:   ""
+date:       2021-12-18 12:00:01
+author:     "Makinohara"
+catalog: true
+tags:
+    - 工程开发
+    
+---
+
+
+
+# Redux初体验
+
+## 1、创建Store（类似于全局变量存储仓库）
+
+```js
+import {createStore} from "redux";
+import reducer from "./reducer";
+
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+export default store;
+```
+
+## 2、创建Reducer（相当于全局变量管理器）
+
+```js
+const defaultStore = {
+    inputValue:'Write something',
+    list:[
+        '搞114514',
+        '坐下北泽JR'
+    ]
+};
+
+export default (state = defaultStore,action)=>{
+    console.log(state);
+    console.log(action);
+    if(action.type === 'value/changeInput'){
+        let newState = JSON.parse(JSON.stringify(state));
+        newState.inputValue = action.payload;
+        return newState;
+    }
+    return state;
+}
+```
+
+## 3、在组件里调用仓库内容
+
+```jsx
+import './App.css';
+import store from "./store";
+import {useState} from "react";
+import { Input } from 'antd';
+import 'antd/dist/antd.css';
+
+function App() {
+    //初始化HOOK：取出store里的state
+    const [appData,setAppData] = useState(store.getState());
+    //当store变动时，调用回调函数（这里是setAppData）
+    store.subscribe(()=>{setAppData(store.getState())});
+    let list = appData.list;
+    let inputValue = appData.inputValue;
+    let page = [];
+    console.log(store.getState())
+    for (let i = 0; i < list.length; i++) {
+        let temp = <div>{list[i]}</div>
+        page.push(temp);
+    }
+
+    const changeInputValue = (e)=>{
+        // 创建action
+        const action = {
+            type:'value/changeInput',
+            payload:e.target.value
+        }
+        // 使action生效（也就是传给reducer，判断后更新store中的state）
+        store.dispatch(action);
+    }
+
+    return (
+        <div>
+            <Input placeholder={"Write Something"} onChange={changeInputValue}/>
+            {page}
+            <div>
+                {inputValue}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+
+```
+
+如此一来，就实现了类似于全局变量管理的模式（你可以为每一个需要管理的全局状态创建store）
