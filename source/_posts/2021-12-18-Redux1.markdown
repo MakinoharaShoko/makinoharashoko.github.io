@@ -20,6 +20,7 @@ tags:
 import {createStore} from "redux";
 import reducer from "./reducer";
 
+//window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() 是为了在DevTools调试，可以不加
 const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;
@@ -97,3 +98,81 @@ export default App;
 ```
 
 如此一来，就实现了类似于全局变量管理的模式（你可以为每一个需要管理的全局状态创建store）
+
+## 将Store和Reducer写到一起
+
+```js
+import {createStore} from "redux";
+
+//初始化
+const defaultStore = {
+    inputValue:'Write something',
+    list:[
+        '搞114514',
+        '坐下北泽JR'
+    ]
+};
+
+const reducer =  (state = defaultStore,action)=>{
+    //判断action的类型，改变state的指定属性
+    if(action.type === 'value/changeInput'){
+        let newState = JSON.parse(JSON.stringify(state));
+        newState.inputValue = action.payload;
+        return newState;
+    }
+    return state;
+}
+
+const appStore = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+export default appStore;
+```
+
+**对应的App代码**
+
+```jsx
+import './App.css';
+import appStore from "./store/appReducer";
+import {useState} from "react";
+import { Input } from 'antd';
+import 'antd/dist/antd.css';
+
+function App() {
+    //初始化HOOK：取出store里的state
+    const [appData,setAppData] = useState(appStore.getState());
+    //当store变动时，调用回调函数（这里是setAppData）
+    appStore.subscribe(()=>{setAppData(appStore.getState())});
+    let list = appData.list;
+    let inputValue = appData.inputValue;
+    let page = [];
+    console.log(appStore.getState())
+    for (let i = 0; i < list.length; i++) {
+        let temp = <div>{list[i]}</div>
+        page.push(temp);
+    }
+
+    const changeInputValue = (e)=>{
+        // 创建action
+        const action = {
+            type:'value/changeInput',
+            payload:e.target.value
+        }
+        // 使action生效（也就是传给reducer，判断后更新store中的state）
+        appStore.dispatch(action);
+    }
+
+    return (
+        <div>
+            <Input placeholder={"Write Something"} onChange={changeInputValue}/>
+            {page}
+            <div>
+                {inputValue}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+
+```
+
