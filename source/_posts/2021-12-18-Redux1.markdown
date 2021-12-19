@@ -182,3 +182,34 @@ export default App;
 
 
 
+## Action Creator
+
+添加了 Action Creator 的处理方法：
+
+```js
+//初始化
+const defaultStore ='Write something';
+
+const inputValue =  (state = defaultStore, action)=>{
+    //判断action的类型，改变state的指定属性
+    if(action.type === 'value/changeInput'){
+        let newState = JSON.parse(JSON.stringify(state));
+        newState = action.payload;
+        return newState;
+    }
+    return state;
+}
+
+export class inputValueAction{
+    static changeInput = (input) =>{
+        return {
+            type:'value/changeInput',
+            payload:input
+        }
+    }
+}
+
+export default inputValue;
+```
+
+将所有相关与某个要发送数据的 action creator 放到一个类中，方便调用
