@@ -10,6 +10,8 @@ tags:
     - 编程语言
 ---
 
+[TOC]
+
 
 
 > 为系统学习 JavaScript ，重写有关 JavaScript 的笔记，使用教材《JavaScript高级程序设计》第四版。
