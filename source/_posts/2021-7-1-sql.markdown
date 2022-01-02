@@ -211,11 +211,11 @@ alter table s add constraint c2 check(......);
 
 1、选择
 
-$\sigma(R)_F=\{t|t \in R\wedge F(t) = true\}$
+$$\sigma(R)_F=\{t|t \in R\wedge F(t) = true\}$$
 
 2、投影
 
-$\Pi_A(R)=\{t[A]|t \in R\}$
+$$\Pi_A(R)=\{t[A]|t \in R\}$$
 
 3、连接
 
