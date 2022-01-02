@@ -194,18 +194,6 @@
                 </a>
             
                 <a  class="post-url"
-                   href="/2021/09/27/2021-9-27-WG_2/"
-                   data-tag="工程开发"
-                   data-author="" >
-                    <div class="post-box">
-
-                        <div class="post-date" title="2021-09-27 12:00:01">2021/09/27</div>
-                        <div class="post-title" title="WebGAL开发日志2：存档系统、主界面上线！">WebGAL开发日志2：存档系统、主界面上线！</div>
-                    </div>
-
-                </a>
-            
-                <a  class="post-url"
                    href="/2021/09/17/2021-9-17-React/"
                    data-tag="工程开发"
                    data-author="" >
@@ -611,7 +599,6 @@
             <h2 id="KMP理论概要"><a href="#KMP理论概要" class="headerlink" title="KMP理论概要"></a>KMP理论概要</h2><p>KMP字符串匹配算法是一种效率更高的字符串匹配算法。相比于传统算法，由于其主串指针不需要回溯，因此大大减少了匹配需要的时间。</p>
 <p>首先，让我们看看其是如何减少重复的步骤的：</p>
 <p>假如有一字符串S：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -625,8 +612,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -636,13 +622,10 @@
 <td>b</td>
 <td>a</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>我们想要让字符串“aaba”与其匹配。</p>
 <p>那么，匹配看起来就是这样：</p>
 <p>第一次匹配：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -656,8 +639,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -675,13 +657,11 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>此时指针回退，主串指针回退至2，模式串回退至1。</p>
 <p>第二次匹配：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -695,8 +675,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td><strong>b</strong></td>
@@ -714,14 +693,12 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>此时主串指针再次回退。</p>
 <p>可以看出，我们的主串指针在匹配过程中一直在重复读取某一段内容，这是大大有损效率的。若是能使主串指针不回退，只控制模式串指针回退一段距离，这也许可以改善。</p>
 <p>实际上，第二次匹配可以简化为：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -735,8 +712,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -754,12 +730,10 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>然后是第三次匹配：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -773,8 +747,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -794,13 +767,10 @@
 <td>b</td>
 <td><strong>a(匹配成功)</strong></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>那么，如何算出模式串指针应当回退多少呢？</p>
 <p>根据KMP算法的核心思想，模式串T拥有一个对应表，用于记录模式串T重复的部分。</p>
 <p>观察以下两个对应表：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -814,8 +784,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -835,10 +804,7 @@
 <td>3</td>
 <td>4</td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
+</tbody></table>
 <table>
 <thead>
 <tr>
@@ -852,8 +818,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>b</td>
 <td>c</td>
@@ -873,12 +838,9 @@
 <td>1</td>
 <td>1</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>可以看出，1号表格中，在匹配到第8个位置时，若是不匹配，只需要回到4对应的位置继续匹配就可以了，但是2号表格中，每一次匹配都必须要回到位置1重新匹配。</p>
 <p>原因在于此：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -892,15 +854,14 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><strong><em>a</em></strong></td>
-<td><strong><em>a</em></strong></td>
-<td><strong><em>b</em></strong></td>
+<tbody><tr>
+<td><em><strong>a</strong></em></td>
+<td><em><strong>a</strong></em></td>
+<td><em><strong>b</strong></em></td>
 <td>a</td>
-<td><strong><em>a</em></strong></td>
-<td><strong><em>a</em></strong></td>
-<td><strong><em>b</em></strong></td>
+<td><em><strong>a</strong></em></td>
+<td><em><strong>a</strong></em></td>
+<td><em><strong>b</strong></em></td>
 <td>a</td>
 </tr>
 <tr>
@@ -913,13 +874,10 @@
 <td>3</td>
 <td>4</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>可以看到，若是第8个字符不匹配并不影响前3个字符已经匹配成功的事实。因为5、6、7三个字符与1、2、3无异。既然我们已经匹配过a、b、c三个字符了，何必再匹配一次？</p>
 <p>举例说明：</p>
 <p>匹配 “aabaaaabcaabaaaba”与“aabaaaba”</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -941,8 +899,7 @@
 <th>16</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -994,11 +951,9 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="table-container">
+</tbody></table>
 <table>
 <thead>
 <tr>
@@ -1020,8 +975,7 @@
 <th>16</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -1055,15 +1009,13 @@
 <td></td>
 <td></td>
 <td></td>
+<td></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>可以看到，由于我们已经在匹配5、6、7三个字符时确定a、a、b三个字符是匹配的，那么我们就不需要在匹配前三个字符上浪费时间了。</p>
 <p>那么，我们已经知道了如何使用模式串的“特性数组”来减少匹配重复字符上的浪费，但是这个数组怎样计算出来呢？</p>
 <p>综合来看，我们计算此数组的目的就在于减少重复匹配，那么此数组的最大目的就是找出在制定字母之前有多少重复部分。</p>
 <p>如：aabaaaba</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1077,8 +1029,7 @@
 <th>8</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>a</td>
 <td>b</td>
@@ -1098,11 +1049,10 @@
 <td>3（重复了aa）</td>
 <td>4（重复了aab）</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>由此，推导程序如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">getNext</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> in)</span> </span>&#123;<br>        <span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">res</span><span class="hljs-params">(in.length() + <span class="hljs-number">1</span>)</span></span>;<br>        <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">0</span>;<br>        res[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span> (i &lt; in.length()) &#123;<br>            <span class="hljs-keyword">if</span> (j == <span class="hljs-number">0</span> || in[j - <span class="hljs-number">1</span>] == in[i - <span class="hljs-number">1</span>]) &#123;<br>                i++;<br>                j++;<br>                res[i] = j;<br>            &#125; <span class="hljs-keyword">else</span><br>                j = res[j];<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
 <h2 id="KMP再优化："><a href="#KMP再优化：" class="headerlink" title="KMP再优化："></a>KMP再优化：</h2><p>我们已经看出KMP算法是如何减少重复匹配来减少匹配时间的。但是，是否有一种更优化的方法呢？</p>
 <p>观察以下字符串：</p>
 

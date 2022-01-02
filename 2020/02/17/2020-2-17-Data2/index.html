@@ -194,18 +194,6 @@
                 </a>
             
                 <a  class="post-url"
-                   href="/2021/09/27/2021-9-27-WG_2/"
-                   data-tag="工程开发"
-                   data-author="" >
-                    <div class="post-box">
-
-                        <div class="post-date" title="2021-09-27 12:00:01">2021/09/27</div>
-                        <div class="post-title" title="WebGAL开发日志2：存档系统、主界面上线！">WebGAL开发日志2：存档系统、主界面上线！</div>
-                    </div>
-
-                </a>
-            
-                <a  class="post-url"
                    href="/2021/09/17/2021-9-17-React/"
                    data-tag="工程开发"
                    data-author="" >
@@ -618,10 +606,12 @@
 <p>7.如果存在一条n1到n2的路径,那么n1是n2的祖先,n2是n1的后裔.若n1!=n2,则n1是n2的真祖先.</p>
 <p>8.树的简单实现:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span><br>&#123;</span><br>    object element;<br>    node *firstchild;<br>    node *nextsibling;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <p>接下来看一个最基本的树型结构:</p>
 <h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><p>二叉树的每一个结点都不能超过有两个儿子.但子树皆可能为空.</p>
 <p>二叉树的伪代码:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span><br>&#123;</span><br>    <span class="hljs-keyword">int</span> a;<br>    <span class="hljs-keyword">int</span> b;<span class="hljs-comment">//这些是结点包含的元素</span><br>    node *left;<br>    node *right;<span class="hljs-comment">//这些是指向子树的指针</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
 <p>表达式树的解释:</p>
 <p><img src="/img/tree1.jpg" alt="表达式树"></p>
 <p>树有多种遍历方式:</p>
@@ -630,11 +620,12 @@
 <p>(a+b*c)+((d*e+f)*g)</p>
 <p><strong>后序遍历:</strong></p>
 <p>先打印左右子树,再打印结点:</p>
-<p>a b c <em> + d e </em> f + g * +</p>
+<p>a b c * + d e * f + g * +</p>
 <p>构造一个后缀表达式树:</p>
 <p>原理:每读入一个表达式就形成一个新的树.</p>
 <p>参见      <em>数据结构与算法分析:树</em>     ,我们下面只考虑代码实现:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> //定义一个结点<br>&#123;</span><br>    <span class="hljs-keyword">char</span> elem;<br>    node *left;<br>    node *right;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-built_in">stack</span>&lt;node *&gt; temp_in; <span class="hljs-comment">//构建一个栈用于存放指针(建树压栈)</span><br>    <span class="hljs-keyword">char</span> char_in;          <span class="hljs-comment">//构建一个临时变量用于读入(符号或数字)</span><br>    node node_arr[<span class="hljs-number">10000</span>];  <span class="hljs-comment">//构建一个数组用于存放树</span><br>    <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;           <span class="hljs-comment">//构建的结点在数组中的位置(每构建一个结点时更新)</span><br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)<br>    &#123;<br>        <span class="hljs-built_in">cin</span> &gt;&gt; char_in;<br>        <span class="hljs-keyword">if</span> (char_in == <span class="hljs-string">'!'</span>)<br>            <span class="hljs-keyword">break</span>;<br><br>        <span class="hljs-keyword">if</span> (char_in != <span class="hljs-string">'+'</span> &amp;&amp; char_in != <span class="hljs-string">'-'</span> &amp;&amp; char_in != <span class="hljs-string">'*'</span> &amp;&amp; char_in != <span class="hljs-string">'/'</span>) <span class="hljs-comment">//读取非运算符(正常压栈)</span><br>        &#123;<br>            node_arr[pos].elem = char_in; <span class="hljs-comment">//把内容写入树</span><br>            temp_in.push(&amp;node_arr[pos]); <span class="hljs-comment">//将指针压入栈</span><br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            node_arr[pos].elem = char_in;        <span class="hljs-comment">//将运算符写入树</span><br>            node_arr[pos].right = temp_in.top(); <span class="hljs-comment">//取为右儿子</span><br>            temp_in.pop();                       <span class="hljs-comment">//弹出</span><br>            node_arr[pos].left = temp_in.top();  <span class="hljs-comment">//取为左儿子</span><br>            temp_in.pop();                       <span class="hljs-comment">//弹出</span><br>            <span class="hljs-comment">//最后将这个树入栈</span><br>            temp_in.push(&amp;node_arr[pos]);<br>        &#125;<br>        pos++;<br>    &#125;<br>    <span class="hljs-comment">//此时树已经建立成功!!!接下来我们需要尝试以中序遍历和后序遍历来输出这个表达式</span><br>    node *print_node = temp_in.top(); <span class="hljs-comment">//当前读出的根,先将栈顶的表达式读入</span><br>    temp_in.pop();<span class="hljs-comment">//待会还要压进去</span><br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)<br>    &#123;<br>        <span class="hljs-keyword">if</span> ((*print_node).left == <span class="hljs-number">0x0</span>)<br>        &#123;<br>            <span class="hljs-built_in">cout</span> &lt;&lt; (*print_node).elem;<span class="hljs-comment">//若为最左叶,打印</span><br>            <span class="hljs-keyword">if</span> (temp_in.empty())<span class="hljs-comment">//打印完了要是栈顶为空,则跳出循环</span><br>            &#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>            <span class="hljs-built_in">cout</span>&lt;&lt;(*temp_in.top()).elem;<span class="hljs-comment">//将根打印出来</span><br>            print_node = (*temp_in.top()).right;<span class="hljs-comment">//修改读数为栈顶右儿子</span><br>            temp_in.pop();<span class="hljs-comment">//将根从栈顶取出</span><br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            temp_in.push(print_node);<br>            print_node = (*print_node).left;<br>        &#125;<br>    &#125; <span class="hljs-comment">//找到最左侧元素</span><br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h1 id="图论算法"><a href="#图论算法" class="headerlink" title="图论算法"></a>图论算法</h1><h2 id="图的介绍"><a href="#图的介绍" class="headerlink" title="图的介绍"></a>图的介绍</h2><p>图 G=(V,E)由顶点(vertex)的集V和边(edge)的集E组成.</p>
 <p>每一条边是一个点对(v,w),v,w∈V,如果点对有序,图就为有向图.</p>
 <p>当存在(v,w)∈E,v和w邻接.</p>
@@ -648,7 +639,6 @@
 <p>1.使用二维数组(邻接矩阵)</p>
 <p>A[u][v]表示一条从u到v的边,A[u][v]=true指边存在,反之不存在.A[u][v]=2可以表示一个边的权.</p>
 <p>2.邻接表表示,若有权也可以附加进去</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -656,8 +646,7 @@
 <th>值</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>1</td>
 <td>2,4,3</td>
 </tr>
@@ -685,9 +674,7 @@
 <td>7</td>
 <td>6</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 
         </div>
 
