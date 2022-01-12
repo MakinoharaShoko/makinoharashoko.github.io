@@ -10,8 +10,8 @@ tags:
     
 ---
 
-项目地址：[https://github.com/MakinoharaShoko/WebGAL](http://link.zhihu.com/?target=https%3A//github.com/MakinoharaShoko/WebGAL)
-演示地址（可能需要科学冲浪）：[http://msfasr.com/WebGAL_Demo_Page/](http://link.zhihu.com/?target=http%3A//msfasr.com/WebGAL_Demo_Page/)
+项目地址：[项目地址](https://github.com/MakinoharaShoko/WebGAL)
+演示地址（可能需要科学冲浪）：[演示地址](http://msfasr.com/WebGAL_Demo_Page/)
 
 正文：
 作为一个 Galgame 爱好者，我一直有一个设想，未来的 Galgame 能否做到仅需要一个浏览器就可以访问并随时游玩？答案是肯定的，并且也已经有先行者在这方面做出了尝试。橙光游戏早就做到了在网页上实现文字冒险游戏的运行，并打造了自己的社区；bilibili也通过推出互动视频的方式，让无数up主可以使用互动视频制作 galgame 。
