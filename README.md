@@ -1,2 +1,0 @@
-# makinoharashoko.github.io
-Blog
