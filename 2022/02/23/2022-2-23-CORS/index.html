@@ -618,7 +618,46 @@
 
         </div>
         <div id="article">
-            <p>留空，很快会加上内容</p>
+            <h1 id="同源定义"><a href="#同源定义" class="headerlink" title="同源定义"></a>同源定义</h1><p>协议、域名、端口号相同。</p>
+<h1 id="跨域的几种方式"><a href="#跨域的几种方式" class="headerlink" title="跨域的几种方式"></a>跨域的几种方式</h1><h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><ol>
+<li>定义获取数据后调用的回调函数</li>
+<li>动态生成对服务端JS进行引用的代码<ul>
+<li>设置<code>url</code>为提供<code>jsonp</code>服务的<code>url</code>地址，并在该<code>url</code>中设置相关<code>callback</code>参数</li>
+<li>创建<code>script</code>标签，并设置其<code>src</code>属性</li>
+<li>把<code>script</code>标签加入<code>head</code>，此时调用开始。</li>
+</ul>
+</li>
+</ol>
+<h4 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h4><p>将客户端发送的<code>callback</code>参数作为函数名来包裹住<code>JSON</code>数据，返回数据至客户端。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 得到航班信息查询结果后的回调函数</span><br><span class="hljs-keyword">var</span> flightHandler = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<br>	alert(<span class="hljs-string">'你查询的航班结果是：票价 '</span> + data.price + <span class="hljs-string">' 元，'</span> + <span class="hljs-string">'余票 '</span> + data.tickets + <span class="hljs-string">' 张。'</span>);<br>&#125;;<br><span class="hljs-comment">// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）</span><br><span class="hljs-keyword">var</span> url = <span class="hljs-string">"http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=flightHandler"</span>;<br><span class="hljs-comment">// 创建script标签，设置其属性</span><br><span class="hljs-keyword">var</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>);<br>script.setAttribute(<span class="hljs-string">'src'</span>, url);<br><span class="hljs-comment">// 把script标签加入head，此时调用开始</span><br><span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'head'</span>)[<span class="hljs-number">0</span>].appendChild(script);<br></code></pre></td></tr></table></figure>
+
+<h4 id="服务端-1"><a href="#服务端-1" class="headerlink" title="服务端"></a>服务端</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">flightHandler(&#123;<br>  <span class="hljs-string">"code"</span>: <span class="hljs-string">"CA1998"</span>,<br>  <span class="hljs-string">"price"</span>: <span class="hljs-number">1780</span>,<br>  <span class="hljs-string">"tickets"</span>: <span class="hljs-number">5</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>主要依托于服务端实现</p>
+<p>服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。</p>
+<h2 id="postMessage-iframe"><a href="#postMessage-iframe" class="headerlink" title="postMessage+iframe"></a>postMessage+iframe</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html">// a.html<br><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"http://localhost:4000/b.html"</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"frame"</span> <span class="hljs-attr">onload</span>=<span class="hljs-string">"load()"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br>//等它加载完触发一个事件<br>//内嵌在http://localhost:3000/a.html<br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">load</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> frame = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'frame'</span>)<br>    frame.contentWindow.postMessage(<span class="hljs-string">'我爱你'</span>, <span class="hljs-string">'http://localhost:4000'</span>) <span class="hljs-comment">//发送数据</span><br>    <span class="hljs-built_in">window</span>.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123; <span class="hljs-comment">//接受返回数据</span><br>        <span class="hljs-built_in">console</span>.log(e.data) <span class="hljs-comment">//我不爱你</span><br>    &#125;<br>&#125;<br></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// b.html</span><br>  <span class="hljs-built_in">window</span>.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(e.data) <span class="hljs-comment">//我爱你</span><br>    e.source.postMessage(<span class="hljs-string">'我不爱你'</span>, e.origin)<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>原理：WebSocket 没有同源策略。</p>
+<h3 id="使用-Socket-io"><a href="#使用-Socket-io" class="headerlink" title="使用 Socket.io"></a>使用 Socket.io</h3><p>略，参见 Socket.io 笔记</p>
+<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>原理：服务端没有同源策略</p>
+<h3 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h3><ul>
+<li><p>接受客户端请求 。</p>
+</li>
+<li><p>将请求 转发给服务器。</p>
+</li>
+<li><p>拿到服务器 响应 数据。</p>
+</li>
+<li><p>将 响应 转发给客户端。</p>
+</li>
+</ul>
+<h4 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h4><p>Node.Js 中间件代理</p>
+<p>Nginx 反向代理</p>
+<h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><h3 id="通过-window-name"><a href="#通过-window-name" class="headerlink" title="通过 window.name"></a>通过 window.name</h3><p>window.name 最长可以保存 2MB 的数据。</p>
+<h3 id="通过location-hash"><a href="#通过location-hash" class="headerlink" title="通过location.hash"></a>通过location.hash</h3><h3 id="通过document-domain"><a href="#通过document-domain" class="headerlink" title="通过document.domain"></a>通过document.domain</h3><p>只有在同源的情况下，父窗口和子窗口才能通信</p>
+<p>实现条件：两个窗口一级域名相同，只是二级域名不同</p>
+<p>实现原理：两个页面都通过js强制设置document.domain为基础主域，就实现了同域。</p>
 
         </div>
 
