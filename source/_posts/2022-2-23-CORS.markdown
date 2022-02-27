@@ -9,4 +9,128 @@ tags:
     - 工程开发
 ---
 
-留空，很快会加上内容
+# 同源定义
+
+协议、域名、端口号相同。
+
+# 跨域的几种方式
+
+## JSONP
+
+#### 客户端
+
+1. 定义获取数据后调用的回调函数
+2. 动态生成对服务端JS进行引用的代码
+   - 设置`url`为提供`jsonp`服务的`url`地址，并在该`url`中设置相关`callback`参数
+   - 创建`script`标签，并设置其`src`属性
+   - 把`script`标签加入`head`，此时调用开始。
+
+#### 服务端
+
+将客户端发送的`callback`参数作为函数名来包裹住`JSON`数据，返回数据至客户端。
+
+### 示例
+
+#### 客户端
+
+```js
+// 得到航班信息查询结果后的回调函数
+var flightHandler = function(data){
+	alert('你查询的航班结果是：票价 ' + data.price + ' 元，' + '余票 ' + data.tickets + ' 张。');
+};
+// 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）
+var url = "http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&callback=flightHandler";
+// 创建script标签，设置其属性
+var script = document.createElement('script');
+script.setAttribute('src', url);
+// 把script标签加入head，此时调用开始
+document.getElementsByTagName('head')[0].appendChild(script); 
+```
+
+#### 服务端
+
+```js
+flightHandler({
+  "code": "CA1998",
+  "price": 1780,
+  "tickets": 5
+});
+```
+
+## CORS
+
+主要依托于服务端实现
+
+服务端设置 Access-Control-Allow-Origin 就可以开启 CORS。
+
+## postMessage+iframe
+
+```html
+// a.html
+<iframe src="http://localhost:4000/b.html" frameborder="0" id="frame" onload="load()"></iframe>
+//等它加载完触发一个事件
+//内嵌在http://localhost:3000/a.html
+<script>
+function load() {
+    let frame = document.getElementById('frame')
+    frame.contentWindow.postMessage('我爱你', 'http://localhost:4000') //发送数据
+    window.onmessage = function(e) { //接受返回数据
+        console.log(e.data) //我不爱你
+    }
+}
+</script>
+
+```
+
+```js
+// b.html
+  window.onmessage = function(e) {
+    console.log(e.data) //我爱你
+    e.source.postMessage('我不爱你', e.origin)
+ }
+
+```
+
+## WebSocket
+
+原理：WebSocket 没有同源策略。
+
+### 使用 Socket.io
+
+略，参见 Socket.io 笔记
+
+## 代理
+
+原理：服务端没有同源策略
+
+### 代理服务器
+
+- 接受客户端请求 。
+
+- 将请求 转发给服务器。
+
+- 拿到服务器 响应 数据。
+
+- 将 响应 转发给客户端。
+
+#### 实现方式
+
+Node.Js 中间件代理
+
+Nginx 反向代理
+
+## iframe
+
+### 通过 window.name
+
+window.name 最长可以保存 2MB 的数据。
+
+### 通过location.hash
+
+### 通过document.domain
+
+只有在同源的情况下，父窗口和子窗口才能通信
+
+实现条件：两个窗口一级域名相同，只是二级域名不同
+
+实现原理：两个页面都通过js强制设置document.domain为基础主域，就实现了同域。
