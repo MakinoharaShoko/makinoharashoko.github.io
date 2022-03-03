@@ -642,7 +642,19 @@
 
         </div>
         <div id="article">
-            
+            <h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>WebSocket 协议在2008年诞生，2011年成为国际标准。所有浏览器都已经支持了。</p>
+<p>它的最大特点就是，服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息，是真正的双向平等对话，属于<a href="https://en.wikipedia.org/wiki/Push_technology" target="_blank" rel="noopener">服务器推送技术</a>的一种。</p>
+<p>（1）建立在 TCP 协议之上，服务器端的实现比较容易。</p>
+<p>（2）与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</p>
+<p>（3）数据格式比较轻量，性能开销小，通信高效。</p>
+<p>（4）可以发送文本，也可以发送二进制数据。</p>
+<p>（5）没有同源限制，客户端可以与任意服务器通信。</p>
+<p>（6）协议标识符是<code>ws</code>（如果加密，则为<code>wss</code>），服务器网址就是 URL。</p>
+<h1 id="使用-Socket-io"><a href="#使用-Socket-io" class="headerlink" title="使用 Socket.io"></a>使用 Socket.io</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> soc = socketIo(ser);<br><br>soc.on(<span class="hljs-string">'connection'</span>,(socket)=&gt;&#123;<br>    <span class="hljs-comment">//监听connection（用户连接）事件，socket为用户连接的实例</span><br>    socket.on(<span class="hljs-string">'disconnect'</span>,()=&gt;&#123;<br>     <span class="hljs-comment">//监听用户断开事件</span><br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"用户"</span>+socket.id+<span class="hljs-string">"断开连接"</span>);<br>    &#125;);<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"用户"</span>+socket.id+<span class="hljs-string">"连接"</span>);<br>    socket.on(<span class="hljs-string">'msg'</span>,(data)=&gt;&#123;<br>       <span class="hljs-comment">//监听msg事件（这个是自定义的事件）</span><br>        <span class="hljs-built_in">console</span>.log(data);<span class="hljs-comment">//你好服务器</span><br>        socket.emit(<span class="hljs-string">'msg'</span>,<span class="hljs-string">'你好浏览器'</span>);<br>        <span class="hljs-comment">//向socket用户发送信息</span><br>    &#125;)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="浏览器端"><a href="#浏览器端" class="headerlink" title="浏览器端"></a>浏览器端</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> soc = io(<span class="hljs-string">'http://localhost:80'</span>);<br><span class="hljs-comment">//向指定的服务器建立连接，地址可以省略</span><br>soc.emit(<span class="hljs-string">'msg'</span>,<span class="hljs-string">'你好服务器'</span>);<br><span class="hljs-comment">//自定义msg事件，发送‘你好服务器’字符串向服务器</span><br>soc.on(<span class="hljs-string">'msg'</span>,(data)=&gt;&#123;<br>	<span class="hljs-comment">//监听浏览器通过msg事件发送的信息</span><br>	<span class="hljs-built_in">console</span>.log(data);<span class="hljs-comment">//你好浏览器</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
         </div>
 
     </div>
