@@ -644,7 +644,41 @@
 
         </div>
         <div id="article">
-            <h1 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h1>
+            <h1 id="JS相关"><a href="#JS相关" class="headerlink" title="JS相关"></a>JS相关</h1><h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h1 id="工程与应用相关"><a href="#工程与应用相关" class="headerlink" title="工程与应用相关"></a>工程与应用相关</h1><h2 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型 XSS 的攻击步骤：</p>
+<ol>
+<li>攻击者将恶意代码提交到目标网站的数据库中。</li>
+<li>用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。</li>
+<li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
+</ol>
+<p>这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。</p>
+<h4 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h4><p>反射型 XSS 的攻击步骤：</p>
+<ol>
+<li>攻击者构造出特殊的 URL，其中包含恶意代码。</li>
+<li>用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。</li>
+<li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
+</ol>
+<p>反射型 XSS 跟存储型 XSS 的区别是：存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。</p>
+<p>反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。</p>
+<p>由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。</p>
+<p>POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。</p>
+<h4 id="DOM型"><a href="#DOM型" class="headerlink" title="DOM型"></a>DOM型</h4><p>DOM 型 XSS 的攻击步骤：</p>
+<ol>
+<li>攻击者构造出特殊的 URL，其中包含恶意代码。</li>
+<li>用户打开带有恶意代码的 URL。</li>
+<li>用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
+</ol>
+<p>DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</p>
+<h4 id="防范方法"><a href="#防范方法" class="headerlink" title="防范方法"></a>防范方法</h4><p>必要的输入过滤</p>
+<p>改成纯前端渲染，把代码和数据分隔开。</p>
+<p>对 HTML 做充分转义。（在输出时）</p>
+<p>使用CSP</p>
+<h5 id="预防DOM型"><a href="#预防DOM型" class="headerlink" title="预防DOM型"></a>预防DOM型</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 内联事件监听器中包含恶意代码 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"UNTRUSTED"</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">"UNTRUSTED"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"data:image/png,"</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 链接内包含恶意代码 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"UNTRUSTED"</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"><br><span class="hljs-comment">// setTimeout()/setInterval() 中调用恶意代码</span><br>setTimeout(<span class="hljs-string">"UNTRUSTED"</span>)<br>setInterval(<span class="hljs-string">"UNTRUSTED"</span>)<br><br><span class="hljs-comment">// location 调用恶意代码</span><br>location.href = <span class="hljs-string">'UNTRUSTED'</span><br><br><span class="hljs-comment">// eval() 中调用恶意代码</span><br><span class="hljs-built_in">eval</span>(<span class="hljs-string">"UNTRUSTED"</span>)<br></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在使用时避免在字符串中拼接不可信数据。</p>
+
         </div>
 
     </div>
