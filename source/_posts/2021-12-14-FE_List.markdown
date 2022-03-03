@@ -10,7 +10,7 @@ tags:
     
 ---
 
-# 前端技术学习清单
+# 前端技术学习清单、查缺补漏
 
 按照紧迫程度，在技术上遵循以下清单系统学习前端技术：
 
@@ -22,6 +22,8 @@ tags:
 [ ] 详细了解事件循环、宏任务、微任务
 [ ] Promise （手写+实现Promise.all Promise.race）、异步编程（async await）
 [ ] 闭包、高阶函数、内存泄漏问题、this指向问题
+[ ] 对象、instance of
+[ ] Proxy Reflect
 [ ] 柯里化 逆柯里化
 [ ] 事件冒泡
 [ ] Map WeakMap Set 等ES6新特性
