@@ -25,6 +25,96 @@ js 的加载、解析和执行会阻塞页面的渲染过程，因此我们希�
 
 第四种方式是动态创建 DOM 标签的方式，我们可以对文档的加载事件进行监听，当文档加载完成后再动态的创建 script 标签来引入 js 脚本。
 
+## 事件循环
+
+### 事件循环的基本原理
+
+1. 从 **宏任务** 队列（例如 “script”）中出队（dequeue）并执行最早的任务。
+2. 执行所有微任务：
+   - 当微任务队列非空时：
+     - 出队（dequeue）并执行最早的微任务。
+3. 如果有变更，则将变更渲染出来。
+4. 如果宏任务队列为空，则休眠直到出现宏任务。
+5. 转到步骤 1。
+
+安排（schedule）一个新的 **宏任务**：
+
+- 使用零延迟的 `setTimeout(f)`。
+
+它可被用于将繁重的计算任务拆分成多个部分，以使浏览器能够对用户事件作出反应，并在任务的各部分之间显示任务进度。
+
+此外，也被用于在事件处理程序中，将一个行为（action）安排（schedule）在事件被完全处理（冒泡完成）后。
+
+安排一个新的 **微任务**：
+
+- 使用 `queueMicrotask(f)`。
+- promise 处理程序也会通过微任务队列。
+
+在微任务之间没有 UI 或网络事件的处理：它们一个立即接一个地执行。
+
+所以，我们可以使用 `queueMicrotask` 来在保持环境状态一致的情况下，异步地执行一个函数。
+
+#### 宏任务
+
+- 当外部脚本 `<script src="...">` 加载完成时，任务就是执行它。
+- 当用户移动鼠标时，任务就是派生出 `mousemove` 事件和执行处理程序。
+- 当安排的（scheduled）`setTimeout` 时间到达时，任务就是执行其回调。
+
+#### 微任务
+
+每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。
+
+## Promise 与 异步编程
+
+### 手写Promise
+
+### 手写 Promise.all Promise.race
+
+### Async Await
+
+## JS 函数
+
+### 详解 bind apply call
+
+#### bind:绑定 this 指向
+
+`function.bind(thisArg[, arg1[, arg2[, ...]]])`
+
+**`bind()` **方法创建一个新的函数，在 `bind()` 被调用时，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。
+
+```js
+const module = {
+  x: 42,
+  getX: function() {
+    return this.x;
+  }
+};
+
+const unboundGetX = module.getX;
+console.log(unboundGetX()); // The function gets invoked at the global scope
+// expected output: undefined
+
+const boundGetX = unboundGetX.bind(module);
+console.log(boundGetX());
+// expected output: 42
+```
+
+#### apply:	调用一个函数
+
+`func.apply(thisArg, [argsArray])`
+
+```js
+const func1 = (a)=>{
+    console.log(`hello,${a}`);
+    i
+}
+//apply接受一个参数数组
+func1.apply(null,['Mahiru'])
+//如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。
+```
+
+
+
 # CSS相关
 
 
