@@ -648,6 +648,47 @@
 <p>第二种方式是给 js 脚本添加 defer 属性，这个属性会让脚本的加载与文档的解析同步解析，然后在文档解析完成后再执行这个脚本文件，这样的话就能使页面的渲染不被阻塞。多个设置了 defer 属性的脚本按规范来说最后是顺序执行的，但是在一些浏览器中可能不是这样。</p>
 <p>第三种方式是给 js 脚本添加 async 属性，这个属性会使脚本异步加载，不会阻塞页面的解析过程，但是当脚本加载完成后立即执行 js 脚本，这个时候如果文档没有解析完成的话同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。</p>
 <p>第四种方式是动态创建 DOM 标签的方式，我们可以对文档的加载事件进行监听，当文档加载完成后再动态的创建 script 标签来引入 js 脚本。</p>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><h3 id="事件循环的基本原理"><a href="#事件循环的基本原理" class="headerlink" title="事件循环的基本原理"></a>事件循环的基本原理</h3><ol>
+<li>从 <strong>宏任务</strong> 队列（例如 “script”）中出队（dequeue）并执行最早的任务。</li>
+<li>执行所有微任务：<ul>
+<li>当微任务队列非空时：<ul>
+<li>出队（dequeue）并执行最早的微任务。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>如果有变更，则将变更渲染出来。</li>
+<li>如果宏任务队列为空，则休眠直到出现宏任务。</li>
+<li>转到步骤 1。</li>
+</ol>
+<p>安排（schedule）一个新的 <strong>宏任务</strong>：</p>
+<ul>
+<li>使用零延迟的 <code>setTimeout(f)</code>。</li>
+</ul>
+<p>它可被用于将繁重的计算任务拆分成多个部分，以使浏览器能够对用户事件作出反应，并在任务的各部分之间显示任务进度。</p>
+<p>此外，也被用于在事件处理程序中，将一个行为（action）安排（schedule）在事件被完全处理（冒泡完成）后。</p>
+<p>安排一个新的 <strong>微任务</strong>：</p>
+<ul>
+<li>使用 <code>queueMicrotask(f)</code>。</li>
+<li>promise 处理程序也会通过微任务队列。</li>
+</ul>
+<p>在微任务之间没有 UI 或网络事件的处理：它们一个立即接一个地执行。</p>
+<p>所以，我们可以使用 <code>queueMicrotask</code> 来在保持环境状态一致的情况下，异步地执行一个函数。</p>
+<h4 id="宏任务"><a href="#宏任务" class="headerlink" title="宏任务"></a>宏任务</h4><ul>
+<li>当外部脚本 <code>&lt;script src=&quot;...&quot;&gt;</code> 加载完成时，任务就是执行它。</li>
+<li>当用户移动鼠标时，任务就是派生出 <code>mousemove</code> 事件和执行处理程序。</li>
+<li>当安排的（scheduled）<code>setTimeout</code> 时间到达时，任务就是执行其回调。</li>
+</ul>
+<h4 id="微任务"><a href="#微任务" class="headerlink" title="微任务"></a>微任务</h4><p>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</p>
+<h2 id="Promise-与-异步编程"><a href="#Promise-与-异步编程" class="headerlink" title="Promise 与 异步编程"></a>Promise 与 异步编程</h2><h3 id="手写Promise"><a href="#手写Promise" class="headerlink" title="手写Promise"></a>手写Promise</h3><h3 id="手写-Promise-all-Promise-race"><a href="#手写-Promise-all-Promise-race" class="headerlink" title="手写 Promise.all Promise.race"></a>手写 Promise.all Promise.race</h3><h3 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async Await"></a>Async Await</h3><h2 id="JS-函数"><a href="#JS-函数" class="headerlink" title="JS 函数"></a>JS 函数</h2><h3 id="详解-bind-apply-call"><a href="#详解-bind-apply-call" class="headerlink" title="详解 bind apply call"></a>详解 bind apply call</h3><h4 id="bind-绑定-this-指向"><a href="#bind-绑定-this-指向" class="headerlink" title="bind:绑定 this 指向"></a>bind:绑定 this 指向</h4><p><code>function.bind(thisArg[, arg1[, arg2[, ...]]])</code></p>
+<p>**<code>bind()</code> **方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = &#123;<br>  <span class="hljs-attr">x</span>: <span class="hljs-number">42</span>,<br>  <span class="hljs-attr">getX</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.x;<br>  &#125;<br>&#125;;<br><br><span class="hljs-keyword">const</span> unboundGetX = <span class="hljs-built_in">module</span>.getX;<br><span class="hljs-built_in">console</span>.log(unboundGetX()); <span class="hljs-comment">// The function gets invoked at the global scope</span><br><span class="hljs-comment">// expected output: undefined</span><br><br><span class="hljs-keyword">const</span> boundGetX = unboundGetX.bind(<span class="hljs-built_in">module</span>);<br><span class="hljs-built_in">console</span>.log(boundGetX());<br><span class="hljs-comment">// expected output: 42</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="apply-调用一个函数"><a href="#apply-调用一个函数" class="headerlink" title="apply:    调用一个函数"></a>apply:    调用一个函数</h4><p><code>func.apply(thisArg, [argsArray])</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> func1 = <span class="hljs-function">(<span class="hljs-params">a</span>)=&gt;</span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`hello,<span class="hljs-subst">$&#123;a&#125;</span>`</span>);<br>    i<br>&#125;<br><span class="hljs-comment">//apply接受一个参数数组</span><br>func1.apply(<span class="hljs-literal">null</span>,[<span class="hljs-string">'Mahiru'</span>])<br><span class="hljs-comment">//如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。</span><br></code></pre></td></tr></table></figure>
+
+
+
 <h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h2 id="从输入url到呈现网页"><a href="#从输入url到呈现网页" class="headerlink" title="从输入url到呈现网页"></a>从输入url到呈现网页</h2><p>（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。</p>
 <p>（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新的请求。</p>
 <p>（3）下一步我们首先需要获取的是输入的 URL 中的域名的 IP 地址，首先会判断本地是否有该域名的 IP 地址的缓存，如果有则使用，如果没有则向本地 DNS 服务器发起请求。本地 DNS 服务器也会先检查是否存在缓存，如果没有就会先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的 IP 地址后，本地 DNS 服务器再将这个 IP 地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。</p>
