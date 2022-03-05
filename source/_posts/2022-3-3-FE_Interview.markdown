@@ -68,9 +68,131 @@ js 的加载、解析和执行会阻塞页面的渲染过程，因此我们希�
 
 ### 手写Promise
 
+没有实现链式调用
+
+```js
+class MyPromise {
+    constructor(func) {
+        this.status = 'PENDING'; // 初始化状态
+        this.value = undefined; // 成功返回的值
+        this.reason = undefined; //失败返回的值
+
+        this.callbacks = [];//结束后的回调
+        func(this.resolve.bind(this), this.reject.bind(this));//绑定this
+    }
+
+    resolve(value) {
+        this.value = value;
+        this.status = 'FULFILLED'; // 设置状态
+
+        // 通知事件执行
+        this.callbacks.forEach((cb) => this._handler(cb));
+    }
+
+    reject(reason) {
+        this.reason = reason;
+        this.status = 'REJECTED'; // 设置状态
+
+        // 通知事件执行
+        this.callbacks.forEach((cb) => this._handler(cb));
+    }
+
+    then(onFulfilled, onRejected) { //这个函数用于注册
+        // 将需要执行的回调函数存储起来
+        this.callbacks.push({
+            onFulfilled,
+            onRejected,
+        });//保存参数
+    }
+
+    //用于执行回调函数
+    _handler(callback) {
+        const { onFulfilled, onRejected } = callback;//回调函数的两个参数
+
+        if (this.status === 'FULFILLED' && onFulfilled) {
+            // 传入存储的值
+            onFulfilled(this.value);
+        }
+
+        if (this.status === 'REJECTED' && onRejected) {
+            // 传入存储的错误信息
+            onRejected(this.reason);
+        }
+    }
+}
+
+function test(success) {
+    return new MyPromise((res, rej) => {
+        setTimeout(() => {
+            if (success) {
+                res("willem");
+            } else {
+                rej('error');
+            }
+        }, 0);
+    })
+}
+
+test(true).then((r, j) => {
+    console.log(r);
+})
+
+test(false).then(null, j => {
+    console.log(j);
+})
+```
+
 ### 手写 Promise.all Promise.race
 
+#### Promise.all
+
+```js
+MyAll = function (iterator) {  
+    let count = 0//用于计数，当等于len时就resolve
+    let len = iterator.length
+    let res = []//用于存放结果
+    return new Promise((resolve,reject) => {
+        for(let e of iterator){
+            //Promise.resolve(value)方法返回一个以给定值解析后的Promise 对象。
+            //如果这个值是一个 promise ，那么将返回这个 promise。
+            Promise.resolve(e)//转化为Promise对象
+            .then((data) => {
+                res[count] = data;
+                if(++count === len){
+                    resolve(res)
+                }
+            })
+            .catch(e => {
+                reject(e)
+            })
+        }
+    })
+}
+```
+
+#### Promise.race
+
+```js
+MyRace = function (iterator) {  
+    return new Promise((resolve,reject) => {
+        for(let e of iterator){
+            Promise.resolve(e)
+            .then((data) => {
+                    resolve(data)
+            })
+            .catch(e => {
+                reject(e)
+            })
+        }
+    })
+}
+```
+
+
+
 ### Async Await
+
+
 
 ## JS 函数
 
@@ -99,18 +221,37 @@ console.log(boundGetX());
 // expected output: 42
 ```
 
-#### apply:	调用一个函数
+#### apply:	调用一个函数，接受参数数组
 
 `func.apply(thisArg, [argsArray])`
 
 ```js
 const func1 = (a)=>{
     console.log(`hello,${a}`);
-    i
 }
 //apply接受一个参数数组
 func1.apply(null,['Mahiru'])
 //如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。
+```
+
+#### call：调用一个函数，接受参数
+
+`function.call(thisArg, arg1, arg2, ...)`
+
+```js
+function Product(name, price) {
+  this.name = name;
+  this.price = price;
+}
+
+function Food(name, price) {
+  Product.call(this, name, price);
+  this.category = 'food';
+}
+
+console.log(new Food('cheese', 5).name);
+// expected output: "cheese"
+
 ```
 
 
