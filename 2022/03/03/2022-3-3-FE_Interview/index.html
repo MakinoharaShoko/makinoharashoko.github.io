@@ -70,14 +70,12 @@
 <!--                <a href="#Showtags" class="post-url">返回顶部</a>-->
 <!--            </div>-->
 <!--            <div  class="menuText">-->
-<!--                <a href="-->
-<!--        http://msfasr.com/2022/03/03/2022-3-3-Socket/-->
-<!--        " class="post-url">上一篇-->
+<!--                <a href="" class="post-url">上一篇-->
 <!--                    </a>-->
 <!--            </div>-->
 <!--            <div  class="menuText">-->
 <!--                <a href="-->
-<!--        http://msfasr.com/2022/02/23/2022-2-23-CORS/-->
+<!--        http://msfasr.com/2022/03/03/2022-3-3-Socket/-->
 <!--        " class="post-url">下一篇</a>-->
 <!--            </div>-->
 
@@ -134,18 +132,6 @@
         <nav id="title-list-nav">
             
                 <a  class="post-url"
-                   href="/2022/03/03/2022-3-3-Socket/"
-                   data-tag="工程开发"
-                   data-author="" >
-                    <div class="post-box">
-
-                        <div class="post-date" title="2022-03-03 23:00:00">2022/03/03</div>
-                        <div class="post-title" title="WebSocket 与 Socket.io 总结">WebSocket 与 Socket.io 总结</div>
-                    </div>
-
-                </a>
-            
-                <a  class="post-url"
                    href="/2022/03/03/2022-3-3-FE_Interview/"
                    data-tag="工程开发"
                    data-author="" >
@@ -153,6 +139,18 @@
 
                         <div class="post-date" title="2022-03-03 23:00:00">2022/03/03</div>
                         <div class="post-title" title="前端面试知识点查缺补漏">前端面试知识点查缺补漏</div>
+                    </div>
+
+                </a>
+            
+                <a  class="post-url"
+                   href="/2022/03/03/2022-3-3-Socket/"
+                   data-tag="工程开发"
+                   data-author="" >
+                    <div class="post-box">
+
+                        <div class="post-date" title="2022-03-03 23:00:00">2022/03/03</div>
+                        <div class="post-title" title="WebSocket 与 Socket.io 总结">WebSocket 与 Socket.io 总结</div>
                     </div>
 
                 </a>
@@ -646,7 +644,11 @@
         <div id="article">
             <h1 id="JS相关"><a href="#JS相关" class="headerlink" title="JS相关"></a>JS相关</h1><h2 id="JS延迟加载"><a href="#JS延迟加载" class="headerlink" title="JS延迟加载"></a>JS延迟加载</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs routeros">js 的加载、解析和执行会阻塞页面的渲染过程，因此我们希望 js 脚本能够尽可能的延迟加载，提高页面的渲染速度。<br><br>我了解到的几种方式是：<br><br>第一种方式是我们一般采用的是将 js 脚本放在文档的底部，来使 js 脚本尽可能的在最后来加载执行。<br><br>第二种方式是给 js 脚本添加 defer 属性，这个属性会让脚本的加载与文档的解析同步解析，然后在文档解析完成后再执行这个脚本文件，这样的话就能使页面的渲染不被阻塞。多个设置了 defer 属性的脚本按规范来说最后是顺序执行的，但是在一些浏览器中可能不是这样。<br><br>第三种方式是给 js 脚本添加 async 属性，这个属性会使脚本异步加载，不会阻塞页面的解析过程，但是当脚本加载完成后立即执行 js 脚本，这个时候如果文档没有解析完成的话同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。<br><br>第四种方式是动态创建 DOM 标签的方式，我们可以对文档的加载事件进行监听，当文档加载完成后再动态的创建<span class="hljs-built_in"> script </span>标签来引入 js 脚本。<br></code></pre></td></tr></table></figure>
 
-<h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h1 id="工程与应用相关"><a href="#工程与应用相关" class="headerlink" title="工程与应用相关"></a>工程与应用相关</h1><h2 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型 XSS 的攻击步骤：</p>
+<h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h2 id="从输入url到呈现网页"><a href="#从输入url到呈现网页" class="headerlink" title="从输入url到呈现网页"></a>从输入url到呈现网页</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs routeros">（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，<br>将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字<br>符，则对非法字符进行转义后再进行下一过程。<br><br>（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新<br>的请求。<br><br>（3）下一步我们首先需要获取的是输入的 URL 中的域名的<span class="hljs-built_in"> IP </span>地址，首先会判断本地是否有该域名的<span class="hljs-built_in"> IP </span>地址的缓存，如果<br>有则使用，如果没有则向本地<span class="hljs-built_in"> DNS </span>服务器发起请求。本地<span class="hljs-built_in"> DNS </span>服务器也会先检查是否存在缓存，如果没有就会先向根域<br>名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地<br>址后，再向权威域名服务器发起请求，最终获得域名的<span class="hljs-built_in"> IP </span>地址后，本地<span class="hljs-built_in"> DNS </span>服务器再将这个<span class="hljs-built_in"> IP </span>地址返回给请求的用<br>户。用户向本地<span class="hljs-built_in"> DNS </span>服务器发起请求属于递归请求，本地<span class="hljs-built_in"> DNS </span>服务器向各级域名服务器发起请求属于迭代请求。<br><br>（4）当浏览器得到<span class="hljs-built_in"> IP </span>地址后，数据传输还需要知道目的主机 MAC 地址，因为应用层下发数据给传输层，TCP 协议会指定源<br>端口号和目的端口号，然后下发给网络层。网络层会将本机地址作为源地址，获取的<span class="hljs-built_in"> IP </span>地址作为目的地址。然后将下发给<br>数据链路层，数据链路层的发送需要加入通信双方的 MAC 地址，我们本机的 MAC 地址作为源 MAC 地址，目的 MAC 地<br>址需要分情况处理，通过将<span class="hljs-built_in"> IP </span>地址与我们本机的子网掩码相与，我们可以判断我们是否与请求主机在同一个子网里，如果<br>在同一个子网里，我们可以使用 APR 协议获取到目的主机的 MAC 地址，如果我们不在一个子网里，那么我们的请求应该<br>转发给我们的网关，由它代为转发，此时同样可以通过 ARP 协议来获取网关的 MAC 地址，此时目的主机的 MAC 地址应<br>该为网关的地址。<br><br>（5）下面是 TCP 建立连接的三次握手的过程，首先客户端向服务器发送一个 SYN 连接请求报文段和一个随机序号，服务端接<br>收到请求后向服务器端发送一个 SYN ACK报文段，确认连接请求，并且也向客户端发送一个随机序号。客户端接收服务器的<br>确认应答后，进入连接建立的状态，同时向服务器也发送一个 ACK 确认报文段，服务器端接收到确认后，也进入连接建立<br>状态，此时双方的连接就建立起来了。<br><br>（6）如果使用的是 HTTPS 协议，在通信前还存在 TLS 的一个四次握手的过程。首先由客户端向服务器端发送使用的协议的版<br>本号、一个随机数和可以使用的加密方法。服务器端收到后，确认加密的方法，也向客户端发送一个随机数和自己的数字证<br>书。客户端收到后，首先检查数字证书是否有效，如果有效，则再生成一个随机数，并使用证书中的公钥对随机数加密，然后<br>发送给服务器端，并且还会提供一个前面所有内容的 hash 值供服务器端检验。服务器端接收后，使用自己的私钥对数据解<br>密，同时向客户端发送一个前面所有内容的 hash 值供客户端检验。这个时候双方都有了三个随机数，按照之前所约定的加<br>密方法，使用这三个随机数生成一把秘钥，以后双方通信前，就使用这个秘钥对数据进行加密后再传输。<br><br>（7）当页面请求发送到服务器端后，服务器端会返回一个 html 文件作为响应，浏览器接收到响应后，开始对 html 文件进行<br>解析，开始页面的渲染过程。<br><br>（8）浏览器首先会根据 html 文件构建 DOM 树，根据解析到的 css 文件构建 CSSOM 树，如果遇到<span class="hljs-built_in"> script </span>标签，则判端<br>是否含有 defer 或者 async 属性，要不然<span class="hljs-built_in"> script </span>的加载和执行会造成页面的渲染的阻塞。当 DOM 树和 CSSOM 树建<br>立好后，根据它们来构建渲染树。渲染树构建好后，会根据渲染树来进行布局。布局完成后，最后使用浏览器的 UI 接口对页<br>面进行绘制。这个时候整个页面就显示出来了。<br><br>（9）最后一步是 TCP 断开连接的四次挥手过程。<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="工程与应用相关"><a href="#工程与应用相关" class="headerlink" title="工程与应用相关"></a>工程与应用相关</h1><h2 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型 XSS 的攻击步骤：</p>
 <ol>
 <li>攻击者将恶意代码提交到目标网站的数据库中。</li>
 <li>用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。</li>
