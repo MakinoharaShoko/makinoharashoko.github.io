@@ -32,7 +32,7 @@ tags:
 [ ] css 水平垂直居中，几种方法
 [ ] css 几种单位
 [ ] 状态管理 React 相关（原理、渲染流程、性能优化、常用 HOOK ）
-[ ] 原型链、prototype、__proto__
+[x] 原型链、prototype、__proto__
 [ ] BOM DOM
 [ ] Webpack 原理，应用
 [ ] BFC IFC flex相关（flex:1 flex延展）、外边距折叠
