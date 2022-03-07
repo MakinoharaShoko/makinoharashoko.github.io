@@ -23,7 +23,7 @@ tags:
 [x] 详细了解事件循环、宏任务、微任务
 [x] Promise （手写+实现Promise.all Promise.race）、异步编程（async await）
 [ ] 闭包、高阶函数、内存泄漏问题、this指向问题
-[ ] 对象、instance of
+[x] 对象、instance of
 [ ] Proxy Reflect
 [ ] 柯里化 逆柯里化
 [ ] 事件冒泡
