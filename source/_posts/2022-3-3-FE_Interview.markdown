@@ -328,7 +328,7 @@ console.log(new Food('cheese', 5).name);
 
 ## 原型与原型链
 
-
+![js__proto__](https://user-images.githubusercontent.com/30483415/156961492-e97cd912-074c-4b8e-b99f-70dbd2eff676.jpg)
 
 # CSS相关
 
