@@ -326,6 +326,8 @@ console.log(new Food('cheese', 5).name);
 
 ```
 
+## 原型与原型链
+
 
 
 # CSS相关
