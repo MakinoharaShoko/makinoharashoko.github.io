@@ -19,7 +19,7 @@ tags:
 [x] 前端安全
 [x] 从输入 url 到网页呈现发生了什么
 [ ] HTTP 1.0/1.1/2.0/3.0 HTTPS 缓存与设置、CDN 、Content-Type 相关
-[ ] 网络模型
+[ ] 网络模型（ OSI 每层是做什么的）
 [x] 详细了解事件循环、宏任务、微任务
 [x] Promise （手写+实现Promise.all Promise.race）、异步编程（async await）
 [ ] 闭包、高阶函数、内存泄漏问题、this指向问题
@@ -31,6 +31,7 @@ tags:
 [ ] reduce 实现 map
 [ ] css 水平垂直居中，几种方法
 [ ] css 几种单位
+[ ] 重绘、回流 何时触发，如何减少
 [ ] 状态管理 React 相关（原理、渲染流程、性能优化、常用 HOOK ）
 [x] 原型链、prototype、__proto__
 [ ] BOM DOM
