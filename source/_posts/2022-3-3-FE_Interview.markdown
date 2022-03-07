@@ -379,6 +379,231 @@ function myNew(F){
 }
 ```
 
+## 展开运算符
+
+`...`
+
+#### 示例
+
+```js
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log(sum(...numbers));
+// expected output: 6
+```
+
+### 数组
+
+```js
+var arr1 = [0, 1, 2];
+var arr2 = [3, 4, 5];
+arr1 = [...arr2, ...arr1]; // arr1 现在为 [3, 4, 5, 0, 1, 2]
+```
+
+### 对象
+
+```js
+var obj1 = { foo: 'bar', x: 42 };
+var obj2 = { foo: 'baz', y: 13 };
+
+var clonedObj = { ...obj1 };
+// 克隆后的对象: { foo: "bar", x: 42 }
+
+var mergedObj = { ...obj1, ...obj2 };
+// 合并后的对象: { foo: "baz", x: 42, y: 13 }
+```
+
+## 剩余参数
+
+**剩余参数**语法允许我们将一个不定数量的参数表示为一个数组。
+
+```js
+function(a, b, ...theArgs) {
+  // ...
+}
+```
+
+#### 示例
+
+```js
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map(function (element) {
+    return multiplier * element;
+  });
+}
+
+var arr = multiply(2, 1, 2, 3);
+console.log(arr);  // [2, 4, 6]
+```
+
+## 对象的更多方法（待完善）
+
+Object.assign
+
+## 深拷贝
+
+### JSON法
+
+```js
+var obj2 = JSON.parse(JSON.stringify(obj1));
+```
+
+### 递归拷贝
+
+```js
+function deepClone(initalObj, finalObj) {    
+  var obj = finalObj || {};    
+  for (var i in initalObj) {        
+    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+    if(prop === obj) {            
+      continue;
+    }        
+    if (typeof prop === 'object') {
+      obj[i] = (prop.constructor === Array) ? [] : {};            
+      arguments.callee(prop, obj[i]);
+    } else {
+      obj[i] = prop;
+    }
+  }    
+  return obj;
+}
+```
+
+### Object.create
+
+```js
+function deepClone(initalObj, finalObj) {    
+  var obj = finalObj || {};    
+  for (var i in initalObj) {        
+    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+    if(prop === obj) {            
+      continue;
+    }        
+    if (typeof prop === 'object') {
+      obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);
+    } else {
+      obj[i] = prop;
+    }
+  }    
+  return obj;
+}
+```
+
+### lodash
+
+```js
+var loadash = require('lodash');
+var obj1 = {
+    a: 1,
+    b: { f: { g: 1 } },
+    c: [1, 2, 3]
+};
+var obj2 = loadash.cloneDeep(obj1);
+```
+
+## 闭包与高阶函数
+
+### 闭包
+
+一个函数和对其周围状态（**lexical environment，词法环境**）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是**闭包**（**closure**）。也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域。在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来。
+
+```js
+function makeFunc() {
+    var name = "Mozilla";
+    function displayName() {
+        alert(name);
+    }
+    return displayName;
+}
+
+var myFunc = makeFunc();
+myFunc();
+```
+
+#### 高阶函数
+
+JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+
+##### 节流
+
+```javascript
+function debounce(fn,delay){
+    let timer = null //借助闭包
+    return function() {
+        if(timer){
+            clearTimeout(timer) 
+        }
+        timer = setTimeout(fn,delay) // 简化写法
+    }
+}
+```
+
+##### 防抖
+
+```javascript
+function throttle(fn,delay){
+    let valid = true
+    return function() {
+       if(!valid){
+           //休息时间 暂不接客
+           return false 
+       }
+       // 工作时间，执行函数并且在间隔期内把状态位设为无效
+        valid = false
+        setTimeout(() => {
+            fn()
+            valid = true;
+        }, delay)
+    }
+}
+```
+
+#### 柯里化与逆柯里化
+
+##### 柯里化
+
+```js
+function curry(func) {
+
+  return function curried(...args) {
+    if (args.length >= func.length) {
+      return func.apply(this, args);
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      }
+    }
+  };
+
+}
+```
+
+逆柯里化
+
+```js
+function unCurrying(fn) {
+  return function(tar, ...argu) {
+    return fn.apply(tar, argu)
+  }
+}
+```
+
+### 内存泄漏
+
+
+第一种情况是我们由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。
+
+第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留
+在内存中，而无法被回收。
+
+第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回
+收。
+
+第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。
 
 
 # CSS相关
