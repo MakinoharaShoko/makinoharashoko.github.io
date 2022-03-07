@@ -330,6 +330,55 @@ console.log(new Food('cheese', 5).name);
 
 ![js__proto__](https://user-images.githubusercontent.com/30483415/156961492-e97cd912-074c-4b8e-b99f-70dbd2eff676.jpg)
 
+## instanceof
+
+**`instanceof`** **运算符**用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。
+
+手写 `instanceof`：
+
+```js
+function myInstanceof(obj, obj2) {
+    let proto = obj.__proto__;
+    let prototype = obj2.prototype;
+    let queue = [proto];
+    // 循环 obj 原型链进行获取 __proto__ 与 prototype 对比
+    while(queue.length) {
+        let temp = queue.shift();
+        if(temp === null) return false;//找到原型链顶端，仍不是
+        if(temp === prototype) return true;
+        queue.push(temp.__proto__);
+    }
+}
+```
+
+## new
+
+当执行：
+
+```js
+var o = new Foo();
+```
+
+JavaScript 实际上执行的是：
+
+```js
+var o = new Object();
+o.__proto__ = Foo.prototype;
+Foo.call(o);
+```
+
+```js
+function myNew(F){
+    let result = {};
+    let arg = Array.prototype.slice.call(arguments, 1);
+    // 将实例对象的 __proto__ 指向 F.prototype
+    Object.setPrototypeOf(result, F.prototype);
+    // this 指向实例对象
+    F.apply(result, arg);
+   return result;
+}
+```
+
 # CSS相关
 
 
