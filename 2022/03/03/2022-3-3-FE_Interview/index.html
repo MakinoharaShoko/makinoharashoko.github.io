@@ -733,7 +733,96 @@
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myNew</span>(<span class="hljs-params">F</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> result = &#123;&#125;;<br>    <span class="hljs-keyword">let</span> arg = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>, <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">// 将实例对象的 __proto__ 指向 F.prototype</span><br>    <span class="hljs-built_in">Object</span>.setPrototypeOf(result, F.prototype);<br>    <span class="hljs-comment">// this 指向实例对象</span><br>    F.apply(result, arg);<br>   <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h2 id="从输入url到呈现网页"><a href="#从输入url到呈现网页" class="headerlink" title="从输入url到呈现网页"></a>从输入url到呈现网页</h2><p>（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。</p>
+
+
+<h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h2 id="重绘与回流"><a href="#重绘与回流" class="headerlink" title="重绘与回流"></a>重绘与回流</h2><p><strong>回流必将引起重绘，重绘不一定会引起回流。</strong></p>
+<h3 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h3><p>导致回流的一些操作</p>
+<ul>
+<li>页面首次渲染</li>
+<li>浏览器窗口大小发生改变</li>
+<li>元素尺寸或位置发生改变</li>
+<li>元素内容变化（文字数量或图片大小等等）</li>
+<li>元素字体大小变化</li>
+<li>添加或者删除可见的DOM元素</li>
+<li>激活CSS伪类（例如：:hover）</li>
+<li>查询某些属性或调用某些方法</li>
+</ul>
+<p>主要有下面几个API</p>
+<blockquote>
+<p>盒子操作相关</p>
+</blockquote>
+<ul>
+<li><code>elem.offsetLeft</code>, <code>elem.offsetTop</code>, <code>elem.offsetWidth</code>, <code>elem.offsetHeight</code>, <code>elem.offsetParent</code></li>
+<li><code>elem.clientLeft</code>, <code>elem.clientTop</code>, <code>elem.clientWidth</code>, <code>elem.clientHeight</code></li>
+<li><code>elem.getClientRects()</code>, <code>elem.getBoundingClientRect()</code></li>
+</ul>
+<blockquote>
+<p>滚动相关</p>
+</blockquote>
+<ul>
+<li><code>elem.scrollBy()</code>, <code>elem.scrollTo()</code></li>
+<li><code>elem.scrollIntoView()</code>, <code>elem.scrollIntoViewIfNeeded()</code></li>
+<li><code>elem.scrollWidth</code>, <code>elem.scrollHeight</code></li>
+<li><code>elem.scrollLeft</code>, <code>elem.scrollTop</code></li>
+</ul>
+<h3 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h3><p>当我们操作的节点上的元素并不导致元素位置发生变化时，比如<code>color</code>,<code>background-color</code>,<code>visibility(注意虽然节点隐藏了，但是元素还在，并且位置也不会发生变化)</code></p>
+<p>浏览器会将新的样式赋值给这些节点，我们称这个过程为重绘</p>
+<h3 id="如何避免"><a href="#如何避免" class="headerlink" title="如何避免"></a>如何避免</h3><ul>
+<li>避免使用 <code>table</code> 布局。</li>
+<li>尽可能在 <code>DOM</code> 树的最末端改变<code>class</code>。</li>
+<li>避免设置多层内联样式。</li>
+<li>将动画效果应用到<code>position</code>属性为<code>absolute</code>或<code>fixed</code>的元素上。</li>
+<li>避免使用<code>CSS</code>表达式（例如：<code>calc()</code>）。</li>
+<li>避免频繁操作样式，最好一次性重写<code>style</code>属性，或者将样式列表定义为<code>class</code>并一次性更改<code>class</code>属性。</li>
+</ul>
+<p>-避免频繁操作<code>DOM</code>，创建一个<code>documentFragment</code>，在它上面应用所有<code>DOM</code>操作，最后再把它添加到文档中。</p>
+<ul>
+<li>也可以先为元素设置<code>display: none</code>，操作结束后再把它显示出来。因为在<code>display</code>属性为<code>none</code>的元素上进行的<code>DOM</code>操作不会引发回流和重绘。</li>
+<li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。</li>
+<li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
+</ul>
+<h2 id="CSS-几种单位"><a href="#CSS-几种单位" class="headerlink" title="CSS 几种单位"></a>CSS 几种单位</h2><h3 id="绝对长度单位"><a href="#绝对长度单位" class="headerlink" title="绝对长度单位"></a>绝对长度单位</h3><p>一般来说，常用<code>px</code></p>
+<h3 id="相对长度单位"><a href="#相对长度单位" class="headerlink" title="相对长度单位"></a>相对长度单位</h3><table>
+<thead>
+<tr>
+<th><code>em</code></th>
+<th>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ex</code></td>
+<td>字符“x”的高度</td>
+</tr>
+<tr>
+<td><code>ch</code></td>
+<td>数字“0”的宽度</td>
+</tr>
+<tr>
+<td><code>rem</code></td>
+<td>根元素 <code>&lt;html&gt;</code> 的字体大小</td>
+</tr>
+<tr>
+<td><code>lh</code></td>
+<td>元素的line-height</td>
+</tr>
+<tr>
+<td><code>vw</code></td>
+<td>视窗宽度的1%</td>
+</tr>
+<tr>
+<td><code>vh</code></td>
+<td>视窗高度的1%</td>
+</tr>
+<tr>
+<td><code>vmin</code></td>
+<td>视窗较小尺寸的1%</td>
+</tr>
+<tr>
+<td><code>vmax</code></td>
+<td>视图大尺寸的1%</td>
+</tr>
+</tbody></table>
+<h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h2 id="从输入url到呈现网页"><a href="#从输入url到呈现网页" class="headerlink" title="从输入url到呈现网页"></a>从输入url到呈现网页</h2><p>（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。</p>
 <p>（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新的请求。</p>
 <p>（3）下一步我们首先需要获取的是输入的 URL 中的域名的 IP 地址，首先会判断本地是否有该域名的 IP 地址的缓存，如果有则使用，如果没有则向本地 DNS 服务器发起请求。本地 DNS 服务器也会先检查是否存在缓存，如果没有就会先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的 IP 地址后，本地 DNS 服务器再将这个 IP 地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。</p>
 <p>（4）当浏览器得到 IP 地址后，数据传输还需要知道目的主机 MAC 地址，因为应用层下发数据给传输层，TCP 协议会指定源端口号和目的端口号，然后下发给网络层。网络层会将本机地址作为源地址，获取的 IP 地址作为目的地址。然后将下发给数据链路层，数据链路层的发送需要加入通信双方的 MAC 地址，我们本机的 MAC 地址作为源 MAC 地址，目的 MAC 地址需要分情况处理，通过将 IP 地址与我们本机的子网掩码相与，我们可以判断我们是否与请求主机在同一个子网里，如果在同一个子网里，我们可以使用 APR 协议获取到目的主机的 MAC 地址，如果我们不在一个子网里，那么我们的请求应该转发给我们的网关，由它代为转发，此时同样可以通过 ARP 协议来获取网关的 MAC 地址，此时目的主机的 MAC 地址应该为网关的地址。</p>
@@ -742,7 +831,112 @@
 <p>（7）当页面请求发送到服务器端后，服务器端会返回一个 html 文件作为响应，浏览器接收到响应后，开始对 html 文件进行解析，开始页面的渲染过程。</p>
 <p>（8）浏览器首先会根据 html 文件构建 DOM 树，根据解析到的 css 文件构建 CSSOM 树，如果遇到 script 标签，则判端是否含有 defer 或者 async 属性，要不然 script 的加载和执行会造成页面的渲染的阻塞。当 DOM 树和 CSSOM 树建立好后，根据它们来构建渲染树。渲染树构建好后，会根据渲染树来进行布局。布局完成后，最后使用浏览器的 UI 接口对页面进行绘制。这个时候整个页面就显示出来了。</p>
 <p>（9）最后一步是 TCP 断开连接的四次挥手过程。</p>
-<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h3 id="HTTP-1-0-1-1-2-0-3-0"><a href="#HTTP-1-0-1-1-2-0-3-0" class="headerlink" title="HTTP 1.0/1.1/2.0/3.0"></a>HTTP 1.0/1.1/2.0/3.0</h3><h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><h2 id="TCP握手与挥手"><a href="#TCP握手与挥手" class="headerlink" title="TCP握手与挥手"></a>TCP握手与挥手</h2><h3 id="握手"><a href="#握手" class="headerlink" title="握手"></a>握手</h3><p>第一次握手，客户端向服务器发送一个 SYN 连接请求报文段，报文段的首部中 SYN 标志位置为 1，序号字段是一个任选的 随机数。它代表的是客户端数据的初始序号。</p>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><h3 id="HTTP-1-0-1-1-2-0-3-0"><a href="#HTTP-1-0-1-1-2-0-3-0" class="headerlink" title="HTTP 1.0/1.1/2.0/3.0"></a>HTTP 1.0/1.1/2.0/3.0</h3><h4 id="HTTP-1-0-1-1"><a href="#HTTP-1-0-1-1" class="headerlink" title="HTTP 1.0/1.1"></a>HTTP 1.0/1.1</h4><p>HTTP 是超文本传输协议，它定义了客户端和服务器之间交换报文的格式和方式，默认使用 80 端口。它使用 TCP 作为传 输层协议，保证了数据传输的可靠性。</p>
+<p>HTTP 是一个无状态的协议，HTTP 服务器不会保存关于客户的任何信息。</p>
+<p>HTTP 有两种连接模式，一种是持续连接，一种非持续连接。非持续连接指的是服务器必须为每一个请求的对象建立和维护 一个全新的连接。持续连接下，TCP 连接默认不关闭，可以被多个请求复用。在 HTTP1.0 以前使用的非持续的连接，但是可以在请求时，加上 Connection: keep-alive 来要求服务器不要关闭 TCP 连接。HTTP1.1 以后默认采用的是持续的连接。目前对于同一个域，大多数浏览器支持 同时建立 6 个持久连接。</p>
+<h4 id="HTTP-请求报文"><a href="#HTTP-请求报文" class="headerlink" title="HTTP 请求报文"></a>HTTP 请求报文</h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/</span> HTTP/1.1<br><span class="hljs-attribute">User-Agent</span>: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)<br><span class="hljs-attribute">Accept</span>: */*<br></code></pre></td></tr></table></figure>
+
+<p>HTTP 请求报文的第一行叫做请求行，后面的行叫做首部行，首部行后还可以跟一个实体主体。请求首部之后有一个空行，这个空行不能省略，它用来划分首部与实体。</p>
+<p>请求行包含三个字段：方法字段、URL 字段和 HTTP 版本字段。</p>
+<p>方法字段可以取几种不同的值，一般有 GET、POST、HEAD、PUT 和 DELETE。一般 GET 方法只被用于向服务器获取数据。 POST 方法用于将实体提交到指定的资源，通常会造成服务器资源的修改。HEAD 方法与 GET 方法类似，但是在返回的响应 中，不包含请求对象。PUT 方法用于上传文件到服务器，DELETE 方法用于删除服务器上的对象，表达的是一种语义上的区别。</p>
+<h4 id="HTTP-响应报文"><a href="#HTTP-响应报文" class="headerlink" title="HTTP 响应报文"></a>HTTP 响应报文</h4><p>HTTP 响应报文的格式如下：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">HTTP/<span class="hljs-number">1.0</span> <span class="hljs-number">200</span> OK<br>Content-Type: text/plain<br>Content-Length: <span class="hljs-number">137582</span><br>Expires: Thu, <span class="hljs-number">05</span> Dec <span class="hljs-number">1997</span> <span class="hljs-number">16</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> GMT<br>Last-Modified: Wed, <span class="hljs-number">5</span> August <span class="hljs-number">1996</span> <span class="hljs-number">15</span>:<span class="hljs-number">55</span>:<span class="hljs-number">28</span> GMT<br>Server: Apache <span class="hljs-number">0.84</span><br><br>&lt;html&gt;<br>  &lt;body&gt;Hello World&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<p>HTTP 响应报文的第一行叫做状态行，后面的行是首部行，最后是实体主体。</p>
+<p>状态行包含了三个字段：协议版本字段、状态码和相应的状态信息。</p>
+<p>实体部分是报文的主要部分，它包含了所请求的对象。</p>
+<h5 id="常见状态"><a href="#常见状态" class="headerlink" title="常见状态"></a>常见状态</h5><p>200-请求成功、202-服务器端已经收到请求消息，但是尚未进行处理 301-永久移动、302-临时移动、304-所请求的资源未修改、 400-客户端请求的语法错误、404-请求的资源不存在 500-服务器内部错误。</p>
+<p>一般 1XX 代表服务器接收到请求、2XX 代表成功、3XX 代表重定向、4XX 代表客户端错误、5XX 代表服务器端错误。</p>
+<h4 id="首部行"><a href="#首部行" class="headerlink" title="首部行"></a>首部行</h4><p>首部可以分为四种首部，请求首部、响应首部、通用首部和实体首部。通用首部和实体首部在请求报文和响应报文中都可以设 置，区别在于请求首部和响应首部。</p>
+<p>常见的请求首部有 Accept 可接收媒体资源的类型、Accept-Charset 可接收的字符集、Host 请求的主机名。</p>
+<p>常见的响应首部有 ETag 资源的匹配信息，Location 客户端重定向的 URI。</p>
+<p>常见的通用首部有 Cache-Control 控制缓存策略、Connection 管理持久连接。</p>
+<p>常见的实体首部有 Content-Length 实体主体的大小、Expires 实体主体的过期时间、Last-Modified 资源的最后修改时间。</p>
+<h5 id="常见的-Content-Type"><a href="#常见的-Content-Type" class="headerlink" title="常见的 Content-Type"></a>常见的 Content-Type</h5><ul>
+<li><p>text/html ： HTML格式</p>
+</li>
+<li><p>text/plain ：纯文本格式</p>
+</li>
+<li><p>text/xml ： XML格式</p>
+</li>
+<li><p>image/gif ：gif图片格式</p>
+</li>
+<li><p>image/jpeg ：jpg图片格式</p>
+</li>
+<li><p>image/png：png图片格式</p>
+</li>
+<li><p>application/xml： XML数据格式</p>
+</li>
+<li><p>application/json： JSON数据格式</p>
+</li>
+<li><p>application/octet-stream ： 二进制流数据（如常见的文件下载）</p>
+</li>
+<li><p>application/x-www-form-urlencoded ：form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）</p>
+</li>
+<li><p>multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式</p>
+</li>
+</ul>
+<h4 id="HTTP-1-1-协议缺点"><a href="#HTTP-1-1-协议缺点" class="headerlink" title="HTTP/1.1 协议缺点"></a>HTTP/1.1 协议缺点</h4><p>HTTP/1.1 默认使用了持久连接，多个请求可以复用同一个 TCP 连接，但是在同一个 TCP 连接里面，数据请求的通信次序 是固定的。服务器只有处理完一个请求的响应后，才会进行下一个请求的处理，如果前面请求的响应特别慢的话，就会造成许多请求排队等待的情况，这种情况被称为“队头堵塞”。队头阻塞会导致持久连接在达到最大数量时，剩余的资源需要等待其他 资源请求完成后才能发起请求。</p>
+<p>为了避免这个问题，一个是减少请求数，一个是同时打开多个持久连接。这就是我们对网站优化时，使用雪碧图、合并脚本的 原因。</p>
+<h3 id="HTTP-2-协议"><a href="#HTTP-2-协议" class="headerlink" title="HTTP/2 协议"></a>HTTP/2 协议</h3><p>2009 年，谷歌公开了自行研发的 SPDY 协议，主要解决 HTTP/1.1 效率不高的问题。这个协议在 Chrome 浏览器上证明 可行以后，就被当作 HTTP/2 的基础，主要特性都在 HTTP/2 之中得到继承。2015 年，HTTP/2 发布。</p>
+<p>HTTP/2 主要有以下新的特性：</p>
+<h4 id="二进制协议"><a href="#二进制协议" class="headerlink" title="二进制协议"></a>二进制协议</h4><p>HTTP/2 是一个二进制协议。在 HTTP/1.1 版中，报文的头信息必须是文本（ASCII 编码），数据体可以是文本，也可以是 二进制。HTTP/2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为”帧”，可以分为头信息帧和数据帧。 帧的概念是它实现多路复用的基础。</p>
+<h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h4><p><strong>HTTP/2 实现了多路复用，HTTP/2 仍然复用 TCP 连接，但是在一个连接里，客户端和服务器都可以同时发送多个请求或回 应，而且不用按照顺序一一发送，这样就避免了”队头堵塞”的问题。</strong></p>
+<h4 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h4><p>HTTP/2 使用了数据流的概念，因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的 请求。因此，必须要对数据包做标记，指出它属于哪个请求。HTTP/2 将每个请求或回应的所有数据包，称为一个数据流。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流 ID ，用来区分它属于哪个数据流。</p>
+<h4 id="头信息压缩"><a href="#头信息压缩" class="headerlink" title="头信息压缩"></a>头信息压缩</h4><p>HTTP/2 实现了头信息压缩，由于 HTTP 1.1 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是 重复的，比如 Cookie 和 User Agent ，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。</p>
+<p>HTTP/2 对这一点做了优化，引入了头信息压缩机制。一方面，头信息使用 gzip 或 compress 压缩后再发送；另一方面， 客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就能提高速度了。</p>
+<h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h4><p>HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送。使用服务器推送，提前给客户端推送必要的资源 ，这样就可以相对减少一些延迟时间。这里需要注意的是 http2 下服务器主动推送的是静态资源，和 WebSocket 以及使用 SSE 等方式向客户端发送即时数据的推送是不同的。</p>
+<p>详细的资料可以参考： <a href="http://www.ruanyifeng.com/blog/2016/08/http.html" target="_blank" rel="noopener">《HTTP 协议入门》</a> <a href="http://www.ruanyifeng.com/blog/2018/03/http2_server_push.html" target="_blank" rel="noopener">《HTTP/2 服务器推送（Server Push）教程》</a></p>
+<h4 id="HTTP-2-协议缺点"><a href="#HTTP-2-协议缺点" class="headerlink" title="HTTP/2 协议缺点"></a>HTTP/2 协议缺点</h4><p>因为 HTTP/2 使用了多路复用，一般来说同一域名下只需要使用一个 TCP 连接。由于多个数据流使用同一个 TCP 连接，遵守同一个流量状态控制和拥塞控制。只要一个数据流遭遇到拥塞，剩下的数据流就没法发出去，这样就导致了后面的所有数据都 会被阻塞。HTTP/2 出现的这个问题是由于其使用 TCP 协议的问题，与它本身的实现其实并没有多大关系。</p>
+<h4 id="HTTP-3-协议"><a href="#HTTP-3-协议" class="headerlink" title="HTTP/3 协议"></a>HTTP/3 协议</h4><p>由于 TCP 本身存在的一些限制，Google 就开发了一个基于 UDP 协议的 QUIC 协议，并且使用在了 HTTP/3 上。 QUIC 协议在 UDP 协议上实现了多路复用、有序交付、重传等等功能</p>
+<p>详细资料可以参考： <a href="https://www.zhihu.com/question/302412059" target="_blank" rel="noopener">《如何看待 HTTP/3 ？》</a></p>
+<h3 id="HTTPS-协议"><a href="#HTTPS-协议" class="headerlink" title="HTTPS 协议"></a>HTTPS 协议</h3><h4 id="HTTP-存在的问题"><a href="#HTTP-存在的问题" class="headerlink" title="HTTP 存在的问题"></a>HTTP 存在的问题</h4><ol>
+<li>HTTP 报文使用明文方式发送，可能被第三方窃听。</li>
+<li>HTTP 报文可能被第三方截取后修改通信内容，接收方没有办法发现报文内容的修改。</li>
+<li>HTTP 还存在认证的问题，第三方可以冒充他人参与通信。</li>
+</ol>
+<h4 id="HTTPS-简介"><a href="#HTTPS-简介" class="headerlink" title="HTTPS 简介"></a>HTTPS 简介</h4><p>HTTPS 指的是超文本传输安全协议，HTTPS 是基于 HTTP 协议的，不过它会使用 TLS/SSL 来对数据加密。使用 TLS/ SSL 协议，所有的信息都是加密的，第三方没有办法窃听。并且它提供了一种校验机制，信息一旦被篡改，通信的双方会立 刻发现。它还配备了身份证书，防止身份被冒充的情况出现。</p>
+<h4 id="TLS-握手过程"><a href="#TLS-握手过程" class="headerlink" title="TLS 握手过程"></a>TLS 握手过程</h4><ol>
+<li>第一步，客户端向服务器发起请求，请求中包含使用的协议版本号、生成的一个随机数、以及客户端支持的加密方法。</li>
+<li>第二步，服务器端接收到请求后，确认双方使用的加密方法、并给出服务器的证书、以及一个服务器生成的随机数。</li>
+<li>第三步，客户端确认服务器证书有效后，生成一个新的随机数，并使用数字证书中的公钥，加密这个随机数，然后发给服务器。并且还会提供一个前面所有内容的 hash 的值，用来供服务器检验。</li>
+<li>第四步，服务器使用自己的私钥，来解密客户端发送过来的随机数。并提供前面所有内容的 hash 值来供客户端检验。</li>
+<li>第五步，客户端和服务器端根据约定的加密方法使用前面的三个随机数，生成对话秘钥，以后的对话过程都使用这个秘钥 来加密信息。</li>
+</ol>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><p>TLS 的握手过程主要用到了三个方法来保证传输的安全。</p>
+<p>首先是对称加密的方法，对称加密的方法是，双方使用同一个秘钥对数据进行加密和解密。但是对称加密的存在一个问题，就 是如何保证秘钥传输的安全性，因为秘钥还是会通过网络传输的，一旦秘钥被其他人获取到，那么整个加密过程就毫无作用了。 这就要用到非对称加密的方法。</p>
+<p>非对称加密的方法是，我们拥有两个秘钥，一个是公钥，一个是私钥。公钥是公开的，私钥是保密的。用私钥加密的数据，只 有对应的公钥才能解密，用公钥加密的数据，只有对应的私钥才能解密。我们可以将公钥公布出去，任何想和我们通信的客户， 都可以使用我们提供的公钥对数据进行加密，这样我们就可以使用私钥进行解密，这样就能保证数据的安全了。但是非对称加 密有一个缺点就是加密的过程很慢，因此如果每次通信都使用非对称加密的方式的话，反而会造成等待时间过长的问题。</p>
+<p>因此我们可以使用对称加密和非对称加密结合的方式，因为对称加密的方式的缺点是无法保证秘钥的安全传输，因此我们可以 非对称加密的方式来对对称加密的秘钥进行传输，然后以后的通信使用对称加密的方式来加密，这样就解决了两个方法各自存 在的问题。</p>
+<p>但是现在的方法也不一定是安全的，因为我们没有办法确定我们得到的公钥就一定是安全的公钥。可能存在一个中间人，截取 了对方发给我们的公钥，然后将他自己的公钥发送给我们，当我们使用他的公钥加密后发送的信息，就可以被他用自己的私钥 解密。然后他伪装成我们以同样的方法向对方发送信息，这样我们的信息就被窃取了，然而我们自己还不知道。</p>
+<p>为了解决这样的问题，我们可以使用数字证书的方式，首先我们使用一种 Hash 算法来对我们的公钥和其他信息进行加密生成 一个信息摘要，然后让有公信力的认证中心（简称 CA ）用它的私钥对消息摘要加密，形成签名。最后将原始的信息和签名合 在一起，称为数字证书。当接收方收到数字证书的时候，先根据原始信息使用同样的 Hash 算法生成一个摘要，然后使用公证 处的公钥来对数字证书中的摘要进行解密，最后将解密的摘要和我们生成的摘要进行对比，就能发现我们得到的信息是否被更改 了。这个方法最要的是认证中心的可靠性，一般浏览器里会内置一些顶层的认证中心的证书，相当于我们自动信任了他们，只有 这样我们才能保证数据的安全。</p>
+<h3 id="DNS-协议"><a href="#DNS-协议" class="headerlink" title="DNS 协议"></a>DNS 协议</h3><h4 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h4><p>DNS 协议提供的是一种主机名到 IP 地址的转换服务，就是我们常说的域名系统。它是一个由分层的 DNS 服务器组成的分 布式数据库，是定义了主机如何查询这个分布式数据库的方式的应用层协议。DNS 协议运行在 UDP 协议之上，使用 53 号 端口。</p>
+<h4 id="域名的层级结构"><a href="#域名的层级结构" class="headerlink" title="域名的层级结构"></a>域名的层级结构</h4><p>域名的层级结构可以如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css">主机名.次级域名.顶级域名.根域名<br><br># 即<br><br><span class="hljs-selector-tag">host</span><span class="hljs-selector-class">.sld</span><span class="hljs-selector-class">.tld</span><span class="hljs-selector-class">.root</span><br></code></pre></td></tr></table></figure>
+
+<p>根据域名的层级结构，管理不同层级域名的服务器，可以分为根域名服务器、顶级域名服务器和权威域名服务器。</p>
+<h4 id="查询过程"><a href="#查询过程" class="headerlink" title="查询过程"></a>查询过程</h4><p>DNS 的查询过程一般为，我们首先将 DNS 请求发送到本地 DNS 服务器，由本地 DNS 服务器来代为请求。</p>
+<ol>
+<li>从”根域名服务器”查到”顶级域名服务器”的 NS 记录和 A 记录（ IP 地址）。</li>
+<li>从”顶级域名服务器”查到”次级域名服务器”的 NS 记录和 A 记录（ IP 地址）。</li>
+<li>从”次级域名服务器”查出”主机名”的 IP 地址。</li>
+</ol>
+<p>比如我们如果想要查询 <a href="http://www.baidu.com/" target="_blank" rel="noopener">www.baidu.com</a> 的 IP 地址，我们首先会将请求发送到本地的 DNS 服务器中，本地 DNS 服务 器会判断是否存在该域名的缓存，如果不存在，则向根域名服务器发送一个请求，根域名服务器返回负责 .com 的顶级域名 服务器的 IP 地址的列表。然后本地 DNS 服务器再向其中一个负责 .com 的顶级域名服务器发送一个请求，负责 .com 的顶级域名服务器返回负责 .baidu 的权威域名服务器的 IP 地址列表。然后本地 DNS 服务器再向其中一个权威域名服 务器发送一个请求，最后权威域名服务器返回一个对应的主机名的 IP 地址列表。</p>
+<h4 id="DNS-记录和报文"><a href="#DNS-记录和报文" class="headerlink" title="DNS 记录和报文"></a>DNS 记录和报文</h4><p>DNS 服务器中以资源记录的形式存储信息，每一个 DNS 响应报文一般包含多条资源记录。一条资源记录的具体的格式为</p>
+<p>（Name，Value，Type，TTL）</p>
+<p>其中 TTL 是资源记录的生存时间，它定义了资源记录能够被其他的 DNS 服务器缓存多长时间。</p>
+<p>常用的一共有四种 Type 的值，分别是 A、NS、CNAME 和 MX ，不同 Type 的值，对应资源记录代表的意义不同。</p>
+<ol>
+<li>如果 Type = A，则 Name 是主机名，Value 是主机名对应的 IP 地址。因此一条记录为 A 的资源记录，提供了标 准的主机名到 IP 地址的映射。</li>
+<li>如果 Type = NS，则 Name 是个域名，Value 是负责该域名的 DNS 服务器的主机名。这个记录主要用于 DNS 链式 查询时，返回下一级需要查询的 DNS 服务器的信息。</li>
+<li>如果 Type = CNAME，则 Name 为别名，Value 为该主机的规范主机名。该条记录用于向查询的主机返回一个主机名 对应的规范主机名，从而告诉查询主机去查询这个主机名的 IP 地址。主机别名主要是为了通过给一些复杂的主机名提供 一个便于记忆的简单的别名。</li>
+<li>如果 Type = MX，则 Name 为一个邮件服务器的别名，Value 为邮件服务器的规范主机名。它的作用和 CNAME 是一 样的，都是为了解决规范主机名不利于记忆的缺点。</li>
+</ol>
+<h4 id="递归查询和迭代查询"><a href="#递归查询和迭代查询" class="headerlink" title="递归查询和迭代查询"></a>递归查询和迭代查询</h4><p>递归查询指的是查询请求发出后，域名服务器代为向下一级域名服务器发出请求，最后向用户返回查询的最终结果。使用递归 查询，用户只需要发出一次查询请求。</p>
+<p>迭代查询指的是查询请求后，域名服务器返回单次查询的结果。下一级的查询由用户自己请求。使用迭代查询，用户需要发出 多次的查询请求。</p>
+<p>一般我们向本地 DNS 服务器发送请求的方式就是递归查询，因为我们只需要发出一次请求，然后本地 DNS 服务器返回给我 们最终的请求结果。而本地 DNS 服务器向其他域名服务器请求的过程是迭代查询的过程，因为每一次域名服务器只返回单次 查询的结果，下一级的查询由本地 DNS 服务器自己进行。</p>
+<h4 id="DNS-缓存"><a href="#DNS-缓存" class="headerlink" title="DNS 缓存"></a>DNS 缓存</h4><p>DNS 缓存的原理非常简单，在一个请求链中，当某个 DNS 服务器接收到一个 DNS 回答后，它能够将回答中的信息缓存在本 地存储器中。返回的资源记录中的 TTL 代表了该条记录的缓存的时间。</p>
+<h4 id="DNS-实现负载平衡"><a href="#DNS-实现负载平衡" class="headerlink" title="DNS 实现负载平衡"></a>DNS 实现负载平衡</h4><p>DNS 可以用于在冗余的服务器上实现负载平衡。因为现在一般的大型网站使用多台服务器提供服务，因此一个域名可能会对应 多个服务器地址。当用户发起网站域名的 DNS 请求的时候，DNS 服务器返回这个域名所对应的服务器 IP 地址的集合，但在 每个回答中，会循环这些 IP 地址的顺序，用户一般会选择排在前面的地址发送请求。以此将用户的请求均衡的分配到各个不 同的服务器上，这样来实现负载均衡。</p>
+<h2 id="TCP握手与挥手"><a href="#TCP握手与挥手" class="headerlink" title="TCP握手与挥手"></a>TCP握手与挥手</h2><h3 id="握手"><a href="#握手" class="headerlink" title="握手"></a>握手</h3><p>第一次握手，客户端向服务器发送一个 SYN 连接请求报文段，报文段的首部中 SYN 标志位置为 1，序号字段是一个任选的 随机数。它代表的是客户端数据的初始序号。</p>
 <p>第二次握手，服务器端接收到客户端发送的 SYN 连接请求报文段后，服务器首先会为该连接分配 TCP 缓存和变量，然后向 客户端发送 SYN ACK 报文段，报文段的首部中 SYN 和 ACK 标志位都被置为 1，代表这是一个对 SYN 连接请求的确认， 同时序号字段是服务器端产生的一个任选的随机数，它代表的是服务器端数据的初始序号。确认号字段为客户端发送的序号加 一。</p>
 <p>第三次握手，客户端接收到服务器的肯定应答后，它也会为这次 TCP 连接分配缓存和变量，同时向服务器端发送一个对服务 器端的报文段的确认。第三次握手可以在报文段中携带数据。</p>
 <p>在我看来，TCP 三次握手的建立连接的过程就是相互确认<strong>初始序号</strong>的过程，告诉对方，什么样<strong>序号</strong>的报文段能够被正确接收。 第三次握手的作用是<strong>客户端对服务器端的初始序号的确认</strong>。如果只使用两次握手，那么服务器就没有办法知道自己的序号是否 已被确认。同时这样也是为了防止失效的请求报文段被服务器接收，而出现错误的情况。</p>
@@ -753,10 +947,43 @@
 <p>第四次挥手，客户端接收到 FIN 请求后，向服务器端发送一个确认应答，并进入 TIME_WAIT 阶段。该阶段会持续一段时间， 这个时间为报文段在网络中的最大生存时间，如果该时间内服务端没有重发请求的话，客户端进入 CLOSED 的状态。如果收到 服务器的重发请求就重新发送确认报文段。服务器端收到客户端的确认报文段后就进入 CLOSED 状态，这样全双工的连接就被 释放了。</p>
 <p>TCP 使用四次挥手的原因是因为 TCP 的连接是全双工的，所以需要双方分别释放到对方的连接，单独一方的连接释放，只代 表不能再向对方发送数据，连接处于的是半释放的状态。</p>
 <p>最后一次挥手中，客户端会等待一段时间再关闭的原因，是为了防止发送给服务器的确认报文段丢失或者出错，从而导致服务器 端不能正常关闭。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><h3 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h3><h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p><strong>Expires是HTTP 1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回，用GMT格式的字符串表示</strong>，如：<code>Expires:Thu, 31 Dec 2037 23:55:55 GMT</code> ，包含了Expires头标签的文件，就说明浏览器对于该文件缓存具有非常大的控制权。</p>
+<p>例如，一个文件的Expires值是2020年的1月1日，那么就代表，在2020年1月1日之前，浏览器都可以直接使用该文件的本地缓存文件，而不必去服务器再次请求该文件，哪怕服务器文件发生了变化。</p>
+<p>所以，<strong>Expires是优化中最理想的情况，因为它根本不会产生请求</strong>，所以后端也就无需考虑查询快慢。</p>
+<h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h5><p>1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Expires的header。</p>
+<p>2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来（所以缓存命中的请求返回的header并不是来自服务器，而是来自之前缓存的header）；</p>
+<p>3、浏览器再请求这个资源时，<strong>先从缓存中寻找，找到这个资源后，拿出它的Expires跟当前的请求时间比较</strong>，如果请求时间在Expires指定的时间之前，就能命中缓存，否则就不行；</p>
+<p>4、如果缓存没有命中，浏览器直接从服务器加载资源时，Expires Header在重新加载的时候会被更新；</p>
+<h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4><p><strong>Cache-Control，这是一个相对时间，在配置缓存的时候，以秒为单位，用数值表示</strong>，如： <code>Cache-Control:max-age=315360000</code> 。</p>
+<h5 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h5><p>1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Cache-Control的header。</p>
+<p>2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来；</p>
+<p>3、浏览器再请求这个资源时，<strong>先从缓存中寻找，找到这个资源后，根据它第一次的请求时间和Cache-Control设定的有效期</strong>，计算出一个资源过期时间，再拿这个过期时间跟当前的请求时间比较，如果请求时间在过期时间之前，就能命中缓存，否则就不行；</p>
+<p>4、如果缓存没有命中，浏览器直接从服务器加载资源时，<strong>Cache-Control Header在重新加载的时候会被更新</strong>；</p>
+<p>此外，还可以为 Cache-Control 指定 <code>public</code> 或 <code>private</code> 标记。<strong>如果使用 private，则表示该资源仅仅属于发出请求的最终用户，这将禁止中间服务器（如代理服务器）缓存此类资源</strong>。对于包含用户个人信息的文件（如一个包含用户名的 HTML 文档），可以设置 private，一方面由于这些缓存对其他用户来说没有任何意义，另一方面用户可能不希望相关文件储存在不受信任的服务器上。需要指出的是，private 并不会使得缓存更加安全，它同样会传给中间服务器（如果网站对于传输的安全性要求很高，应该使用传输层安全措施）。<strong>对于 public，则允许所有服务器缓存该资源</strong>。通常情况下，对于所有人都可以访问的资源（例如网站的 logo、图片、脚本等），<strong>Cache-Control 默认设为 public 是合理的</strong>。</p>
+<p>这两个header可以只启用一个，也可以同时启用，<strong>当response header中，Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires</strong></p>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>当浏览器对某个资源的请求没有命中强缓存，<strong>就会发一个请求到服务器，验证协商缓存是否命中，如果协商缓存命中，请求响应返回的http状态为304并且会显示一个Not Modified的字符串</strong>。</p>
+<h4 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified If-Modified-Since"></a>Last-Modified If-Modified-Since</h4><p>1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，<strong>在response的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间</strong></p>
+<p>2、浏览器再次跟服务器请求这个资源时，<strong>在request的header上加上If-Modified-Since的header</strong>，这个header的值就是上一次请求时返回的Last-Modified的值。</p>
+<p>3、服务器再次收到资源请求时，<strong>根据浏览器传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化</strong>，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。<strong>当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header</strong>，因为既然资源没有变化，那么Last-Modified也就不会改变。</p>
+<p>4、浏览器收到304的响应后，就会从缓存中加载资源。</p>
+<p>5、如果协商缓存没有命中，浏览器直接从服务器加载资源时，<strong>Last-Modified Header在重新加载的时候会被更新</strong>，下次请求时，<strong>If-Modified-Since会启用上次返回的Last-Modified值</strong>。</p>
+<h4 id="ETag、If-None-Match"><a href="#ETag、If-None-Match" class="headerlink" title="ETag、If-None-Match"></a>ETag、If-None-Match</h4><p>1、浏览器第一次跟服务器请求一个资源，<strong>服务器在返回这个资源的同时，在response的header加上ETag的header</strong>，这个header是服务器根据当前请求的资源生成的一个唯一标识，<strong>这个唯一标识是一个字符串，只要资源有变化这个串就不同</strong>，跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题。</p>
+<p>2、浏览器再次跟服务器请求这个资源时，<strong>在request的header上加上If-None-Match的header</strong>，这个header的值就是上一次请求时返回的ETag的值：</p>
+<p>3、服务器再次收到资源请求时，<strong>根据浏览器传过来If-None-Match和然后再根据资源生成一个新的ETag</strong>，如果这两个值相同就说明资源没有变化，否则就是有变化；如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，<strong>由于ETag重新生成过，response header中还会把这个ETag返回</strong>，即使这个ETag跟之前的没有变化：</p>
+<p>4、浏览器收到304的响应后，就会从缓存中加载资源。</p>
+<p>Etag和Last-Modified非常相似，都是用来判断一个参数，从而决定是否启用缓存。<strong>但是ETag相对于Last-Modified也有其优势，可以更加准确的判断文件内容是否被修改</strong>，从而在实际操作中实用程度也更高。</p>
+<p>协商缓存跟强缓存不一样，强缓存不发请求到服务器，<strong>所以有时候资源更新了浏览器还不知道，但是协商缓存会发请求到服务器</strong>，所以资源是否更新，服务器肯定知道。大部分web服务器都默认开启协商缓存，而且是同时启用【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】。</p>
+<h3 id="用户操作导致的缓存失效"><a href="#用户操作导致的缓存失效" class="headerlink" title="用户操作导致的缓存失效"></a>用户操作导致的缓存失效</h3><p>当用户在按<code>F5</code>进行刷新的时候，会忽略Expires/Cache-Control的设置，会再次发送请求去服务器请求，而Last-Modified/Etag还是有效的，服务器会根据情况判断返回304还是200；<br>而当用户使用<code>Ctrl+F5</code>进行强制刷新的时候，只是所有的缓存机制都将失效，重新从服务器拉去资源。</p>
+<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h2><p>内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。<br>CDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。</p>
+<h3 id="CDN缓存策略"><a href="#CDN缓存策略" class="headerlink" title="CDN缓存策略"></a><strong>CDN缓存策略</strong></h3><p>CDN边缘节点缓存策略因服务商不同而不同，但一般都会遵循http标准协议，通过http响应头中的Cache-control: max-age的字段来设置CDN边缘节点数据缓存时间。</p>
+<p>当客户端向CDN节点请求数据时，CDN节点会判断缓存数据是否过期，若缓存数据并没有过期，则直接将缓存数据返回给客户端；否则，CDN节点就会向源站发出回源请求，从源站拉取最新数据，更新本地缓存，并将最新数据返回给客户端。</p>
+<p>CDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。</p>
+<p>CDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。</p>
+<h3 id="CDN缓存刷新"><a href="#CDN缓存刷新" class="headerlink" title="CDN缓存刷新"></a><strong>CDN缓存刷新</strong></h3><p>CDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。</p>
 <h1 id="工程与应用相关"><a href="#工程与应用相关" class="headerlink" title="工程与应用相关"></a>工程与应用相关</h1><h2 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型 XSS 的攻击步骤：</p>
 <ol>
 <li>攻击者将恶意代码提交到目标网站的数据库中。</li>
-<li>用户打开目标网站时，网站服务端将恶意代码从数据库取出，拼接在 HTML 中返回给浏览器。</li>
+<li></li>
 <li>用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。</li>
 <li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
 </ol>
