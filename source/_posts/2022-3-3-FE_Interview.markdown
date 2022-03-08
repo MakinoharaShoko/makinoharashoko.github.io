@@ -1462,11 +1462,66 @@ imgs.forEach((image) => {
 
 ### hash 模式
 
+hash 就是指 url 后的 # 号以及后面的字符
 
+由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。
+
+```js
+window.location.hash = 'hash字符串'; // 用于设置 hash 值
+
+let hash = window.location.hash; // 获取当前 hash 值
+
+// 监听hash变化，点击浏览器的前进后退会触发
+window.addEventListener('hashchange', function(event){ 
+    let newURL = event.newURL; // hash 改变后的新 url
+    let oldURL = event.oldURL; // hash 改变前的旧 url
+},false)
+```
 
 ### history模式
 
+#### history api
 
+```
+history.pushState();         // 添加新的状态到历史状态栈
+history.replaceState();      // 用新的状态代替当前状态
+history.state                // 返回当前状态对象
+```
+
+history.pushState() 和 history.replaceState() 的区别在于：
+
+- history.pushState() 在保留现有历史记录的同时，将 url 加入到历史记录中。
+- history.replaceState() 会将历史记录中的当前页面历史替换为 url。
+
+由于 history.pushState() 和 history.replaceState() 可以改变 url 同时，不会刷新页面，所以在 HTML5 中的 histroy 具备了实现前端路由的能力。
+
+#### `window.location`
+
+##### 常用API
+
+[`Location.href`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/href)
+
+包含整个URL的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)
+
+[`Location.protocol` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)
+
+包含URL对应协议的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，最后有一个":"。
+
+[`Location.host`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/host)
+
+包含了域名的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，可能在该串最后带有一个":"并跟上URL的端口号。
+
+[`Location.hostname`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hostname)
+
+包含URL域名的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。
+
+[`Location.port` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/port)
+
+包含端口号的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。
+
+[`Location.pathname` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)
+
+包含URL中路径部分的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，开头有一个“`/"。`
 
 ## 前端安全问题以及解决方案
 
