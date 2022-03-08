@@ -770,6 +770,36 @@
 <p>第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留<br>在内存中，而无法被回收。</p>
 <p>第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回<br>收。</p>
 <p>第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。</p>
+<h2 id="JS-事件模型"><a href="#JS-事件模型" class="headerlink" title="JS 事件模型"></a>JS 事件模型</h2><h3 id="事件监听函数"><a href="#事件监听函数" class="headerlink" title="事件监听函数"></a>事件监听函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">addEventListener(eventType, handler, useCapture)<br></code></pre></td></tr></table></figure>
+
+<h3 id="事件对象常用属性"><a href="#事件对象常用属性" class="headerlink" title="事件对象常用属性"></a>事件对象常用属性</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">type用于获取事件类型<br><br>target获取事件目标<br><br><span class="hljs-function"><span class="hljs-title">stopPropagation</span><span class="hljs-params">()</span></span>阻止事件冒泡<br><br><span class="hljs-function"><span class="hljs-title">preventDefault</span><span class="hljs-params">()</span></span>阻止事件默认行为<br></code></pre></td></tr></table></figure>
+
+<h3 id="事件阶段"><a href="#事件阶段" class="headerlink" title="事件阶段"></a>事件阶段</h3><p>捕获阶段 -&gt; 目标阶段 -&gt; 冒泡阶段</p>
+<h3 id="捕获阶段"><a href="#捕获阶段" class="headerlink" title="捕获阶段"></a>捕获阶段</h3><p>事件从document一直向下传播到目标元素, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。</p>
+<p>如何将处于冒泡阶段的事件修改成捕获阶段呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">parent.addEventListener(<span class="hljs-string">'click'</span>, () =&gt; &#123;      <br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'parent 被点击了'</span>);   <br>&#125;，<span class="hljs-literal">true</span>)    <br>child.addEventListener(<span class="hljs-string">'click'</span>, (event) =&gt; &#123;     <br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'child 被点击了'</span>);          <br>&#125;,<span class="hljs-literal">true</span>)<br></code></pre></td></tr></table></figure>
+
+<p>当处于冒泡阶段时，我们没有必要加第三个参数，因为 <code>addEventListener</code> 默认第三个参数为false（第三个参数存在），如果我们要事件处于捕获阶段的话，只要将第三个参数设成true就行。</p>
+<h3 id="目标阶段"><a href="#目标阶段" class="headerlink" title="目标阶段"></a>目标阶段</h3><p>事件到达目标元素, 触发目标元素的监听函数。</p>
+<h3 id="冒泡阶段"><a href="#冒泡阶段" class="headerlink" title="冒泡阶段"></a>冒泡阶段</h3><p>事件从目标元素冒泡到document, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。</p>
+<h3 id="事件代理"><a href="#事件代理" class="headerlink" title="事件代理"></a>事件代理</h3><p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为事件代理(Event delegation)。</p>
+<h3 id="target-currentTarget"><a href="#target-currentTarget" class="headerlink" title="target currentTarget"></a>target currentTarget</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event" target="_blank" rel="noopener"><code>Event</code></a> 接口的只读属性 <code>currentTarget</code> 表示的是当事件沿着 DOM 触发时事件的当前目标。它总是指向事件绑定的元素，而 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target" target="_blank" rel="noopener"><code>Event.target</code></a> 则是事件触发的元素。</p>
+<h2 id="Map-与-WeakMap"><a href="#Map-与-WeakMap" class="headerlink" title="Map 与 WeakMap"></a>Map 与 WeakMap</h2><p><code>WeakMap</code> 对于值的引用都是不计入垃圾回收机制的，所以名字里面才会有一个”Weak”，表示这是弱引用（对对象的弱引用是指当该对象应该被 <code>GC</code> 回收时不会阻止 <code>GC</code> 的回收行为）。</p>
+<p><code>Map</code> 相对于 <code>WeakMap</code> ：</p>
+<ul>
+<li><code>Map</code> 的键可以是任意类型，<code>WeakMap</code> 只接受对象作为键（null除外），不接受其他类型的值作为键</li>
+<li><code>Map</code> 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键； <code>WeakMap</code> 的键是弱引用，键所指向的对象可以被垃圾回收，此时键是无效的</li>
+<li><code>Map</code> 可以被遍历， <code>WeakMap</code> 不能被遍历</li>
+</ul>
+<h2 id="关于-Array"><a href="#关于-Array" class="headerlink" title="关于 Array"></a>关于 Array</h2><h3 id="Map-Reduce"><a href="#Map-Reduce" class="headerlink" title="Map Reduce"></a>Map Reduce</h3><p><strong>1.reduce是一个累加方法，是对数组累积执行回调函数，返回最终计算结果。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">array.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">total, currentValue, currentIndex, arr</span>)</span>&#123;<br>&#125;, initialValue);<br><br><span class="hljs-comment">//total 必需。初始值, 或者计算结束后的返回值。</span><br><span class="hljs-comment">//currentValue  必需。当前元素</span><br><span class="hljs-comment">//currentIndex  可选。当前元素的索引</span><br><span class="hljs-comment">//arr   可选。当前元素所属的数组对象。</span><br><span class="hljs-comment">//initialValue可选。传递给函数的初始值</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>2.map是遍历数组的每一项，并执行回调函数的操作，返回一个对每一项进行操作后的新数组。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">array.map(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">currentValue,index,arr</span>), <span class="hljs-title">thisValue</span>)；<br>//<span class="hljs-title">currentValue</span>  必须。当前元素的值<br>//<span class="hljs-title">index</span> 可选。当前元素的索引值<br>//<span class="hljs-title">arr</span>   可选。当前元素属于的数组对象<br>//<span class="hljs-title">thisValue</span>可选。对象作为该执行回调时使用，传递给函数，用作 "<span class="hljs-title">this</span>" 的值。如果省略了 <span class="hljs-title">thisValue</span>，或者传入 <span class="hljs-title">null</span>、<span class="hljs-title">undefined</span>，那么回调函数的 <span class="hljs-title">this</span> 为全局对象。</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>3.forEach和map用法一样,也是是遍历数组的每一项，并执行回调函数的操作，不过forEachf返回值是undefined，不可以链式调用。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">array.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">currentValue, index, arr</span>), <span class="hljs-title">thisValue</span>)<br><br>//<span class="hljs-title">currentValue</span>  必需。当前元素<br>//<span class="hljs-title">index</span> 可选。当前元素的索引值。<br>//<span class="hljs-title">arr</span>   可选。当前元素所属的数组对象。<br>//<span class="hljs-title">thisValue</span> 可选。传递给函数的值一般用 "<span class="hljs-title">this</span>" 值。如果这个参数为空， "<span class="hljs-title">undefined</span>" 会传递给 "<span class="hljs-title">this</span>" 值</span><br></code></pre></td></tr></table></figure>
+
 <h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h2 id="重绘与回流"><a href="#重绘与回流" class="headerlink" title="重绘与回流"></a>重绘与回流</h2><p><strong>回流必将引起重绘，重绘不一定会引起回流。</strong></p>
 <h3 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h3><p>导致回流的一些操作</p>
 <ul>
@@ -857,7 +887,110 @@
 <td>视图大尺寸的1%</td>
 </tr>
 </tbody></table>
-<h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h2 id="从输入url到呈现网页"><a href="#从输入url到呈现网页" class="headerlink" title="从输入url到呈现网页"></a>从输入url到呈现网页</h2><p>（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。</p>
+<h2 id="CSS-处理字符串"><a href="#CSS-处理字符串" class="headerlink" title="CSS 处理字符串"></a>CSS 处理字符串</h2><h3 id="text-overflow"><a href="#text-overflow" class="headerlink" title="text-overflow"></a>text-overflow</h3><p><code>clip</code></p>
+<p><strong>此为默认值。</strong>这个关键字的意思是”在内容区域的极限处截断文本”，因此在字符的中间可能会发生截断。如果你的目标浏览器支持 <code>text-overflow: &#39;&#39;</code>，为了能在两个字符过渡处截断，你可以使用一个空字符串值 (<code>&#39;&#39;</code>) 作为 <code>text-overflow</code> 属性的值。</p>
+<p><code>ellipsis</code></p>
+<p>这个关键字的意思是“用一个省略号 (<code>&#39;…&#39;</code>, <code>U+2026 HORIZONTAL ELLIPSIS</code>)来表示被截断的文本”。这个省略号被添加在内容区域中，因此会减少显示的文本。如果空间太小到连省略号都容纳不下，那么这个省略号也会被截断。</p>
+<p><code>&lt;string&gt;</code></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/string" target="_blank" rel="noopener"><code>&lt;string&gt;</code></a>用来表示被截断的文本。字符串内容将被添加在内容区域中，所以会减少显示出的文本。如果空间太小到连省略号都容纳不下，那么这个字符串也会被截断。</p>
+<h3 id="overflow-wrap"><a href="#overflow-wrap" class="headerlink" title="overflow-wrap"></a>overflow-wrap</h3><p><code>normal</code></p>
+<p>行只能在正常的单词断点处中断。（例如两个单词之间的空格）。</p>
+<p><code>break-word</code></p>
+<p>表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行。</p>
+<h3 id="text-transform"><a href="#text-transform" class="headerlink" title="text-transform"></a>text-transform</h3><p><code>capitalize</code></p>
+<p>这个关键字强制每个单词的首字母转换为大写。其他的字符保留不变（它们写在元素里的文本保留原始大小写）。字母是Unicode字符集或者数字里定义的字符 ；因此单词开头的任何标点符号或者特殊符号将会被忽略。</p>
+<p>Authors should not expect <code>capitalize</code> to follow language-specific titlecasing conventions (such as skipping articles in English).</p>
+<p><code>uppercase</code></p>
+<p>这个关键字强制所有字符被转换为大写。</p>
+<p><code>lowercase</code></p>
+<p>这个关键字强制所有字符被转换为小写。</p>
+<p><code>none</code></p>
+<p>这个关键字阻止所有字符的大小写被转换。</p>
+<p><code>full-width</code></p>
+<p>这个关键字强制字符 — 主要是表意字符和拉丁文字 — 书写进一个方形里，并允许它们按照一般的东亚文字（比如中文或日文）对齐。</p>
+<h2 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h2><h3 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h3><p>比较简单，可以用<code>flex</code>，可以用<code>text-align</code></p>
+<h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h4 id="单行内联-inline-元素垂直居中"><a href="#单行内联-inline-元素垂直居中" class="headerlink" title="单行内联(inline-)元素垂直居中"></a>单行内联(<code>inline-</code>)元素垂直居中</h4><p>通过设置内联元素的高度(<code>height</code>)和行高(<code>line-height</code>)相等，从而使元素垂直居中。</p>
+<p><strong>核心代码：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#v-box</span> &#123;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">120px</span>;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">120px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="利用flex布局（flex）"><a href="#利用flex布局（flex）" class="headerlink" title="利用flex布局（flex）"></a>利用flex布局（<code>flex</code>）</h4><p>利用flex布局实现垂直居中，其中<code>flex-direction: column</code>定义主轴方向为纵向。因为flex布局是CSS3中定义，在较老的浏览器存在兼容性问题。</p>
+<p><strong>核心代码：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.center-flex</span> &#123;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">flex-direction</span>: column;<br>    <span class="hljs-attribute">justify-content</span>: center;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="BFC-IFC-Flex"><a href="#BFC-IFC-Flex" class="headerlink" title="BFC IFC Flex"></a>BFC IFC Flex</h2><h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><p><code>Block Formatting Context</code>，块级格式化上下文，一个独立的块级渲染区域，该区域拥有一套渲染规则来约束块级盒子的布局，且与区域外部无关。</p>
+<h4 id="BFC的应用"><a href="#BFC的应用" class="headerlink" title="BFC的应用"></a>BFC的应用</h4><ul>
+<li>防止<code>margin</code>发生重叠</li>
+<li>防止发生因浮动导致的高度塌陷</li>
+</ul>
+<h4 id="怎么生成-BFC"><a href="#怎么生成-BFC" class="headerlink" title="怎么生成 BFC"></a>怎么生成 BFC</h4><ul>
+<li><code>float</code>的值不为<code>none</code>；</li>
+<li><code>overflow</code>的值不为<code>visible</code>；</li>
+<li><code>display</code>的值为<code>inline-block</code> <code>table-cell</code> <code>table-caption</code>；</li>
+<li><code>position</code>的值为<code>absolute</code>或<code>fixed</code>；</li>
+</ul>
+<h3 id="IFC"><a href="#IFC" class="headerlink" title="IFC"></a>IFC</h3><p><code>IFC(Inline Formatting Contexts)</code>直译为”行内格式化上下文”，<code>IFC</code>的<code>line box</code>（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的 <code>padding/margin</code> 影响)</p>
+<h4 id="IFC有的特性"><a href="#IFC有的特性" class="headerlink" title="IFC有的特性"></a>IFC有的特性</h4><ol>
+<li><code>IFC</code>中的<code>line box</code>一般左右都贴紧整个<code>IFC</code>，但是会因为<code>float</code>元素而扰乱。<code>float</code>元素会位于<code>IFC</code>与与<code>line box</code>之间，使得<code>line box</code>宽度缩短。</li>
+<li><code>IFC</code>中时不可能有块级元素的，当插入块级元素时（如<code>p</code>中插入<code>div</code>）会产生两个匿名块与<code>div</code>分隔开，即产生两个<code>IFC</code>，每个<code>IFC</code>对外表现为块级元素，与<code>div</code>垂直排列。</li>
+</ol>
+<h4 id="IFC的应用"><a href="#IFC的应用" class="headerlink" title="IFC的应用"></a>IFC的应用</h4><ol>
+<li>水平居中：当一个块要在环境中水平居中时，设置其为<code>inline-block</code>则会在外层产生<code>IFC</code>，通过<code>text-align</code>则可以使其水平居中。</li>
+<li>垂直居中：创建一个<code>IFC</code>，用其中一个元素撑开父元素的高度，然后设置其<code>vertical-align:middle</code>，其他行内元素则可以在此父元素下垂直居中。</li>
+</ol>
+<h3 id="Flex"><a href="#Flex" class="headerlink" title="Flex"></a>Flex</h3><h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">flex-direction</span> <span class="hljs-comment">//方向</span><br><span class="hljs-attribute">flex-wrap</span> <span class="hljs-comment">//换行</span><br><span class="hljs-attribute">flex-flow</span> <span class="hljs-comment">// 前两个属性的集合</span><br><span class="hljs-attribute">justify-content</span>  <span class="hljs-comment">//主轴对齐方式</span><br><span class="hljs-attribute">align-items</span> <span class="hljs-comment">//交叉轴对齐方式</span><br><span class="hljs-attribute">align-content</span> <span class="hljs-comment">//多轴线对齐方式</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs scss"><span class="hljs-attribute">order</span> <span class="hljs-comment">//顺序</span><br><span class="hljs-attribute">flex-grow</span> <span class="hljs-comment">//放大比例，0为不放大</span><br><span class="hljs-attribute">flex-shrink</span> <span class="hljs-comment">//缩小比例，默认1, 0为不缩小</span><br><span class="hljs-attribute">flex-basis</span> <span class="hljs-comment">//分配前所占空间</span><br><span class="hljs-attribute">flex</span> <span class="hljs-comment">// 上面3个属性的集合</span><br><span class="hljs-attribute">align-self</span>  <span class="hljs-comment">//这个元素的对齐方式，覆盖容器的align-items</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="flex-1-？？？"><a href="#flex-1-？？？" class="headerlink" title="flex:1 ？？？"></a><code>flex:1</code> ？？？</h4><p>可以使用一个，两个或三个值来指定 <code>flex</code>属性。</p>
+<p><strong>单值语法</strong>: 值必须为以下其中之一:</p>
+<ul>
+<li>一个无单位<strong>数</strong>: 它会被当作<code>flex:&lt;number&gt; 1 0;</code> <code>&lt;flex-shrink&gt;</code>的值被假定为1，然后<code>&lt;flex-basis&gt;</code> 的值被假定为<code>0</code>。</li>
+<li>一个有效的**宽度(<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/width" target="_blank" rel="noopener"><code>width</code></a>)**值: 它会被当作 <code>&lt;flex-basis&gt;的值。</code></li>
+<li>关键字<code>none</code>，<code>auto</code>或<code>initial</code>.</li>
+</ul>
+<p><strong>双值语法</strong>: 第一个值必须为一个无单位数，并且它会被当作 <code>&lt;flex-grow&gt;</code> 的值。第二个值必须为以下之一：</p>
+<ul>
+<li>一个无单位数：它会被当作 <code>&lt;flex-shrink&gt;</code> 的值。</li>
+<li>一个有效的宽度值: 它会被当作 <code>&lt;flex-basis&gt;</code> 的值。</li>
+</ul>
+<p><strong>三值语法:</strong></p>
+<ul>
+<li>第一个值必须为一个无单位数，并且它会被当作 <code>&lt;flex-grow&gt;</code> 的值。</li>
+<li>第二个值必须为一个无单位数，并且它会被当作 <code>&lt;flex-shrink&gt;</code> 的值。</li>
+<li>第三个值必须为一个有效的宽度值， 并且它会被当作 <code>&lt;flex-basis&gt;</code> 的值。</li>
+</ul>
+<h4 id="flex取值"><a href="#flex取值" class="headerlink" title="flex取值"></a>flex取值</h4><ul>
+<li><p><code>initial</code></p>
+<p>元素会根据自身宽高设置尺寸。它会缩短自身以适应 flex 容器，但不会伸长并吸收 flex 容器中的额外自由空间来适应 flex 容器 。相当于将属性设置为”<code>flex: 0 1 auto</code>“。</p>
+</li>
+<li><p><code>auto</code></p>
+<p>元素会根据自身的宽度与高度来确定尺寸，但是会伸长并吸收 flex 容器中额外的自由空间，也会缩短自身来适应 flex 容器。这相当于将属性设置为 “<code>flex: 1 1 auto</code>“.</p>
+</li>
+<li><p><code>none</code></p>
+<p>元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器。相当于将属性设置为”<code>flex: 0 0 auto</code>“。</p>
+</li>
+</ul>
+<h1 id="HTML相关"><a href="#HTML相关" class="headerlink" title="HTML相关"></a>HTML相关</h1><h2 id="meta-标签"><a href="#meta-标签" class="headerlink" title="meta 标签"></a><code>meta</code> 标签</h2><h4 id="charset"><a href="#charset" class="headerlink" title="charset"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-charset" target="_blank" rel="noopener"><code>charset</code></a></h4><p>这个属性声明了文档的字符编码。如果使用了这个属性，其值必须是与 ASCII 大小写无关（ASCII case-insensitive）的”<code>utf-8</code>“。</p>
+<h4 id="http-equiv"><a href="#http-equiv" class="headerlink" title="http-equiv"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv" target="_blank" rel="noopener"><strong><code>http-equiv</code></strong></a></h4><p>属性定义了一个编译指示指令。这个属性叫做 <code>**http-equiv**(alent)</code> 是因为所有允许的值都是特定 HTTP 头部的名称，如下：</p>
+<ul>
+<li><p><code>content-security-policy</code><br>它允许页面作者定义当前页的<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank" rel="noopener">内容策略</a>。 内容策略主要指定允许的服务器源和脚本端点，这有助于防止跨站点脚本攻击。</p>
+</li>
+<li><p><code>content-type</code><br>如果使用这个属性，其值必须是”<code>text/html; charset=utf-8</code>“。注意：该属性只能用于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types" target="_blank" rel="noopener">MIME type</a> 为 <code>text/html</code> 的文档，不能用于 MIME 类型为 XML 的文档。</p>
+</li>
+<li><p><code>default-style</code></p>
+<p>设置默认 <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS" target="_blank" rel="noopener">CSS 样式表</a>组的名称。</p>
+</li>
+<li><p><code>x-ua-compatible</code><br>如果指定，则 <code>content</code> 属性必须具有值 “<code>IE=edge</code>“。用户代理必须忽略此指示。</p>
+</li>
+<li><p><code>refresh</code></p>
+<p>这个属性指定：</p>
+<ul>
+<li>如果 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content" target="_blank" rel="noopener"><code>content</code></a> 只包含一个正整数，则为重新载入页面的时间间隔 (秒)；</li>
+<li>如果 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content" target="_blank" rel="noopener"><code>content</code></a> 包含一个正整数，并且后面跟着字符串 ‘<code>;url=</code>‘ 和一个合法的 URL，则是重定向到指定链接的时间间隔 (秒)</li>
+</ul>
+</li>
+</ul>
+<h1 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h1><h2 id="从输入url到呈现网页"><a href="#从输入url到呈现网页" class="headerlink" title="从输入url到呈现网页"></a>从输入url到呈现网页</h2><p>（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。</p>
 <p>（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新的请求。</p>
 <p>（3）下一步我们首先需要获取的是输入的 URL 中的域名的 IP 地址，首先会判断本地是否有该域名的 IP 地址的缓存，如果有则使用，如果没有则向本地 DNS 服务器发起请求。本地 DNS 服务器也会先检查是否存在缓存，如果没有就会先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的 IP 地址后，本地 DNS 服务器再将这个 IP 地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。</p>
 <p>（4）当浏览器得到 IP 地址后，数据传输还需要知道目的主机 MAC 地址，因为应用层下发数据给传输层，TCP 协议会指定源端口号和目的端口号，然后下发给网络层。网络层会将本机地址作为源地址，获取的 IP 地址作为目的地址。然后将下发给数据链路层，数据链路层的发送需要加入通信双方的 MAC 地址，我们本机的 MAC 地址作为源 MAC 地址，目的 MAC 地址需要分情况处理，通过将 IP 地址与我们本机的子网掩码相与，我们可以判断我们是否与请求主机在同一个子网里，如果在同一个子网里，我们可以使用 APR 协议获取到目的主机的 MAC 地址，如果我们不在一个子网里，那么我们的请求应该转发给我们的网关，由它代为转发，此时同样可以通过 ARP 协议来获取网关的 MAC 地址，此时目的主机的 MAC 地址应该为网关的地址。</p>
@@ -1015,7 +1148,35 @@
 <p>CDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。</p>
 <p>CDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。</p>
 <h3 id="CDN缓存刷新"><a href="#CDN缓存刷新" class="headerlink" title="CDN缓存刷新"></a><strong>CDN缓存刷新</strong></h3><p>CDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。</p>
-<h1 id="工程与应用相关"><a href="#工程与应用相关" class="headerlink" title="工程与应用相关"></a>工程与应用相关</h1><h2 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型 XSS 的攻击步骤：</p>
+<h1 id="工程与应用相关"><a href="#工程与应用相关" class="headerlink" title="工程与应用相关"></a>工程与应用相关</h1><h2 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h2><p>首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。</p>
+<p>先获取所有图片的 <code>dom</code>，通过 <code>document.body.clientHeight</code> 获取可视区高度，再使用 <code>element.getBoundingClientRect()</code> API 直接得到元素相对浏览的 top 值， 遍历每个图片判断当前图片是否到了可视区范围内。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lazyload</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> viewHeight = <span class="hljs-built_in">document</span>.body.clientHeight <span class="hljs-comment">//获取可视区高度</span><br>  <span class="hljs-keyword">let</span> imgs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'img[data-src]'</span>)<br>  imgs.forEach(<span class="hljs-function">(<span class="hljs-params">item, index</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (item.dataset.src === <span class="hljs-string">''</span>) <span class="hljs-keyword">return</span><br><br>    <span class="hljs-comment">// 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置</span><br>    <span class="hljs-keyword">let</span> rect = item.getBoundingClientRect()<br>    <span class="hljs-keyword">if</span> (rect.bottom &gt;= <span class="hljs-number">0</span> &amp;&amp; rect.top &lt; viewHeight) &#123;<br>      item.src = item.dataset.src<br>      item.removeAttribute(<span class="hljs-string">'data-src'</span>)<br>    &#125;<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后给 window 绑定 <code>onscroll</code> 事件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'scroll'</span>, lazyload)<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意运用节流。</strong></p>
+<p><code>IntersectionObserver</code> 是一个新的 API，可以自动”观察”元素是否可见，Chrome 51+ 已经支持。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做”交叉观察器”。我们来看一下它的用法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> io = <span class="hljs-keyword">new</span> IntersectionObserver(callback, option)<br><br><span class="hljs-comment">// 开始观察</span><br>io.observe(<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'example'</span>))<br><br><span class="hljs-comment">// 停止观察</span><br>io.unobserve(element)<br><br><span class="hljs-comment">// 关闭观察器</span><br>io.disconnect()<br></code></pre></td></tr></table></figure>
+
+<h3 id="IntersectionObserver"><a href="#IntersectionObserver" class="headerlink" title="IntersectionObserver"></a>IntersectionObserver</h3><p><code>IntersectionObserver</code> 是浏览器原生提供的构造函数，接受两个参数：callback 是可见性变化时的回调函数，option 是配置对象（该参数可选）。</p>
+<p>目标元素的可见性变化时，就会调用观察器的回调函数 callback。callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> io = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function">(<span class="hljs-params">entries</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(entries)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>callback 函数的参数<code>（entries）</code>是一个数组，每个成员都是一个 <code>IntersectionObserverEntry</code> 对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，<code>entries</code> 数组就会有两个成员。</p>
+<ul>
+<li>time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒</li>
+<li>target：被观察的目标元素，是一个 DOM 节点对象</li>
+<li>isIntersecting: 目标是否可见</li>
+<li>rootBounds：根元素的矩形区域的信息，<code>getBoundingClientRect()</code>方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null</li>
+<li>boundingClientRect：目标元素的矩形区域的信息</li>
+<li>intersectionRect：目标元素与视口（或根元素）的交叉区域的信息</li>
+<li>intersectionRatio：目标元素的可见比例，即 <code>intersectionRect</code> 占 <code>boundingClientRect</code> 的比例，完全可见时为 1，完全不可见时小于等于 0</li>
+</ul>
+<p>下面我们用 <code>IntersectionObserver</code> 实现图片懒加载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> imgs = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'img[data-src]'</span>)<br><span class="hljs-keyword">const</span> config = &#123;<br>  <span class="hljs-attr">rootMargin</span>: <span class="hljs-string">'0px'</span>,<br>  <span class="hljs-attr">threshold</span>: <span class="hljs-number">0</span>,<br>&#125;<br><span class="hljs-keyword">let</span> observer = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function">(<span class="hljs-params">entries, self</span>) =&gt;</span> &#123;<br>  entries.forEach(<span class="hljs-function">(<span class="hljs-params">entry</span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (entry.isIntersecting) &#123;<br>      <span class="hljs-keyword">let</span> img = entry.target<br>      <span class="hljs-keyword">let</span> src = img.dataset.src<br>      <span class="hljs-keyword">if</span> (src) &#123;<br>        img.src = src<br>        img.removeAttribute(<span class="hljs-string">'data-src'</span>)<br>      &#125;<br>      <span class="hljs-comment">// 解除观察</span><br>      self.unobserve(entry.target)<br>    &#125;<br>  &#125;)<br>&#125;, config)<br><br>imgs.forEach(<span class="hljs-function">(<span class="hljs-params">image</span>) =&gt;</span> &#123;<br>  observer.observe(image)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a>前端路由</h2><h3 id="hash-模式"><a href="#hash-模式" class="headerlink" title="hash 模式"></a>hash 模式</h3><h3 id="history模式"><a href="#history模式" class="headerlink" title="history模式"></a>history模式</h3><h2 id="前端安全问题以及解决方案"><a href="#前端安全问题以及解决方案" class="headerlink" title="前端安全问题以及解决方案"></a>前端安全问题以及解决方案</h2><h3 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h3><h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型 XSS 的攻击步骤：</p>
 <ol>
 <li>攻击者将恶意代码提交到目标网站的数据库中。</li>
 <li></li>
