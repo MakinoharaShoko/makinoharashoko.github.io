@@ -605,6 +605,110 @@ function unCurrying(fn) {
 
 第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。
 
+## JS 事件模型
+
+### 事件监听函数
+
+```js
+addEventListener(eventType, handler, useCapture)
+```
+
+### 事件对象常用属性
+
+```
+type用于获取事件类型
+
+target获取事件目标
+
+stopPropagation()阻止事件冒泡
+
+preventDefault()阻止事件默认行为
+```
+
+### 事件阶段
+
+捕获阶段 -> 目标阶段 -> 冒泡阶段
+
+### 捕获阶段
+
+事件从document一直向下传播到目标元素, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。
+
+如何将处于冒泡阶段的事件修改成捕获阶段呢？
+
+```js
+parent.addEventListener('click', () => {      
+    console.log('parent 被点击了');   
+}，true)    
+child.addEventListener('click', (event) => {     
+    console.log('child 被点击了');          
+},true)
+```
+
+当处于冒泡阶段时，我们没有必要加第三个参数，因为 `addEventListener` 默认第三个参数为false（第三个参数存在），如果我们要事件处于捕获阶段的话，只要将第三个参数设成true就行。
+
+### 目标阶段
+
+事件到达目标元素, 触发目标元素的监听函数。
+
+### 冒泡阶段
+
+事件从目标元素冒泡到document, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。
+
+### 事件代理
+
+事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为事件代理(Event delegation)。
+
+### target currentTarget
+
+[`Event`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event) 接口的只读属性 `currentTarget` 表示的是当事件沿着 DOM 触发时事件的当前目标。它总是指向事件绑定的元素，而 [`Event.target`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target) 则是事件触发的元素。
+
+## Map 与 WeakMap
+
+`WeakMap` 对于值的引用都是不计入垃圾回收机制的，所以名字里面才会有一个"Weak"，表示这是弱引用（对对象的弱引用是指当该对象应该被 `GC` 回收时不会阻止 `GC` 的回收行为）。
+
+`Map` 相对于 `WeakMap` ：
+
+- `Map` 的键可以是任意类型，`WeakMap` 只接受对象作为键（null除外），不接受其他类型的值作为键
+- `Map` 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键； `WeakMap` 的键是弱引用，键所指向的对象可以被垃圾回收，此时键是无效的
+- `Map` 可以被遍历， `WeakMap` 不能被遍历
+
+## 关于 Array
+
+### Map Reduce
+
+**1.reduce是一个累加方法，是对数组累积执行回调函数，返回最终计算结果。**
+
+```js
+array.reduce(function(total, currentValue, currentIndex, arr){
+}, initialValue);
+
+//total 必需。初始值, 或者计算结束后的返回值。
+//currentValue  必需。当前元素
+//currentIndex  可选。当前元素的索引
+//arr   可选。当前元素所属的数组对象。
+//initialValue可选。传递给函数的初始值
+```
+
+**2.map是遍历数组的每一项，并执行回调函数的操作，返回一个对每一项进行操作后的新数组。**
+
+```js
+array.map(function(currentValue,index,arr), thisValue)；
+//currentValue  必须。当前元素的值
+//index 可选。当前元素的索引值
+//arr   可选。当前元素属于的数组对象
+//thisValue可选。对象作为该执行回调时使用，传递给函数，用作 "this" 的值。如果省略了 thisValue，或者传入 null、undefined，那么回调函数的 this 为全局对象。
+```
+
+**3.forEach和map用法一样,也是是遍历数组的每一项，并执行回调函数的操作，不过forEachf返回值是undefined，不可以链式调用。**
+
+```js
+array.forEach(function(currentValue, index, arr), thisValue)
+
+//currentValue  必需。当前元素
+//index 可选。当前元素的索引值。
+//arr   可选。当前元素所属的数组对象。
+//thisValue 可选。传递给函数的值一般用 "this" 值。如果这个参数为空， "undefined" 会传递给 "this" 值
+```
 
 # CSS相关
 
@@ -680,9 +784,213 @@ function unCurrying(fn) {
 | `vmin` | 视窗较小尺寸的1%                                             |
 | `vmax` | 视图大尺寸的1%                                               |
 
+## CSS 处理字符串
+
+### text-overflow
+
+`clip`
+
+**此为默认值。**这个关键字的意思是"在内容区域的极限处截断文本"，因此在字符的中间可能会发生截断。如果你的目标浏览器支持 `text-overflow: ''`，为了能在两个字符过渡处截断，你可以使用一个空字符串值 (`''`) 作为 `text-overflow` 属性的值。
+
+`ellipsis`
+
+这个关键字的意思是“用一个省略号 (`'…'`, `U+2026 HORIZONTAL ELLIPSIS`)来表示被截断的文本”。这个省略号被添加在内容区域中，因此会减少显示的文本。如果空间太小到连省略号都容纳不下，那么这个省略号也会被截断。
+
+`<string>`
+
+[`<string>`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/string)用来表示被截断的文本。字符串内容将被添加在内容区域中，所以会减少显示出的文本。如果空间太小到连省略号都容纳不下，那么这个字符串也会被截断。
+
+### overflow-wrap
+
+`normal`
+
+行只能在正常的单词断点处中断。（例如两个单词之间的空格）。
+
+`break-word`
+
+表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行。
+
+### text-transform
+
+`capitalize`
+
+这个关键字强制每个单词的首字母转换为大写。其他的字符保留不变（它们写在元素里的文本保留原始大小写）。字母是Unicode字符集或者数字里定义的字符 ；因此单词开头的任何标点符号或者特殊符号将会被忽略。
+
+Authors should not expect `capitalize` to follow language-specific titlecasing conventions (such as skipping articles in English).
+
+`uppercase`
+
+这个关键字强制所有字符被转换为大写。
+
+`lowercase`
+
+这个关键字强制所有字符被转换为小写。
+
+`none`
+
+这个关键字阻止所有字符的大小写被转换。
+
+`full-width`
+
+这个关键字强制字符 — 主要是表意字符和拉丁文字 — 书写进一个方形里，并允许它们按照一般的东亚文字（比如中文或日文）对齐。
+
+## 水平垂直居中
+
+### 水平居中
+
+比较简单，可以用`flex`，可以用`text-align`
+
+### 垂直居中
+
+#### 单行内联(`inline-`)元素垂直居中
+
+通过设置内联元素的高度(`height`)和行高(`line-height`)相等，从而使元素垂直居中。
+
+**核心代码：**
+
+```css
+#v-box {
+    height: 120px;
+    line-height: 120px;
+}
+```
+
+#### 利用flex布局（`flex`）
+
+利用flex布局实现垂直居中，其中`flex-direction: column`定义主轴方向为纵向。因为flex布局是CSS3中定义，在较老的浏览器存在兼容性问题。
+
+**核心代码：**
+
+```css
+.center-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+```
+
+## BFC IFC Flex
+
+### BFC
+
+`Block Formatting Context`，块级格式化上下文，一个独立的块级渲染区域，该区域拥有一套渲染规则来约束块级盒子的布局，且与区域外部无关。
+
+#### BFC的应用
+
+- 防止`margin`发生重叠
+- 防止发生因浮动导致的高度塌陷
+
+#### 怎么生成 BFC
+
+- `float`的值不为`none`；
+- `overflow`的值不为`visible`；
+- `display`的值为`inline-block` `table-cell` `table-caption`；
+- `position`的值为`absolute`或`fixed`；
+
+### IFC
+
+`IFC(Inline Formatting Contexts)`直译为"行内格式化上下文"，`IFC`的`line box`（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的 `padding/margin` 影响)
+
+#### IFC有的特性
+
+1. `IFC`中的`line box`一般左右都贴紧整个`IFC`，但是会因为`float`元素而扰乱。`float`元素会位于`IFC`与与`line box`之间，使得`line box`宽度缩短。
+2. `IFC`中时不可能有块级元素的，当插入块级元素时（如`p`中插入`div`）会产生两个匿名块与`div`分隔开，即产生两个`IFC`，每个`IFC`对外表现为块级元素，与`div`垂直排列。
+
+#### IFC的应用
+
+1. 水平居中：当一个块要在环境中水平居中时，设置其为`inline-block`则会在外层产生`IFC`，通过`text-align`则可以使其水平居中。
+2. 垂直居中：创建一个`IFC`，用其中一个元素撑开父元素的高度，然后设置其`vertical-align:middle`，其他行内元素则可以在此父元素下垂直居中。
+
+### Flex
+
+#### 容器
+
+```
+flex-direction //方向
+flex-wrap //换行
+flex-flow // 前两个属性的集合
+justify-content  //主轴对齐方式
+align-items //交叉轴对齐方式
+align-content //多轴线对齐方式
+```
+
+#### 项目
+
+```
+order //顺序
+flex-grow //放大比例，0为不放大
+flex-shrink //缩小比例，默认1, 0为不缩小
+flex-basis //分配前所占空间
+flex // 上面3个属性的集合
+align-self  //这个元素的对齐方式，覆盖容器的align-items
+```
+
+#### `flex:1` ？？？
+
+可以使用一个，两个或三个值来指定 `flex`属性。
+
+**单值语法**: 值必须为以下其中之一:
+
+- 一个无单位**数**: 它会被当作`flex:<number> 1 0;` `<flex-shrink>`的值被假定为1，然后`<flex-basis>` 的值被假定为`0`。
+- 一个有效的**宽度([`width`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width))**值: 它会被当作 `<flex-basis>的值。`
+- 关键字`none`，`auto`或`initial`.
+
+**双值语法**: 第一个值必须为一个无单位数，并且它会被当作 `<flex-grow>` 的值。第二个值必须为以下之一：
+
+- 一个无单位数：它会被当作 `<flex-shrink>` 的值。
+- 一个有效的宽度值: 它会被当作 `<flex-basis>` 的值。
+
+**三值语法:**
+
+- 第一个值必须为一个无单位数，并且它会被当作 `<flex-grow>` 的值。
+- 第二个值必须为一个无单位数，并且它会被当作 `<flex-shrink>` 的值。
+- 第三个值必须为一个有效的宽度值， 并且它会被当作 `<flex-basis>` 的值。
+
+#### flex取值
+
+- `initial`
+
+  元素会根据自身宽高设置尺寸。它会缩短自身以适应 flex 容器，但不会伸长并吸收 flex 容器中的额外自由空间来适应 flex 容器 。相当于将属性设置为"`flex: 0 1 auto`"。
+
+- `auto`
+
+  元素会根据自身的宽度与高度来确定尺寸，但是会伸长并吸收 flex 容器中额外的自由空间，也会缩短自身来适应 flex 容器。这相当于将属性设置为 "`flex: 1 1 auto`".
+
+- `none`
+
+  元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器。相当于将属性设置为"`flex: 0 0 auto`"。
+
 # HTML相关
 
+## `meta` 标签
 
+#### [`charset`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-charset)
+
+这个属性声明了文档的字符编码。如果使用了这个属性，其值必须是与 ASCII 大小写无关（ASCII case-insensitive）的"`utf-8`"。
+
+#### [**`http-equiv`**](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv)
+
+属性定义了一个编译指示指令。这个属性叫做 `**http-equiv**(alent)` 是因为所有允许的值都是特定 HTTP 头部的名称，如下：
+
+- `content-security-policy`
+  它允许页面作者定义当前页的[内容策略](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)。 内容策略主要指定允许的服务器源和脚本端点，这有助于防止跨站点脚本攻击。
+
+- `content-type`
+  如果使用这个属性，其值必须是"`text/html; charset=utf-8`"。注意：该属性只能用于 [MIME type](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) 为 `text/html` 的文档，不能用于 MIME 类型为 XML 的文档。
+
+- `default-style`
+
+  设置默认 [CSS 样式表](https://developer.mozilla.org/zh-CN/docs/Web/CSS)组的名称。
+
+- `x-ua-compatible`
+  如果指定，则 `content` 属性必须具有值 "`IE=edge`"。用户代理必须忽略此指示。
+
+- `refresh`
+
+  这个属性指定：
+
+  - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 只包含一个正整数，则为重新载入页面的时间间隔 (秒)；
+  - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 包含一个正整数，并且后面跟着字符串 '`;url=`' 和一个合法的 URL，则是重定向到指定链接的时间间隔 (秒)
 
 # 网络相关
 
@@ -1053,6 +1361,112 @@ CDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间�
 CDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。
 
 # 工程与应用相关
+
+## 懒加载
+
+首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。
+
+先获取所有图片的 `dom`，通过 `document.body.clientHeight` 获取可视区高度，再使用 `element.getBoundingClientRect()` API 直接得到元素相对浏览的 top 值， 遍历每个图片判断当前图片是否到了可视区范围内。
+
+```javascript
+function lazyload() {
+  let viewHeight = document.body.clientHeight //获取可视区高度
+  let imgs = document.querySelectorAll('img[data-src]')
+  imgs.forEach((item, index) => {
+    if (item.dataset.src === '') return
+
+    // 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置
+    let rect = item.getBoundingClientRect()
+    if (rect.bottom >= 0 && rect.top < viewHeight) {
+      item.src = item.dataset.src
+      item.removeAttribute('data-src')
+    }
+  })
+}
+```
+
+最后给 window 绑定 `onscroll` 事件
+
+```javascript
+window.addEventListener('scroll', lazyload)
+```
+
+**注意运用节流。**
+
+`IntersectionObserver` 是一个新的 API，可以自动"观察"元素是否可见，Chrome 51+ 已经支持。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做"交叉观察器"。我们来看一下它的用法：
+
+```javascript
+var io = new IntersectionObserver(callback, option)
+
+// 开始观察
+io.observe(document.getElementById('example'))
+
+// 停止观察
+io.unobserve(element)
+
+// 关闭观察器
+io.disconnect()
+```
+
+### IntersectionObserver
+
+`IntersectionObserver` 是浏览器原生提供的构造函数，接受两个参数：callback 是可见性变化时的回调函数，option 是配置对象（该参数可选）。
+
+目标元素的可见性变化时，就会调用观察器的回调函数 callback。callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。
+
+```javascript
+var io = new IntersectionObserver((entries) => {
+  console.log(entries)
+})
+```
+
+callback 函数的参数`（entries）`是一个数组，每个成员都是一个 `IntersectionObserverEntry` 对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，`entries` 数组就会有两个成员。
+
+- time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒
+- target：被观察的目标元素，是一个 DOM 节点对象
+- isIntersecting: 目标是否可见
+- rootBounds：根元素的矩形区域的信息，`getBoundingClientRect()`方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null
+- boundingClientRect：目标元素的矩形区域的信息
+- intersectionRect：目标元素与视口（或根元素）的交叉区域的信息
+- intersectionRatio：目标元素的可见比例，即 `intersectionRect` 占 `boundingClientRect` 的比例，完全可见时为 1，完全不可见时小于等于 0
+
+下面我们用 `IntersectionObserver` 实现图片懒加载
+
+```javascript
+const imgs = document.querySelectorAll('img[data-src]')
+const config = {
+  rootMargin: '0px',
+  threshold: 0,
+}
+let observer = new IntersectionObserver((entries, self) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      let img = entry.target
+      let src = img.dataset.src
+      if (src) {
+        img.src = src
+        img.removeAttribute('data-src')
+      }
+      // 解除观察
+      self.unobserve(entry.target)
+    }
+  })
+}, config)
+
+imgs.forEach((image) => {
+  observer.observe(image)
+})
+```
+
+## 前端路由
+
+### hash 模式
+
+
+
+### history模式
+
+
 
 ## 前端安全问题以及解决方案
 

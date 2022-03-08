@@ -14,40 +14,43 @@ tags:
 
 按照紧迫程度，在技术上遵循以下清单系统学习前端技术：
 
+[x] 完成 [?] 有疑虑 [-] 暂缓 [!] 重要且暂时缺乏了解
+
 ```
 [x] 跨域问题
 [x] 前端安全
 [x] 从输入 url 到网页呈现发生了什么
 [x] HTTP 1.0/1.1/2.0/3.0 HTTPS 缓存与设置、CDN 、Content-Type 相关
-[ ] 网络模型（ OSI 每层是做什么的）
+[-] 网络模型（ OSI 每层是做什么的）
 [x] 详细了解事件循环、宏任务、微任务
 [x] Promise （手写+实现Promise.all Promise.race）、异步编程（async await）
 [x] 闭包、高阶函数、内存泄漏问题、this指向问题
 [x] 深拷贝
 [x] 对象、instance of
-[ ] Proxy Reflect
+[-] Proxy Reflect
 [x] 柯里化 逆柯里化
-[ ] 事件冒泡，事件模型
-[ ] Map WeakMap Set 等ES6新特性
-[ ] reduce 实现 map
-[ ] css 水平垂直居中，几种方法
+[x] 事件冒泡，事件模型
+[x] Map WeakMap Set 等ES6新特性
+[x] reduce 实现 map
+[x] css 水平垂直居中，几种方法
 [x] css 几种单位
 [x] 重绘、回流 何时触发，如何减少
-[ ] 状态管理 React 相关（原理、渲染流程、性能优化、常用 HOOK ）
+[!] 状态管理 React 相关（原理、渲染流程、性能优化、常用 HOOK ）
 [x] 原型链、prototype、__proto__
-[ ] BOM DOM
-[ ] Webpack 原理，应用
-[ ] BFC IFC flex相关（flex:1 flex延展）、外边距折叠
-[ ] 服务端渲染
-[ ] HMR（热替换）
-[ ] 实现登录与鉴权
-[ ] meta类型
-[ ] 优化网络，懒加载 ServiceWorker
-[ ] 如何实现瀑布流等
-[ ] 前端路由方法
-[ ] CSS处理字符串（拆字、省略）
-[ ] 数组的几种方法
-[ ] 软件工程相关（从需求到实现，选择方法）
-[ ] http://highscalability.com/
+[?] BOM DOM
+[-] Webpack 原理，应用
+[X] BFC IFC flex相关（flex:1 flex延展）、外边距折叠
+[?] 服务端渲染（目前只能回答用过 Next.Js）
+[-] HMR（热替换）
+[-] 实现登录与鉴权
+[x] meta类型
+[X] 优化网络，懒加载 
+[-] ServiceWorker
+[-] 如何实现瀑布流等
+[x] 前端路由方法
+[x] CSS处理字符串（拆字、省略）
+[x] 数组的几种方法
+[!] 软件工程相关（从需求到实现，选择方法）
+[!] http://highscalability.com/
 ```
 
