@@ -582,7 +582,7 @@ function curry(func) {
 }
 ```
 
-逆柯里化
+##### 逆柯里化
 
 ```js
 function unCurrying(fn) {
