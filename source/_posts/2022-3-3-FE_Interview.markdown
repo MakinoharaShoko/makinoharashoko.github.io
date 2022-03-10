@@ -458,13 +458,13 @@ var obj2 = JSON.parse(JSON.stringify(obj1));
 function deepClone(initalObj, finalObj) {    
   var obj = finalObj || {};    
   for (var i in initalObj) {        
-    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
+    var prop = initalObj[i];// 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况
     if(prop === obj) {            
       continue;
     }        
     if (typeof prop === 'object') {
       obj[i] = (prop.constructor === Array) ? [] : {};            
-      arguments.callee(prop, obj[i]);
+      arguments.callee(prop, obj[i]);//调用自身，现在不建议用了
     } else {
       obj[i] = prop;
     }
@@ -746,7 +746,7 @@ array.forEach(function(currentValue, index, arr), thisValue)
 
 针对上述场景，示例代码：
 
-```
+```js
 //set陷阱函数
 let target = {
 	name:'target'
@@ -764,7 +764,6 @@ let proxy = new Proxy(target,{
 });
 
 proxy.msg='hello proxy'; //Uncaught Error: property must be number
-复制代码
 ```
 
 通过set陷阱函数就可以检测设置属性时属性值的类型，当属性值不是数字时，就会抛出错误。
@@ -1011,7 +1010,7 @@ Authors should not expect `capitalize` to follow language-specific titlecasing c
 
 #### 利用flex布局（`flex`）
 
-利用flex布局实现垂直居中，其中`flex-direction: column`定义主轴方向为纵向。因为flex布局是CSS3中定义，在较老的浏览器存在兼容性问题。
+利用flex布局实现垂直居中，其中 `flex-direction: column` 定义主轴方向为纵向。因为flex布局是 `CSS3` 中定义，在较老的浏览器存在兼容性问题。
 
 **核心代码：**
 
@@ -1145,6 +1144,16 @@ align-self  //这个元素的对齐方式，覆盖容器的align-items
 
   - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 只包含一个正整数，则为重新载入页面的时间间隔 (秒)；
   - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 包含一个正整数，并且后面跟着字符串 '`;url=`' 和一个合法的 URL，则是重定向到指定链接的时间间隔 (秒)
+
+#### meta 做 SEO
+
+```
+<title>Title of the page</title>
+<meta name=”description” content=”Everything you need to know about meta tags for search engine optimization”>
+<meta name=”keywords” content=”meta tags,search engine optimization” >
+```
+
+
 
 # 网络相关
 
