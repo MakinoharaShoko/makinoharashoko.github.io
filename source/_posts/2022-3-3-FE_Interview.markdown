@@ -713,6 +713,157 @@ array.forEach(function(currentValue, index, arr), thisValue)
 //thisValue 可选。传递给函数的值一般用 "this" 值。如果这个参数为空， "undefined" 会传递给 "this" 值
 ```
 
+## 代理与反射
+
+# 代理和反射
+
+> 代理是什么？
+
+通过调用 `new Proxy()` ，你可以创建一个代理用来替代另一个对象（被称之为目目标对象） ，这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。
+
+代理允许你拦截目标对象上的底层操作，而这本来是JS引擎的内部能力，拦截行为适用了一个能响应特定操作的函数（被称之为陷阱）；
+
+> 反射是什么？
+
+被`Reflect`对象所代表的反射接口，**是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的**。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数同名，并且接收的参数也与之一致。
+
+> 创建一个简单的代理
+
+使用Proxy构建可以创建一个简单的代理对象，需要传递两个参数：**目标对象以及一个处理器，后者是定义一个或多个陷阱函数的对象**。如果不定义陷阱函数，则依然使用目标对象的默认行为。
+
+### 示例
+
+#### 1、使用Set陷阱函数验证属性值
+
+假如有这样一个场景，必须要求对象的属性值必须只能是数值，这就意味着该对象每个新增属性时都要被验证，并且在属性不为数值属性时就应该抛出错误。因此就需要使用`set`陷阱函数来重写`set`函数的默认行为，`set`陷阱函数接收四个参数：
+
+1. trapTarget：代理的目标对象；
+2. key：需要写入的属性的键；
+3. value：被写入属性的值；
+4. receiver：操作发生的对象（通常是代理对象）
+
+`Reflect.set()`是`set`陷阱函数对应的反射方法，同时也是`set`操作的默认行为，`Reflect.set()`方法与`set`陷阱函数一样，能够接受四个参数。
+
+针对上述场景，示例代码：
+
+```
+//set陷阱函数
+let target = {
+	name:'target'
+}
+let proxy = new Proxy(target,{
+	set(tarpTarget,key,value,receiver){
+
+		if(!tarpTarget.hasOwnProperty(key)){
+			if(isNaN(value)){
+				throw new Error('property must be number');
+			}
+		}
+		return Reflect.set(tarpTarget,key,value,receiver);
+	}
+});
+
+proxy.msg='hello proxy'; //Uncaught Error: property must be number
+复制代码
+```
+
+通过set陷阱函数就可以检测设置属性时属性值的类型，当属性值不是数字时，就会抛出错误。
+
+#### **2.使用get陷阱函数进行对象外形验证**
+
+**对象外形（Object Shape）指的是对象已有的属性与方法的集合。**能够使用代理很方便进行对象外形验证。由于使用属性验证只需要在读取属性时被触发，因此只需要使用`get陷阱函数`。该函数接受三个参数：
+
+1. trapTarget：代理的目标对象；
+2. key：需要读取的属性的键；
+3. receiver：操作发生的对象（通常是代理对象）；
+
+相应的`Reflect.get()`方法同样拥有这三个参数。进行对象外形验证的示例代码：
+
+```
+//get陷阱函数
+
+let target={
+	name:'hello world'
+}
+
+let proxy = new Proxy(target,{
+		get(tarpTarget,key,receiver){
+			if(!(key in tarpTarget)){
+				throw new Error('不存在该对象');
+			}
+			return Reflect.get(tarpTarget,key,receiver);
+		}
+	});
+console.log(proxy.name); //hello world
+console.log(proxy.age); // Uncaught Error: 不存在该对象
+复制代码
+```
+
+使用`get陷阱函数`进行对象外形验证，由于`target`对象存在`name`属性，所以可以正常返回，当获取`age`属性时，由于该属性并不存在，所以会抛出错误。
+
+#### **3.使用has陷阱函数隐藏属性**
+
+`in`运算符用于判断指定对象中是否存在某个属性，如果对象的属性名与指定的字符串或符号值相匹配，那么`in`运算符就会返回`true`。无论该属性是对象自身的属性还是其原型的属性。
+
+`has陷阱函数`会在使用`in`运算符的情况下被调用，控制in运算符返回不同的结果，`has陷阱函数`会传入两个参数：
+
+1. trapTarget：代理的目标对象；
+2. key：属性键；
+
+`Reflect.has()`方法接收相同的参数，并向`in`运算符返回默认的响应结果，用于返回默认响应结果。
+
+例如想要隐藏value属性：
+
+```
+//has陷阱函数
+let target = {
+	value:'hello world'
+}
+
+let proxy = new Proxy(target,{
+	has(tarpTarget,key){
+		if(Object.is(key,'value')){
+			return false;
+		}
+		Reflect.has(tarpTarget,key);
+	}
+})
+
+console.log('value' in proxy); //false
+复制代码
+```
+
+使用`has陷阱函数`，能够控制`in`运算符的结果，`value`属性在`target对象`中存在，通过代理的`has陷阱函数`使得在检查`value`属性时返回`false`，达到隐藏属性的效果。
+
+#### **4.使用deleteProperty陷阱函数避免属性被删除**
+
+`deleteProperty` 陷阱函数会在使用`delete` 运算符删除对象属性时被调用，该方法接收两个参数：
+
+1. trapTarget：代理的目标对象；
+2. key：需要删除的键；
+
+`Reflect.deleteProperty()` 方法也接受这两个参数，并提供了 `deleteProperty` 陷阱函数的默认实现。你可以结合 `Reflect.deleteProperty()`方法以及 `deleteProperty` 陷阱函数，来修改 `delete` 运算符的行为。例如，能确保 value 属性不被删除：
+
+```
+let target = {
+	name: "target",
+	value: 42
+};
+let proxy = new Proxy(target, {
+	deleteProperty(trapTarget, key) {
+		if (key === "value") {
+			return false;
+		} else {
+			return Reflect.deleteProperty(trapTarget, key);
+		}
+	}
+});
+// 尝试删除 proxy.value
+console.log("value" in proxy); // true
+let result1 = delete proxy.value;
+console.log(result1); // false
+```
+
 # CSS相关
 
 ## 重绘与回流
