@@ -804,6 +804,60 @@
 <p><strong>3.forEach和map用法一样,也是是遍历数组的每一项，并执行回调函数的操作，不过forEachf返回值是undefined，不可以链式调用。</strong></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">array.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">currentValue, index, arr</span>), <span class="hljs-title">thisValue</span>)<br><br>//<span class="hljs-title">currentValue</span>  必需。当前元素<br>//<span class="hljs-title">index</span> 可选。当前元素的索引值。<br>//<span class="hljs-title">arr</span>   可选。当前元素所属的数组对象。<br>//<span class="hljs-title">thisValue</span> 可选。传递给函数的值一般用 "<span class="hljs-title">this</span>" 值。如果这个参数为空， "<span class="hljs-title">undefined</span>" 会传递给 "<span class="hljs-title">this</span>" 值</span><br></code></pre></td></tr></table></figure>
 
+<h2 id="代理与反射"><a href="#代理与反射" class="headerlink" title="代理与反射"></a>代理与反射</h2><h1 id="代理和反射"><a href="#代理和反射" class="headerlink" title="代理和反射"></a>代理和反射</h1><blockquote>
+<p>代理是什么？</p>
+</blockquote>
+<p>通过调用 <code>new Proxy()</code> ，你可以创建一个代理用来替代另一个对象（被称之为目目标对象） ，这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。</p>
+<p>代理允许你拦截目标对象上的底层操作，而这本来是JS引擎的内部能力，拦截行为适用了一个能响应特定操作的函数（被称之为陷阱）；</p>
+<blockquote>
+<p>反射是什么？</p>
+</blockquote>
+<p>被<code>Reflect</code>对象所代表的反射接口，<strong>是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的</strong>。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数同名，并且接收的参数也与之一致。</p>
+<blockquote>
+<p>创建一个简单的代理</p>
+</blockquote>
+<p>使用Proxy构建可以创建一个简单的代理对象，需要传递两个参数：<strong>目标对象以及一个处理器，后者是定义一个或多个陷阱函数的对象</strong>。如果不定义陷阱函数，则依然使用目标对象的默认行为。</p>
+<h3 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h3><h4 id="1、使用Set陷阱函数验证属性值"><a href="#1、使用Set陷阱函数验证属性值" class="headerlink" title="1、使用Set陷阱函数验证属性值"></a>1、使用Set陷阱函数验证属性值</h4><p>假如有这样一个场景，必须要求对象的属性值必须只能是数值，这就意味着该对象每个新增属性时都要被验证，并且在属性不为数值属性时就应该抛出错误。因此就需要使用<code>set</code>陷阱函数来重写<code>set</code>函数的默认行为，<code>set</code>陷阱函数接收四个参数：</p>
+<ol>
+<li>trapTarget：代理的目标对象；</li>
+<li>key：需要写入的属性的键；</li>
+<li>value：被写入属性的值；</li>
+<li>receiver：操作发生的对象（通常是代理对象）</li>
+</ol>
+<p><code>Reflect.set()</code>是<code>set</code>陷阱函数对应的反射方法，同时也是<code>set</code>操作的默认行为，<code>Reflect.set()</code>方法与<code>set</code>陷阱函数一样，能够接受四个参数。</p>
+<p>针对上述场景，示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//set陷阱函数</span><br><span class="hljs-keyword">let</span> target = &#123;<br>	<span class="hljs-attr">name</span>:<span class="hljs-string">'target'</span><br>&#125;<br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target,&#123;<br>	<span class="hljs-keyword">set</span>(tarpTarget,key,value,receiver)&#123;<br><br>		<span class="hljs-keyword">if</span>(!tarpTarget.hasOwnProperty(key))&#123;<br>			<span class="hljs-keyword">if</span>(<span class="hljs-built_in">isNaN</span>(value))&#123;<br>				<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'property must be number'</span>);<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.set(tarpTarget,key,value,receiver);<br>	&#125;<br>&#125;);<br><br>proxy.msg=<span class="hljs-string">'hello proxy'</span>; <span class="hljs-comment">//Uncaught Error: property must be number</span><br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>通过set陷阱函数就可以检测设置属性时属性值的类型，当属性值不是数字时，就会抛出错误。</p>
+<h4 id="2-使用get陷阱函数进行对象外形验证"><a href="#2-使用get陷阱函数进行对象外形验证" class="headerlink" title="2.使用get陷阱函数进行对象外形验证"></a><strong>2.使用get陷阱函数进行对象外形验证</strong></h4><p><strong>对象外形（Object Shape）指的是对象已有的属性与方法的集合。</strong>能够使用代理很方便进行对象外形验证。由于使用属性验证只需要在读取属性时被触发，因此只需要使用<code>get陷阱函数</code>。该函数接受三个参数：</p>
+<ol>
+<li>trapTarget：代理的目标对象；</li>
+<li>key：需要读取的属性的键；</li>
+<li>receiver：操作发生的对象（通常是代理对象）；</li>
+</ol>
+<p>相应的<code>Reflect.get()</code>方法同样拥有这三个参数。进行对象外形验证的示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//get陷阱函数</span><br><br><span class="hljs-keyword">let</span> target=&#123;<br>	<span class="hljs-attr">name</span>:<span class="hljs-string">'hello world'</span><br>&#125;<br><br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target,&#123;<br>		<span class="hljs-keyword">get</span>(tarpTarget,key,receiver)&#123;<br>			<span class="hljs-keyword">if</span>(!(key <span class="hljs-keyword">in</span> tarpTarget))&#123;<br>				<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'不存在该对象'</span>);<br>			&#125;<br>			<span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.get(tarpTarget,key,receiver);<br>		&#125;<br>	&#125;);<br><span class="hljs-built_in">console</span>.log(proxy.name); <span class="hljs-comment">//hello world</span><br><span class="hljs-built_in">console</span>.log(proxy.age); <span class="hljs-comment">// Uncaught Error: 不存在该对象</span><br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>get陷阱函数</code>进行对象外形验证，由于<code>target</code>对象存在<code>name</code>属性，所以可以正常返回，当获取<code>age</code>属性时，由于该属性并不存在，所以会抛出错误。</p>
+<h4 id="3-使用has陷阱函数隐藏属性"><a href="#3-使用has陷阱函数隐藏属性" class="headerlink" title="3.使用has陷阱函数隐藏属性"></a><strong>3.使用has陷阱函数隐藏属性</strong></h4><p><code>in</code>运算符用于判断指定对象中是否存在某个属性，如果对象的属性名与指定的字符串或符号值相匹配，那么<code>in</code>运算符就会返回<code>true</code>。无论该属性是对象自身的属性还是其原型的属性。</p>
+<p><code>has陷阱函数</code>会在使用<code>in</code>运算符的情况下被调用，控制in运算符返回不同的结果，<code>has陷阱函数</code>会传入两个参数：</p>
+<ol>
+<li>trapTarget：代理的目标对象；</li>
+<li>key：属性键；</li>
+</ol>
+<p><code>Reflect.has()</code>方法接收相同的参数，并向<code>in</code>运算符返回默认的响应结果，用于返回默认响应结果。</p>
+<p>例如想要隐藏value属性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//has陷阱函数</span><br><span class="hljs-keyword">let</span> target = &#123;<br>	<span class="hljs-attr">value</span>:<span class="hljs-string">'hello world'</span><br>&#125;<br><br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target,&#123;<br>	has(tarpTarget,key)&#123;<br>		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">Object</span>.is(key,<span class="hljs-string">'value'</span>))&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		&#125;<br>		<span class="hljs-built_in">Reflect</span>.has(tarpTarget,key);<br>	&#125;<br>&#125;)<br><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'value'</span> <span class="hljs-keyword">in</span> proxy); <span class="hljs-comment">//false</span><br>复制代码<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>has陷阱函数</code>，能够控制<code>in</code>运算符的结果，<code>value</code>属性在<code>target对象</code>中存在，通过代理的<code>has陷阱函数</code>使得在检查<code>value</code>属性时返回<code>false</code>，达到隐藏属性的效果。</p>
+<h4 id="4-使用deleteProperty陷阱函数避免属性被删除"><a href="#4-使用deleteProperty陷阱函数避免属性被删除" class="headerlink" title="4.使用deleteProperty陷阱函数避免属性被删除"></a><strong>4.使用deleteProperty陷阱函数避免属性被删除</strong></h4><p><code>deleteProperty</code> 陷阱函数会在使用<code>delete</code> 运算符删除对象属性时被调用，该方法接收两个参数：</p>
+<ol>
+<li>trapTarget：代理的目标对象；</li>
+<li>key：需要删除的键；</li>
+</ol>
+<p><code>Reflect.deleteProperty()</code> 方法也接受这两个参数，并提供了 <code>deleteProperty</code> 陷阱函数的默认实现。你可以结合 <code>Reflect.deleteProperty()</code>方法以及 <code>deleteProperty</code> 陷阱函数，来修改 <code>delete</code> 运算符的行为。例如，能确保 value 属性不被删除：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> target = &#123;<br>	<span class="hljs-attr">name</span>: <span class="hljs-string">"target"</span>,<br>	<span class="hljs-attr">value</span>: <span class="hljs-number">42</span><br>&#125;;<br><span class="hljs-keyword">let</span> proxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Proxy</span>(target, &#123;<br>	deleteProperty(trapTarget, key) &#123;<br>		<span class="hljs-keyword">if</span> (key === <span class="hljs-string">"value"</span>) &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-built_in">Reflect</span>.deleteProperty(trapTarget, key);<br>		&#125;<br>	&#125;<br>&#125;);<br><span class="hljs-comment">// 尝试删除 proxy.value</span><br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">"value"</span> <span class="hljs-keyword">in</span> proxy); <span class="hljs-comment">// true</span><br><span class="hljs-keyword">let</span> result1 = <span class="hljs-keyword">delete</span> proxy.value;<br><span class="hljs-built_in">console</span>.log(result1); <span class="hljs-comment">// false</span><br></code></pre></td></tr></table></figure>
+
 <h1 id="CSS相关"><a href="#CSS相关" class="headerlink" title="CSS相关"></a>CSS相关</h1><h2 id="重绘与回流"><a href="#重绘与回流" class="headerlink" title="重绘与回流"></a>重绘与回流</h2><p><strong>回流必将引起重绘，重绘不一定会引起回流。</strong></p>
 <h3 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h3><p>导致回流的一些操作</p>
 <ul>
