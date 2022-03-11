@@ -1821,7 +1821,9 @@ CSRF大多数情况下来自第三方域名，但并不能排除本域发起。�
 
 ##### CSRF Token
 
+CSRF Token机制是目前比较主流的的防御手段，其核心思路是在需要验证的请求中添加一个无法预测，无法使用浏览器策略直接提交的字段。CSRF Token可以是POST请求的一个参数、或者是一个自定义的HTTP Header，Token可以存放于`<mata>`标签中、JS变量中、Cookie中、浏览器Local Storage中或者DOM的任何位置，Token可以是同步令牌、加密令牌或者HMAC Token。
 
+不同的生成、存储及使用方式，所带来的的安全性也是存在区别的，一般推荐使用HMAC Token、存储于DOM中，并在Ajax请求中添加自定义Header传输Token。使用CSRF Token的优点在于识别准确，后续新开发接口只需按照规则开发便可避免CSRF漏洞。缺点在于推CSRF Token机制需要前端和客户端开发付出大量时间进行调整，且一旦CSRF Token机制运转，旧版本APP可能无法使用。
 
 ##### 双重 token
 
@@ -1829,9 +1831,69 @@ CSRF大多数情况下来自第三方域名，但并不能排除本域发起。�
 
 ##### Samesite cookie
 
+Cookie 的`SameSite`属性用来限制第三方 Cookie，从而减少安全风险。
 
+它可以设置三个值。
+
+> - Strict
+> - Lax
+> - None
+
+**Strict**
+
+`Strict`最为严格，完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。换言之，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
+
+> ```bash
+> Set-Cookie: CookieName=CookieValue; SameSite=Strict;
+> ```
+
+这个规则过于严格，可能造成非常不好的用户体验。比如，当前网页有一个 GitHub 链接，用户点击跳转就不会带有 GitHub 的 Cookie，跳转过去总是未登陆状态。
+
+**Lax**
+
+`Lax`规则稍稍放宽，大多数情况也是不发送第三方 Cookie，但是导航到目标网址的 Get 请求除外。
+
+> ```markup
+> Set-Cookie: CookieName=CookieValue; SameSite=Lax;
+> ```
+
+导航到目标网址的 GET 请求，只包括三种情况：链接，预加载请求，GET 表单。详见下表。
+
+| 请求类型  |                 示例                 |    正常情况 | Lax         |
+| :-------- | :----------------------------------: | ----------: | :---------- |
+| 链接      |         `<a href="..."></a>`         | 发送 Cookie | 发送 Cookie |
+| 预加载    | `<link rel="prerender" href="..."/>` | 发送 Cookie | 发送 Cookie |
+| GET 表单  |  `<form method="GET" action="...">`  | 发送 Cookie | 发送 Cookie |
+| POST 表单 | `<form method="POST" action="...">`  | 发送 Cookie | 不发送      |
+| iframe    |    `<iframe src="..."></iframe>`     | 发送 Cookie | 不发送      |
+| AJAX      |            `$.get("...")`            | 发送 Cookie | 不发送      |
+| Image     |          `<img src="...">`           | 发送 Cookie | 不发送      |
+
+设置了`Strict`或`Lax`以后，基本就杜绝了 CSRF 攻击。当然，前提是用户浏览器支持 SameSite 属性。
 
 ### 点击劫持
 
+#### 原理
 
+1. 访问者被恶意页面吸引。怎样吸引的不重要。
+2. 页面上有一个看起来无害的链接（例如：“变得富有”或者“点我，超好玩！”）。
+3. 恶意页面在该链接上方放置了一个透明的 `<iframe>`，其 `src` 来自于 [facebook.com](http://facebook.com/)，这使得“点赞”按钮恰好位于该链接上面。这通常是通过 `z-index` 实现的。
+4. 用户尝试点击该链接时，实际上点击的是“点赞”按钮。
 
+#### 防范
+
+`samesite` cookie 特性可以阻止点击劫持攻击。
+
+具有 `samesite` 特性的 cookie 仅在网站是通过直接方式打开（而不是通过 frame 或其他方式）的情况下才发送到网站。更多细节请见 [Cookie，document.cookie](https://zh.javascript.info/cookie#samesite)。
+
+如果网站，例如 Facebook，在其身份验证 cookie 中具有 `samesite` 特性，像这样：
+
+```none
+Set-Cookie: authorization=secret; samesite
+```
+
+……那么，当在另一个网站中的 iframe 中打开 Facebook 时，此类 cookie 将不会被发送。因此，攻击将失败。
+
+当不使用 cookie 时，`samesite` cookie 特性将不会有任何影响。这可以使其他网站能够轻松地在 iframe 中显示我们公开的、未进行身份验证的页面。
+
+然而，这也可能会使得劫持攻击在少数情况下起作用。例如，通过检查 IP 地址来防止重复投票的匿名投票网站仍然会受到点击劫持的攻击，因为它不使用 cookie 对用户身份进行验证。
