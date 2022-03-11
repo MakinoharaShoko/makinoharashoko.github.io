@@ -531,21 +531,25 @@ JavaScript的函数其实都指向某个变量。既然变量可以指向函数�
 - 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
 - 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时
 
-##### 节流
+##### 防抖
 
 ```javascript
-function debounce(fn,delay){
-    let timer = null //借助闭包
-    return function() {
-        if(timer){
-            clearTimeout(timer) 
-        }
-        timer = setTimeout(fn,delay) // 简化写法
+function debounce(func, wait) {
+    let timeout;
+
+    return function () {
+        let context = this; // 保存this指向
+        let args = arguments; // 拿到event对象
+
+        clearTimeout(timeout)
+        timeout = setTimeout(function(){
+            func.apply(context, args)
+        }, wait);
     }
 }
 ```
 
-##### 防抖
+##### 节流
 
 ```javascript
 function throttle(fn,delay){
@@ -553,7 +557,7 @@ function throttle(fn,delay){
     return function() {
        if(!valid){
            //休息时间 暂不接客
-           return false 
+           return;
        }
        // 工作时间，执行函数并且在间隔期内把状态位设为无效
         valid = false
