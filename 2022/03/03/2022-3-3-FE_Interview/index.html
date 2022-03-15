@@ -772,7 +772,7 @@
 
 <h3 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h3><p>第一种情况是我们由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。</p>
 <p>第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留<br>在内存中，而无法被回收。</p>
-<p>第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回<br>收。</p>
+<p>第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回收。</p>
 <p>第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。</p>
 <h2 id="JS-事件模型"><a href="#JS-事件模型" class="headerlink" title="JS 事件模型"></a>JS 事件模型</h2><h3 id="事件监听函数"><a href="#事件监听函数" class="headerlink" title="事件监听函数"></a>事件监听函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">addEventListener(eventType, handler, useCapture)<br></code></pre></td></tr></table></figure>
 
