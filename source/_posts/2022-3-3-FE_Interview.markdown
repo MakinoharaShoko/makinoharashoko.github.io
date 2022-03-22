@@ -593,9 +593,10 @@ function curry(func) {
 
 ```js
 function unCurrying(fn) {
-  return function(tar, ...argu) {
-    return fn.apply(tar, argu)
-  }
+    const tar = this;
+    return function (...argu) {
+        return fn.apply(tar, argu)
+    }
 }
 ```
 
