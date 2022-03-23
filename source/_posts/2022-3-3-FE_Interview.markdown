@@ -528,8 +528,8 @@ myFunc();
 
 JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
 
-- 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
 - 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时
+- 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
 
 ##### 防抖
 
@@ -593,9 +593,10 @@ function curry(func) {
 
 ```js
 function unCurrying(fn) {
-  return function(tar, ...argu) {
-    return fn.apply(tar, argu)
-  }
+    const tar = this;
+    return function (...argu) {
+        return fn.apply(tar, argu)
+    }
 }
 ```
 
