@@ -1,0 +1,154 @@
+---
+layout:     post
+title:      WASM Rust 踩坑记（附完整解决方法
+intro:   ""
+date:       2022-4-6 23:00:00
+author:     "Mahiru"
+catalog: true
+tags:
+    - 工程开发
+---
+
+## 从零开始的WASM踩坑
+
+在这个风和日丽、阳光明媚的下午，我参照教程 https://developer.mozilla.org/zh-CN/docs/WebAssembly/Rust_to_wasm 开始编写第一个`WASM`程序。
+
+由于已经配置好了 Rust 环境，所以我预期一切正常，只需要半小时就能拿下战斗。但是在安装 Wasm 环境的时候，就遇到了第一个坑：Cargo 的源是 GitHub 源，国内用不了啊。
+
+不过这种换源问题怎么能难得倒我们呢？开换！
+
+https://mirrors.gitcode.host/zzy/rust-crate-guide/4-cargo/4.1-source-replacement.html
+
+换好源之后，就开始愉快地安装环节
+
+```shell
+cargo install wasm-pack
+```
+
+然后就来到了喜闻乐见的报错环节
+
+```shell
+error: failed to run custom build command for `openssl-sys v0.9.55`
+```
+
+于是安装 OpenSSL，并配置环境变量，然后没卵用......
+
+**找了很多方案，最终选择直接下载编译好的安装包，简单粗暴。（如果你遇到了和我一样的问题，直接看这个**
+
+> 解决方案： https://stackoverflow.com/questions/68646684/cant-install-cargo-wasm-pack
+>
+> 下载地址： https://rustwasm.github.io/wasm-pack/installer/# 
+
+然后就按照教程继续做，准备构建的时候发现了一个问题，`wasm-bindgen`的版本号对不上
+
+改为0.2.79后解决问题。
+
+```toml
+[package]
+name = "hello-wasm"
+version = "0.1.0"
+authors = ["Mahiru_@outlook.com"]
+description = "A sample project with wasm-pack"
+license = "MIT/Apache-2.0"
+repository = "https://github.com/yourgithubusername/hello-wasm"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wasm-bindgen = "0.2.79"
+```
+
+根据 MDN 的教程，你应该运行这个编译指令：
+
+```shell
+$ wasm-pack build --scope mynpmusername
+```
+
+然后你就错了，然后遇到这个报错
+
+```
+Failed to load module script: The server responded with a non-JavaScript MIME type of "application/wasm". Strict MIME type checking is enforced for module scripts per HTML spec.
+```
+
+> 参考： https://stackoverflow.com/questions/64308461/failed-to-load-wasm-application
+
+你应该运行的是这个指令，以指定编译目标：
+
+```shell
+wasm-pack build --release --target web
+```
+
+**你以为这就完了吗？**
+
+接下来，当我试图在 JS 代码中引入 `WASM`的时候，发现了新的问题。
+
+MDN 提供的代码是这样的：
+
+```js
+const js = import("./node_modules/@yournpmusername/hello-wasm/hello_wasm.js");
+js.then(js => {
+  js.greet("WebAssembly");
+});
+
+```
+
+这段代码屁有没有，然后你会收获一个报错：
+
+```
+Uncaught (in promise) TypeError: Cannot read properties of undefined (reading '__wbindgen_malloc')
+```
+
+**正确的代码是：**
+
+```js
+import init from './pkg/hello_wasm.js';
+import {greet} from './pkg/hello_wasm.js';
+
+function run() {
+    // use the function ex_function1 here
+    greet('123')
+}
+
+init().then(run)
+```
+
+> 参考： https://stackoverflow.com/questions/64308461/failed-to-load-wasm-application
+
+然后你创建的一个 HTML 文档，并粘贴了 MDN 给的示例：
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>hello-wasm example</title>
+  </head>
+  <body>
+    <script src="./index.js"></script>
+  </body>
+</html>
+```
+
+**又错了！！！！！！**
+
+```
+Uncaught SyntaxError: Cannot use import statement outside a module
+```
+
+不过这个问题就很简单了，加上 `type="module"` 就可以了。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>hello-wasm example</title>
+</head>
+<body>
+<script type="module" src="./index.js"></script>
+</body>
+</html>
+```
+
+最后，你成功运行了自己的第一个用 Rust 编写的 `WASM` 代码，可喜可贺。啪啪啪啪啪啪（鼓掌
