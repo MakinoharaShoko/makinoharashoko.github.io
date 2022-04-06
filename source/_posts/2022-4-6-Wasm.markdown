@@ -152,3 +152,9 @@ Uncaught SyntaxError: Cannot use import statement outside a module
 ```
 
 最后，你成功运行了自己的第一个用 Rust 编写的 `WASM` 代码，可喜可贺。啪啪啪啪啪啪（鼓掌
+
+## 完整的示例代码，请看：
+
+https://github.com/MakinoharaShoko/Learning-Code/tree/main/Rust/hello-wasm （RUST）
+
+https://github.com/MakinoharaShoko/Learning-Code/tree/main/Wasm/WASM_Test_1 （WASM 网页）
