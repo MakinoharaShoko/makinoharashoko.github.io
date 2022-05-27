@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      MySQL installation by CLI.
+title:      MySQL installation by CLI
 intro:   ""
 date:       2022-5-25 23:30:00
 author:     "Mahiru"
