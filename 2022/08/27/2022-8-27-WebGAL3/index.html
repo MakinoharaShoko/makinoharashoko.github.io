@@ -138,7 +138,7 @@
                     <div class="post-box">
 
                         <div class="post-date" title="2022-08-27 18:30:00">2022/08/27</div>
-                        <div class="post-title" title="Webpack 搭建 React + TS 环境">Webpack 搭建 React + TS 环境</div>
+                        <div class="post-title" title="WebGAL 年度总结">WebGAL 年度总结</div>
                     </div>
 
                 </a>
@@ -753,7 +753,7 @@
             <br/>
             <br/>
             <div class="ArticleText">
-                Webpack 搭建 React + TS 环境
+                WebGAL 年度总结
             </div>
             <div class="ArticleTime">
                 Published on Sat Aug 27 2022 18:30:00 GMT+0000
@@ -762,16 +762,29 @@
 
         </div>
         <div id="article">
-            <h1 id="WebGAL-年度总结"><a href="#WebGAL-年度总结" class="headerlink" title="WebGAL 年度总结"></a>WebGAL 年度总结</h1><p>WebGAL 项目启动已经有接近一年的时间。在去年9月，这个项目刚刚起步时，它还只能支持一些最普通的立绘及背景显示、背景音乐等功能。而如今，它已经可以支持丰富的动画及特殊效果，以及鉴赏模式等诸多功能。除此以外，最亮眼之处无疑是为了使更多缺少编程经验而设计的 WebGAL Origine 图形化编辑器。虽然这个编辑器项目尚不完善，但是已经可以用于制作一些基础的 Galgame 了。</p>
+            <h1 id="WebGAL-年度总结"><a href="#WebGAL-年度总结" class="headerlink" title="WebGAL 年度总结"></a>WebGAL 年度总结</h1><p><img src="/img/WG3/1.png" alt="img"></p>
+<p>WebGAL 项目启动已经有接近一年的时间。在去年9月，这个项目刚刚起步时，它还只能支持一些最普通的立绘及背景显示、背景音乐等功能。而如今，它已经可以支持丰富的动画及特殊效果，以及鉴赏模式等诸多功能。除此以外，最亮眼之处无疑是为了使更多缺少编程经验而设计的 WebGAL Origine 图形化编辑器。虽然这个编辑器项目尚不完善，但是已经可以用于制作一些基础的 Galgame 了。</p>
 <p>现在，WebGAL 已经被用于原生开发一些 Galgame 了，这代表了这项技术已经得到了认可，并且实际表现上也相当良好，没有出现恶性 bug。其中一个制作精良的游戏是 《铃色记忆》，是虚拟主播星奈铃的粉丝团“星奈组”为她制作的毕业纪念游戏。可以看出制作组为之投入的心血。因此无论是出于体验 WebGAL 引擎制作的游戏，还是去通过这个游戏去了解一位曾经闪耀过的偶像，这个游戏都是值得一玩的。</p>
 <p>游戏链接： <a href="http://hoshinasuzu.cn/" target="_blank" rel="noopener">http://hoshinasuzu.cn/</a></p>
-<p>除此以外，WebGAL 的官方演示站点则会随着 WebGAL 的研发同步更新。如果想要体验应用在 WebGAL 上的最新技术成果，欢迎访问 <a href="https://demo.msfasr.com/" target="_blank" rel="noopener">https://demo.msfasr.com/</a> </p>
+<p>除此以外，WebGAL 的官方演示站点则会随着 WebGAL 的研发同步更新。如果想要体验应用在 WebGAL 上的最新技术成果，欢迎访问：</p>
+<p> <a href="https://demo.msfasr.com/" target="_blank" rel="noopener">https://demo.msfasr.com/</a> </p>
 <p>接下来，我将介绍几个 WebGAL 在本年度更新中的重要功能，以及这些功能是如何被设计实现的。</p>
-<h2 id="演出控制系统"><a href="#演出控制系统" class="headerlink" title="演出控制系统"></a>演出控制系统</h2><p>一个制作良好的 Galgame 总是具有丰富的演出效果，不仅仅是人物和背景的动画效果，有时为了渲染与烘托气氛，我们也时常需要一些诸如下雨、下雪之类的特殊效果。这些风格各异的演出必须由同一个演出控制系统来控制，否则在进行诸如存读档、回溯等需要保存或恢复演出状态的操作时，就会十分不利。</p>
+<h2 id="演出控制系统"><a href="#演出控制系统" class="headerlink" title="演出控制系统"></a>演出控制系统</h2><p><img src="/img/WG3/4.png" alt="img"></p>
+<p><img src="/img/WG3/5.png" alt="img"></p>
+<p>一个制作良好的 Galgame 总是具有丰富的演出效果，不仅仅是人物和背景的动画效果，有时为了渲染与烘托气氛，我们也时常需要一些诸如下雨、下雪之类的特殊效果。这些风格各异的演出必须由同一个演出控制系统来控制，否则在进行诸如存读档、回溯等需要保存或恢复演出状态的操作时，就会十分不利。</p>
 <p>由于 WebGAL 是通过不断读取脚本来控制游戏的推进的，所以每一种类型的脚本，几乎都对应了一种演出（控制变量等不执行演出的脚本除外）.。对于每个类型的演出，都是由一个函数发起的，这个函数被称之为演出发起函数，只用于发起具体的脚本对应的演出，然后返回一个演出控制模块。通过控制这个模块，WebGAL 可以中断这个演出，并获得演出当前执行的状态或演出是否要求阻塞游戏流程继续推进或者自动播放的向前推进。</p>
 <p>而由于每种演出会对应一种演出发起函数的这种特性，对于演出状态的存读档就变得非常容易。在存档的时候记录下当前“舞台”上存在哪种演出，这个演出的发起脚本是什么样的，然后在读档的时候重新将这些“演出发起函数”执行一遍，所有的演出就能被正确地读取回舞台上了。</p>
 <p>关于演出控制系统的详细介绍，今后会写一篇文章单独讨论这个问题。</p>
-<h2 id="鉴赏系统"><a href="#鉴赏系统" class="headerlink" title="鉴赏系统"></a>鉴赏系统</h2><h2 id="存读档与用户数据存储"><a href="#存读档与用户数据存储" class="headerlink" title="存读档与用户数据存储"></a>存读档与用户数据存储</h2><h2 id="图形用户界面"><a href="#图形用户界面" class="headerlink" title="图形用户界面"></a>图形用户界面</h2>
+<h2 id="鉴赏系统"><a href="#鉴赏系统" class="headerlink" title="鉴赏系统"></a>鉴赏系统</h2><p><img src="/img/WG3/6.png" alt="img"></p>
+<p><img src="/img/WG3/7.png" alt="img"></p>
+<p>鉴赏系统是 Galgame 引擎的特色功能，用于让用户得以反复品鉴已经玩过的内容。目前 WebGAL 可以鉴赏的资源还仅包括 CG 和背景音乐。今后也将会持续更新，支持更多鉴赏类型。</p>
+<h2 id="存读档与用户数据存储"><a href="#存读档与用户数据存储" class="headerlink" title="存读档与用户数据存储"></a>存读档与用户数据存储</h2><p><img src="/img/WG3/9.png" alt="img"></p>
+<p><img src="/img/WG3/8.png" alt="img"></p>
+<p>WebGAL 现已支持最多200个位置的存读档，并且在存档时也会一并将 Backlog （历史回溯）信息记录下来！WebGAL 的 Backlog 是可以进行语音回放以及回跳的完全体 Backlog ，致力于与业界最高水平保持一致。这也体现了 WebGAL 的愿景：打造可以在 Web 端运行的，功能完整的，对标桌面端体验的 Galgame 引擎！</p>
+<h2 id="图形用户界面"><a href="#图形用户界面" class="headerlink" title="图形用户界面"></a>图形用户界面</h2><p><img src="/img/WG3/2.png" alt="img"></p>
+<p><img src="/img/WG3/3.png" alt="img"></p>
+<p>WebGAL 的图形用户界面是通用型界面，因此在设计上尽可能的保证了通用性，如果想要定制符合游戏美术风格的设计，还需要自行修改样式源代码来实现。但是这不代表着 WebGAL 的通用设计就无法使用。相较于其他通用引擎，WebGAL 尽一切可能将通用主题设计的美观、典雅且克制。想要设计一个好看的通用主题是很困难的事，一方面，需要考虑各种游戏类型，不能偏向于某种风格；另一方面，也不能太过于简单、朴素。因此，WebGAL 采用了多种颜色进行配色，好让引擎的界面效果变得丰富多彩，同时在设计上参考了 Apple、Visual Arts 的风格，在保持克制的同时尽可能丰富视觉效果。由于笔者并没有系统学习过交互设计与平面设计，因此设计出来的界面可能有很多细节问题。今后笔者也会加强视觉设计方面的知识学习，不断改良图形用户界面的设计风格。</p>
+
         </div>
 
     </div>
