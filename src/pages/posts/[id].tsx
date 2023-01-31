@@ -4,12 +4,13 @@
 import {IPostsDesc} from "@/pages/api/getPostsList";
 import ReactMarkdown from 'react-markdown'
 import fm from "front-matter";
+import {useMarkdown} from "@/hooks/useMarkdown";
 
 export async function getStaticPaths() {
   const pages = await fetch('http://localhost:3000/api/getPostsList').then(result => result.json()) as IPostsDesc[];
   const paths = pages.filter(page => page.extName.toLowerCase() === '.md' || page.extName.toLowerCase() === '.markdown')
     .map(page => ({
-      params: {id: page.name.split('.')[0]}
+      params: {id: page.name}
     }))
   return {
     paths,
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
 // `getStaticPaths` requires using `getStaticProps`
 export async function getStaticProps(context: any) {
   const fileName = context.params.id;
-  const post = await fetch(`http://localhost:3000/api/getPost/${fileName}.markdown`).then(res => res.text());
+  const post = await fetch(`http://localhost:3000/api/getPost/${fileName}`).then(res => res.text());
   return {
     props: {
       post
@@ -29,9 +30,9 @@ export async function getStaticProps(context: any) {
 }
 
 export default function Post({post}: { post: string }) {
-  const postObj = fm(post);
-  const postBody = postObj.body;
-  const postAttr = postObj.attributes;
+  const article = useMarkdown(post);
+  const postAttr = article.attributes;
+  const postBody = article.body;
   console.log(postAttr);
   const articleBody = <ReactMarkdown>{postBody}</ReactMarkdown>
   return <div>
