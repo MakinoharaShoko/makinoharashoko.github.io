@@ -18,7 +18,7 @@ export default function handler(
   getAllPosts().then(result => res.status(200).json(result as IPostsDesc[]))
 }
 
-async function getAllPosts() {
+export async function getAllPosts():Promise<IPostsDesc[]> {
   const dir = path.join(process.cwd(), 'posts/article');
   const readResult = await fsp.readdir(dir);
   const dirInfoPromises = readResult.map((e) => {
@@ -35,5 +35,5 @@ async function getAllPosts() {
       });
     });
   });
-  return await Promise.all(dirInfoPromises);
+  return await Promise.all(dirInfoPromises) as IPostsDesc[];
 }

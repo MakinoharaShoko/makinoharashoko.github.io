@@ -12,8 +12,7 @@ export default function handler(
   getPostDetail(name as string).then(result=>res.status(200).send(result))
 }
 
-async function getPostDetail(postname:string){
-  console.log(postname)
+export async function getPostDetail(postname:string){
   const postPath = path.join(process.cwd(),`posts/article/${postname}`);
   const postDetail = await fsp.readFile(postPath);
   return postDetail.toString('utf-8')
