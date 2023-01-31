@@ -1,1 +1,6 @@
+GET localhost:3000/api/getPost/2019-09-30-OneYearLater.markdown
+Accept: application/json
+
+###
 GET localhost:3000/api/getPostsList
+Accept: application/json
