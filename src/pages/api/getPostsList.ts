@@ -4,11 +4,18 @@ import fs from 'fs/promises'
 import path, {extname} from 'path'
 import * as process from "process";
 
+export interface IPostsDesc {
+  "name": string,
+  "isDir": boolean,
+  "extName": string,
+  "path": string
+}
+
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<IPostsDesc[]>
 ) {
-  getAllPosts().then(result => res.status(200).json(result))
+  getAllPosts().then(result => res.status(200).json(result as IPostsDesc[]))
 }
 
 async function getAllPosts() {
