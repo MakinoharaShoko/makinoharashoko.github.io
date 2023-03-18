@@ -1,0 +1,926 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/4895d80a2f6580a7.css" as="style"/><link rel="stylesheet" href="/_next/static/css/4895d80a2f6580a7.css" data-n-g=""/><link rel="preload" href="/_next/static/css/234b6b00259efb8e.css" as="style"/><link rel="stylesheet" href="/_next/static/css/234b6b00259efb8e.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-59c5c889f52620d6.js" defer=""></script><script src="/_next/static/chunks/framework-2c79e2a64abdb08b.js" defer=""></script><script src="/_next/static/chunks/main-5020794388548d5e.js" defer=""></script><script src="/_next/static/chunks/pages/_app-4087c6bf47e90c25.js" defer=""></script><script src="/_next/static/chunks/9f96d65d-c9e0543547ce45e9.js" defer=""></script><script src="/_next/static/chunks/557-10798b428373902a.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bid%5D-f16fc4f41fe9d2a0.js" defer=""></script><script src="/_next/static/hx1DBIoUJT41VUZsylTk-/_buildManifest.js" defer=""></script><script src="/_next/static/hx1DBIoUJT41VUZsylTk-/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div class="mainLayout_out__ZYqWw"><div class="mainLayout_mainarea__QxaY0"><div class="post_post__ejhnw markdown-body"><p>[TOC]</p>
+<blockquote>
+<p>I&#x27;m refactoring this note into English version. This may spend me lots of time.</p>
+<p>But I believe it will be a good form for me to learn English.</p>
+<p>Carry on!</p>
+</blockquote>
+<h1>C++ Language Studying(Section 1)</h1>
+<h2>Basic C++ Knowledge</h2>
+<h3>Some tiny knowledge points</h3>
+<p>1B=8bit(B refers byte and b refers bit)</p>
+<h2>C++ I/O</h2>
+<h2>C++ Sentences</h2>
+<h4>Range for</h4>
+<pre><code class="language-c++">for(auto s:str1)
+{
+    cout&lt;&lt;S&lt;&lt;endl;
+}
+</code></pre>
+<p>By using range for, you can process each element in an array or a sequence .</p>
+<h2>C++ 类</h2>
+<p>众所周知，支持面向对象编程是C++的一个重要特性，接下来我们来看类。</p>
+<pre><code class="language-c++">class Box
+{
+   public:
+      double length;   // 盒子的长度
+      double breadth;  // 盒子的宽度
+      double height;   // 盒子的高度
+};
+</code></pre>
+<p>带成员函数声明和定义：</p>
+<pre><code class="language-c++">class Box
+{
+   public:
+      double length;   // 长度
+      double breadth;  // 宽度
+      double height;   // 高度
+      // 成员函数声明
+      double get(void);
+      void set( double len, double bre, double hei );
+};
+// 成员函数定义
+double Box::get(void)
+{
+    return length * breadth * height;
+}
+ 
+void Box::set( double len, double bre, double hei)
+{
+    length = len;
+    breadth = bre;
+    height = hei;
+}
+</code></pre>
+<h3>析构函数：</h3>
+<pre><code class="language-c++">class String{
+private:
+    char* p;
+public:
+    String(int n);
+    ~String();
+};
+String::~String(){   //析构函数
+    delete[] p;
+}
+String::String(int n){
+    p = new char[n];
+}
+</code></pre>
+<h3>c++继承</h3>
+<pre><code class="language-c++">// 基类
+class Shape 
+{
+   public:
+      void setWidth(int w)
+      {
+         width = w;
+      }
+      void setHeight(int h)
+      {
+         height = h;
+      }
+   protected:
+      int width;
+      int height;
+};
+ 
+// 派生类
+class Rectangle: public Shape
+{
+   public:
+      int getArea()
+      { 
+         return (width * height); 
+      }
+};
+
+//多继承
+class &lt;派生类名&gt;:&lt;继承方式1&gt;&lt;基类名1&gt;,&lt;继承方式2&gt;&lt;基类名2&gt;,…
+{
+&lt;派生类类体&gt;
+};
+</code></pre>
+<p>重载：</p>
+<pre><code class="language-c++">//运算符重载：
+Box operator+(const Box&amp; b)
+      {
+         Box box;
+         box.length = this-&gt;length + b.length;
+         box.breadth = this-&gt;breadth + b.breadth;
+         box.height = this-&gt;height + b.height;
+         return box;
+      }
+
+//函数重载：
+class printData
+{
+   public:
+      void print(int i) {
+        cout &lt;&lt; &quot;整数为: &quot; &lt;&lt; i &lt;&lt; endl;
+      }
+ 
+      void print(double  f) {
+        cout &lt;&lt; &quot;浮点数为: &quot; &lt;&lt; f &lt;&lt; endl;
+      }
+ 
+      void print(char c[]) {
+        cout &lt;&lt; &quot;字符串为: &quot; &lt;&lt; c &lt;&lt; endl;
+      }
+};
+</code></pre>
+<h2>命名空间</h2>
+<pre><code class="language-c++">// 第一个命名空间
+namespace first_space{
+   void func(){
+      cout &lt;&lt; &quot;Inside first_space&quot; &lt;&lt; endl;
+   }
+}
+// 第二个命名空间
+namespace second_space{
+   void func(){
+      cout &lt;&lt; &quot;Inside second_space&quot; &lt;&lt; endl;
+   }
+}
+int main ()
+{
+ 
+   // 调用第一个命名空间中的函数
+   first_space::func();
+   
+   // 调用第二个命名空间中的函数
+   second_space::func(); 
+ 
+   return 0;
+}
+</code></pre>
+<h2>王氏C++——应付考试内容</h2>
+<pre><code class="language-c++">//自由函数与成员函数，运算符重载的不同
+
+#include&lt;bits/stdc++.h&gt;
+class complex{
+    public:
+    complex(int ri = 0, int ii = 0){
+        r = ri;
+        i = ii;
+    }
+    int r;
+    int i;
+    friend complex operator+(const complex &amp;b) ;//友元函数
+    //complex operator+(const complex &amp;b) const;  成员函数
+};
+
+complex operator+(const complex &amp;a,const complex &amp;b) {
+    return complex(a.r+b.r,a.i+b.i);
+}
+
+/*
+成员函数
+complex complex::operator+(const complex &amp;b) const{
+    return complex(r+b.r,i+b.i);
+}
+*/
+
+int main(){
+    complex c1(1,1);
+    complex c2(2,2);
+    complex c3 = c1+c2;
+    complex c4 = c2+3;//成员函数无法执行此操作，而友元函数会得出结果c4.r = c2.r+3,c4.r = c2.r;
+    return 0;
+}
+
+//有关数组一说
+float[2] x[100];//这是每个元素为2个float元素为元素的数组的数组。但是是错的，编译不通过。
+</code></pre>
+<h3>引用：</h3>
+<pre><code class="language-c++">int x = 5;
+int &amp;rx = x;
+//rx = 7-&gt;x = 7
+</code></pre>
+<h3>函数：</h3>
+<pre><code class="language-c++">datatype func_name(datatype a){
+	
+}
+
+datatype func_name(datatype &amp;rr){
+    rr = 2;
+}
+
+datatype func_name(const float &amp;rr){
+    rr = 2;//ERROR
+}
+
+//example:
+int fun(int &amp;i){
+    i = 36;
+    return i;
+}
+
+int main(){
+    int i = 3;
+    int f = fun(i);
+    return 0;
+}
+
+//数组名做参数
+int calcsum(int x[],int size){
+    int sum;
+    for (int i = 0; i &lt; size; i++)
+    {
+        sum+=x[i];
+    }
+    return sum;
+}
+
+int main(){
+    int x[2]={1,2};
+    int sum = calcsum(x,2);
+    return 0;
+}
+
+
+</code></pre>
+<h3>有关类的四个基本函数</h3>
+<pre><code class="language-c++">class Clock{
+    private:
+    int a;
+    int b;
+    public:
+    clock(int a, int b);//构造函数
+    clock();//默认构造函数
+    clock(int i,int j){
+        a = i;
+        b = j;
+    }
+    
+    //初始化列表：
+    clock(int s, int i):a(s), b(i){};
+    
+    //析构函数
+    ~clock;
+    
+    //拷贝构造函数
+    clock(const clock &amp;c){
+        a = c.a;
+        b = c.b;
+    }
+    
+    //拷贝赋值函数
+    clock&amp; operator=(const clock &amp;c){
+        if (&amp;c!= this){   //避免自己拷贝自己的情况
+            a = c.a;
+            b = c.b;
+        }
+        return *this;
+    }
+    
+}
+</code></pre>
+<h3>常函数：</h3>
+<pre><code class="language-c++">class circle{
+    private:
+    int r;
+    public:
+    int getR(){
+        return r;
+    }
+    circle(int i){
+        r = i;
+    }
+
+    float getArea() /*(const)*/{
+        return 3.1415926 *r*r;
+    }
+    float getAreaC() const){
+        return 3.1415926 *r*r;
+    }
+};
+
+
+
+int main(){
+    const circle c1(1);
+    float area = c1.getArea();//错误，不是常函数无法访问const修饰的对象
+    float area = c1.getAreaC();//正确
+    return 0;
+}
+</code></pre>
+<h3>继承：</h3>
+<pre><code class="language-c++">class circle2:/*(private or protected or public)*/circle{
+    ......
+}
+</code></pre>
+<h3>虚函数：</h3>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+
+class Base1{
+	public:
+    virtual void display() const;
+};
+
+void Base1::display() const{
+    std::cout&lt;&lt;1&lt;&lt;std::endl;
+}
+
+class Base2:public Base1{
+    public:
+    void display() const ;
+};
+void Base2::display() const{
+    std::cout&lt;&lt;2&lt;&lt;std::endl;
+}
+
+void function(Base1 *ptr){//一个指向父类的指针
+    ptr-&gt;display();
+}
+
+int main(){
+    Base1 b1;
+    Base2 b2;
+    function(&amp;b1);//调用 void Base1::display() const
+    function(&amp;b2);//调用 void Base2::display() const
+}
+</code></pre>
+<p>三种继承方式：父类成员对子类的可见性：</p>
+<p>| 父类访问控制/继承方式： | public    | protected | private |
+| ----------------------- | --------- | --------- | ------- |
+| public                  | public    | protected | private |
+| protected               | protected | protected | private |
+| private                 | private   | private   | private |</p>
+<h2>C++ Variable</h2>
+<h4>C++ Variable types:</h4>
+<p>| Type        | Implication                                   | size                 |
+| ----------- | --------------------------------------------- | -------------------- |
+| bool        | bool type                                     | undefined            |
+| char        | character                                     | 8b                   |
+| wchar_t     | wide character                                | 16b                  |
+| char16_t    | Unicode character                             | 16b                  |
+| char32_t    | Unicode character                             | 32b                  |
+| short       | short integer                                 | 16b                  |
+| int         | integer                                       | 16b                  |
+| long        | long integer                                  | 32b                  |
+| long long   | long long integer                             | 64b                  |
+| float       | single-precision floating point number        | 6 significant digit  |
+| double      | double-precision floating point number        | 10 significant digit |
+| long double | expand double-precision floating point number | 10 significant digit |</p>
+<p>Use <code>unsigned</code> to state an unsigned variable type, an unsigned variable do not have a sign digit.</p>
+<h4>Type conversion</h4>
+<pre><code class="language-c++">bool a =42;// 0 refers true and the others refer false.
+int i =3.14;// the value of i is 3,the fractional digit has been dropped.
+double pi =i;//the value of pi is 3
+unsigned char c = -1; //the value of c is 255
+</code></pre>
+<p><code>WARNING</code>: <strong>DO NOT USE UNSIGNED TYPE AND  SIGNED TYPE VARIABLE AT THE SAME TIME !!!</strong></p>
+<h4>Reference</h4>
+<pre><code class="language-c++">int a=3;
+int &amp;num = a;// num is a reference of a
+int &amp;num2;//ERROR: reference must be initialized
+</code></pre>
+<h4>Pointer</h4>
+<p>Pointers point to a pointer:</p>
+<pre><code class="language-c++">int a=1024;
+int *ptr1 = &amp;a;
+int **ptr2 = &amp;ptr1;
+cout&lt;&lt;**ptr2&lt;&lt;endl;// output 1024
+</code></pre>
+<p>C++ Standard Library :: begin, end</p>
+<pre><code class="language-c++">int ia[]={1,2,3,4,5,6,7,8,9};
+int *beg = begin(ia);//refer a[0]
+int *end = end(ia);//refer the next position after the last element of an array
+</code></pre>
+<p>Pointer with custom size:</p>
+<pre><code class="language-c++">int a[2][2];
+int *p[2];//NOT THIS: It created a pointer array
+int (*p2)[2];//a pointer which can point to an array with 2 ints.
+//use decltype or auto:
+decltype *p3 = a;
+</code></pre>
+<h4>Const</h4>
+<p>You can use <code>const</code> to make a variable unchangeable.</p>
+<p><strong>Top-level-const and Low-level-const:</strong></p>
+<pre><code class="language-c++">int i=0;
+int *const p1 = &amp;i;//the value of pointer can not be changed,top-level-const
+const int ci =42;//the value of ci can not be changed.
+const int *p2 = &amp;ci;//the value of pointer can not be changed
+</code></pre>
+<h4>Typedef</h4>
+<pre><code class="language-c++">typedef double wages;
+</code></pre>
+<h4>Decltype</h4>
+<p>Use decltype to get a type that a function returns.</p>
+<pre><code class="language-c++">decltype(f()) sum =0;//the type of sum is just the type that f() returns.
+</code></pre>
+<h4>Write your own head file</h4>
+<p>You&#x27;d better define your struct and class in a head file .</p>
+<h2>Data Structure(STL)</h2>
+<h4>Using statement</h4>
+<p>Before using C++ Standard Library, you can:</p>
+<pre><code class="language-c++">//method 1
+std::cout&lt;&lt;&quot;Test&quot;&lt;&lt;std::endl;
+//method 2:
+using namespace std;
+cout&lt;&lt;&quot;123&quot;&lt;&lt;endl;
+</code></pre>
+<h4>Using iterator</h4>
+<p>A sort of intelligence pointer , used for STD .</p>
+<p>C++ example:</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main()
+{
+    vector&lt;int&gt; vec1;//Statement
+    for (int i = 0; i &lt; 5; i++)
+    {
+        vec1.push_back(i);
+    }
+    auto it = vec1.begin();//Auto Statement
+    vector&lt;int&gt;:: iterator it = vec1.begin();//Standard statement
+
+    cout &lt;&lt; *it &lt;&lt; endl;
+    for (; it != vec1.end(); it++)
+    {
+        cout &lt;&lt; *it &lt;&lt; endl;
+    }
+    
+    return 0;
+    
+}
+</code></pre>
+<p>Operations:</p>
+<pre><code class="language-c++">it = v1.begin();//set v1 refer to the first
+*it;//return value
+it++;//point to the next
+*it = 1234;//change value
+it2 = it + 2;//send the address + 2 to another
+</code></pre>
+<h4>Stack: a LIFO(Last in First out) data structure</h4>
+<p>Statement in C++:</p>
+<pre><code class="language-c++">stack&lt;int&gt; stack_name;
+</code></pre>
+<p>Basic operations:</p>
+<pre><code class="language-c++">stack_name.push(data);//push a data into the stack
+cout&lt;&lt;stack_name.top();//read the data at top
+stack_name.pop();//pop out the data at top
+</code></pre>
+<h4>Queue: a FIFO(First in First out) data structure</h4>
+<p>Statement in C++:</p>
+<pre><code class="language-c++">queue&lt;int&gt; q;
+</code></pre>
+<p>Basic operations:</p>
+<pre><code class="language-c++">q.front();//read the data at the front
+q.push();//push a data at the end of the queue
+q.pop();//pop out the data at the front
+q = queue&lt;int&gt;();//empty the queue
+</code></pre>
+<p>Then, let&#x27;s see a sample of using queue.</p>
+<p>Cruel torture (AHU77)</p>
+<hr/>
+<p>Please read the question at <a href="oj.bofc.tech">bofcOJ</a></p>
+<hr/>
+<p>Code:</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main()
+{
+    int qty_children = 0, k;
+    cin &gt;&gt; qty_children &gt;&gt; k;
+
+    
+    int sum = 0;
+    queue&lt;int&gt; children;
+    for (int i = 1; i &lt;= qty_children; i++)
+    {
+        children.push(i);
+    } //statement queue
+    while (sum &lt; qty_children-1)
+    {
+
+        for (int i = 0; i &lt; k-1; i++)
+        {
+            children.push(children.front());//if we do not pull out the line, thus we let this wild kid get to the back.
+            children.pop();
+        }
+        children.pop();//when it comes to pull out the line, this wild kid is over.
+        sum++;
+    }
+    cout &lt;&lt; children.front();
+
+    return 0;
+}
+</code></pre>
+<h4>Using dynamic array with pointer</h4>
+<p>Code demo:</p>
+<pre><code class="language-c++">int *p = new int[10];//Create an array when running.
+delete[] p;//the realease of a dynamic array method is not same with a variable
+</code></pre>
+<h4>bitset</h4>
+<p>A data structure which storages bit.</p>
+<pre><code class="language-c++">    bitset&lt;4&gt; bitset1;//construct without parameter:set space 4
+
+    bitset&lt;8&gt; bitset2(12);//the space is 8, storge 12 into binary system,use 0 to fill the blank bit.
+
+    string s = &quot;100101&quot;;
+    bitset&lt;10&gt; bitset3(s);//the space is 10,use 0 to fill the blank bit,the string CAN ONLY CONTAINS 0 and 1.
+    
+    char s2[] = &quot;10101&quot;;
+    bitset&lt;13&gt; bitset4(s2);//the space is 13,use 0 to fill the blank bit
+
+    cout &lt;&lt; bitset1 &lt;&lt; endl;//0000
+    cout &lt;&lt; bitset2 &lt;&lt; endl;//00001100
+    cout &lt;&lt; bitset3 &lt;&lt; endl;//0000100101
+    cout &lt;&lt; bitset4 &lt;&lt; endl;//0000000010101
+    bitset3[0];//Simular as array,use subscript to access the elements.
+    
+</code></pre>
+<p>There&#x27;s so many ways to use bitset, but let&#x27;s see struct first.</p>
+<h4>Struct</h4>
+<p>A struct is a data structure which contains serval variable type. The struct can also form an array!</p>
+<p>C++ examples</p>
+<pre><code class="language-c++">struct Books
+{
+   char  title[50];
+   char  author[50];
+   char  subject[100];
+   int   book_id;
+} book = {&quot;C Language&quot;, &quot;RUNOOB&quot;, &quot;Programing Language&quot;, 123456};//define a struct and initialize
+
+
+</code></pre>
+<p>//Of course, you can use it as below: No initialize.</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+struct student //define the struct of single student
+{
+    int number;
+    int score;
+};
+
+int main()
+{
+	student students[10000];
+       for (int i = 0; i &lt; total; i++) //input scores
+      {
+        cin &gt;&gt; students[i].number &gt;&gt; students[i].score;//See the examples here!
+      }
+
+    return 0;
+
+}
+//It means you can only define a struct and use it as a data type!
+</code></pre>
+<h5>Struct pointer</h5>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct student //define the struct of single student
+{
+    int number;
+    int score;
+};
+
+int main()
+{
+    struct student students[100];
+
+    scanf(&quot;%d%d&quot;, &amp;students[0].number, &amp;students[0].score); //See the examples here!
+
+    struct student *p = students; //initialize the pointer.
+    printf(&quot;%d&quot;, p-&gt;number);      
+    p++;                          //go to next student.
+    return 0;
+}
+
+</code></pre>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct student
+{
+    int id;
+    int maths;
+};
+
+int main()
+{
+    struct student stu1[2];
+    struct student *p ;
+    p=stu1;
+    
+    printf(&quot;%d&quot;,p-&gt;id);
+
+    return 0;
+}
+</code></pre>
+<h4>Vector</h4>
+<p>This is a significant data structure in  C++ standard library , equals an array that can change memory size at will,and you can also CRUD in it in will.</p>
+<p>Basic operations:</p>
+<pre><code class="language-c++">vector&lt;int&gt; c;
+c.push_back(1);//place the element at the end of the vector.
+
+</code></pre>
+<pre><code class="language-c++">vector&lt;Sales_item&gt; sales_vec;//vector can also store class or struct
+vector&lt;vector&lt;string&gt;&gt;;//the elements in this vector are also vector objects.
+</code></pre>
+<p>Other operations:</p>
+<pre><code class="language-c++">vector&lt;T&gt; v1{1,2,3,4,5};
+vector&lt;T&gt; v2(5,5);//{5,5,5,5,5}
+vector&lt;string&gt; v3={&quot;Hello&quot;,&quot;World&quot;,&quot;!&quot;};
+vector&lt;int&gt; v4(10); //Create a vector have 10 elements, initialized by 0.
+v4.push_back(1);//put an elemnet to the back of the vector;
+v4.size();
+</code></pre>
+<p>Use array to initialize a vector</p>
+<pre><code class="language-c++">int a[]={1,2,3,4,5};
+vector&lt;int&gt; v1(begin(a),end(arr));//send the begin and end to construct.
+</code></pre>
+<h4>String</h4>
+<p>String is a <strong>char</strong> sequence whose size is changeable .</p>
+<p>Initialize:</p>
+<pre><code class="language-c++">string s1;//an empty string has been created
+string s2(10,&#x27;c&#x27;);//&quot;cccccccccc&quot;
+</code></pre>
+<p>Operations:</p>
+<p>| Operation | Action                          |
+| --------- | ------------------------------- |
+| os&lt;&lt;s;    | Write s to ostream              |
+| is&gt;&gt;s;    | Write instream to s             |
+| s.size(); | Return the length;              |
+| s1+s2     | Connect two strings             |
+| s1&gt;=s2    | compare, use <em>dictionary order</em> |</p>
+<p><strong>Get line</strong></p>
+<pre><code class="language-c++">while(getline(cin,line)&amp;&amp;line.size()&gt;0)
+{
+    //code
+}
+</code></pre>
+<p><strong>Character type:</strong></p>
+<pre><code class="language-c++">tolower(c);//change into lower size
+toupper(c);//change into upper size
+</code></pre>
+<p><code>Warning</code>: Do not do this:</p>
+<pre><code class="language-c++">char a[]=&quot;fff&quot;;
+char b[]=&quot;aaa&quot;;
+string c = a+b;//ERROR: you are trying to add two pointers!!!
+</code></pre>
+<h4>Set</h4>
+<p>An example:</p>
+<pre><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;set&gt;
+
+using namespace std;
+
+int main()
+{
+    int case_number;
+    cin &gt;&gt; case_number; //Input the amount
+    set&lt;int&gt; numbers;
+    int put_number;
+    set&lt;int&gt; :: iterator out_number;
+    for (int i = 0; i &lt; case_number; i++) // Input data
+    {
+        cin &gt;&gt; put_number;
+        numbers.insert(put_number);
+    }
+    cout &lt;&lt; numbers.size() &lt;&lt; endl;
+    int count=0;
+    for (out_number = numbers.begin(); out_number != numbers.end(); out_number++) 
+    {
+        
+        cout &lt;&lt; *out_number ;
+        count++;
+        if(count &lt;= numbers.size()-1) cout&lt;&lt;&quot; &quot;;
+    }
+
+    return 0;
+}
+</code></pre>
+<p>Set can automatically sort, and the elements are strictly diverse .</p>
+<h4>优先队列:优先级最高的元素先出的队列</h4>
+<p>C++的标准库中包含了一个很好用的数据结构:优先队列.该结构可以将优先级大的元素排到前面.</p>
+<pre><code class="language-c++">#include &lt;bits/stdc++.h&gt;
+
+using namespace std;
+
+int main()
+{
+	priority_queue&lt;int&gt; que_apples; //默认使用vector,大的数字优先
+	priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; app_que;//小的数字优先
+	
+	return 0;
+}
+</code></pre>
+<p>自定义优先级:重载运算符</p>
+<pre><code class="language-c++">class Student
+{
+    int id;
+    char name[20];
+    bool gender;
+    bool operator &lt; (Student &amp;a) const
+    {
+        return id &gt; a.id;
+    }
+};
+</code></pre>
+<h2>STL算法</h2>
+<h4>快排(sort),包含在algorithm</h4>
+<p>这个算法极其牛逼,解放了万千程序员的双手(赞美)!!!</p>
+<p>快排作用的内容:数组/向量容器等</p>
+<p>C++使用实例</p>
+<pre><code class="language-c++">vector&lt;int&gt; v1;
+int numbers[2][5];
+struct student
+{
+    int number;
+    int score;
+    string name;
+}
+//此处省略若干行插入数据代码,让我们假设这这里面有很多数据
+sort(v1.begin(),v1.end());//默认从小到大排列
+bool compare(int a , int b)//按某种排序方案排序
+{
+    return a&gt;b;//这样是降序排列
+    return numbers[a][0]&gt;numbers[b][0];//还能读取某些数据的元素排列
+    return student[a].score&gt;student[b].score;//还能读取某些结构体的成员
+}
+</code></pre>
+<h2>常用基础算法(一些很基本的,要背的)</h2>
+<h4>公因数公倍数</h4>
+<pre><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+int main()
+{
+    int m, n;
+    int s = 0;
+    int min = 0;
+    scanf(&quot;%d%d&quot;, &amp;m, &amp;n);
+    //最大公约数
+    if (m &gt; n)
+    {
+        s = m;
+        min = n;
+    }
+    else
+    {
+        s = n;
+        min = m;
+    }
+    while (min != 0)
+    {
+        int t = s%min;
+        s = min;
+        min = t;
+    }
+    printf(&quot;%d\n&quot;,s);
+    //重置两个数
+    if (m &gt; n)
+    {
+        s = m;
+        min = n;
+    }
+    else
+    {
+        s = n;
+        min = m;
+    }
+    //公倍数
+    for (int i = min;; i += min)
+    {
+        double resR = (double)i / s;
+        int floor = i / s;
+
+        if ((double)floor == resR)
+        {
+            printf(&quot;%d\n&quot;, i);
+            break;
+        }
+    }
+
+    return 0;
+}
+</code></pre>
+<h4>筛法判断质数</h4>
+<p>上代码:</p>
+<pre><code class="language-c++">bool isPrime(int a)
+{
+    if (a == 2)
+        return true;
+    if (a % 2 == 0)
+        return false;
+    int x = sqrt(a);
+    for (int i = 2; i &lt;= x; ++i)
+    {
+        if (a % i == 0)
+            return false;
+    }
+    return true;
+}
+</code></pre>
+<h4>素数的埃式筛法</h4>
+<p>先确认一个数是素数,然后划掉其倍数,在找到下一个素数后,再划掉其倍数,最后只剩素数.</p>
+<pre><code class="language-c++">int main()
+{
+    int number_list[1000] = {0}; //we can get primes below 1000
+    bool break_flag = false;
+    number_list[0] = 1;
+    int pri = 2;
+    while (!break_flag)
+    {
+        // the non-prime will be mark 1
+        int count = pri;
+        while (count &lt;= 1000)
+        {
+            count += pri;
+            if (count &gt;= 1000)
+                break;
+            number_list[count] = 1;
+        }
+        int temp_pri = pri;
+        while (true)
+        {
+            temp_pri++;
+            if (temp_pri &gt;= 999)
+            {
+                break_flag = true;
+                break;
+            }
+            if (number_list[temp_pri] == 0)
+            {
+                pri = temp_pri;
+                break;
+            }
+        }
+    }
+    for (int i = 0; i &lt; 1000; i++)
+    {
+        if (number_list[i] == 0)
+        {
+            cout &lt;&lt; i &lt;&lt; &quot; &quot;;
+        }
+    }
+
+    return 0;
+}
+</code></pre>
+<h4>分解质因数(简便方法)</h4>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+//这个程序适合好好阅读并分析
+void foo(long long int n)
+{
+    long long int sqr = sqrt(n);//测试质数只需测到平方的取整
+    long long int i = 0;
+    for(i = 2; i &lt;= sqr; i++)//从2开始测
+    {
+        if(n % i == 0 &amp;&amp; (n /= i))//后面的表达式指的是除i留下剩余部分
+        {
+            printf(&quot;%lld &quot;, i--);
+        }
+    }
+    if(n != 1)//不打印1作为因子
+    {
+        printf(&quot;%lld&quot;, n);
+    }
+    printf(&quot;\n&quot;);
+}
+
+int main()
+{
+    long long int n ;
+    scanf(&quot;%lld&quot;, &amp;n);
+    foo(n);
+    return 0;
+}
+
+</code></pre>
+<h4>查找字符(这是C标准库里的内容)</h4>
+<p>用于在一个字符串(也就是char数组)中查找指定的字符</p>
+<pre><code class="language-c++">strchr(string_name, &#x27;A&#x27;);//在string name 这个字符串中寻找A这个字符
+//返回有多种可能,若找到,返回指向这个字符的指针,否则返回NULL(这个NULL是标识符,不是字符串之类的玩意)
+</code></pre>
+<h4>位运算</h4>
+<p>位运算是一种直接操作位的运算,其包含多种运算符:</p>
+<p>上代码:</p>
+<pre><code class="language-c++">&lt;&lt;; //左移运算符,移动时丢弃左边的位,用0补充
+&quot;11110000&quot;&lt;&lt;&quot;10000000&quot;;//左移了3位!!!
+&gt;&gt;; //右移运算符,移动时丢弃右边的位,左边用0或原来丢弃的左边的位补充!!!
+&quot;11111111&quot;&gt;&gt;&quot;00001111&quot;;//右移了四位!!!
+    
+//接下来看看逻辑位运算
+~;//按位非,倒置0/1
+|;//按位或,有一为1,否则为0
+^;//XOR,相同为0,不同为1
+&amp;;//AND,都为1才为1,否则为0
+
+//一些常用的位逻辑运算:
+lottabits |= pow(2,3);//打开位,也就是将某一位置为1,其中后面的2的多少次方代表着打开的位置(2的0次方代表右起第一位,以此类推)
+lottabits ^= pow(2,3);//切换位:置反
+lottabits &amp;= pow(2,3);//关闭位:置0
+bool isOpen = lottabits &amp; pow(2,3);//测试某一位是否为1(打开),返回true or false.
+</code></pre></div></div><div class="mainLayout_bottom__As9s_"><div class="mainLayout_tag__Ep3_f"><img alt="launcher" src="/_next/static/media/launcher.d8f01379.png" width="1024" height="1024" decoding="async" data-nimg="1" class="mainLayout_tagImg__qoDJq" loading="lazy" style="color:transparent"/></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":"---\nlayout:     post\ntitle:      \"C++语言学习笔记\"\nintro:   \"\"\ndate:       2019-11-19 16:00:00\nauthor:     \"Makinohara\"\nfeatured_image: http://msfasr.com//img/cpp.jpg\ncatalog: true\ntags:\n    - 编程语言\n---\n\n[TOC]\n\n\n\n\u003e I'm refactoring this note into English version. This may spend me lots of time.\n\u003e\n\u003e But I believe it will be a good form for me to learn English.\n\u003e\n\u003e Carry on! \n\n# C++ Language Studying(Section 1)\n\n## Basic C++ Knowledge\n\n### Some tiny knowledge points\n\n1B=8bit(B refers byte and b refers bit)\n\n## C++ I/O\n\n\n\n## C++ Sentences\n\n#### Range for\n\n```c++\nfor(auto s:str1)\n{\n    cout\u003c\u003cS\u003c\u003cendl;\n}\n```\n\nBy using range for, you can process each element in an array or a sequence .\n\n## C++ 类\n\n众所周知，支持面向对象编程是C++的一个重要特性，接下来我们来看类。\n\n```c++\nclass Box\n{\n   public:\n      double length;   // 盒子的长度\n      double breadth;  // 盒子的宽度\n      double height;   // 盒子的高度\n};\n```\n\n带成员函数声明和定义：\n\n```c++\nclass Box\n{\n   public:\n      double length;   // 长度\n      double breadth;  // 宽度\n      double height;   // 高度\n      // 成员函数声明\n      double get(void);\n      void set( double len, double bre, double hei );\n};\n// 成员函数定义\ndouble Box::get(void)\n{\n    return length * breadth * height;\n}\n \nvoid Box::set( double len, double bre, double hei)\n{\n    length = len;\n    breadth = bre;\n    height = hei;\n}\n```\n\n### 析构函数：\n\n```c++\nclass String{\nprivate:\n    char* p;\npublic:\n    String(int n);\n    ~String();\n};\nString::~String(){   //析构函数\n    delete[] p;\n}\nString::String(int n){\n    p = new char[n];\n}\n```\n\n\n\n### c++继承\n\n```c++\n// 基类\nclass Shape \n{\n   public:\n      void setWidth(int w)\n      {\n         width = w;\n      }\n      void setHeight(int h)\n      {\n         height = h;\n      }\n   protected:\n      int width;\n      int height;\n};\n \n// 派生类\nclass Rectangle: public Shape\n{\n   public:\n      int getArea()\n      { \n         return (width * height); \n      }\n};\n\n//多继承\nclass \u003c派生类名\u003e:\u003c继承方式1\u003e\u003c基类名1\u003e,\u003c继承方式2\u003e\u003c基类名2\u003e,…\n{\n\u003c派生类类体\u003e\n};\n```\n\n\n\n重载：\n\n```c++\n//运算符重载：\nBox operator+(const Box\u0026 b)\n      {\n         Box box;\n         box.length = this-\u003elength + b.length;\n         box.breadth = this-\u003ebreadth + b.breadth;\n         box.height = this-\u003eheight + b.height;\n         return box;\n      }\n\n//函数重载：\nclass printData\n{\n   public:\n      void print(int i) {\n        cout \u003c\u003c \"整数为: \" \u003c\u003c i \u003c\u003c endl;\n      }\n \n      void print(double  f) {\n        cout \u003c\u003c \"浮点数为: \" \u003c\u003c f \u003c\u003c endl;\n      }\n \n      void print(char c[]) {\n        cout \u003c\u003c \"字符串为: \" \u003c\u003c c \u003c\u003c endl;\n      }\n};\n```\n\n\n\n## 命名空间\n\n```c++\n// 第一个命名空间\nnamespace first_space{\n   void func(){\n      cout \u003c\u003c \"Inside first_space\" \u003c\u003c endl;\n   }\n}\n// 第二个命名空间\nnamespace second_space{\n   void func(){\n      cout \u003c\u003c \"Inside second_space\" \u003c\u003c endl;\n   }\n}\nint main ()\n{\n \n   // 调用第一个命名空间中的函数\n   first_space::func();\n   \n   // 调用第二个命名空间中的函数\n   second_space::func(); \n \n   return 0;\n}\n```\n\n## 王氏C++——应付考试内容\n\n```c++\n//自由函数与成员函数，运算符重载的不同\n\n#include\u003cbits/stdc++.h\u003e\nclass complex{\n    public:\n    complex(int ri = 0, int ii = 0){\n        r = ri;\n        i = ii;\n    }\n    int r;\n    int i;\n    friend complex operator+(const complex \u0026b) ;//友元函数\n    //complex operator+(const complex \u0026b) const;  成员函数\n};\n\ncomplex operator+(const complex \u0026a,const complex \u0026b) {\n    return complex(a.r+b.r,a.i+b.i);\n}\n\n/*\n成员函数\ncomplex complex::operator+(const complex \u0026b) const{\n    return complex(r+b.r,i+b.i);\n}\n*/\n\nint main(){\n    complex c1(1,1);\n    complex c2(2,2);\n    complex c3 = c1+c2;\n    complex c4 = c2+3;//成员函数无法执行此操作，而友元函数会得出结果c4.r = c2.r+3,c4.r = c2.r;\n    return 0;\n}\n\n//有关数组一说\nfloat[2] x[100];//这是每个元素为2个float元素为元素的数组的数组。但是是错的，编译不通过。\n```\n\n### 引用：\n\n```c++\nint x = 5;\nint \u0026rx = x;\n//rx = 7-\u003ex = 7\n```\n\n### 函数：\n\n```c++\ndatatype func_name(datatype a){\n\t\n}\n\ndatatype func_name(datatype \u0026rr){\n    rr = 2;\n}\n\ndatatype func_name(const float \u0026rr){\n    rr = 2;//ERROR\n}\n\n//example:\nint fun(int \u0026i){\n    i = 36;\n    return i;\n}\n\nint main(){\n    int i = 3;\n    int f = fun(i);\n    return 0;\n}\n\n//数组名做参数\nint calcsum(int x[],int size){\n    int sum;\n    for (int i = 0; i \u003c size; i++)\n    {\n        sum+=x[i];\n    }\n    return sum;\n}\n\nint main(){\n    int x[2]={1,2};\n    int sum = calcsum(x,2);\n    return 0;\n}\n\n\n```\n\n\n\n### 有关类的四个基本函数\n\n```c++\nclass Clock{\n    private:\n    int a;\n    int b;\n    public:\n    clock(int a, int b);//构造函数\n    clock();//默认构造函数\n    clock(int i,int j){\n        a = i;\n        b = j;\n    }\n    \n    //初始化列表：\n    clock(int s, int i):a(s), b(i){};\n    \n    //析构函数\n    ~clock;\n    \n    //拷贝构造函数\n    clock(const clock \u0026c){\n        a = c.a;\n        b = c.b;\n    }\n    \n    //拷贝赋值函数\n    clock\u0026 operator=(const clock \u0026c){\n        if (\u0026c!= this){   //避免自己拷贝自己的情况\n            a = c.a;\n            b = c.b;\n        }\n        return *this;\n    }\n    \n}\n```\n\n### 常函数：\n\n\n\n```c++\nclass circle{\n    private:\n    int r;\n    public:\n    int getR(){\n        return r;\n    }\n    circle(int i){\n        r = i;\n    }\n\n    float getArea() /*(const)*/{\n        return 3.1415926 *r*r;\n    }\n    float getAreaC() const){\n        return 3.1415926 *r*r;\n    }\n};\n\n\n\nint main(){\n    const circle c1(1);\n    float area = c1.getArea();//错误，不是常函数无法访问const修饰的对象\n    float area = c1.getAreaC();//正确\n    return 0;\n}\n```\n\n\n\n### 继承：\n\n```c++\nclass circle2:/*(private or protected or public)*/circle{\n    ......\n}\n```\n\n### 虚函数：\n\n```c++\n#include\u003ciostream\u003e\n\nclass Base1{\n\tpublic:\n    virtual void display() const;\n};\n\nvoid Base1::display() const{\n    std::cout\u003c\u003c1\u003c\u003cstd::endl;\n}\n\nclass Base2:public Base1{\n    public:\n    void display() const ;\n};\nvoid Base2::display() const{\n    std::cout\u003c\u003c2\u003c\u003cstd::endl;\n}\n\nvoid function(Base1 *ptr){//一个指向父类的指针\n    ptr-\u003edisplay();\n}\n\nint main(){\n    Base1 b1;\n    Base2 b2;\n    function(\u0026b1);//调用 void Base1::display() const\n    function(\u0026b2);//调用 void Base2::display() const\n}\n```\n\n三种继承方式：父类成员对子类的可见性：\n\n| 父类访问控制/继承方式： | public    | protected | private |\n| ----------------------- | --------- | --------- | ------- |\n| public                  | public    | protected | private |\n| protected               | protected | protected | private |\n| private                 | private   | private   | private |\n\n\n\n## C++ Variable\n\n#### C++ Variable types:\n\n| Type        | Implication                                   | size                 |\n| ----------- | --------------------------------------------- | -------------------- |\n| bool        | bool type                                     | undefined            |\n| char        | character                                     | 8b                   |\n| wchar_t     | wide character                                | 16b                  |\n| char16_t    | Unicode character                             | 16b                  |\n| char32_t    | Unicode character                             | 32b                  |\n| short       | short integer                                 | 16b                  |\n| int         | integer                                       | 16b                  |\n| long        | long integer                                  | 32b                  |\n| long long   | long long integer                             | 64b                  |\n| float       | single-precision floating point number        | 6 significant digit  |\n| double      | double-precision floating point number        | 10 significant digit |\n| long double | expand double-precision floating point number | 10 significant digit |\n\nUse `unsigned` to state an unsigned variable type, an unsigned variable do not have a sign digit.\n\n#### Type conversion\n\n```c++\nbool a =42;// 0 refers true and the others refer false.\nint i =3.14;// the value of i is 3,the fractional digit has been dropped.\ndouble pi =i;//the value of pi is 3\nunsigned char c = -1; //the value of c is 255\n```\n\n`WARNING`: **DO NOT USE UNSIGNED TYPE AND  SIGNED TYPE VARIABLE AT THE SAME TIME !!!**\n\n#### Reference\n\n```c++\nint a=3;\nint \u0026num = a;// num is a reference of a\nint \u0026num2;//ERROR: reference must be initialized\n```\n\n#### Pointer\n\nPointers point to a pointer:\n\n```c++\nint a=1024;\nint *ptr1 = \u0026a;\nint **ptr2 = \u0026ptr1;\ncout\u003c\u003c**ptr2\u003c\u003cendl;// output 1024\n```\n\nC++ Standard Library :: begin, end\n\n```c++\nint ia[]={1,2,3,4,5,6,7,8,9};\nint *beg = begin(ia);//refer a[0]\nint *end = end(ia);//refer the next position after the last element of an array\n```\n\nPointer with custom size:\n\n```c++\nint a[2][2];\nint *p[2];//NOT THIS: It created a pointer array\nint (*p2)[2];//a pointer which can point to an array with 2 ints.\n//use decltype or auto:\ndecltype *p3 = a;\n```\n\n\n\n#### Const\n\nYou can use `const` to make a variable unchangeable.\n\n**Top-level-const and Low-level-const:**\n\n```c++\nint i=0;\nint *const p1 = \u0026i;//the value of pointer can not be changed,top-level-const\nconst int ci =42;//the value of ci can not be changed.\nconst int *p2 = \u0026ci;//the value of pointer can not be changed\n```\n\n#### Typedef\n\n```c++\ntypedef double wages;\n```\n\n#### Decltype\n\nUse decltype to get a type that a function returns.\n\n```c++\ndecltype(f()) sum =0;//the type of sum is just the type that f() returns.\n```\n\n#### Write your own head file\n\nYou'd better define your struct and class in a head file .\n\n## Data Structure(STL)\n\n#### Using statement\n\nBefore using C++ Standard Library, you can:\n\n```c++\n//method 1\nstd::cout\u003c\u003c\"Test\"\u003c\u003cstd::endl;\n//method 2:\nusing namespace std;\ncout\u003c\u003c\"123\"\u003c\u003cendl;\n```\n\n\n\n#### Using iterator\n\nA sort of intelligence pointer , used for STD .\n\nC++ example:\n\n```c++\n#include \u003cbits/stdc++.h\u003e\n\nusing namespace std;\n\nint main()\n{\n    vector\u003cint\u003e vec1;//Statement\n    for (int i = 0; i \u003c 5; i++)\n    {\n        vec1.push_back(i);\n    }\n    auto it = vec1.begin();//Auto Statement\n    vector\u003cint\u003e:: iterator it = vec1.begin();//Standard statement\n\n    cout \u003c\u003c *it \u003c\u003c endl;\n    for (; it != vec1.end(); it++)\n    {\n        cout \u003c\u003c *it \u003c\u003c endl;\n    }\n    \n    return 0;\n    \n}\n```\n\nOperations:\n\n```c++\nit = v1.begin();//set v1 refer to the first\n*it;//return value\nit++;//point to the next\n*it = 1234;//change value\nit2 = it + 2;//send the address + 2 to another\n```\n\n\n\n#### Stack: a LIFO(Last in First out) data structure\n\nStatement in C++:\n\n```c++\nstack\u003cint\u003e stack_name;\n```\n\nBasic operations:\n\n```c++\nstack_name.push(data);//push a data into the stack\ncout\u003c\u003cstack_name.top();//read the data at top\nstack_name.pop();//pop out the data at top\n```\n\n#### Queue: a FIFO(First in First out) data structure\n\nStatement in C++:\n\n```c++\nqueue\u003cint\u003e q;\n```\n\nBasic operations:\n\n```c++\nq.front();//read the data at the front\nq.push();//push a data at the end of the queue\nq.pop();//pop out the data at the front\nq = queue\u003cint\u003e();//empty the queue\n```\n\nThen, let's see a sample of using queue.\n\nCruel torture (AHU77)\n\n------\n\nPlease read the question at [bofcOJ](oj.bofc.tech)\n\n------\n\nCode:\n\n```c++\n#include \u003cbits/stdc++.h\u003e\n\nusing namespace std;\n\nint main()\n{\n    int qty_children = 0, k;\n    cin \u003e\u003e qty_children \u003e\u003e k;\n\n    \n    int sum = 0;\n    queue\u003cint\u003e children;\n    for (int i = 1; i \u003c= qty_children; i++)\n    {\n        children.push(i);\n    } //statement queue\n    while (sum \u003c qty_children-1)\n    {\n\n        for (int i = 0; i \u003c k-1; i++)\n        {\n            children.push(children.front());//if we do not pull out the line, thus we let this wild kid get to the back.\n            children.pop();\n        }\n        children.pop();//when it comes to pull out the line, this wild kid is over.\n        sum++;\n    }\n    cout \u003c\u003c children.front();\n\n    return 0;\n}\n```\n\n\n\n#### Using dynamic array with pointer\n\nCode demo:\n\n```c++\nint *p = new int[10];//Create an array when running.\ndelete[] p;//the realease of a dynamic array method is not same with a variable\n```\n\n#### bitset\n\nA data structure which storages bit.\n\n```c++\n    bitset\u003c4\u003e bitset1;//construct without parameter:set space 4\n\n    bitset\u003c8\u003e bitset2(12);//the space is 8, storge 12 into binary system,use 0 to fill the blank bit.\n\n    string s = \"100101\";\n    bitset\u003c10\u003e bitset3(s);//the space is 10,use 0 to fill the blank bit,the string CAN ONLY CONTAINS 0 and 1.\n    \n    char s2[] = \"10101\";\n    bitset\u003c13\u003e bitset4(s2);//the space is 13,use 0 to fill the blank bit\n\n    cout \u003c\u003c bitset1 \u003c\u003c endl;//0000\n    cout \u003c\u003c bitset2 \u003c\u003c endl;//00001100\n    cout \u003c\u003c bitset3 \u003c\u003c endl;//0000100101\n    cout \u003c\u003c bitset4 \u003c\u003c endl;//0000000010101\n    bitset3[0];//Simular as array,use subscript to access the elements.\n    \n```\n\nThere's so many ways to use bitset, but let's see struct first.\n\n#### Struct\n\nA struct is a data structure which contains serval variable type. The struct can also form an array!\n\nC++ examples\n\n```c++\nstruct Books\n{\n   char  title[50];\n   char  author[50];\n   char  subject[100];\n   int   book_id;\n} book = {\"C Language\", \"RUNOOB\", \"Programing Language\", 123456};//define a struct and initialize\n\n\n```\n\n//Of course, you can use it as below: No initialize.\n\n```c++\n#include \u003cbits/stdc++.h\u003e\n\nusing namespace std;\n\nstruct student //define the struct of single student\n{\n    int number;\n    int score;\n};\n\nint main()\n{\n\tstudent students[10000];\n       for (int i = 0; i \u003c total; i++) //input scores\n      {\n        cin \u003e\u003e students[i].number \u003e\u003e students[i].score;//See the examples here!\n      }\n\n    return 0;\n\n}\n//It means you can only define a struct and use it as a data type!\n```\n\n##### Struct pointer\n\n```c++\n#include \u003cstdio.h\u003e\n#include \u003cstring.h\u003e\n#include \u003cstdlib.h\u003e\n\nstruct student //define the struct of single student\n{\n    int number;\n    int score;\n};\n\nint main()\n{\n    struct student students[100];\n\n    scanf(\"%d%d\", \u0026students[0].number, \u0026students[0].score); //See the examples here!\n\n    struct student *p = students; //initialize the pointer.\n    printf(\"%d\", p-\u003enumber);      \n    p++;                          //go to next student.\n    return 0;\n}\n\n```\n\n\n\n```c\n#include \u003cstdio.h\u003e\n#include \u003cstring.h\u003e\n#include \u003cstdlib.h\u003e\n\nstruct student\n{\n    int id;\n    int maths;\n};\n\nint main()\n{\n    struct student stu1[2];\n    struct student *p ;\n    p=stu1;\n    \n    printf(\"%d\",p-\u003eid);\n\n    return 0;\n}\n```\n\n\n\n#### Vector\n\nThis is a significant data structure in  C++ standard library , equals an array that can change memory size at will,and you can also CRUD in it in will.\n\nBasic operations:\n\n```c++\nvector\u003cint\u003e c;\nc.push_back(1);//place the element at the end of the vector.\n\n```\n\n```c++\nvector\u003cSales_item\u003e sales_vec;//vector can also store class or struct\nvector\u003cvector\u003cstring\u003e\u003e;//the elements in this vector are also vector objects.\n```\n\nOther operations:\n\n```c++\nvector\u003cT\u003e v1{1,2,3,4,5};\nvector\u003cT\u003e v2(5,5);//{5,5,5,5,5}\nvector\u003cstring\u003e v3={\"Hello\",\"World\",\"!\"};\nvector\u003cint\u003e v4(10); //Create a vector have 10 elements, initialized by 0.\nv4.push_back(1);//put an elemnet to the back of the vector;\nv4.size();\n```\n\nUse array to initialize a vector \n\n```c++\nint a[]={1,2,3,4,5};\nvector\u003cint\u003e v1(begin(a),end(arr));//send the begin and end to construct.\n```\n\n\n\n#### String\n\nString is a **char** sequence whose size is changeable .\n\nInitialize:\n\n```c++\nstring s1;//an empty string has been created\nstring s2(10,'c');//\"cccccccccc\"\n```\n\nOperations:\n\n| Operation | Action                          |\n| --------- | ------------------------------- |\n| os\u003c\u003cs;    | Write s to ostream              |\n| is\u003e\u003es;    | Write instream to s             |\n| s.size(); | Return the length;              |\n| s1+s2     | Connect two strings             |\n| s1\u003e=s2    | compare, use *dictionary order* |\n\n**Get line**\n\n```c++\nwhile(getline(cin,line)\u0026\u0026line.size()\u003e0)\n{\n    //code\n}\n```\n\n**Character type:**\n\n```c++\ntolower(c);//change into lower size\ntoupper(c);//change into upper size\n```\n\n`Warning`: Do not do this:\n\n```c++\nchar a[]=\"fff\";\nchar b[]=\"aaa\";\nstring c = a+b;//ERROR: you are trying to add two pointers!!!\n```\n\n\n\n#### Set\n\nAn example:\n\n```c++\n#include \u003ciostream\u003e\n#include \u003cset\u003e\n\nusing namespace std;\n\nint main()\n{\n    int case_number;\n    cin \u003e\u003e case_number; //Input the amount\n    set\u003cint\u003e numbers;\n    int put_number;\n    set\u003cint\u003e :: iterator out_number;\n    for (int i = 0; i \u003c case_number; i++) // Input data\n    {\n        cin \u003e\u003e put_number;\n        numbers.insert(put_number);\n    }\n    cout \u003c\u003c numbers.size() \u003c\u003c endl;\n    int count=0;\n    for (out_number = numbers.begin(); out_number != numbers.end(); out_number++) \n    {\n        \n        cout \u003c\u003c *out_number ;\n        count++;\n        if(count \u003c= numbers.size()-1) cout\u003c\u003c\" \";\n    }\n\n    return 0;\n}\n```\n\nSet can automatically sort, and the elements are strictly diverse .\n\n#### 优先队列:优先级最高的元素先出的队列\n\nC++的标准库中包含了一个很好用的数据结构:优先队列.该结构可以将优先级大的元素排到前面.\n\n```c++\n#include \u003cbits/stdc++.h\u003e\n\nusing namespace std;\n\nint main()\n{\n\tpriority_queue\u003cint\u003e que_apples; //默认使用vector,大的数字优先\n\tpriority_queue\u003cint, vector\u003cint\u003e, greater\u003cint\u003e\u003e app_que;//小的数字优先\n\t\n\treturn 0;\n}\n```\n\n自定义优先级:重载运算符\n\n```c++\nclass Student\n{\n    int id;\n    char name[20];\n    bool gender;\n    bool operator \u003c (Student \u0026a) const\n    {\n        return id \u003e a.id;\n    }\n};\n```\n\n\n\n## STL算法\n\n#### 快排(sort),包含在algorithm\n\n这个算法极其牛逼,解放了万千程序员的双手(赞美)!!!\n\n快排作用的内容:数组/向量容器等\n\nC++使用实例\n\n```c++\nvector\u003cint\u003e v1;\nint numbers[2][5];\nstruct student\n{\n    int number;\n    int score;\n    string name;\n}\n//此处省略若干行插入数据代码,让我们假设这这里面有很多数据\nsort(v1.begin(),v1.end());//默认从小到大排列\nbool compare(int a , int b)//按某种排序方案排序\n{\n    return a\u003eb;//这样是降序排列\n    return numbers[a][0]\u003enumbers[b][0];//还能读取某些数据的元素排列\n    return student[a].score\u003estudent[b].score;//还能读取某些结构体的成员\n}\n```\n\n\n\n## 常用基础算法(一些很基本的,要背的)\n\n#### 公因数公倍数\n\n```c++\n#include \u003cstdio.h\u003e\n#include \u003cmath.h\u003e\nint main()\n{\n    int m, n;\n    int s = 0;\n    int min = 0;\n    scanf(\"%d%d\", \u0026m, \u0026n);\n    //最大公约数\n    if (m \u003e n)\n    {\n        s = m;\n        min = n;\n    }\n    else\n    {\n        s = n;\n        min = m;\n    }\n    while (min != 0)\n    {\n        int t = s%min;\n        s = min;\n        min = t;\n    }\n    printf(\"%d\\n\",s);\n    //重置两个数\n    if (m \u003e n)\n    {\n        s = m;\n        min = n;\n    }\n    else\n    {\n        s = n;\n        min = m;\n    }\n    //公倍数\n    for (int i = min;; i += min)\n    {\n        double resR = (double)i / s;\n        int floor = i / s;\n\n        if ((double)floor == resR)\n        {\n            printf(\"%d\\n\", i);\n            break;\n        }\n    }\n\n    return 0;\n}\n```\n\n\n\n#### 筛法判断质数\n\n上代码:\n\n```c++\nbool isPrime(int a)\n{\n    if (a == 2)\n        return true;\n    if (a % 2 == 0)\n        return false;\n    int x = sqrt(a);\n    for (int i = 2; i \u003c= x; ++i)\n    {\n        if (a % i == 0)\n            return false;\n    }\n    return true;\n}\n```\n\n#### 素数的埃式筛法\n\n先确认一个数是素数,然后划掉其倍数,在找到下一个素数后,再划掉其倍数,最后只剩素数.\n\n```c++\nint main()\n{\n    int number_list[1000] = {0}; //we can get primes below 1000\n    bool break_flag = false;\n    number_list[0] = 1;\n    int pri = 2;\n    while (!break_flag)\n    {\n        // the non-prime will be mark 1\n        int count = pri;\n        while (count \u003c= 1000)\n        {\n            count += pri;\n            if (count \u003e= 1000)\n                break;\n            number_list[count] = 1;\n        }\n        int temp_pri = pri;\n        while (true)\n        {\n            temp_pri++;\n            if (temp_pri \u003e= 999)\n            {\n                break_flag = true;\n                break;\n            }\n            if (number_list[temp_pri] == 0)\n            {\n                pri = temp_pri;\n                break;\n            }\n        }\n    }\n    for (int i = 0; i \u003c 1000; i++)\n    {\n        if (number_list[i] == 0)\n        {\n            cout \u003c\u003c i \u003c\u003c \" \";\n        }\n    }\n\n    return 0;\n}\n```\n\n#### 分解质因数(简便方法)\n\n```c\n#include \u003cstdio.h\u003e\n#include \u003cmath.h\u003e\n//这个程序适合好好阅读并分析\nvoid foo(long long int n)\n{\n    long long int sqr = sqrt(n);//测试质数只需测到平方的取整\n    long long int i = 0;\n    for(i = 2; i \u003c= sqr; i++)//从2开始测\n    {\n        if(n % i == 0 \u0026\u0026 (n /= i))//后面的表达式指的是除i留下剩余部分\n        {\n            printf(\"%lld \", i--);\n        }\n    }\n    if(n != 1)//不打印1作为因子\n    {\n        printf(\"%lld\", n);\n    }\n    printf(\"\\n\");\n}\n\nint main()\n{\n    long long int n ;\n    scanf(\"%lld\", \u0026n);\n    foo(n);\n    return 0;\n}\n\n```\n\n\n\n#### 查找字符(这是C标准库里的内容)\n\n用于在一个字符串(也就是char数组)中查找指定的字符\n\n```c++\nstrchr(string_name, 'A');//在string name 这个字符串中寻找A这个字符\n//返回有多种可能,若找到,返回指向这个字符的指针,否则返回NULL(这个NULL是标识符,不是字符串之类的玩意)\n```\n\n#### 位运算\n\n位运算是一种直接操作位的运算,其包含多种运算符:\n\n上代码:\n\n```c++\n\u003c\u003c; //左移运算符,移动时丢弃左边的位,用0补充\n\"11110000\"\u003c\u003c\"10000000\";//左移了3位!!!\n\u003e\u003e; //右移运算符,移动时丢弃右边的位,左边用0或原来丢弃的左边的位补充!!!\n\"11111111\"\u003e\u003e\"00001111\";//右移了四位!!!\n    \n//接下来看看逻辑位运算\n~;//按位非,倒置0/1\n|;//按位或,有一为1,否则为0\n^;//XOR,相同为0,不同为1\n\u0026;//AND,都为1才为1,否则为0\n\n//一些常用的位逻辑运算:\nlottabits |= pow(2,3);//打开位,也就是将某一位置为1,其中后面的2的多少次方代表着打开的位置(2的0次方代表右起第一位,以此类推)\nlottabits ^= pow(2,3);//切换位:置反\nlottabits \u0026= pow(2,3);//关闭位:置0\nbool isOpen = lottabits \u0026 pow(2,3);//测试某一位是否为1(打开),返回true or false.\n```\n\n"},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"2019-11-19-Cpp.markdown"},"buildId":"hx1DBIoUJT41VUZsylTk-","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>

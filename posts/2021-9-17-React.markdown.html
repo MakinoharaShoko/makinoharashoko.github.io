@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/4895d80a2f6580a7.css" as="style"/><link rel="stylesheet" href="/_next/static/css/4895d80a2f6580a7.css" data-n-g=""/><link rel="preload" href="/_next/static/css/234b6b00259efb8e.css" as="style"/><link rel="stylesheet" href="/_next/static/css/234b6b00259efb8e.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-59c5c889f52620d6.js" defer=""></script><script src="/_next/static/chunks/framework-2c79e2a64abdb08b.js" defer=""></script><script src="/_next/static/chunks/main-5020794388548d5e.js" defer=""></script><script src="/_next/static/chunks/pages/_app-4087c6bf47e90c25.js" defer=""></script><script src="/_next/static/chunks/9f96d65d-c9e0543547ce45e9.js" defer=""></script><script src="/_next/static/chunks/557-10798b428373902a.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bid%5D-f16fc4f41fe9d2a0.js" defer=""></script><script src="/_next/static/hx1DBIoUJT41VUZsylTk-/_buildManifest.js" defer=""></script><script src="/_next/static/hx1DBIoUJT41VUZsylTk-/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div class="mainLayout_out__ZYqWw"><div class="mainLayout_mainarea__QxaY0"><div class="post_post__ejhnw markdown-body"><h2>创建一个函数组件</h2>
+<pre><code class="language-js">const Hello = (props)=&gt;{
+    return &lt;div&gt;
+        Hello,{props.name}
+        &lt;/div&gt;
+}
+
+export default Hello;
+</code></pre>
+<h3>传参方法</h3>
+<h4>父组件</h4>
+<pre><code class="language-js">import Hello from &#x27;./components/hello/Hello&#x27;
+
+const Page = ()=&gt;{
+    return &lt;Hello name={&quot;world&quot;}/&gt;
+}
+
+    export default Page;
+</code></pre>
+<h4>子组件</h4>
+<pre><code class="language-js">const Hello = (props)=&gt;{
+    return &lt;div&gt;
+        Hello,{props.name}
+        &lt;/div&gt;
+}
+
+export default Hello;
+</code></pre>
+<h3>参数传递函数（使用Hook）</h3>
+<h4>父组件</h4>
+<pre><code class="language-js">import React, { useState } from &#x27;react&#x27;;
+import Hello from &#x27;../Hello/Hello&#x27;;
+
+const Page = ()=&gt;{
+    const [count,setCount] = useState(0);
+    return &lt;Hello setCount={setCount} count={count}/&gt;
+}
+
+export default Page;
+</code></pre>
+<h4>子组件</h4>
+<pre><code class="language-js">const Hello = (props) =&gt; {
+    return &lt;div onClick={() =&gt; { props.setCount(props.count + 1) }
+    }&gt;Hello,count is{props.count}
+    &lt;/div&gt;
+}
+
+export default Hello;
+</code></pre>
+<h2>使用Hook</h2>
+<pre><code class="language-js">import React, { useState } from &#x27;react&#x27;;
+
+function Example() {
+  // 声明一个新的叫做 “count” 的 state 变量
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>使用 Effect Hook</h3>
+<pre><code class="language-js">import React, { useState, useEffect } from &#x27;react&#x27;;
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  // Similar to componentDidMount and componentDidUpdate:
+  useEffect(() =&gt; {
+    // Update the document title using the browser API
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre></div></div><div class="mainLayout_bottom__As9s_"><div class="mainLayout_tag__Ep3_f"><img alt="launcher" src="/_next/static/media/launcher.d8f01379.png" width="1024" height="1024" decoding="async" data-nimg="1" class="mainLayout_tagImg__qoDJq" loading="lazy" style="color:transparent"/></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":"---\nlayout:     post\ntitle:      React\nintro:   \"\"\ndate:       2021-9-17 12:00:01\nauthor:     \"Makinohara\"\ncatalog: true\ntags:\n    - 工程开发\n    \n---\n\n## 创建一个函数组件\n\n```js\nconst Hello = (props)=\u003e{\n    return \u003cdiv\u003e\n        Hello,{props.name}\n        \u003c/div\u003e\n}\n\nexport default Hello;\n```\n\n### 传参方法\n\n#### 父组件\n\n```js\nimport Hello from './components/hello/Hello'\n\nconst Page = ()=\u003e{\n    return \u003cHello name={\"world\"}/\u003e\n}\n\n    export default Page;\n```\n\n#### 子组件\n\n```js\nconst Hello = (props)=\u003e{\n    return \u003cdiv\u003e\n        Hello,{props.name}\n        \u003c/div\u003e\n}\n\nexport default Hello;\n```\n\n### 参数传递函数（使用Hook）\n\n#### 父组件\n\n```js\nimport React, { useState } from 'react';\nimport Hello from '../Hello/Hello';\n\nconst Page = ()=\u003e{\n    const [count,setCount] = useState(0);\n    return \u003cHello setCount={setCount} count={count}/\u003e\n}\n\nexport default Page;\n```\n\n#### 子组件\n\n```js\nconst Hello = (props) =\u003e {\n    return \u003cdiv onClick={() =\u003e { props.setCount(props.count + 1) }\n    }\u003eHello,count is{props.count}\n    \u003c/div\u003e\n}\n\nexport default Hello;\n```\n\n\n\n## 使用Hook\n\n```js\nimport React, { useState } from 'react';\n\nfunction Example() {\n  // 声明一个新的叫做 “count” 的 state 变量\n  const [count, setCount] = useState(0);\n\n  return (\n    \u003cdiv\u003e\n      \u003cp\u003eYou clicked {count} times\u003c/p\u003e\n      \u003cbutton onClick={() =\u003e setCount(count + 1)}\u003e\n        Click me\n      \u003c/button\u003e\n    \u003c/div\u003e\n  );\n}\n```\n\n### 使用 Effect Hook\n\n```js\nimport React, { useState, useEffect } from 'react';\n\nfunction Example() {\n  const [count, setCount] = useState(0);\n\n  // Similar to componentDidMount and componentDidUpdate:\n  useEffect(() =\u003e {\n    // Update the document title using the browser API\n    document.title = `You clicked ${count} times`;\n  });\n\n  return (\n    \u003cdiv\u003e\n      \u003cp\u003eYou clicked {count} times\u003c/p\u003e\n      \u003cbutton onClick={() =\u003e setCount(count + 1)}\u003e\n        Click me\n      \u003c/button\u003e\n    \u003c/div\u003e\n  );\n}\n```\n\n"},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"2021-9-17-React.markdown"},"buildId":"hx1DBIoUJT41VUZsylTk-","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
