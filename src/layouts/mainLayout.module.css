@@ -12,5 +12,5 @@
 
 .bottom{
     height: 60px;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(3px);
 }
