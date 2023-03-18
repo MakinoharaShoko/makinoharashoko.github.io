@@ -9,7 +9,7 @@
     "lint": "next lint",
     "export": "next build && next export",
     "build-pages": "yarn move-img && yarn export",
-    "move-img": "cp posts/article/img/* public/img/"
+    "move-img": "cp -r posts/article/img/* public/img/"
   },
   "dependencies": {
     "@next/font": "13.1.6",
