@@ -17,6 +17,7 @@ import "highlight.js/styles/github.css";
 import 'katex/dist/katex.min.css';
 import renderMathInElement from "katex/contrib/auto-render";
 import remarkGfm from 'remark-gfm';
+import {marked} from 'marked';
 
 export async function getStaticPaths() {
   const pages = await getAllPosts();
@@ -54,6 +55,19 @@ export default function Post({post}: { post: string }) {
     if (!tags.tags.find(e => e.url === path))
       tags.addTag({title, url: path})
     hljs.highlightAll();
+
+    /**
+     * TOC
+     */
+    const renderer = new marked.Renderer() as any;
+    renderer.headings = [];
+    renderer.heading = function (text: string, level: unknown, raw: unknown) {
+      this.headings.push(text)
+      return text;
+    }
+    marked(postBody, {renderer});
+    console.log(renderer.headings)
+
     renderMathInElement(document.body, {
       delimiters: [
         {left: '$$', right: '$$', display: true},
