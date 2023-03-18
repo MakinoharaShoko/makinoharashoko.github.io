@@ -42,7 +42,8 @@ export default function Home({posts}: {
   const tagsStore = useTagsStore();
   const route = useRouter();
   const tags = tagsStore.tags;
-  const addTagElement = (title: string, url: string) => {
+  const addTagElement = (title: string, urlu: string) => {
+    const url = encodeURI(urlu);
     if (tags.find(e => e.url === url)) {
       tagsStore.setCurrentActiveUrl(url)
     } else {

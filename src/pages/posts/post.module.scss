@@ -1,3 +1,44 @@
-.post{
-  padding: 5px 5px 5px 5px;
+.post {
+  //padding: 5px 5px 5px 5px;
+  border-radius: 5px;
+  overflow: auto;
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  background: white;
+}
+
+.b {
+  padding: 4px 10px 4px 10px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+.b:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.bi {
+  width: 20px;
+  height: 20px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 5px 10px 5px 10px;
+}
+
+.tit {
+  text-align: center;
+  flex: 1;
+}
+
+.md {
+  flex: 1;
+  padding: 30px 8vw 250px 8vw;
+  overflow: auto;
 }

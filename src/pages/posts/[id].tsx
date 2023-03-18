@@ -9,6 +9,14 @@ import s from './post.module.scss'
 import {useEffect} from "react";
 import {useRouter} from "next/router";
 import {useTagsStore} from "@/store/tags";
+import backIcon from '../../assets/back.png';
+import closeIcon from '../../assets/close.png';
+import Image from "next/image";
+import hljs from 'highlight.js';
+import "highlight.js/styles/github.css";
+import 'katex/dist/katex.min.css';
+import renderMathInElement from "katex/contrib/auto-render";
+import remarkGfm from 'remark-gfm';
 
 export async function getStaticPaths() {
   const pages = await getAllPosts();
@@ -37,16 +45,52 @@ export default function Post({post}: { post: string }) {
   const article = useMarkdown(post);
   const postAttr = article.attributes;
   const postBody = article.body;
-  console.log(postAttr);
   const route = useRouter();
   const tags = useTagsStore();
+  // @ts-ignore
+  const title = postAttr?.title ?? '未命名'
+  const path = route.asPath;
   useEffect(() => {
-    const path = route.asPath;
-    // @ts-ignore
-    tags.addTag({title: postAttr?.title ?? '未命名', url: path})
+    if (!tags.tags.find(e => e.url === path))
+      tags.addTag({title, url: path})
+    hljs.highlightAll();
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '\\[', right: '\\]', display: true},
+        {left: '$', right: '$', display: true},
+        {left: '\\(', right: '\\)', display: true},
+      ],
+      throwOnError: false
+    });
   }, [])
-  const articleBody = <ReactMarkdown>{postBody}</ReactMarkdown>
-  return <div className={s.post + ' ' + 'markdown-body'}>
-    {articleBody}
+
+
+  const close = () => {
+    // 关闭当前页，跳到主页
+    route.replace('/').then();
+    tags.deleteTag(path);
+  }
+
+  const back = () => {
+    route.back();
+  }
+
+  const articleBody = <ReactMarkdown remarkPlugins={[remarkGfm]}>{postBody}</ReactMarkdown>
+  return <div className={s.post}>
+    <div className={s.top}>
+      <div className={s.b} onClick={back}>
+        <Image className={s.bi} src={backIcon} alt={'back'}/>
+      </div>
+      <div className={s.tit}>
+        {title}
+      </div>
+      <div className={s.b} onClick={close}>
+        <Image className={s.bi} src={closeIcon} alt={'close'}/>
+      </div>
+    </div>
+    <div className={'markdown-body' + ' ' + s.md}>
+      {articleBody}
+    </div>
   </div>
 }

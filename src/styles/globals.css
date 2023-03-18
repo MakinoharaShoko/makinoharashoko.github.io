@@ -1,5 +1,28 @@
-main{
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
+main {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body {
+    height: calc(100vh - var(--vh-offset, 0px));
+    min-height: calc(100vh - var(--vh-offset, 0px)) !important;
+    overflow: hidden;
+}
+
+#__next {
+    height: calc(100vh - var(--vh-offset, 0px));
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(170, 170, 170, 0.5);
+    border-radius: 5px;
+}
+
+* {
+    transition: all 0.33s;
 }

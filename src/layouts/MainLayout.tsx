@@ -17,6 +17,7 @@ export default function MainLayout(props: { children: JSX.Element }) {
 
   const tagsDisplay = tagsStore.tags.map(tag => {
     const currentPath = route.asPath
+    console.log(route)
     console.log(currentPath)
     console.log(tag.url)
     return <div className={s.tag + ' ' + (currentPath === tag.url ? s.tagActive : '')} key={tag.url}
@@ -25,7 +26,7 @@ export default function MainLayout(props: { children: JSX.Element }) {
     </div>
   })
 
-  return <div className={s.out}>
+  return <div className={s.out} style={{height:"calc(100vh - var(--vh-offset, 0px))"}}>
     <div className={s.mainarea}>
       {props.children}
     </div>

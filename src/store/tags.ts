@@ -11,6 +11,7 @@ interface ITags {
   addTag: (newTag: ITag) => void;
   currentActiveUrl: string;
   setCurrentActiveUrl: (newUrl: string) => void;
+  deleteTag: (url: string) => void;
 }
 
 export const useTagsStore = create(
@@ -19,12 +20,19 @@ export const useTagsStore = create(
     tags: [],
     addTag: (newTag) =>
       set((state) => {
-        state.tags = [...state.tags.filter(tag => tag.url !== newTag.url), newTag];
+        const url = newTag.url;
+        if (state.tags.find(e => e.url === url)) {
+          return;
+        }
+        state.tags = [...state.tags.filter(tag => tag.url !== url), newTag];
       }),
     setCurrentActiveUrl: (newUrl) => {
       set(state => {
         state.currentActiveUrl = newUrl;
       })
-    }
+    },
+    deleteTag: (url) => set((state) => {
+      state.tags = [...state.tags.filter(tag => tag.url !== url)];
+    })
   })),
 );

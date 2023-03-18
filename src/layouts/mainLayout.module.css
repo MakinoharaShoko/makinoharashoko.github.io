@@ -1,5 +1,5 @@
 .out{
-    height: 100vh;
+    height: calc(100vh - var(--vh-offset, 0px));
     display: flex;
     flex-flow: column;
     background: url("../assets/bg.png");
@@ -8,6 +8,8 @@
 .mainarea{
     flex: 1;
     overflow: auto;
+    display: flex;
+    flex-flow: column;
 }
 
 .bottom{
