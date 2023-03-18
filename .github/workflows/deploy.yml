@@ -21,7 +21,7 @@ jobs:
 
       # 生成静态文件
       - name: Build
-        run: npm install yarn -g && yarn install && yarn build-pages
+        run: npm install yarn -g && yarn install && yarn build-pages && touch out/.nojekyll
       # 部署到 GitHub Pages
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v4
