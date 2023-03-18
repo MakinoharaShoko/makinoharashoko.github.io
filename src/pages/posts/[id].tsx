@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import {useMarkdown} from "@/hooks/useMarkdown";
 import {getPostDetail} from "@/pages/api/getPost/[name]";
 import s from './post.module.scss'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {useTagsStore} from "@/store/tags";
 import backIcon from '../../assets/back.png';
@@ -18,6 +18,9 @@ import 'katex/dist/katex.min.css';
 import renderMathInElement from "katex/contrib/auto-render";
 import remarkGfm from 'remark-gfm';
 import {marked} from 'marked';
+import remarkSlug from 'remark-slug';
+import up from '../../assets/up.png';
+import down from '../../assets/down.png'
 
 export async function getStaticPaths() {
   const pages = await getAllPosts();
@@ -46,27 +49,35 @@ export default function Post({post}: { post: string }) {
   const article = useMarkdown(post);
   const postAttr = article.attributes;
   const postBody = article.body;
+  /**
+   * TOC
+   */
+  const renderer = new marked.Renderer() as any;
+  renderer.headings = [];
+  renderer.heading = function (text: string, level: unknown, raw: unknown) {
+    this.headings.push(text)
+    return text;
+  }
+  marked(postBody, {renderer});
+  const heading = renderer.headings as string[];
   const route = useRouter();
   const tags = useTagsStore();
   // @ts-ignore
   const title = postAttr?.title ?? '未命名'
   const path = route.asPath;
+  const [isShowHeadings, setIsShowHeadings] = useState(false);
+  const headingList = heading.map(e => {
+    return <div key={e} className={s.headingButton} onClick={() => {
+      location.hash = e.toLowerCase();
+      setIsShowHeadings(false)
+    }}>
+      {e}
+    </div>
+  })
   useEffect(() => {
     if (!tags.tags.find(e => e.url === path))
       tags.addTag({title, url: path})
     hljs.highlightAll();
-
-    /**
-     * TOC
-     */
-    const renderer = new marked.Renderer() as any;
-    renderer.headings = [];
-    renderer.heading = function (text: string, level: unknown, raw: unknown) {
-      this.headings.push(text)
-      return text;
-    }
-    marked(postBody, {renderer});
-    console.log(renderer.headings)
 
     renderMathInElement(document.body, {
       delimiters: [
@@ -90,21 +101,33 @@ export default function Post({post}: { post: string }) {
     route.back();
   }
 
-  const articleBody = <ReactMarkdown remarkPlugins={[remarkGfm]}>{postBody}</ReactMarkdown>
+  const articleBody = <ReactMarkdown remarkPlugins={[remarkGfm, remarkSlug]}>{postBody}</ReactMarkdown>
   return <div className={s.post}>
     <div className={s.top}>
       <div className={s.b} onClick={back}>
         <Image className={s.bi} src={backIcon} alt={'back'}/>
       </div>
-      <div className={s.tit}>
+      <div className={s.tit} onClick={() => setIsShowHeadings(!isShowHeadings)}>
         {title}
+        {headingList.length > 0 && <>
+          {isShowHeadings && <Image className={s.iconSmall} src={up} alt={'close'}/>}
+          {!isShowHeadings && <Image className={s.iconSmall} src={down} alt={'open'}/>}
+        </>}
       </div>
       <div className={s.b} onClick={close}>
         <Image className={s.bi} src={closeIcon} alt={'close'}/>
       </div>
     </div>
-    <div className={'markdown-body' + ' ' + s.md}>
-      {articleBody}
+
+    <div className={s.mdWarpper}>
+      {isShowHeadings && headingList.length > 0 && <div className={s.menu}>
+        {headingList}
+      </div>}
+      <div className={'markdown-body' + ' ' + s.md}>
+        {articleBody}
+      </div>
     </div>
+
+
   </div>
 }

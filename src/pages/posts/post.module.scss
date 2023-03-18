@@ -35,10 +35,58 @@
 .tit {
   text-align: center;
   flex: 1;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.mdWarpper {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .md {
-  flex: 1;
+  height: 100%;
+  width: 100%;
   padding: 30px 8vw 250px 8vw;
   overflow: auto;
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  background: rgba(255, 255, 255, 1);
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  padding: 5px 10px 5px 10px;
+  z-index: 9;
+  height: 50vh;
+  overflow: auto;
+}
+
+.headingButton {
+  background: white;
+  width: 100%;
+  cursor: pointer;
+  padding: 3px 5px 3px 5px;
+  margin: 5px 0 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.headingButton:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  border-bottom: 1px solid transparent;
+}
+
+.iconSmall {
+  width: 25px;
+  height: 25px;
 }
