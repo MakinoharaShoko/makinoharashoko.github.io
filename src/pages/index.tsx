@@ -5,11 +5,13 @@ import {useMarkdown} from "@/hooks/useMarkdown";
 import s from './index.module.css'
 import Image from "next/image";
 import mdpic from '../assets/md.png'
+import {useTagsStore} from "@/store/tags";
+import {useRouter} from "next/router";
 
 
 export async function getStaticProps() {
   const pages = await getAllPosts();
-  const posts = pages.filter(page => page.extName.toLowerCase() === '.md' || page.extName.toLowerCase() === '.markdown')
+  const posts = pages.reverse().filter(page => page.extName.toLowerCase() === '.md' || page.extName.toLowerCase() === '.markdown')
     .map(async page => {
       const post = await getPostDetail(page.name);
       const postDetail = useMarkdown(post);
@@ -37,8 +39,21 @@ export default function Home({posts}: {
   }[]
 }) {
 
+  const tagsStore = useTagsStore();
+  const route = useRouter();
+  const tags = tagsStore.tags;
+  const addTagElement = (title: string, url: string) => {
+    if (tags.find(e => e.url === url)) {
+      tagsStore.setCurrentActiveUrl(url)
+    } else {
+      tagsStore.addTag({title, url})
+      tagsStore.setCurrentActiveUrl(url)
+    }
+    route.push(url).then();
+  }
+
   const postList = posts.map(e => {
-    return <div key={e.url} className={s.item}>
+    return <div key={e.url} className={s.item} onClick={() => addTagElement(e.title, e.url)}>
       <Image className={s.img} src={mdpic} alt={'markdown'}/>
       <div className={s.itemTitle}>
         {e.title}
