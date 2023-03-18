@@ -66,12 +66,27 @@ export default function Post({post}: { post: string }) {
   const title = postAttr?.title ?? '未命名'
   const path = route.asPath;
   const [isShowHeadings, setIsShowHeadings] = useState(false);
+
+  function generate(title: string) {
+    const nonChineseChars = /[^a-zA-Z0-9\u4e00-\u9fa5\s]+/g;
+    const titleWithSlugifiedNonChineseChars = title.replace(nonChineseChars, (match) => {
+      if (match === '-') {
+        return '-';
+      }
+      return '';
+    });
+
+    // 将连续的空格替换为-
+    return titleWithSlugifiedNonChineseChars.replace(/\s+/g, '-').toLowerCase();
+  }
+
   const headingList = heading.map(e => {
+    const title = e.replace(/<[^>]*>/g, '');
     return <div key={e} className={s.headingButton} onClick={() => {
-      location.hash = e.toLowerCase();
+      location.hash = encodeURI(generate(title));
       setIsShowHeadings(false)
     }}>
-      {e}
+      {title}
     </div>
   })
   useEffect(() => {
