@@ -1,0 +1,15 @@
+.item{
+    height: 80px;
+    width: 80px;
+    display: flex;
+    flex-flow: column;
+    margin: 15px 15px 0 15px;
+    overflow: hidden;
+    color: white;
+    font-size: 85%;
+}
+
+.img{
+    height: 40px;
+    object-fit: contain;
+}

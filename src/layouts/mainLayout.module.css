@@ -1,0 +1,16 @@
+.out{
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    background: url("../assets/bg.png");
+}
+
+.mainarea{
+    flex: 1;
+    overflow: auto;
+}
+
+.bottom{
+    height: 60px;
+    backdrop-filter: blur(2px);
+}

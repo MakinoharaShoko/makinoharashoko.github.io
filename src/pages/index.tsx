@@ -3,6 +3,9 @@ import {getAllPosts} from "@/pages/api/getPostsList";
 import {getPostDetail} from "@/pages/api/getPost/[name]";
 import {useMarkdown} from "@/hooks/useMarkdown";
 import Link from "next/link";
+import s from './index.module.css'
+import Image from "next/image";
+import mdpic from '../assets/md.png'
 
 
 export async function getStaticProps() {
@@ -36,12 +39,11 @@ export default function Home({posts}: {
 }) {
 
   const postList = posts.map(e => {
-    return <div key={e.url} style={{margin: '1em 0 0 2em'}}>
-      <Link href={e.url}>{e.title}
-        <div>
-          {e.createTime}
-        </div>
-      </Link>
+    return <div key={e.url} className={s.item}>
+      <Image className={s.img} src={mdpic} alt={'markdown'}/>
+      <div>
+        {e.title}
+      </div>
     </div>
   })
 
