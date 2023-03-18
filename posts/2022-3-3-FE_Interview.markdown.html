@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/7835419622e5afa0.css" as="style"/><link rel="stylesheet" href="/_next/static/css/7835419622e5afa0.css" data-n-g=""/><link rel="preload" href="/_next/static/css/b3c538488f2d96e9.css" as="style"/><link rel="stylesheet" href="/_next/static/css/b3c538488f2d96e9.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-59c5c889f52620d6.js" defer=""></script><script src="/_next/static/chunks/framework-2c79e2a64abdb08b.js" defer=""></script><script src="/_next/static/chunks/main-5020794388548d5e.js" defer=""></script><script src="/_next/static/chunks/pages/_app-9cd66785574873e8.js" defer=""></script><script src="/_next/static/chunks/175675d1-7de8b3bfdcedb0f1.js" defer=""></script><script src="/_next/static/chunks/9f96d65d-c9e0543547ce45e9.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bid%5D-4e2963aac1d75bf2.js" defer=""></script><script src="/_next/static/64aZP254HBesmUVGKxvDO/_buildManifest.js" defer=""></script><script src="/_next/static/64aZP254HBesmUVGKxvDO/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div class="mainLayout_out__ZYqWw" style="height:calc(100vh - var(--vh-offset, 0px))"><div class="mainLayout_mainarea__QxaY0"><div class="post_post__ejhnw"><div class="post_top__JuBkM"><div class="post_b__Bj3sV"><img alt="back" src="/_next/static/media/back.f6d17d78.png" width="480" height="480" decoding="async" data-nimg="1" class="post_bi__9ghX8" loading="lazy" style="color:transparent"/></div><div class="post_tit__Xu2qi">前端面试知识点查缺补漏</div><div class="post_b__Bj3sV"><img alt="close" src="/_next/static/media/close.315313d8.png" width="480" height="480" decoding="async" data-nimg="1" class="post_bi__9ghX8" loading="lazy" style="color:transparent"/></div></div><div class="markdown-body post_md__a6C1y"><h1>JS相关</h1>
-<h2>JS延迟加载</h2>
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width"/><meta name="next-head-count" content="2"/><link rel="preload" href="/_next/static/css/7835419622e5afa0.css" as="style"/><link rel="stylesheet" href="/_next/static/css/7835419622e5afa0.css" data-n-g=""/><link rel="preload" href="/_next/static/css/50425c9106578cba.css" as="style"/><link rel="stylesheet" href="/_next/static/css/50425c9106578cba.css" data-n-p=""/><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-59c5c889f52620d6.js" defer=""></script><script src="/_next/static/chunks/framework-2c79e2a64abdb08b.js" defer=""></script><script src="/_next/static/chunks/main-5020794388548d5e.js" defer=""></script><script src="/_next/static/chunks/pages/_app-9cd66785574873e8.js" defer=""></script><script src="/_next/static/chunks/175675d1-7de8b3bfdcedb0f1.js" defer=""></script><script src="/_next/static/chunks/9f96d65d-c9e0543547ce45e9.js" defer=""></script><script src="/_next/static/chunks/pages/posts/%5Bid%5D-5a551d2ae83cd097.js" defer=""></script><script src="/_next/static/MkjpXAVhBc5OxoeFL-xod/_buildManifest.js" defer=""></script><script src="/_next/static/MkjpXAVhBc5OxoeFL-xod/_ssgManifest.js" defer=""></script></head><body><div id="__next"><div class="mainLayout_out__ZYqWw" style="height:calc(100vh - var(--vh-offset, 0px))"><div class="mainLayout_mainarea__QxaY0"><div class="post_post__ejhnw"><div class="post_top__JuBkM"><div class="post_b__Bj3sV"><img alt="back" src="/_next/static/media/back.f6d17d78.png" width="480" height="480" decoding="async" data-nimg="1" class="post_bi__9ghX8" loading="lazy" style="color:transparent"/></div><div class="post_tit__Xu2qi">前端面试知识点查缺补漏<img alt="open" src="/_next/static/media/down.9feac32f.png" width="480" height="480" decoding="async" data-nimg="1" class="post_iconSmall__5Hxz8" loading="lazy" style="color:transparent"/></div><div class="post_b__Bj3sV"><img alt="close" src="/_next/static/media/close.315313d8.png" width="480" height="480" decoding="async" data-nimg="1" class="post_bi__9ghX8" loading="lazy" style="color:transparent"/></div></div><div class="post_mdWarpper__Brjcd"><div class="markdown-body post_md__a6C1y"><h1 id="js相关">JS相关</h1>
+<h2 id="js延迟加载">JS延迟加载</h2>
 <p>js 的加载、解析和执行会阻塞页面的渲染过程，因此我们希望 js 脚本能够尽可能的延迟加载，提高页面的渲染速度。</p>
 <p>我了解到的几种方式是：</p>
 <p>第一种方式是我们一般采用的是将 js 脚本放在文档的底部，来使 js 脚本尽可能的在最后来加载执行。</p>
 <p>第二种方式是给 js 脚本添加 defer 属性，这个属性会让脚本的加载与文档的解析同步解析，然后在文档解析完成后再执行这个脚本文件，这样的话就能使页面的渲染不被阻塞。多个设置了 defer 属性的脚本按规范来说最后是顺序执行的，但是在一些浏览器中可能不是这样。</p>
 <p>第三种方式是给 js 脚本添加 async 属性，这个属性会使脚本异步加载，不会阻塞页面的解析过程，但是当脚本加载完成后立即执行 js 脚本，这个时候如果文档没有解析完成的话同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。</p>
 <p>第四种方式是动态创建 DOM 标签的方式，我们可以对文档的加载事件进行监听，当文档加载完成后再动态的创建 script 标签来引入 js 脚本。</p>
-<h2>事件循环</h2>
-<h3>事件循环的基本原理</h3>
+<h2 id="事件循环">事件循环</h2>
+<h3 id="事件循环的基本原理">事件循环的基本原理</h3>
 <ol>
 <li>从 <strong>宏任务</strong> 队列（例如 “script”）中出队（dequeue）并执行最早的任务。</li>
 <li>执行所有微任务：<!-- -->
@@ -36,16 +36,16 @@
 </ul>
 <p>在微任务之间没有 UI 或网络事件的处理：它们一个立即接一个地执行。</p>
 <p>所以，我们可以使用 <code>queueMicrotask</code> 来在保持环境状态一致的情况下，异步地执行一个函数。</p>
-<h4>宏任务</h4>
+<h4 id="宏任务">宏任务</h4>
 <ul>
 <li>当外部脚本 <code>&lt;script src=&quot;...&quot;&gt;</code> 加载完成时，任务就是执行它。</li>
 <li>当用户移动鼠标时，任务就是派生出 <code>mousemove</code> 事件和执行处理程序。</li>
 <li>当安排的（scheduled）<code>setTimeout</code> 时间到达时，任务就是执行其回调。</li>
 </ul>
-<h4>微任务</h4>
+<h4 id="微任务">微任务</h4>
 <p>每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。</p>
-<h2>Promise 与 异步编程</h2>
-<h3>手写Promise</h3>
+<h2 id="promise-与-异步编程">Promise 与 异步编程</h2>
+<h3 id="手写promise">手写Promise</h3>
 <p>没有实现链式调用</p>
 <pre><code class="language-js">class MyPromise {
     constructor(func) {
@@ -117,8 +117,8 @@ test(false).then(null, j =&gt; {
     console.log(j);
 })
 </code></pre>
-<h3>手写 Promise.all Promise.race</h3>
-<h4>Promise.all</h4>
+<h3 id="手写-promiseall-promiserace">手写 Promise.all Promise.race</h3>
+<h4 id="promiseall">Promise.all</h4>
 <pre><code class="language-js">MyAll = function (iterator) {  
     let count = 0//用于计数，当等于len时就resolve
     let len = iterator.length
@@ -141,7 +141,7 @@ test(false).then(null, j =&gt; {
     })
 }
 </code></pre>
-<h4>Promise.race</h4>
+<h4 id="promiserace">Promise.race</h4>
 <pre><code class="language-js">MyRace = function (iterator) {  
     return new Promise((resolve,reject) =&gt; {
         for(let e of iterator){
@@ -156,14 +156,14 @@ test(false).then(null, j =&gt; {
     })
 }
 </code></pre>
-<h3>Async Await</h3>
-<h4>Async</h4>
+<h3 id="async-await">Async Await</h3>
+<h4 id="async">Async</h4>
 <pre><code>async function name([param[, param[, ... param]]]) {
     statements 
 }
 </code></pre>
 <p>async函数一定会返回一个promise对象。如果一个async函数的返回值看起来不是promise，那么它将会被隐式地包装在一个promise中。</p>
-<h5>示例</h5>
+<h5 id="示例">示例</h5>
 <p>如下代码:</p>
 <pre><code>async function foo() {
    return 1
@@ -185,13 +185,13 @@ test(false).then(null, j =&gt; {
    return Promise.resolve(1).then(() =&gt; undefined)
 }
 </code></pre>
-<h4>Await</h4>
+<h4 id="await">Await</h4>
 <p><code>[返回值] = await 表达式;</code></p>
 <p><code>await</code> 操作符用于等待一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> 对象。它只能在异步函数 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function"><code>async function</code></a> 中使用。</p>
 <p>await 表达式会暂停当前 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function"><code>async function</code></a> 的执行，等待 Promise 处理完成。若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function"><code>async function</code></a>。</p>
 <p>若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。</p>
 <p>另外，如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。</p>
-<h5>示例</h5>
+<h5 id="示例-1">示例</h5>
 <pre><code class="language-js">function resolveAfter2Seconds(x) {
   return new Promise(resolve =&gt; {
     setTimeout(() =&gt; {
@@ -206,9 +206,9 @@ async function f1() {
 }
 f1();
 </code></pre>
-<h2>JS 函数</h2>
-<h3>详解 bind apply call</h3>
-<h4>bind:绑定 this 指向</h4>
+<h2 id="js-函数">JS 函数</h2>
+<h3 id="详解-bind-apply-call">详解 bind apply call</h3>
+<h4 id="bind绑定-this-指向">bind:绑定 this 指向</h4>
 <p><code>function.bind(thisArg[, arg1[, arg2[, ...]]])</code></p>
 <p>**<code>bind()</code> **方法创建一个新的函数，在 <code>bind()</code> 被调用时，这个新函数的 <code>this</code> 被指定为 <code>bind()</code> 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
 <pre><code class="language-js">const module = {
@@ -226,7 +226,7 @@ const boundGetX = unboundGetX.bind(module);
 console.log(boundGetX());
 // expected output: 42
 </code></pre>
-<h4>apply:	调用一个函数，接受参数数组</h4>
+<h4 id="apply调用一个函数接受参数数组">apply:	调用一个函数，接受参数数组</h4>
 <p><code>func.apply(thisArg, [argsArray])</code></p>
 <pre><code class="language-js">const func1 = (a)=&gt;{
     console.log(`hello,${a}`);
@@ -235,7 +235,7 @@ console.log(boundGetX());
 func1.apply(null,[&#x27;Mahiru&#x27;])
 //如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。
 </code></pre>
-<h4>call：调用一个函数，接受参数</h4>
+<h4 id="call调用一个函数接受参数">call：调用一个函数，接受参数</h4>
 <p><code>function.call(thisArg, arg1, arg2, ...)</code></p>
 <pre><code class="language-js">function Product(name, price) {
   this.name = name;
@@ -251,9 +251,9 @@ console.log(new Food(&#x27;cheese&#x27;, 5).name);
 // expected output: &quot;cheese&quot;
 
 </code></pre>
-<h2>原型与原型链</h2>
+<h2 id="原型与原型链">原型与原型链</h2>
 <p><img src="https://user-images.githubusercontent.com/30483415/156961492-e97cd912-074c-4b8e-b99f-70dbd2eff676.jpg" alt="js__proto__"/></p>
-<h2>instanceof</h2>
+<h2 id="instanceof">instanceof</h2>
 <p><strong><code>instanceof</code></strong> <strong>运算符</strong>用于检测构造函数的 <code>prototype</code> 属性是否出现在某个实例对象的原型链上。</p>
 <p>手写 <code>instanceof</code>：</p>
 <pre><code class="language-js">function myInstanceof(obj, obj2) {
@@ -269,7 +269,7 @@ console.log(new Food(&#x27;cheese&#x27;, 5).name);
     }
 }
 </code></pre>
-<h2>new</h2>
+<h2 id="new">new</h2>
 <p>当执行：</p>
 <pre><code class="language-js">var o = new Foo();
 </code></pre>
@@ -288,7 +288,7 @@ Foo.call(o);
    return result;
 }
 </code></pre>
-<h3>原型链继承</h3>
+<h3 id="原型链继承">原型链继承</h3>
 <pre><code class="language-js">function Parent(name) {
     this.name = name; // 实例基本属性 (该属性，强调私有，不共享)
     this.arr = [1]; // (该属性，强调私有)
@@ -315,9 +315,9 @@ let p1 = new Parent(&#x27;小爸爸&#x27;)
 // 修复之后：console.log(boy1.constructor); // Child
           console.log(p1.constructor);// Parent  完美
 </code></pre>
-<h2>展开运算符</h2>
+<h2 id="展开运算符">展开运算符</h2>
 <p><code>...</code></p>
-<h4>示例</h4>
+<h4 id="示例-2">示例</h4>
 <pre><code class="language-js">function sum(x, y, z) {
   return x + y + z;
 }
@@ -327,12 +327,12 @@ const numbers = [1, 2, 3];
 console.log(sum(...numbers));
 // expected output: 6
 </code></pre>
-<h3>数组</h3>
+<h3 id="数组">数组</h3>
 <pre><code class="language-js">var arr1 = [0, 1, 2];
 var arr2 = [3, 4, 5];
 arr1 = [...arr2, ...arr1]; // arr1 现在为 [3, 4, 5, 0, 1, 2]
 </code></pre>
-<h3>对象</h3>
+<h3 id="对象">对象</h3>
 <pre><code class="language-js">var obj1 = { foo: &#x27;bar&#x27;, x: 42 };
 var obj2 = { foo: &#x27;baz&#x27;, y: 13 };
 
@@ -342,13 +342,13 @@ var clonedObj = { ...obj1 };
 var mergedObj = { ...obj1, ...obj2 };
 // 合并后的对象: { foo: &quot;baz&quot;, x: 42, y: 13 }
 </code></pre>
-<h2>剩余参数</h2>
+<h2 id="剩余参数">剩余参数</h2>
 <p><strong>剩余参数</strong>语法允许我们将一个不定数量的参数表示为一个数组。</p>
 <pre><code class="language-js">function(a, b, ...theArgs) {
   // ...
 }
 </code></pre>
-<h4>示例</h4>
+<h4 id="示例-3">示例</h4>
 <pre><code class="language-js">function multiply(multiplier, ...theArgs) {
   return theArgs.map(function (element) {
     return multiplier * element;
@@ -358,13 +358,13 @@ var mergedObj = { ...obj1, ...obj2 };
 var arr = multiply(2, 1, 2, 3);
 console.log(arr);  // [2, 4, 6]
 </code></pre>
-<h2>对象的更多方法（待完善）</h2>
+<h2 id="对象的更多方法待完善">对象的更多方法（待完善）</h2>
 <p>Object.assign</p>
-<h2>深拷贝</h2>
-<h3>JSON法</h3>
+<h2 id="深拷贝">深拷贝</h2>
+<h3 id="json法">JSON法</h3>
 <pre><code class="language-js">var obj2 = JSON.parse(JSON.stringify(obj1));
 </code></pre>
-<h3>递归拷贝</h3>
+<h3 id="递归拷贝">递归拷贝</h3>
 <pre><code class="language-js">function deepClone(initalObj, finalObj) {    
   var obj = finalObj || {};    
   for (var i in initalObj) {        
@@ -382,7 +382,7 @@ console.log(arr);  // [2, 4, 6]
   return obj;
 }
 </code></pre>
-<h3>Object.create</h3>
+<h3 id="objectcreate">Object.create</h3>
 <pre><code class="language-js">function deepClone(initalObj, finalObj) {    
   var obj = finalObj || {};    
   for (var i in initalObj) {        
@@ -399,7 +399,7 @@ console.log(arr);  // [2, 4, 6]
   return obj;
 }
 </code></pre>
-<h3>lodash</h3>
+<h3 id="lodash">lodash</h3>
 <pre><code class="language-js">var loadash = require(&#x27;lodash&#x27;);
 var obj1 = {
     a: 1,
@@ -408,8 +408,8 @@ var obj1 = {
 };
 var obj2 = loadash.cloneDeep(obj1);
 </code></pre>
-<h2>闭包与高阶函数</h2>
-<h3>闭包</h3>
+<h2 id="闭包与高阶函数">闭包与高阶函数</h2>
+<h3 id="闭包">闭包</h3>
 <p>一个函数和对其周围状态（<strong>lexical environment，词法环境</strong>）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是<strong>闭包</strong>（<strong>closure</strong>）。也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域。在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来。</p>
 <pre><code class="language-js">function makeFunc() {
     var name = &quot;Mozilla&quot;;
@@ -422,13 +422,13 @@ var obj2 = loadash.cloneDeep(obj1);
 var myFunc = makeFunc();
 myFunc();
 </code></pre>
-<h4>高阶函数</h4>
+<h4 id="高阶函数">高阶函数</h4>
 <p>JavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。</p>
 <ul>
 <li>防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时</li>
 <li>节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效</li>
 </ul>
-<h5>防抖</h5>
+<h5 id="防抖">防抖</h5>
 <pre><code class="language-javascript">function debounce(func, wait) {
     let timeout;
 
@@ -443,7 +443,7 @@ myFunc();
     }
 }
 </code></pre>
-<h5>节流</h5>
+<h5 id="节流">节流</h5>
 <pre><code class="language-javascript">function throttle(fn,delay){
     let valid = true
     return function() {
@@ -460,8 +460,8 @@ myFunc();
     }
 }
 </code></pre>
-<h4>柯里化与逆柯里化</h4>
-<h5>柯里化</h5>
+<h4 id="柯里化与逆柯里化">柯里化与逆柯里化</h4>
+<h5 id="柯里化">柯里化</h5>
 <pre><code class="language-js">function curry(func) {
 
   return function curried(...args) {
@@ -476,7 +476,7 @@ myFunc();
 
 }
 </code></pre>
-<h5>逆柯里化</h5>
+<h5 id="逆柯里化">逆柯里化</h5>
 <pre><code class="language-js">function unCurrying(fn) {
     const tar = this;
     return function (...argu) {
@@ -484,17 +484,17 @@ myFunc();
     }
 }
 </code></pre>
-<h3>内存泄漏</h3>
+<h3 id="内存泄漏">内存泄漏</h3>
 <p>第一种情况是我们由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。</p>
 <p>第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留
 在内存中，而无法被回收。</p>
 <p>第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回收。</p>
 <p>第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。</p>
-<h2>JS 事件模型</h2>
-<h3>事件监听函数</h3>
+<h2 id="js-事件模型">JS 事件模型</h2>
+<h3 id="事件监听函数">事件监听函数</h3>
 <pre><code class="language-js">addEventListener(eventType, handler, useCapture)
 </code></pre>
-<h3>事件对象常用属性</h3>
+<h3 id="事件对象常用属性">事件对象常用属性</h3>
 <pre><code>type用于获取事件类型
 
 target获取事件目标
@@ -503,9 +503,9 @@ stopPropagation()阻止事件冒泡
 
 preventDefault()阻止事件默认行为
 </code></pre>
-<h3>事件阶段</h3>
+<h3 id="事件阶段">事件阶段</h3>
 <p>捕获阶段 -&gt; 目标阶段 -&gt; 冒泡阶段</p>
-<h3>捕获阶段</h3>
+<h3 id="捕获阶段">捕获阶段</h3>
 <p>事件从document一直向下传播到目标元素, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。</p>
 <p>如何将处于冒泡阶段的事件修改成捕获阶段呢？</p>
 <pre><code class="language-js">parent.addEventListener(&#x27;click&#x27;, () =&gt; {      
@@ -516,15 +516,15 @@ child.addEventListener(&#x27;click&#x27;, (event) =&gt; {
 },true)
 </code></pre>
 <p>当处于冒泡阶段时，我们没有必要加第三个参数，因为 <code>addEventListener</code> 默认第三个参数为false（第三个参数存在），如果我们要事件处于捕获阶段的话，只要将第三个参数设成true就行。</p>
-<h3>目标阶段</h3>
+<h3 id="目标阶段">目标阶段</h3>
 <p>事件到达目标元素, 触发目标元素的监听函数。</p>
-<h3>冒泡阶段</h3>
+<h3 id="冒泡阶段">冒泡阶段</h3>
 <p>事件从目标元素冒泡到document, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。</p>
-<h3>事件代理</h3>
+<h3 id="事件代理">事件代理</h3>
 <p>事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为事件代理(Event delegation)。</p>
-<h3>target currentTarget</h3>
+<h3 id="target-currenttarget">target currentTarget</h3>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event"><code>Event</code></a> 接口的只读属性 <code>currentTarget</code> 表示的是当事件沿着 DOM 触发时事件的当前目标。它总是指向事件绑定的元素，而 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target"><code>Event.target</code></a> 则是事件触发的元素。</p>
-<h2>Map 与 WeakMap</h2>
+<h2 id="map-与-weakmap">Map 与 WeakMap</h2>
 <p><code>WeakMap</code> 对于值的引用都是不计入垃圾回收机制的，所以名字里面才会有一个&quot;Weak&quot;，表示这是弱引用（对对象的弱引用是指当该对象应该被 <code>GC</code> 回收时不会阻止 <code>GC</code> 的回收行为）。</p>
 <p><code>Map</code> 相对于 <code>WeakMap</code> ：</p>
 <ul>
@@ -532,8 +532,8 @@ child.addEventListener(&#x27;click&#x27;, (event) =&gt; {
 <li><code>Map</code> 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键； <code>WeakMap</code> 的键是弱引用，键所指向的对象可以被垃圾回收，此时键是无效的</li>
 <li><code>Map</code> 可以被遍历， <code>WeakMap</code> 不能被遍历</li>
 </ul>
-<h2>关于 Array</h2>
-<h3>Map Reduce</h3>
+<h2 id="关于-array">关于 Array</h2>
+<h3 id="map-reduce">Map Reduce</h3>
 <p><strong>1.reduce是一个累加方法，是对数组累积执行回调函数，返回最终计算结果。</strong></p>
 <pre><code class="language-js">array.reduce(function(total, currentValue, currentIndex, arr){
 }, initialValue);
@@ -559,8 +559,8 @@ child.addEventListener(&#x27;click&#x27;, (event) =&gt; {
 //arr   可选。当前元素所属的数组对象。
 //thisValue 可选。传递给函数的值一般用 &quot;this&quot; 值。如果这个参数为空， &quot;undefined&quot; 会传递给 &quot;this&quot; 值
 </code></pre>
-<h2>代理与反射</h2>
-<h1>代理和反射</h1>
+<h2 id="代理与反射">代理与反射</h2>
+<h1 id="代理和反射">代理和反射</h1>
 <blockquote>
 <p>代理是什么？</p>
 </blockquote>
@@ -574,8 +574,8 @@ child.addEventListener(&#x27;click&#x27;, (event) =&gt; {
 <p>创建一个简单的代理</p>
 </blockquote>
 <p>使用Proxy构建可以创建一个简单的代理对象，需要传递两个参数：<strong>目标对象以及一个处理器，后者是定义一个或多个陷阱函数的对象</strong>。如果不定义陷阱函数，则依然使用目标对象的默认行为。</p>
-<h3>示例</h3>
-<h4>1、使用Set陷阱函数验证属性值</h4>
+<h3 id="示例-4">示例</h3>
+<h4 id="1使用set陷阱函数验证属性值">1、使用Set陷阱函数验证属性值</h4>
 <p>假如有这样一个场景，必须要求对象的属性值必须只能是数值，这就意味着该对象每个新增属性时都要被验证，并且在属性不为数值属性时就应该抛出错误。因此就需要使用<code>set</code>陷阱函数来重写<code>set</code>函数的默认行为，<code>set</code>陷阱函数接收四个参数：</p>
 <ol>
 <li>trapTarget：代理的目标对象；</li>
@@ -604,7 +604,7 @@ let proxy = new Proxy(target,{
 proxy.msg=&#x27;hello proxy&#x27;; //Uncaught Error: property must be number
 </code></pre>
 <p>通过set陷阱函数就可以检测设置属性时属性值的类型，当属性值不是数字时，就会抛出错误。</p>
-<h4><strong>2.使用get陷阱函数进行对象外形验证</strong></h4>
+<h4 id="2使用get陷阱函数进行对象外形验证"><strong>2.使用get陷阱函数进行对象外形验证</strong></h4>
 <p>**对象外形（Object Shape）指的是对象已有的属性与方法的集合。**能够使用代理很方便进行对象外形验证。由于使用属性验证只需要在读取属性时被触发，因此只需要使用<code>get陷阱函数</code>。该函数接受三个参数：</p>
 <ol>
 <li>trapTarget：代理的目标对象；</li>
@@ -631,7 +631,7 @@ console.log(proxy.age); // Uncaught Error: 不存在该对象
 复制代码
 </code></pre>
 <p>使用<code>get陷阱函数</code>进行对象外形验证，由于<code>target</code>对象存在<code>name</code>属性，所以可以正常返回，当获取<code>age</code>属性时，由于该属性并不存在，所以会抛出错误。</p>
-<h4><strong>3.使用has陷阱函数隐藏属性</strong></h4>
+<h4 id="3使用has陷阱函数隐藏属性"><strong>3.使用has陷阱函数隐藏属性</strong></h4>
 <p><code>in</code>运算符用于判断指定对象中是否存在某个属性，如果对象的属性名与指定的字符串或符号值相匹配，那么<code>in</code>运算符就会返回<code>true</code>。无论该属性是对象自身的属性还是其原型的属性。</p>
 <p><code>has陷阱函数</code>会在使用<code>in</code>运算符的情况下被调用，控制in运算符返回不同的结果，<code>has陷阱函数</code>会传入两个参数：</p>
 <ol>
@@ -658,7 +658,7 @@ console.log(&#x27;value&#x27; in proxy); //false
 复制代码
 </code></pre>
 <p>使用<code>has陷阱函数</code>，能够控制<code>in</code>运算符的结果，<code>value</code>属性在<code>target对象</code>中存在，通过代理的<code>has陷阱函数</code>使得在检查<code>value</code>属性时返回<code>false</code>，达到隐藏属性的效果。</p>
-<h4><strong>4.使用deleteProperty陷阱函数避免属性被删除</strong></h4>
+<h4 id="4使用deleteproperty陷阱函数避免属性被删除"><strong>4.使用deleteProperty陷阱函数避免属性被删除</strong></h4>
 <p><code>deleteProperty</code> 陷阱函数会在使用<code>delete</code> 运算符删除对象属性时被调用，该方法接收两个参数：</p>
 <ol>
 <li>trapTarget：代理的目标对象；</li>
@@ -683,10 +683,10 @@ console.log(&quot;value&quot; in proxy); // true
 let result1 = delete proxy.value;
 console.log(result1); // false
 </code></pre>
-<h1>CSS相关</h1>
-<h2>重绘与回流</h2>
+<h1 id="css相关">CSS相关</h1>
+<h2 id="重绘与回流">重绘与回流</h2>
 <p><strong>回流必将引起重绘，重绘不一定会引起回流。</strong></p>
-<h3>回流</h3>
+<h3 id="回流">回流</h3>
 <p>导致回流的一些操作</p>
 <ul>
 <li>页面首次渲染</li>
@@ -716,10 +716,10 @@ console.log(result1); // false
 <li><code>elem.scrollWidth</code>, <code>elem.scrollHeight</code></li>
 <li><code>elem.scrollLeft</code>, <code>elem.scrollTop</code></li>
 </ul>
-<h3>重绘</h3>
+<h3 id="重绘">重绘</h3>
 <p>当我们操作的节点上的元素并不导致元素位置发生变化时，比如<code>color</code>,<code>background-color</code>,<code>visibility(注意虽然节点隐藏了，但是元素还在，并且位置也不会发生变化)</code></p>
 <p>浏览器会将新的样式赋值给这些节点，我们称这个过程为重绘</p>
-<h3>如何避免</h3>
+<h3 id="如何避免">如何避免</h3>
 <ul>
 <li>避免使用 <code>table</code> 布局。</li>
 <li>尽可能在 <code>DOM</code> 树的最末端改变<code>class</code>。</li>
@@ -734,25 +734,25 @@ console.log(result1); // false
 <li>避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。</li>
 <li>对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。</li>
 </ul>
-<h2>CSS 几种单位</h2>
-<h3>绝对长度单位</h3>
+<h2 id="css-几种单位">CSS 几种单位</h2>
+<h3 id="绝对长度单位">绝对长度单位</h3>
 <p>一般来说，常用<code>px</code></p>
-<h3>相对长度单位</h3>
+<h3 id="相对长度单位">相对长度单位</h3>
 <table><thead><tr><th><code>em</code></th><th>在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width</th></tr></thead><tbody><tr><td><code>ex</code></td><td>字符“x”的高度</td></tr><tr><td><code>ch</code></td><td>数字“0”的宽度</td></tr><tr><td><code>rem</code></td><td>根元素 <code>&lt;html&gt;</code> 的字体大小</td></tr><tr><td><code>lh</code></td><td>元素的line-height</td></tr><tr><td><code>vw</code></td><td>视窗宽度的1%</td></tr><tr><td><code>vh</code></td><td>视窗高度的1%</td></tr><tr><td><code>vmin</code></td><td>视窗较小尺寸的1%</td></tr><tr><td><code>vmax</code></td><td>视图大尺寸的1%</td></tr></tbody></table>
-<h2>CSS 处理字符串</h2>
-<h3>text-overflow</h3>
+<h2 id="css-处理字符串">CSS 处理字符串</h2>
+<h3 id="text-overflow">text-overflow</h3>
 <p><code>clip</code></p>
 <p>**此为默认值。**这个关键字的意思是&quot;在内容区域的极限处截断文本&quot;，因此在字符的中间可能会发生截断。如果你的目标浏览器支持 <code>text-overflow: &#x27;&#x27;</code>，为了能在两个字符过渡处截断，你可以使用一个空字符串值 (<code>&#x27;&#x27;</code>) 作为 <code>text-overflow</code> 属性的值。</p>
 <p><code>ellipsis</code></p>
 <p>这个关键字的意思是“用一个省略号 (<code>&#x27;…&#x27;</code>, <code>U+2026 HORIZONTAL ELLIPSIS</code>)来表示被截断的文本”。这个省略号被添加在内容区域中，因此会减少显示的文本。如果空间太小到连省略号都容纳不下，那么这个省略号也会被截断。</p>
 <p><code>&lt;string&gt;</code></p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/string"><code>&lt;string&gt;</code></a>用来表示被截断的文本。字符串内容将被添加在内容区域中，所以会减少显示出的文本。如果空间太小到连省略号都容纳不下，那么这个字符串也会被截断。</p>
-<h3>overflow-wrap</h3>
+<h3 id="overflow-wrap">overflow-wrap</h3>
 <p><code>normal</code></p>
 <p>行只能在正常的单词断点处中断。（例如两个单词之间的空格）。</p>
 <p><code>break-word</code></p>
 <p>表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行。</p>
-<h3>text-transform</h3>
+<h3 id="text-transform">text-transform</h3>
 <p><code>capitalize</code></p>
 <p>这个关键字强制每个单词的首字母转换为大写。其他的字符保留不变（它们写在元素里的文本保留原始大小写）。字母是Unicode字符集或者数字里定义的字符 ；因此单词开头的任何标点符号或者特殊符号将会被忽略。</p>
 <p>Authors should not expect <code>capitalize</code> to follow language-specific titlecasing conventions (such as skipping articles in English).</p>
@@ -764,11 +764,11 @@ console.log(result1); // false
 <p>这个关键字阻止所有字符的大小写被转换。</p>
 <p><code>full-width</code></p>
 <p>这个关键字强制字符 — 主要是表意字符和拉丁文字 — 书写进一个方形里，并允许它们按照一般的东亚文字（比如中文或日文）对齐。</p>
-<h2>水平垂直居中</h2>
-<h3>水平居中</h3>
+<h2 id="水平垂直居中">水平垂直居中</h2>
+<h3 id="水平居中">水平居中</h3>
 <p>比较简单，可以用<code>flex</code>，可以用<code>text-align</code></p>
-<h3>垂直居中</h3>
-<h4>单行内联(<code>inline-</code>)元素垂直居中</h4>
+<h3 id="垂直居中">垂直居中</h3>
+<h4 id="单行内联inline-元素垂直居中">单行内联(<code>inline-</code>)元素垂直居中</h4>
 <p>通过设置内联元素的高度(<code>height</code>)和行高(<code>line-height</code>)相等，从而使元素垂直居中。</p>
 <p><strong>核心代码：</strong></p>
 <pre><code class="language-css">#v-box {
@@ -776,7 +776,7 @@ console.log(result1); // false
     line-height: 120px;
 }
 </code></pre>
-<h4>利用flex布局（<code>flex</code>）</h4>
+<h4 id="利用flex布局flex">利用flex布局（<code>flex</code>）</h4>
 <p>利用flex布局实现垂直居中，其中 <code>flex-direction: column</code> 定义主轴方向为纵向。因为flex布局是 <code>CSS3</code> 中定义，在较老的浏览器存在兼容性问题。</p>
 <p><strong>核心代码：</strong></p>
 <pre><code class="language-css">.center-flex {
@@ -785,35 +785,35 @@ console.log(result1); // false
     justify-content: center;
 }
 </code></pre>
-<h2>BFC IFC Flex</h2>
-<h3>BFC</h3>
+<h2 id="bfc-ifc-flex">BFC IFC Flex</h2>
+<h3 id="bfc">BFC</h3>
 <p><code>Block Formatting Context</code>，块级格式化上下文，一个独立的块级渲染区域，该区域拥有一套渲染规则来约束块级盒子的布局，且与区域外部无关。</p>
-<h4>BFC的应用</h4>
+<h4 id="bfc的应用">BFC的应用</h4>
 <ul>
 <li>防止<code>margin</code>发生重叠</li>
 <li>防止发生因浮动导致的高度塌陷</li>
 </ul>
-<h4>怎么生成 BFC</h4>
+<h4 id="怎么生成-bfc">怎么生成 BFC</h4>
 <ul>
 <li><code>float</code>的值不为<code>none</code>；</li>
 <li><code>overflow</code>的值不为<code>visible</code>；</li>
 <li><code>display</code>的值为<code>inline-block</code> <code>table-cell</code> <code>table-caption</code>；</li>
 <li><code>position</code>的值为<code>absolute</code>或<code>fixed</code>；</li>
 </ul>
-<h3>IFC</h3>
+<h3 id="ifc">IFC</h3>
 <p><code>IFC(Inline Formatting Contexts)</code>直译为&quot;行内格式化上下文&quot;，<code>IFC</code>的<code>line box</code>（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的 <code>padding/margin</code> 影响)</p>
-<h4>IFC有的特性</h4>
+<h4 id="ifc有的特性">IFC有的特性</h4>
 <ol>
 <li><code>IFC</code>中的<code>line box</code>一般左右都贴紧整个<code>IFC</code>，但是会因为<code>float</code>元素而扰乱。<code>float</code>元素会位于<code>IFC</code>与与<code>line box</code>之间，使得<code>line box</code>宽度缩短。</li>
 <li><code>IFC</code>中时不可能有块级元素的，当插入块级元素时（如<code>p</code>中插入<code>div</code>）会产生两个匿名块与<code>div</code>分隔开，即产生两个<code>IFC</code>，每个<code>IFC</code>对外表现为块级元素，与<code>div</code>垂直排列。</li>
 </ol>
-<h4>IFC的应用</h4>
+<h4 id="ifc的应用">IFC的应用</h4>
 <ol>
 <li>水平居中：当一个块要在环境中水平居中时，设置其为<code>inline-block</code>则会在外层产生<code>IFC</code>，通过<code>text-align</code>则可以使其水平居中。</li>
 <li>垂直居中：创建一个<code>IFC</code>，用其中一个元素撑开父元素的高度，然后设置其<code>vertical-align:middle</code>，其他行内元素则可以在此父元素下垂直居中。</li>
 </ol>
-<h3>Flex</h3>
-<h4>容器</h4>
+<h3 id="flex">Flex</h3>
+<h4 id="容器">容器</h4>
 <pre><code>flex-direction //方向
 flex-wrap //换行
 flex-flow // 前两个属性的集合
@@ -821,7 +821,7 @@ justify-content  //主轴对齐方式
 align-items //交叉轴对齐方式
 align-content //多轴线对齐方式
 </code></pre>
-<h4>项目</h4>
+<h4 id="项目">项目</h4>
 <pre><code>order //顺序
 flex-grow //放大比例，0为不放大
 flex-shrink //缩小比例，默认1, 0为不缩小
@@ -829,7 +829,7 @@ flex-basis //分配前所占空间
 flex // 上面3个属性的集合
 align-self  //这个元素的对齐方式，覆盖容器的align-items
 </code></pre>
-<h4><code>flex:1</code> ？？？</h4>
+<h4 id="flex1-"><code>flex:1</code> ？？？</h4>
 <p>可以使用一个，两个或三个值来指定 <code>flex</code>属性。</p>
 <p><strong>单值语法</strong>: 值必须为以下其中之一:</p>
 <ul>
@@ -848,7 +848,7 @@ align-self  //这个元素的对齐方式，覆盖容器的align-items
 <li>第二个值必须为一个无单位数，并且它会被当作 <code>&lt;flex-shrink&gt;</code> 的值。</li>
 <li>第三个值必须为一个有效的宽度值， 并且它会被当作 <code>&lt;flex-basis&gt;</code> 的值。</li>
 </ul>
-<h4>flex取值</h4>
+<h4 id="flex取值">flex取值</h4>
 <ul>
 <li>
 <p><code>initial</code></p>
@@ -863,7 +863,7 @@ align-self  //这个元素的对齐方式，覆盖容器的align-items
 <p>元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器。相当于将属性设置为&quot;<code>flex: 0 0 auto</code>&quot;。</p>
 </li>
 </ul>
-<h2>如何做一个三栏布局</h2>
+<h2 id="如何做一个三栏布局">如何做一个三栏布局</h2>
 <p>1、Flex</p>
 <p>2、<code>inline-block</code></p>
 <p>3、<code>float</code> 实现</p>
@@ -881,11 +881,11 @@ align-self  //这个元素的对齐方式，覆盖容器的align-items
     .middle {margin-left: 220px; background: lightpink; margin-right: 140px;}
 &lt;/style&gt;
 </code></pre>
-<h1>HTML相关</h1>
-<h2><code>meta</code> 标签</h2>
-<h4><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-charset"><code>charset</code></a></h4>
+<h1 id="html相关">HTML相关</h1>
+<h2 id="meta-标签"><code>meta</code> 标签</h2>
+<h4 id="charset"><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-charset"><code>charset</code></a></h4>
 <p>这个属性声明了文档的字符编码。如果使用了这个属性，其值必须是与 ASCII 大小写无关（ASCII case-insensitive）的&quot;<code>utf-8</code>&quot;。</p>
-<h4><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv"><strong><code>http-equiv</code></strong></a></h4>
+<h4 id="http-equiv"><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv"><strong><code>http-equiv</code></strong></a></h4>
 <p>属性定义了一个编译指示指令。这个属性叫做 <code>**http-equiv**(alent)</code> 是因为所有允许的值都是特定 HTTP 头部的名称，如下：</p>
 <ul>
 <li>
@@ -913,13 +913,13 @@ align-self  //这个元素的对齐方式，覆盖容器的align-items
 </ul>
 </li>
 </ul>
-<h4>meta 做 SEO</h4>
+<h4 id="meta-做-seo">meta 做 SEO</h4>
 <pre><code>&lt;title&gt;Title of the page&lt;/title&gt;
 &lt;meta name=”description” content=”Everything you need to know about meta tags for search engine optimization”&gt;
 &lt;meta name=”keywords” content=”meta tags,search engine optimization” &gt;
 </code></pre>
-<h1>网络相关</h1>
-<h2>从输入url到呈现网页</h2>
+<h1 id="网络相关">网络相关</h1>
+<h2 id="从输入url到呈现网页">从输入url到呈现网页</h2>
 <p>（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。</p>
 <p>（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新的请求。</p>
 <p>（3）下一步我们首先需要获取的是输入的 URL 中的域名的 IP 地址，首先会判断本地是否有该域名的 IP 地址的缓存，如果有则使用，如果没有则向本地 DNS 服务器发起请求。本地 DNS 服务器也会先检查是否存在缓存，如果没有就会先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的 IP 地址后，本地 DNS 服务器再将这个 IP 地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。</p>
@@ -929,13 +929,13 @@ align-self  //这个元素的对齐方式，覆盖容器的align-items
 <p>（7）当页面请求发送到服务器端后，服务器端会返回一个 html 文件作为响应，浏览器接收到响应后，开始对 html 文件进行解析，开始页面的渲染过程。</p>
 <p>（8）浏览器首先会根据 html 文件构建 DOM 树，根据解析到的 css 文件构建 CSSOM 树，如果遇到 script 标签，则判端是否含有 defer 或者 async 属性，要不然 script 的加载和执行会造成页面的渲染的阻塞。当 DOM 树和 CSSOM 树建立好后，根据它们来构建渲染树。渲染树构建好后，会根据渲染树来进行布局。布局完成后，最后使用浏览器的 UI 接口对页面进行绘制。这个时候整个页面就显示出来了。</p>
 <p>（9）最后一步是 TCP 断开连接的四次挥手过程。</p>
-<h2>HTTP协议</h2>
-<h3>HTTP 1.0/1.1/2.0/3.0</h3>
-<h4>HTTP 1.0/1.1</h4>
+<h2 id="http协议">HTTP协议</h2>
+<h3 id="http-10112030">HTTP 1.0/1.1/2.0/3.0</h3>
+<h4 id="http-1011">HTTP 1.0/1.1</h4>
 <p>HTTP 是超文本传输协议，它定义了客户端和服务器之间交换报文的格式和方式，默认使用 80 端口。它使用 TCP 作为传 输层协议，保证了数据传输的可靠性。</p>
 <p>HTTP 是一个无状态的协议，HTTP 服务器不会保存关于客户的任何信息。</p>
 <p>HTTP 有两种连接模式，一种是持续连接，一种非持续连接。非持续连接指的是服务器必须为每一个请求的对象建立和维护 一个全新的连接。持续连接下，TCP 连接默认不关闭，可以被多个请求复用。在 HTTP1.0 以前使用的非持续的连接，但是可以在请求时，加上 Connection: keep-alive 来要求服务器不要关闭 TCP 连接。HTTP1.1 以后默认采用的是持续的连接。目前对于同一个域，大多数浏览器支持 同时建立 6 个持久连接。</p>
-<h4>HTTP 请求报文</h4>
+<h4 id="http-请求报文">HTTP 请求报文</h4>
 <pre><code>GET / HTTP/1.1
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)
 Accept: */*
@@ -943,7 +943,7 @@ Accept: */*
 <p>HTTP 请求报文的第一行叫做请求行，后面的行叫做首部行，首部行后还可以跟一个实体主体。请求首部之后有一个空行，这个空行不能省略，它用来划分首部与实体。</p>
 <p>请求行包含三个字段：方法字段、URL 字段和 HTTP 版本字段。</p>
 <p>方法字段可以取几种不同的值，一般有 GET、POST、HEAD、PUT 和 DELETE。一般 GET 方法只被用于向服务器获取数据。 POST 方法用于将实体提交到指定的资源，通常会造成服务器资源的修改。HEAD 方法与 GET 方法类似，但是在返回的响应 中，不包含请求对象。PUT 方法用于上传文件到服务器，DELETE 方法用于删除服务器上的对象，表达的是一种语义上的区别。</p>
-<h4>HTTP 响应报文</h4>
+<h4 id="http-响应报文">HTTP 响应报文</h4>
 <p>HTTP 响应报文的格式如下：</p>
 <pre><code>HTTP/1.0 200 OK
 Content-Type: text/plain
@@ -959,16 +959,16 @@ Server: Apache 0.84
 <p>HTTP 响应报文的第一行叫做状态行，后面的行是首部行，最后是实体主体。</p>
 <p>状态行包含了三个字段：协议版本字段、状态码和相应的状态信息。</p>
 <p>实体部分是报文的主要部分，它包含了所请求的对象。</p>
-<h5>常见状态</h5>
+<h5 id="常见状态">常见状态</h5>
 <p>200-请求成功、202-服务器端已经收到请求消息，但是尚未进行处理 301-永久移动、302-临时移动、304-所请求的资源未修改、 400-客户端请求的语法错误、404-请求的资源不存在 500-服务器内部错误。</p>
 <p>一般 1XX 代表服务器接收到请求、2XX 代表成功、3XX 代表重定向、4XX 代表客户端错误、5XX 代表服务器端错误。</p>
-<h4>首部行</h4>
+<h4 id="首部行">首部行</h4>
 <p>首部可以分为四种首部，请求首部、响应首部、通用首部和实体首部。通用首部和实体首部在请求报文和响应报文中都可以设 置，区别在于请求首部和响应首部。</p>
 <p>常见的请求首部有 Accept 可接收媒体资源的类型、Accept-Charset 可接收的字符集、Host 请求的主机名。</p>
 <p>常见的响应首部有 ETag 资源的匹配信息，Location 客户端重定向的 URI。</p>
 <p>常见的通用首部有 Cache-Control 控制缓存策略、Connection 管理持久连接。</p>
 <p>常见的实体首部有 Content-Length 实体主体的大小、Expires 实体主体的过期时间、Last-Modified 资源的最后修改时间。</p>
-<h5>常见的 Content-Type</h5>
+<h5 id="常见的-content-type">常见的 Content-Type</h5>
 <ul>
 <li>
 <p>text/html ： HTML格式</p>
@@ -1004,39 +1004,39 @@ Server: Apache 0.84
 <p>multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式</p>
 </li>
 </ul>
-<h4>HTTP/1.1 协议缺点</h4>
+<h4 id="http11-协议缺点">HTTP/1.1 协议缺点</h4>
 <p>HTTP/1.1 默认使用了持久连接，多个请求可以复用同一个 TCP 连接，但是在同一个 TCP 连接里面，数据请求的通信次序 是固定的。服务器只有处理完一个请求的响应后，才会进行下一个请求的处理，如果前面请求的响应特别慢的话，就会造成许多请求排队等待的情况，这种情况被称为“队头堵塞”。队头阻塞会导致持久连接在达到最大数量时，剩余的资源需要等待其他 资源请求完成后才能发起请求。</p>
 <p>为了避免这个问题，一个是减少请求数，一个是同时打开多个持久连接。这就是我们对网站优化时，使用雪碧图、合并脚本的 原因。</p>
-<h3>HTTP/2 协议</h3>
+<h3 id="http2-协议">HTTP/2 协议</h3>
 <p>2009 年，谷歌公开了自行研发的 SPDY 协议，主要解决 HTTP/1.1 效率不高的问题。这个协议在 Chrome 浏览器上证明 可行以后，就被当作 HTTP/2 的基础，主要特性都在 HTTP/2 之中得到继承。2015 年，HTTP/2 发布。</p>
 <p>HTTP/2 主要有以下新的特性：</p>
-<h4>二进制协议</h4>
+<h4 id="二进制协议">二进制协议</h4>
 <p>HTTP/2 是一个二进制协议。在 HTTP/1.1 版中，报文的头信息必须是文本（ASCII 编码），数据体可以是文本，也可以是 二进制。HTTP/2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为&quot;帧&quot;，可以分为头信息帧和数据帧。 帧的概念是它实现多路复用的基础。</p>
-<h4>多路复用</h4>
+<h4 id="多路复用">多路复用</h4>
 <p><strong>HTTP/2 实现了多路复用，HTTP/2 仍然复用 TCP 连接，但是在一个连接里，客户端和服务器都可以同时发送多个请求或回 应，而且不用按照顺序一一发送，这样就避免了&quot;队头堵塞&quot;的问题。</strong></p>
-<h4>数据流</h4>
+<h4 id="数据流">数据流</h4>
 <p>HTTP/2 使用了数据流的概念，因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的 请求。因此，必须要对数据包做标记，指出它属于哪个请求。HTTP/2 将每个请求或回应的所有数据包，称为一个数据流。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流 ID ，用来区分它属于哪个数据流。</p>
-<h4>头信息压缩</h4>
+<h4 id="头信息压缩">头信息压缩</h4>
 <p>HTTP/2 实现了头信息压缩，由于 HTTP 1.1 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是 重复的，比如 Cookie 和 User Agent ，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。</p>
 <p>HTTP/2 对这一点做了优化，引入了头信息压缩机制。一方面，头信息使用 gzip 或 compress 压缩后再发送；另一方面， 客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就能提高速度了。</p>
-<h4>服务器推送</h4>
+<h4 id="服务器推送">服务器推送</h4>
 <p>HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送。使用服务器推送，提前给客户端推送必要的资源 ，这样就可以相对减少一些延迟时间。这里需要注意的是 http2 下服务器主动推送的是静态资源，和 WebSocket 以及使用 SSE 等方式向客户端发送即时数据的推送是不同的。</p>
 <p>详细的资料可以参考： <a href="http://www.ruanyifeng.com/blog/2016/08/http.html">《HTTP 协议入门》</a> <a href="http://www.ruanyifeng.com/blog/2018/03/http2_server_push.html">《HTTP/2 服务器推送（Server Push）教程》</a></p>
-<h4>HTTP/2 协议缺点</h4>
+<h4 id="http2-协议缺点">HTTP/2 协议缺点</h4>
 <p>因为 HTTP/2 使用了多路复用，一般来说同一域名下只需要使用一个 TCP 连接。由于多个数据流使用同一个 TCP 连接，遵守同一个流量状态控制和拥塞控制。只要一个数据流遭遇到拥塞，剩下的数据流就没法发出去，这样就导致了后面的所有数据都 会被阻塞。HTTP/2 出现的这个问题是由于其使用 TCP 协议的问题，与它本身的实现其实并没有多大关系。</p>
-<h4>HTTP/3 协议</h4>
+<h4 id="http3-协议">HTTP/3 协议</h4>
 <p>由于 TCP 本身存在的一些限制，Google 就开发了一个基于 UDP 协议的 QUIC 协议，并且使用在了 HTTP/3 上。 QUIC 协议在 UDP 协议上实现了多路复用、有序交付、重传等等功能</p>
 <p>详细资料可以参考： <a href="https://www.zhihu.com/question/302412059">《如何看待 HTTP/3 ？》</a></p>
-<h3>HTTPS 协议</h3>
-<h4>HTTP 存在的问题</h4>
+<h3 id="https-协议">HTTPS 协议</h3>
+<h4 id="http-存在的问题">HTTP 存在的问题</h4>
 <ol>
 <li>HTTP 报文使用明文方式发送，可能被第三方窃听。</li>
 <li>HTTP 报文可能被第三方截取后修改通信内容，接收方没有办法发现报文内容的修改。</li>
 <li>HTTP 还存在认证的问题，第三方可以冒充他人参与通信。</li>
 </ol>
-<h4>HTTPS 简介</h4>
+<h4 id="https-简介">HTTPS 简介</h4>
 <p>HTTPS 指的是超文本传输安全协议，HTTPS 是基于 HTTP 协议的，不过它会使用 TLS/SSL 来对数据加密。使用 TLS/ SSL 协议，所有的信息都是加密的，第三方没有办法窃听。并且它提供了一种校验机制，信息一旦被篡改，通信的双方会立 刻发现。它还配备了身份证书，防止身份被冒充的情况出现。</p>
-<h4>TLS 握手过程</h4>
+<h4 id="tls-握手过程">TLS 握手过程</h4>
 <ol>
 <li>第一步，客户端向服务器发起请求，请求中包含使用的协议版本号、生成的一个随机数、以及客户端支持的加密方法。</li>
 <li>第二步，服务器端接收到请求后，确认双方使用的加密方法、并给出服务器的证书、以及一个服务器生成的随机数。</li>
@@ -1044,17 +1044,17 @@ Server: Apache 0.84
 <li>第四步，服务器使用自己的私钥，来解密客户端发送过来的随机数。并提供前面所有内容的 hash 值来供客户端检验。</li>
 <li>第五步，客户端和服务器端根据约定的加密方法使用前面的三个随机数，生成对话秘钥，以后的对话过程都使用这个秘钥 来加密信息。</li>
 </ol>
-<h4>实现原理</h4>
+<h4 id="实现原理">实现原理</h4>
 <p>TLS 的握手过程主要用到了三个方法来保证传输的安全。</p>
 <p>首先是对称加密的方法，对称加密的方法是，双方使用同一个秘钥对数据进行加密和解密。但是对称加密的存在一个问题，就 是如何保证秘钥传输的安全性，因为秘钥还是会通过网络传输的，一旦秘钥被其他人获取到，那么整个加密过程就毫无作用了。 这就要用到非对称加密的方法。</p>
 <p>非对称加密的方法是，我们拥有两个秘钥，一个是公钥，一个是私钥。公钥是公开的，私钥是保密的。用私钥加密的数据，只 有对应的公钥才能解密，用公钥加密的数据，只有对应的私钥才能解密。我们可以将公钥公布出去，任何想和我们通信的客户， 都可以使用我们提供的公钥对数据进行加密，这样我们就可以使用私钥进行解密，这样就能保证数据的安全了。但是非对称加 密有一个缺点就是加密的过程很慢，因此如果每次通信都使用非对称加密的方式的话，反而会造成等待时间过长的问题。</p>
 <p>因此我们可以使用对称加密和非对称加密结合的方式，因为对称加密的方式的缺点是无法保证秘钥的安全传输，因此我们可以 非对称加密的方式来对对称加密的秘钥进行传输，然后以后的通信使用对称加密的方式来加密，这样就解决了两个方法各自存 在的问题。</p>
 <p>但是现在的方法也不一定是安全的，因为我们没有办法确定我们得到的公钥就一定是安全的公钥。可能存在一个中间人，截取 了对方发给我们的公钥，然后将他自己的公钥发送给我们，当我们使用他的公钥加密后发送的信息，就可以被他用自己的私钥 解密。然后他伪装成我们以同样的方法向对方发送信息，这样我们的信息就被窃取了，然而我们自己还不知道。</p>
 <p>为了解决这样的问题，我们可以使用数字证书的方式，首先我们使用一种 Hash 算法来对我们的公钥和其他信息进行加密生成 一个信息摘要，然后让有公信力的认证中心（简称 CA ）用它的私钥对消息摘要加密，形成签名。最后将原始的信息和签名合 在一起，称为数字证书。当接收方收到数字证书的时候，先根据原始信息使用同样的 Hash 算法生成一个摘要，然后使用公证 处的公钥来对数字证书中的摘要进行解密，最后将解密的摘要和我们生成的摘要进行对比，就能发现我们得到的信息是否被更改 了。这个方法最要的是认证中心的可靠性，一般浏览器里会内置一些顶层的认证中心的证书，相当于我们自动信任了他们，只有 这样我们才能保证数据的安全。</p>
-<h3>DNS 协议</h3>
-<h4>概况</h4>
+<h3 id="dns-协议">DNS 协议</h3>
+<h4 id="概况">概况</h4>
 <p>DNS 协议提供的是一种主机名到 IP 地址的转换服务，就是我们常说的域名系统。它是一个由分层的 DNS 服务器组成的分 布式数据库，是定义了主机如何查询这个分布式数据库的方式的应用层协议。DNS 协议运行在 UDP 协议之上，使用 53 号 端口。</p>
-<h4>域名的层级结构</h4>
+<h4 id="域名的层级结构">域名的层级结构</h4>
 <p>域名的层级结构可以如下</p>
 <pre><code>主机名.次级域名.顶级域名.根域名
 
@@ -1063,7 +1063,7 @@ Server: Apache 0.84
 host.sld.tld.root
 </code></pre>
 <p>根据域名的层级结构，管理不同层级域名的服务器，可以分为根域名服务器、顶级域名服务器和权威域名服务器。</p>
-<h4>查询过程</h4>
+<h4 id="查询过程">查询过程</h4>
 <p>DNS 的查询过程一般为，我们首先将 DNS 请求发送到本地 DNS 服务器，由本地 DNS 服务器来代为请求。</p>
 <ol>
 <li>从&quot;根域名服务器&quot;查到&quot;顶级域名服务器&quot;的 NS 记录和 A 记录（ IP 地址）。</li>
@@ -1071,7 +1071,7 @@ host.sld.tld.root
 <li>从&quot;次级域名服务器&quot;查出&quot;主机名&quot;的 IP 地址。</li>
 </ol>
 <p>比如我们如果想要查询 <a href="http://www.baidu.com/">www.baidu.com</a> 的 IP 地址，我们首先会将请求发送到本地的 DNS 服务器中，本地 DNS 服务 器会判断是否存在该域名的缓存，如果不存在，则向根域名服务器发送一个请求，根域名服务器返回负责 .com 的顶级域名 服务器的 IP 地址的列表。然后本地 DNS 服务器再向其中一个负责 .com 的顶级域名服务器发送一个请求，负责 .com 的顶级域名服务器返回负责 .baidu 的权威域名服务器的 IP 地址列表。然后本地 DNS 服务器再向其中一个权威域名服 务器发送一个请求，最后权威域名服务器返回一个对应的主机名的 IP 地址列表。</p>
-<h4>DNS 记录和报文</h4>
+<h4 id="dns-记录和报文">DNS 记录和报文</h4>
 <p>DNS 服务器中以资源记录的形式存储信息，每一个 DNS 响应报文一般包含多条资源记录。一条资源记录的具体的格式为</p>
 <p>（Name，Value，Type，TTL）</p>
 <p>其中 TTL 是资源记录的生存时间，它定义了资源记录能够被其他的 DNS 服务器缓存多长时间。</p>
@@ -1082,21 +1082,21 @@ host.sld.tld.root
 <li>如果 Type = CNAME，则 Name 为别名，Value 为该主机的规范主机名。该条记录用于向查询的主机返回一个主机名 对应的规范主机名，从而告诉查询主机去查询这个主机名的 IP 地址。主机别名主要是为了通过给一些复杂的主机名提供 一个便于记忆的简单的别名。</li>
 <li>如果 Type = MX，则 Name 为一个邮件服务器的别名，Value 为邮件服务器的规范主机名。它的作用和 CNAME 是一 样的，都是为了解决规范主机名不利于记忆的缺点。</li>
 </ol>
-<h4>递归查询和迭代查询</h4>
+<h4 id="递归查询和迭代查询">递归查询和迭代查询</h4>
 <p>递归查询指的是查询请求发出后，域名服务器代为向下一级域名服务器发出请求，最后向用户返回查询的最终结果。使用递归 查询，用户只需要发出一次查询请求。</p>
 <p>迭代查询指的是查询请求后，域名服务器返回单次查询的结果。下一级的查询由用户自己请求。使用迭代查询，用户需要发出 多次的查询请求。</p>
 <p>一般我们向本地 DNS 服务器发送请求的方式就是递归查询，因为我们只需要发出一次请求，然后本地 DNS 服务器返回给我 们最终的请求结果。而本地 DNS 服务器向其他域名服务器请求的过程是迭代查询的过程，因为每一次域名服务器只返回单次 查询的结果，下一级的查询由本地 DNS 服务器自己进行。</p>
-<h4>DNS 缓存</h4>
+<h4 id="dns-缓存">DNS 缓存</h4>
 <p>DNS 缓存的原理非常简单，在一个请求链中，当某个 DNS 服务器接收到一个 DNS 回答后，它能够将回答中的信息缓存在本 地存储器中。返回的资源记录中的 TTL 代表了该条记录的缓存的时间。</p>
-<h4>DNS 实现负载平衡</h4>
+<h4 id="dns-实现负载平衡">DNS 实现负载平衡</h4>
 <p>DNS 可以用于在冗余的服务器上实现负载平衡。因为现在一般的大型网站使用多台服务器提供服务，因此一个域名可能会对应 多个服务器地址。当用户发起网站域名的 DNS 请求的时候，DNS 服务器返回这个域名所对应的服务器 IP 地址的集合，但在 每个回答中，会循环这些 IP 地址的顺序，用户一般会选择排在前面的地址发送请求。以此将用户的请求均衡的分配到各个不 同的服务器上，这样来实现负载均衡。</p>
-<h2>TCP握手与挥手</h2>
-<h3>握手</h3>
+<h2 id="tcp握手与挥手">TCP握手与挥手</h2>
+<h3 id="握手">握手</h3>
 <p>第一次握手，客户端向服务器发送一个 <strong>SYN</strong> 连接请求报文段，报文段的首部中 SYN 标志位置为 1，序号字段是一个任选的 随机数。它代表的是客户端数据的初始序号。</p>
 <p>第二次握手，服务器端接收到客户端发送的 SYN 连接请求报文段后，服务器首先会为该连接<strong>分配 TCP 缓存和变量</strong>，然后向 客户端发送 <strong>SYN ACK</strong> 报文段，报文段的首部中 SYN 和 ACK 标志位都被置为 1，代表这是一个对 SYN 连接请求的确认， 同时序号字段是服务器端产生的一个任选的随机数，它代表的是服务器端数据的初始序号。确认号字段为客户端发送的序号加 一。</p>
 <p>第三次握手，客户端接收到服务器的肯定应答后，它也会为这次 TCP 连接<strong>分配缓存和变量</strong>，同时向服务器端发送一个对服务 器端的报文段的确认。<strong>第三次握手可以在报文段中携带数据</strong>。</p>
 <p>在我看来，TCP 三次握手的建立连接的过程就是相互确认<strong>初始序号</strong>的过程，告诉对方，什么样<strong>序号</strong>的报文段能够被正确接收。 第三次握手的作用是<strong>客户端对服务器端的初始序号的确认</strong>。如果只使用两次握手，那么服务器就没有办法知道自己的序号是否 已被确认。同时这样也是为了防止失效的请求报文段被服务器接收，而出现错误的情况。</p>
-<h3>挥手</h3>
+<h3 id="挥手">挥手</h3>
 <p>因为 TCP 连接是全双工的，也就是说通信的双方都可以向对方发送和接收消息，所以断开连接需要双方的确认。</p>
 <p>第一次挥手，客户端认为没有数据要再发送给服务器端，它就向服务器发送一个 <strong>FIN</strong> 报文段，申请断开客户端到服务器端的 连接。发送后<strong>客户端进入 FIN_WAIT_1</strong> 状态。</p>
 <p>第二次挥手，服务器端接收到客户端释放连接的请求后，向客户端发送一个确认报文段，表示已经接收到了客户端释放连接的 请求，以后不再接收客户端发送过来的数据。但是因为连接是全双工的，所以此时，服务器端还可以向客户端发送数据。服务器端进入 <strong>CLOSE_WAIT</strong> 状态。客户端收到确认后，进入 <strong>FIN_WAIT_2</strong> 状态。</p>
@@ -1104,56 +1104,56 @@ host.sld.tld.root
 <p>第四次挥手，客户端接收到 <strong>FIN</strong> 请求后，向服务器端发送一个确认应答，并进入 <strong>TIME_WAIT</strong> 阶段。该阶段会持续一段时间， 这个时间为报文段在网络中的最大生存时间，如果该时间内服务端没有重发请求的话，客户端进入 <strong>CLOSED</strong> 的状态。如果收到 服务器的重发请求就重新发送确认报文段。服务器端收到客户端的确认报文段后就进入 <strong>CLOSED</strong> 状态，这样全双工的连接就被 释放了。</p>
 <p>TCP 使用四次挥手的原因是因为 TCP 的连接是全双工的，所以需要双方分别释放到对方的连接，单独一方的连接释放，只代 表不能再向对方发送数据，连接处于的是半释放的状态。</p>
 <p>最后一次挥手中，客户端会等待一段时间再关闭的原因，是为了<strong>防止发送给服务器的确认报文段丢失或者出错</strong>，从而导致服务器端不能正常关闭。</p>
-<h2>缓存</h2>
-<h3>强缓存</h3>
-<h4>Expires</h4>
+<h2 id="缓存">缓存</h2>
+<h3 id="强缓存">强缓存</h3>
+<h4 id="expires">Expires</h4>
 <p><strong>Expires是HTTP 1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回，用GMT格式的字符串表示</strong>，如：<code>Expires:Thu, 31 Dec 2037 23:55:55 GMT</code> ，包含了Expires头标签的文件，就说明浏览器对于该文件缓存具有非常大的控制权。</p>
 <p>例如，一个文件的Expires值是2020年的1月1日，那么就代表，在2020年1月1日之前，浏览器都可以直接使用该文件的本地缓存文件，而不必去服务器再次请求该文件，哪怕服务器文件发生了变化。</p>
 <p>所以，<strong>Expires是优化中最理想的情况，因为它根本不会产生请求</strong>，所以后端也就无需考虑查询快慢。</p>
-<h5>原理</h5>
+<h5 id="原理">原理</h5>
 <p>1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Expires的header。</p>
 <p>2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来（所以缓存命中的请求返回的header并不是来自服务器，而是来自之前缓存的header）；</p>
 <p>3、浏览器再请求这个资源时，<strong>先从缓存中寻找，找到这个资源后，拿出它的Expires跟当前的请求时间比较</strong>，如果请求时间在Expires指定的时间之前，就能命中缓存，否则就不行；</p>
 <p>4、如果缓存没有命中，浏览器直接从服务器加载资源时，Expires Header在重新加载的时候会被更新；</p>
-<h4>Cache-Control</h4>
+<h4 id="cache-control">Cache-Control</h4>
 <p><strong>Cache-Control，这是一个相对时间，在配置缓存的时候，以秒为单位，用数值表示</strong>，如： <code>Cache-Control:max-age=315360000</code> 。</p>
-<h5>原理</h5>
+<h5 id="原理-1">原理</h5>
 <p>1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Cache-Control的header。</p>
 <p>2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来；</p>
 <p>3、浏览器再请求这个资源时，<strong>先从缓存中寻找，找到这个资源后，根据它第一次的请求时间和Cache-Control设定的有效期</strong>，计算出一个资源过期时间，再拿这个过期时间跟当前的请求时间比较，如果请求时间在过期时间之前，就能命中缓存，否则就不行；</p>
 <p>4、如果缓存没有命中，浏览器直接从服务器加载资源时，<strong>Cache-Control Header在重新加载的时候会被更新</strong>；</p>
 <p>此外，还可以为 Cache-Control 指定 <code>public</code> 或 <code>private</code> 标记。<strong>如果使用 private，则表示该资源仅仅属于发出请求的最终用户，这将禁止中间服务器（如代理服务器）缓存此类资源</strong>。对于包含用户个人信息的文件（如一个包含用户名的 HTML 文档），可以设置 private，一方面由于这些缓存对其他用户来说没有任何意义，另一方面用户可能不希望相关文件储存在不受信任的服务器上。需要指出的是，private 并不会使得缓存更加安全，它同样会传给中间服务器（如果网站对于传输的安全性要求很高，应该使用传输层安全措施）。<strong>对于 public，则允许所有服务器缓存该资源</strong>。通常情况下，对于所有人都可以访问的资源（例如网站的 logo、图片、脚本等），<strong>Cache-Control 默认设为 public 是合理的</strong>。</p>
 <p>这两个header可以只启用一个，也可以同时启用，<strong>当response header中，Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires</strong></p>
-<h3>协商缓存</h3>
+<h3 id="协商缓存">协商缓存</h3>
 <p>当浏览器对某个资源的请求没有命中强缓存，<strong>就会发一个请求到服务器，验证协商缓存是否命中，如果协商缓存命中，请求响应返回的http状态为304并且会显示一个Not Modified的字符串</strong>。</p>
-<h4>Last-Modified If-Modified-Since</h4>
+<h4 id="last-modified-if-modified-since">Last-Modified If-Modified-Since</h4>
 <p>1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，<strong>在response的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间</strong></p>
 <p>2、浏览器再次跟服务器请求这个资源时，<strong>在request的header上加上If-Modified-Since的header</strong>，这个header的值就是上一次请求时返回的Last-Modified的值。</p>
 <p>3、服务器再次收到资源请求时，<strong>根据浏览器传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化</strong>，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。<strong>当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header</strong>，因为既然资源没有变化，那么Last-Modified也就不会改变。</p>
 <p>4、浏览器收到304的响应后，就会从缓存中加载资源。</p>
 <p>5、如果协商缓存没有命中，浏览器直接从服务器加载资源时，<strong>Last-Modified Header在重新加载的时候会被更新</strong>，下次请求时，<strong>If-Modified-Since会启用上次返回的Last-Modified值</strong>。</p>
-<h4>ETag、If-None-Match</h4>
+<h4 id="etagif-none-match">ETag、If-None-Match</h4>
 <p>1、浏览器第一次跟服务器请求一个资源，<strong>服务器在返回这个资源的同时，在response的header加上ETag的header</strong>，这个header是服务器根据当前请求的资源生成的一个唯一标识，<strong>这个唯一标识是一个字符串，只要资源有变化这个串就不同</strong>，跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题。</p>
 <p>2、浏览器再次跟服务器请求这个资源时，<strong>在request的header上加上If-None-Match的header</strong>，这个header的值就是上一次请求时返回的ETag的值：</p>
 <p>3、服务器再次收到资源请求时，<strong>根据浏览器传过来If-None-Match和然后再根据资源生成一个新的ETag</strong>，如果这两个值相同就说明资源没有变化，否则就是有变化；如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，<strong>由于ETag重新生成过，response header中还会把这个ETag返回</strong>，即使这个ETag跟之前的没有变化：</p>
 <p>4、浏览器收到304的响应后，就会从缓存中加载资源。</p>
 <p>Etag和Last-Modified非常相似，都是用来判断一个参数，从而决定是否启用缓存。<strong>但是ETag相对于Last-Modified也有其优势，可以更加准确的判断文件内容是否被修改</strong>，从而在实际操作中实用程度也更高。</p>
 <p>协商缓存跟强缓存不一样，强缓存不发请求到服务器，<strong>所以有时候资源更新了浏览器还不知道，但是协商缓存会发请求到服务器</strong>，所以资源是否更新，服务器肯定知道。大部分web服务器都默认开启协商缓存，而且是同时启用【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】。</p>
-<h3>用户操作导致的缓存失效</h3>
+<h3 id="用户操作导致的缓存失效">用户操作导致的缓存失效</h3>
 <p>当用户在按<code>F5</code>进行刷新的时候，会忽略Expires/Cache-Control的设置，会再次发送请求去服务器请求，而Last-Modified/Etag还是有效的，服务器会根据情况判断返回304还是200；
 而当用户使用<code>Ctrl+F5</code>进行强制刷新的时候，只是所有的缓存机制都将失效，重新从服务器拉去资源。</p>
-<h2>CDN</h2>
+<h2 id="cdn">CDN</h2>
 <p>内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。
 CDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。</p>
-<h3><strong>CDN缓存策略</strong></h3>
+<h3 id="cdn缓存策略"><strong>CDN缓存策略</strong></h3>
 <p>CDN边缘节点缓存策略因服务商不同而不同，但一般都会遵循http标准协议，通过http响应头中的Cache-control: max-age的字段来设置CDN边缘节点数据缓存时间。</p>
 <p>当客户端向CDN节点请求数据时，CDN节点会判断缓存数据是否过期，若缓存数据并没有过期，则直接将缓存数据返回给客户端；否则，CDN节点就会向源站发出回源请求，从源站拉取最新数据，更新本地缓存，并将最新数据返回给客户端。</p>
 <p>CDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。</p>
 <p>CDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。</p>
-<h3><strong>CDN缓存刷新</strong></h3>
+<h3 id="cdn缓存刷新"><strong>CDN缓存刷新</strong></h3>
 <p>CDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。</p>
-<h1>工程与应用相关</h1>
-<h2>懒加载</h2>
+<h1 id="工程与应用相关">工程与应用相关</h1>
+<h2 id="懒加载">懒加载</h2>
 <p>首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。</p>
 <p>先获取所有图片的 <code>dom</code>，通过 <code>document.body.clientHeight</code> 获取可视区高度，再使用 <code>element.getBoundingClientRect()</code> API 直接得到元素相对浏览的 top 值， 遍历每个图片判断当前图片是否到了可视区范围内。</p>
 <pre><code class="language-javascript">function lazyload() {
@@ -1187,7 +1187,7 @@ io.unobserve(element)
 // 关闭观察器
 io.disconnect()
 </code></pre>
-<h3>IntersectionObserver</h3>
+<h3 id="intersectionobserver">IntersectionObserver</h3>
 <p><code>IntersectionObserver</code> 是浏览器原生提供的构造函数，接受两个参数：callback 是可见性变化时的回调函数，option 是配置对象（该参数可选）。</p>
 <p>目标元素的可见性变化时，就会调用观察器的回调函数 callback。callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。</p>
 <pre><code class="language-javascript">var io = new IntersectionObserver((entries) =&gt; {
@@ -1229,8 +1229,8 @@ imgs.forEach((image) =&gt; {
   observer.observe(image)
 })
 </code></pre>
-<h2>前端路由</h2>
-<h3>hash 模式</h3>
+<h2 id="前端路由">前端路由</h2>
+<h3 id="hash-模式">hash 模式</h3>
 <p>hash 就是指 url 后的 # 号以及后面的字符</p>
 <p>由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。</p>
 <pre><code class="language-js">window.location.hash = &#x27;hash字符串&#x27;; // 用于设置 hash 值
@@ -1243,8 +1243,8 @@ window.addEventListener(&#x27;hashchange&#x27;, function(event){
     let oldURL = event.oldURL; // hash 改变前的旧 url
 },false)
 </code></pre>
-<h3>history模式</h3>
-<h4>history api</h4>
+<h3 id="history模式">history模式</h3>
+<h4 id="history-api">history api</h4>
 <pre><code>history.pushState();         // 添加新的状态到历史状态栈
 history.replaceState();      // 用新的状态代替当前状态
 history.state                // 返回当前状态对象
@@ -1255,8 +1255,8 @@ history.state                // 返回当前状态对象
 <li>history.replaceState() 会将历史记录中的当前页面历史替换为 url。</li>
 </ul>
 <p>由于 history.pushState() 和 history.replaceState() 可以改变 url 同时，不会刷新页面，所以在 HTML5 中的 histroy 具备了实现前端路由的能力。</p>
-<h4><code>window.location</code></h4>
-<h5>常用API</h5>
+<h4 id="windowlocation"><code>window.location</code></h4>
+<h5 id="常用api">常用API</h5>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location/href"><code>Location.href</code></a></p>
 <p>包含整个URL的一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString"><code>DOMString</code></a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol"><code>Location.protocol</code> (en-US)</a></p>
@@ -1269,9 +1269,9 @@ history.state                // 返回当前状态对象
 <p>包含端口号的一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString"><code>DOMString</code></a>。</p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname"><code>Location.pathname</code> (en-US)</a></p>
 <p>包含URL中路径部分的一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString"><code>DOMString</code></a>，开头有一个“<code>/&quot;。</code></p>
-<h2>前端安全问题以及解决方案</h2>
-<h3>XSS攻击</h3>
-<h4>存储型</h4>
+<h2 id="前端安全问题以及解决方案">前端安全问题以及解决方案</h2>
+<h3 id="xss攻击">XSS攻击</h3>
+<h4 id="存储型">存储型</h4>
 <p>存储型 XSS 的攻击步骤：</p>
 <ol>
 <li>攻击者将恶意代码提交到目标网站的数据库中。</li>
@@ -1280,7 +1280,7 @@ history.state                // 返回当前状态对象
 <li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
 </ol>
 <p>这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。</p>
-<h4>反射型</h4>
+<h4 id="反射型">反射型</h4>
 <p>反射型 XSS 的攻击步骤：</p>
 <ol>
 <li>攻击者构造出特殊的 URL，其中包含恶意代码。</li>
@@ -1292,7 +1292,7 @@ history.state                // 返回当前状态对象
 <p>反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。</p>
 <p>由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。</p>
 <p>POST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。</p>
-<h4>DOM型</h4>
+<h4 id="dom型">DOM型</h4>
 <p>DOM 型 XSS 的攻击步骤：</p>
 <ol>
 <li>攻击者构造出特殊的 URL，其中包含恶意代码。</li>
@@ -1301,12 +1301,12 @@ history.state                // 返回当前状态对象
 <li>恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。</li>
 </ol>
 <p>DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。</p>
-<h4>防范方法</h4>
+<h4 id="防范方法">防范方法</h4>
 <p>必要的输入过滤</p>
 <p>改成纯前端渲染，把代码和数据分隔开。</p>
 <p>对 HTML 做充分转义。（在输出时）</p>
 <p>使用CSP</p>
-<h5>预防DOM型</h5>
+<h5 id="预防dom型">预防DOM型</h5>
 <p>在涉及以下字符串拼接时注意：</p>
 <pre><code class="language-html">&lt;!-- 内联事件监听器中包含恶意代码 --&gt;
 &lt;img onclick=&quot;UNTRUSTED&quot; onerror=&quot;UNTRUSTED&quot; src=&quot;data:image/png,&quot;&gt;
@@ -1328,12 +1328,12 @@ eval(&quot;UNTRUSTED&quot;)
 
 </code></pre>
 <p>在使用时避免在字符串中拼接不可信数据。</p>
-<h3>CSRF 攻击</h3>
-<h4>GET型</h4>
+<h3 id="csrf-攻击">CSRF 攻击</h3>
+<h4 id="get型">GET型</h4>
 <pre><code class="language-html"> &lt;img src=&quot;http://bank.example/withdraw?amount=10000&amp;for=hacker&quot; &gt; 
 </code></pre>
 <p>通过一个HTTP请求</p>
-<h4>POST型</h4>
+<h4 id="post型">POST型</h4>
 <pre><code class="language-html"> &lt;form action=&quot;http://bank.example/withdraw&quot; method=POST&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;account&quot; value=&quot;xiaoming&quot; /&gt;
     &lt;input type=&quot;hidden&quot; name=&quot;amount&quot; value=&quot;10000&quot; /&gt;
@@ -1343,15 +1343,15 @@ eval(&quot;UNTRUSTED&quot;)
 
 </code></pre>
 <p>通过提交一个自动提交的表单</p>
-<h4>链接型</h4>
+<h4 id="链接型">链接型</h4>
 <pre><code class="language-html">  &lt;a href=&quot;http://test.com/csrf/withdraw.php?amount=1000&amp;for=hacker&quot; taget=&quot;_blank&quot;&gt;
   重磅消息！！
   &lt;a/&gt;
 
 </code></pre>
 <p>用户点击链接触发</p>
-<h4>防范方法</h4>
-<h5>同源检测</h5>
+<h4 id="防范方法-1">防范方法</h4>
+<h5 id="同源检测">同源检测</h5>
 <p>使用Referer Header确定来源域名</p>
 <p>根据HTTP协议，在HTTP头中有一个字段叫Referer，记录了该HTTP请求的来源地址。 对于Ajax请求，图片和script等资源请求，Referer为发起请求的页面地址。对于页面跳转，Referer为打开页面历史记录的前一个页面地址。因此我们使用Referer中链接的Origin部分可以得知请求的来源域名。</p>
 <p>当Origin和Referer头文件不存在时该怎么办？如果Origin和Referer都不存在，建议直接进行阻止，特别是如果您没有使用随机CSRF Token（参考下方）作为第二次检查。</p>
@@ -1359,11 +1359,11 @@ eval(&quot;UNTRUSTED&quot;)
 <p>我们已经知道了请求域名是否是来自不可信的域名，我们直接阻止掉这些的请求，就能防御CSRF攻击了吗？</p>
 <p>且慢！当一个请求是页面请求（比如网站的主页），而来源是搜索引擎的链接（例如百度的搜索结果），也会被当成疑似CSRF攻击。所以在判断的时候需要过滤掉页面请求情况。</p>
 <p>CSRF大多数情况下来自第三方域名，但并不能排除本域发起。如果攻击者有权限在本域发布评论（含链接、图片等，统称UGC），那么它可以直接在本域发起攻击，这种情况下同源策略无法达到防护的作用。</p>
-<h5>CSRF Token</h5>
+<h5 id="csrf-token">CSRF Token</h5>
 <p>CSRF Token机制是目前比较主流的的防御手段，其核心思路是在需要验证的请求中添加一个无法预测，无法使用浏览器策略直接提交的字段。CSRF Token可以是POST请求的一个参数、或者是一个自定义的HTTP Header，Token可以存放于<code>&lt;mata&gt;</code>标签中、JS变量中、Cookie中、浏览器Local Storage中或者DOM的任何位置，Token可以是同步令牌、加密令牌或者HMAC Token。</p>
 <p>不同的生成、存储及使用方式，所带来的的安全性也是存在区别的，一般推荐使用HMAC Token、存储于DOM中，并在Ajax请求中添加自定义Header传输Token。使用CSRF Token的优点在于识别准确，后续新开发接口只需按照规则开发便可避免CSRF漏洞。缺点在于推CSRF Token机制需要前端和客户端开发付出大量时间进行调整，且一旦CSRF Token机制运转，旧版本APP可能无法使用。</p>
-<h5>双重 token</h5>
-<h5>Samesite cookie</h5>
+<h5 id="双重-token">双重 token</h5>
+<h5 id="samesite-cookie">Samesite cookie</h5>
 <p>Cookie 的<code>SameSite</code>属性用来限制第三方 Cookie，从而减少安全风险。</p>
 <p>它可以设置三个值。</p>
 <blockquote>
@@ -1389,15 +1389,15 @@ eval(&quot;UNTRUSTED&quot;)
 <p>导航到目标网址的 GET 请求，只包括三种情况：链接，预加载请求，GET 表单。详见下表。</p>
 <table><thead><tr><th style="text-align:left">请求类型</th><th style="text-align:center">示例</th><th style="text-align:right">正常情况</th><th style="text-align:left">Lax</th></tr></thead><tbody><tr><td style="text-align:left">链接</td><td style="text-align:center"><code>&lt;a href=&quot;...&quot;&gt;&lt;/a&gt;</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">发送 Cookie</td></tr><tr><td style="text-align:left">预加载</td><td style="text-align:center"><code>&lt;link rel=&quot;prerender&quot; href=&quot;...&quot;/&gt;</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">发送 Cookie</td></tr><tr><td style="text-align:left">GET 表单</td><td style="text-align:center"><code>&lt;form method=&quot;GET&quot; action=&quot;...&quot;&gt;</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">发送 Cookie</td></tr><tr><td style="text-align:left">POST 表单</td><td style="text-align:center"><code>&lt;form method=&quot;POST&quot; action=&quot;...&quot;&gt;</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">不发送</td></tr><tr><td style="text-align:left">iframe</td><td style="text-align:center"><code>&lt;iframe src=&quot;...&quot;&gt;&lt;/iframe&gt;</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">不发送</td></tr><tr><td style="text-align:left">AJAX</td><td style="text-align:center"><code>$.get(&quot;...&quot;)</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">不发送</td></tr><tr><td style="text-align:left">Image</td><td style="text-align:center"><code>&lt;img src=&quot;...&quot;&gt;</code></td><td style="text-align:right">发送 Cookie</td><td style="text-align:left">不发送</td></tr></tbody></table>
 <p>设置了<code>Strict</code>或<code>Lax</code>以后，基本就杜绝了 CSRF 攻击。当然，前提是用户浏览器支持 SameSite 属性。</p>
-<h3>点击劫持</h3>
-<h4>原理</h4>
+<h3 id="点击劫持">点击劫持</h3>
+<h4 id="原理-2">原理</h4>
 <ol>
 <li>访问者被恶意页面吸引。怎样吸引的不重要。</li>
 <li>页面上有一个看起来无害的链接（例如：“变得富有”或者“点我，超好玩！”）。</li>
 <li>恶意页面在该链接上方放置了一个透明的 <code>&lt;iframe&gt;</code>，其 <code>src</code> 来自于 <a href="http://facebook.com/">facebook.com</a>，这使得“点赞”按钮恰好位于该链接上面。这通常是通过 <code>z-index</code> 实现的。</li>
 <li>用户尝试点击该链接时，实际上点击的是“点赞”按钮。</li>
 </ol>
-<h4>防范</h4>
+<h4 id="防范">防范</h4>
 <p><code>samesite</code> cookie 特性可以阻止点击劫持攻击。</p>
 <p>具有 <code>samesite</code> 特性的 cookie 仅在网站是通过直接方式打开（而不是通过 frame 或其他方式）的情况下才发送到网站。更多细节请见 <a href="https://zh.javascript.info/cookie#samesite">Cookie，document.cookie</a>。</p>
 <p>如果网站，例如 Facebook，在其身份验证 cookie 中具有 <code>samesite</code> 特性，像这样：</p>
@@ -1405,4 +1405,4 @@ eval(&quot;UNTRUSTED&quot;)
 </code></pre>
 <p>……那么，当在另一个网站中的 iframe 中打开 Facebook 时，此类 cookie 将不会被发送。因此，攻击将失败。</p>
 <p>当不使用 cookie 时，<code>samesite</code> cookie 特性将不会有任何影响。这可以使其他网站能够轻松地在 iframe 中显示我们公开的、未进行身份验证的页面。</p>
-<p>然而，这也可能会使得劫持攻击在少数情况下起作用。例如，通过检查 IP 地址来防止重复投票的匿名投票网站仍然会受到点击劫持的攻击，因为它不使用 cookie 对用户身份进行验证。</p></div></div></div><div class="mainLayout_bottom__As9s_"><div class="mainLayout_tag__Ep3_f"><img alt="launcher" src="/_next/static/media/launcher.d8f01379.png" width="1024" height="1024" decoding="async" data-nimg="1" class="mainLayout_tagImg__qoDJq" loading="lazy" style="color:transparent"/></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":"---\nlayout:     post\ntitle:      前端面试知识点查缺补漏\nintro:   \"\"\ndate:       2022-3-3 23:00:00\nauthor:     \"Makinohara\"\ncatalog: true\ntags:\n    - 工程开发\n---\n\n# JS相关\n\n## JS延迟加载\n\njs 的加载、解析和执行会阻塞页面的渲染过程，因此我们希望 js 脚本能够尽可能的延迟加载，提高页面的渲染速度。\n\n我了解到的几种方式是：\n\n第一种方式是我们一般采用的是将 js 脚本放在文档的底部，来使 js 脚本尽可能的在最后来加载执行。\n\n第二种方式是给 js 脚本添加 defer 属性，这个属性会让脚本的加载与文档的解析同步解析，然后在文档解析完成后再执行这个脚本文件，这样的话就能使页面的渲染不被阻塞。多个设置了 defer 属性的脚本按规范来说最后是顺序执行的，但是在一些浏览器中可能不是这样。\n\n第三种方式是给 js 脚本添加 async 属性，这个属性会使脚本异步加载，不会阻塞页面的解析过程，但是当脚本加载完成后立即执行 js 脚本，这个时候如果文档没有解析完成的话同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。\n\n第四种方式是动态创建 DOM 标签的方式，我们可以对文档的加载事件进行监听，当文档加载完成后再动态的创建 script 标签来引入 js 脚本。\n\n## 事件循环\n\n### 事件循环的基本原理\n\n1. 从 **宏任务** 队列（例如 “script”）中出队（dequeue）并执行最早的任务。\n2. 执行所有微任务：\n   - 当微任务队列非空时：\n     - 出队（dequeue）并执行最早的微任务。\n3. 如果有变更，则将变更渲染出来。\n4. 如果宏任务队列为空，则休眠直到出现宏任务。\n5. 转到步骤 1。\n\n安排（schedule）一个新的 **宏任务**：\n\n- 使用零延迟的 `setTimeout(f)`。\n\n它可被用于将繁重的计算任务拆分成多个部分，以使浏览器能够对用户事件作出反应，并在任务的各部分之间显示任务进度。\n\n此外，也被用于在事件处理程序中，将一个行为（action）安排（schedule）在事件被完全处理（冒泡完成）后。\n\n安排一个新的 **微任务**：\n\n- 使用 `queueMicrotask(f)`。\n- promise 处理程序也会通过微任务队列。\n\n在微任务之间没有 UI 或网络事件的处理：它们一个立即接一个地执行。\n\n所以，我们可以使用 `queueMicrotask` 来在保持环境状态一致的情况下，异步地执行一个函数。\n\n#### 宏任务\n\n- 当外部脚本 `\u003cscript src=\"...\"\u003e` 加载完成时，任务就是执行它。\n- 当用户移动鼠标时，任务就是派生出 `mousemove` 事件和执行处理程序。\n- 当安排的（scheduled）`setTimeout` 时间到达时，任务就是执行其回调。\n\n#### 微任务\n\n每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。\n\n## Promise 与 异步编程\n\n### 手写Promise\n\n没有实现链式调用\n\n```js\nclass MyPromise {\n    constructor(func) {\n        this.status = 'PENDING'; // 初始化状态\n        this.value = undefined; // 成功返回的值\n        this.reason = undefined; //失败返回的值\n\n        this.callbacks = [];//结束后的回调\n        func(this.resolve.bind(this), this.reject.bind(this));//绑定this\n    }\n\n    resolve(value) {\n        this.value = value;\n        this.status = 'FULFILLED'; // 设置状态\n\n        // 通知事件执行\n        this.callbacks.forEach((cb) =\u003e this._handler(cb));\n    }\n\n    reject(reason) {\n        this.reason = reason;\n        this.status = 'REJECTED'; // 设置状态\n\n        // 通知事件执行\n        this.callbacks.forEach((cb) =\u003e this._handler(cb));\n    }\n\n    then(onFulfilled, onRejected) { //这个函数用于注册\n        // 将需要执行的回调函数存储起来\n        this.callbacks.push({\n            onFulfilled,\n            onRejected,\n        });//保存参数\n    }\n\n    //用于执行回调函数\n    _handler(callback) {\n        const { onFulfilled, onRejected } = callback;//回调函数的两个参数\n\n        if (this.status === 'FULFILLED' \u0026\u0026 onFulfilled) {\n            // 传入存储的值\n            onFulfilled(this.value);\n        }\n\n        if (this.status === 'REJECTED' \u0026\u0026 onRejected) {\n            // 传入存储的错误信息\n            onRejected(this.reason);\n        }\n    }\n}\n\nfunction test(success) {\n    return new MyPromise((res, rej) =\u003e {\n        setTimeout(() =\u003e {\n            if (success) {\n                res(\"willem\");\n            } else {\n                rej('error');\n            }\n        }, 0);\n    })\n}\n\ntest(true).then((r, j) =\u003e {\n    console.log(r);\n})\n\ntest(false).then(null, j =\u003e {\n    console.log(j);\n})\n```\n\n### 手写 Promise.all Promise.race\n\n#### Promise.all\n\n```js\nMyAll = function (iterator) {  \n    let count = 0//用于计数，当等于len时就resolve\n    let len = iterator.length\n    let res = []//用于存放结果\n    return new Promise((resolve,reject) =\u003e {\n        for(let e of iterator){\n            //Promise.resolve(value)方法返回一个以给定值解析后的Promise 对象。\n            //如果这个值是一个 promise ，那么将返回这个 promise。\n            Promise.resolve(e)//转化为Promise对象\n            .then((data) =\u003e {\n                res[count] = data;\n                if(++count === len){\n                    resolve(res)\n                }\n            })\n            .catch(e =\u003e {\n                reject(e)\n            })\n        }\n    })\n}\n```\n\n#### Promise.race\n\n```js\nMyRace = function (iterator) {  \n    return new Promise((resolve,reject) =\u003e {\n        for(let e of iterator){\n            Promise.resolve(e)\n            .then((data) =\u003e {\n                    resolve(data)\n            })\n            .catch(e =\u003e {\n                reject(e)\n            })\n        }\n    })\n}\n```\n\n### Async Await\n\n#### Async\n\n```\nasync function name([param[, param[, ... param]]]) {\n    statements \n}\n```\n\nasync函数一定会返回一个promise对象。如果一个async函数的返回值看起来不是promise，那么它将会被隐式地包装在一个promise中。\n\n##### 示例\n\n如下代码:\n\n```\nasync function foo() {\n   return 1\n}\n```\n\n等价于:\n\n```\nfunction foo() {\n   return Promise.resolve(1)\n}\n```\n\nasync函数的函数体可以被看作是由0个或者多个await表达式分割开来的。从第一行代码直到（并包括）第一个await表达式（如果有的话）都是同步运行的。这样的话，一个不含await表达式的async函数是会同步运行的。然而，如果函数体内有一个await表达式，async函数就一定会异步执行。\n\n例如：\n\n```\nasync function foo() {\n   await 1\n}\n```\n\n等价于\n\n```\nfunction foo() {\n   return Promise.resolve(1).then(() =\u003e undefined)\n}\n```\n\n#### Await\n\n`[返回值] = await 表达式;`\n\n`await` 操作符用于等待一个[`Promise`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise) 对象。它只能在异步函数 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function) 中使用。\n\nawait 表达式会暂停当前 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function) 的执行，等待 Promise 处理完成。若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function)。\n\n若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。\n\n另外，如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。\n\n##### 示例\n\n```js\nfunction resolveAfter2Seconds(x) {\n  return new Promise(resolve =\u003e {\n    setTimeout(() =\u003e {\n      resolve(x);\n    }, 2000);\n  });\n}\n\nasync function f1() {\n  var x = await resolveAfter2Seconds(10);\n  console.log(x); // 10\n}\nf1();\n```\n\n## JS 函数\n\n### 详解 bind apply call\n\n#### bind:绑定 this 指向\n\n`function.bind(thisArg[, arg1[, arg2[, ...]]])`\n\n**`bind()` **方法创建一个新的函数，在 `bind()` 被调用时，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。\n\n```js\nconst module = {\n  x: 42,\n  getX: function() {\n    return this.x;\n  }\n};\n\nconst unboundGetX = module.getX;\nconsole.log(unboundGetX()); // The function gets invoked at the global scope\n// expected output: undefined\n\nconst boundGetX = unboundGetX.bind(module);\nconsole.log(boundGetX());\n// expected output: 42\n```\n\n#### apply:\t调用一个函数，接受参数数组\n\n`func.apply(thisArg, [argsArray])`\n\n```js\nconst func1 = (a)=\u003e{\n    console.log(`hello,${a}`);\n}\n//apply接受一个参数数组\nfunc1.apply(null,['Mahiru'])\n//如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。\n```\n\n#### call：调用一个函数，接受参数\n\n`function.call(thisArg, arg1, arg2, ...)`\n\n```js\nfunction Product(name, price) {\n  this.name = name;\n  this.price = price;\n}\n\nfunction Food(name, price) {\n  Product.call(this, name, price);\n  this.category = 'food';\n}\n\nconsole.log(new Food('cheese', 5).name);\n// expected output: \"cheese\"\n\n```\n\n## 原型与原型链\n\n![js__proto__](https://user-images.githubusercontent.com/30483415/156961492-e97cd912-074c-4b8e-b99f-70dbd2eff676.jpg)\n\n## instanceof\n\n**`instanceof`** **运算符**用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。\n\n手写 `instanceof`：\n\n```js\nfunction myInstanceof(obj, obj2) {\n    let proto = obj.__proto__;\n    let prototype = obj2.prototype;\n    let queue = [proto];\n    // 循环 obj 原型链进行获取 __proto__ 与 prototype 对比\n    while(queue.length) {\n        let temp = queue.shift();\n        if(temp === null) return false;//找到原型链顶端，仍不是\n        if(temp === prototype) return true;\n        queue.push(temp.__proto__);\n    }\n}\n```\n\n## new\n\n当执行：\n\n```js\nvar o = new Foo();\n```\n\nJavaScript 实际上执行的是：\n\n```js\nvar o = new Object();\no.__proto__ = Foo.prototype;\nFoo.call(o);\n```\n\n```js\nfunction myNew(F){\n    let result = {};\n    let arg = Array.prototype.slice.call(arguments, 1);\n    // 将实例对象的 __proto__ 指向 F.prototype\n    Object.setPrototypeOf(result, F.prototype);\n    // this 指向实例对象\n    F.apply(result, arg);\n   return result;\n}\n```\n\n### 原型链继承\n\n```js\nfunction Parent(name) {\n    this.name = name; // 实例基本属性 (该属性，强调私有，不共享)\n    this.arr = [1]; // (该属性，强调私有)\n}\nParent.prototype.say = function() { // --- 将需要复用、共享的方法定义在父类原型上 \n    console.log('hello')\n}\nfunction Child(name,like) {\n    Parent.call(this,name,like) // 核心  \n    this.like = like;\n}\nChild.prototype = Object.create(Parent.prototype) // 核心  通过创建中间对象，子类原型和父类原型，就会隔离开。不是同一个啦，有效避免了方式4的缺点。\n\n// \u003c!--这里是修复构造函数指向的代码--\u003e\nChild.prototype.constructor = Child\n\nlet boy1 = new Child('小红','apple')\nlet boy2 = new Child('小明','orange')\nlet p1 = new Parent('小爸爸')\n\n\n// 注意：这种方法也要修复构造函数的\n// 修复代码：Child.prototype.constructor = Child\n// 修复之后：console.log(boy1.constructor); // Child\n          console.log(p1.constructor);// Parent  完美\n```\n\n## 展开运算符\n\n`...`\n\n#### 示例\n\n```js\nfunction sum(x, y, z) {\n  return x + y + z;\n}\n\nconst numbers = [1, 2, 3];\n\nconsole.log(sum(...numbers));\n// expected output: 6\n```\n\n### 数组\n\n```js\nvar arr1 = [0, 1, 2];\nvar arr2 = [3, 4, 5];\narr1 = [...arr2, ...arr1]; // arr1 现在为 [3, 4, 5, 0, 1, 2]\n```\n\n### 对象\n\n```js\nvar obj1 = { foo: 'bar', x: 42 };\nvar obj2 = { foo: 'baz', y: 13 };\n\nvar clonedObj = { ...obj1 };\n// 克隆后的对象: { foo: \"bar\", x: 42 }\n\nvar mergedObj = { ...obj1, ...obj2 };\n// 合并后的对象: { foo: \"baz\", x: 42, y: 13 }\n```\n\n## 剩余参数\n\n**剩余参数**语法允许我们将一个不定数量的参数表示为一个数组。\n\n```js\nfunction(a, b, ...theArgs) {\n  // ...\n}\n```\n\n#### 示例\n\n```js\nfunction multiply(multiplier, ...theArgs) {\n  return theArgs.map(function (element) {\n    return multiplier * element;\n  });\n}\n\nvar arr = multiply(2, 1, 2, 3);\nconsole.log(arr);  // [2, 4, 6]\n```\n\n## 对象的更多方法（待完善）\n\nObject.assign\n\n## 深拷贝\n\n### JSON法\n\n```js\nvar obj2 = JSON.parse(JSON.stringify(obj1));\n```\n\n### 递归拷贝\n\n```js\nfunction deepClone(initalObj, finalObj) {    \n  var obj = finalObj || {};    \n  for (var i in initalObj) {        \n    var prop = initalObj[i];// 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况\n    if(prop === obj) {            \n      continue;\n    }        \n    if (typeof prop === 'object') {\n      obj[i] = (prop.constructor === Array) ? [] : {};            \n      arguments.callee(prop, obj[i]);//调用自身，现在不建议用了\n    } else {\n      obj[i] = prop;\n    }\n  }    \n  return obj;\n}\n```\n\n### Object.create\n\n```js\nfunction deepClone(initalObj, finalObj) {    \n  var obj = finalObj || {};    \n  for (var i in initalObj) {        \n    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况\n    if(prop === obj) {            \n      continue;\n    }        \n    if (typeof prop === 'object') {\n      obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);\n    } else {\n      obj[i] = prop;\n    }\n  }    \n  return obj;\n}\n```\n\n### lodash\n\n```js\nvar loadash = require('lodash');\nvar obj1 = {\n    a: 1,\n    b: { f: { g: 1 } },\n    c: [1, 2, 3]\n};\nvar obj2 = loadash.cloneDeep(obj1);\n```\n\n## 闭包与高阶函数\n\n### 闭包\n\n一个函数和对其周围状态（**lexical environment，词法环境**）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是**闭包**（**closure**）。也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域。在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来。\n\n```js\nfunction makeFunc() {\n    var name = \"Mozilla\";\n    function displayName() {\n        alert(name);\n    }\n    return displayName;\n}\n\nvar myFunc = makeFunc();\nmyFunc();\n```\n\n#### 高阶函数\n\nJavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。\n\n- 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时\n- 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效\n\n##### 防抖\n\n```javascript\nfunction debounce(func, wait) {\n    let timeout;\n\n    return function () {\n        let context = this; // 保存this指向\n        let args = arguments; // 拿到event对象\n\n        clearTimeout(timeout)\n        timeout = setTimeout(function(){\n            func.apply(context, args)\n        }, wait);\n    }\n}\n```\n\n##### 节流\n\n```javascript\nfunction throttle(fn,delay){\n    let valid = true\n    return function() {\n       if(!valid){\n           //休息时间 暂不接客\n           return;\n       }\n       // 工作时间，执行函数并且在间隔期内把状态位设为无效\n        valid = false\n        setTimeout(() =\u003e {\n            fn()\n            valid = true;\n        }, delay)\n    }\n}\n```\n\n#### 柯里化与逆柯里化\n\n##### 柯里化\n\n```js\nfunction curry(func) {\n\n  return function curried(...args) {\n    if (args.length \u003e= func.length) {\n      return func.apply(this, args);\n    } else {\n      return function(...args2) {\n        return curried.apply(this, args.concat(args2));\n      }\n    }\n  };\n\n}\n```\n\n##### 逆柯里化\n\n```js\nfunction unCurrying(fn) {\n    const tar = this;\n    return function (...argu) {\n        return fn.apply(tar, argu)\n    }\n}\n```\n\n### 内存泄漏\n\n\n第一种情况是我们由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。\n\n第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留\n在内存中，而无法被回收。\n\n第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回收。\n\n第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。\n\n## JS 事件模型\n\n### 事件监听函数\n\n```js\naddEventListener(eventType, handler, useCapture)\n```\n\n### 事件对象常用属性\n\n```\ntype用于获取事件类型\n\ntarget获取事件目标\n\nstopPropagation()阻止事件冒泡\n\npreventDefault()阻止事件默认行为\n```\n\n### 事件阶段\n\n捕获阶段 -\u003e 目标阶段 -\u003e 冒泡阶段\n\n### 捕获阶段\n\n事件从document一直向下传播到目标元素, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。\n\n如何将处于冒泡阶段的事件修改成捕获阶段呢？\n\n```js\nparent.addEventListener('click', () =\u003e {      \n    console.log('parent 被点击了');   \n}，true)    \nchild.addEventListener('click', (event) =\u003e {     \n    console.log('child 被点击了');          \n},true)\n```\n\n当处于冒泡阶段时，我们没有必要加第三个参数，因为 `addEventListener` 默认第三个参数为false（第三个参数存在），如果我们要事件处于捕获阶段的话，只要将第三个参数设成true就行。\n\n### 目标阶段\n\n事件到达目标元素, 触发目标元素的监听函数。\n\n### 冒泡阶段\n\n事件从目标元素冒泡到document, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。\n\n### 事件代理\n\n事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为事件代理(Event delegation)。\n\n### target currentTarget\n\n[`Event`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event) 接口的只读属性 `currentTarget` 表示的是当事件沿着 DOM 触发时事件的当前目标。它总是指向事件绑定的元素，而 [`Event.target`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target) 则是事件触发的元素。\n\n## Map 与 WeakMap\n\n`WeakMap` 对于值的引用都是不计入垃圾回收机制的，所以名字里面才会有一个\"Weak\"，表示这是弱引用（对对象的弱引用是指当该对象应该被 `GC` 回收时不会阻止 `GC` 的回收行为）。\n\n`Map` 相对于 `WeakMap` ：\n\n- `Map` 的键可以是任意类型，`WeakMap` 只接受对象作为键（null除外），不接受其他类型的值作为键\n- `Map` 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键； `WeakMap` 的键是弱引用，键所指向的对象可以被垃圾回收，此时键是无效的\n- `Map` 可以被遍历， `WeakMap` 不能被遍历\n\n## 关于 Array\n\n### Map Reduce\n\n**1.reduce是一个累加方法，是对数组累积执行回调函数，返回最终计算结果。**\n\n```js\narray.reduce(function(total, currentValue, currentIndex, arr){\n}, initialValue);\n\n//total 必需。初始值, 或者计算结束后的返回值。\n//currentValue  必需。当前元素\n//currentIndex  可选。当前元素的索引\n//arr   可选。当前元素所属的数组对象。\n//initialValue可选。传递给函数的初始值\n```\n\n**2.map是遍历数组的每一项，并执行回调函数的操作，返回一个对每一项进行操作后的新数组。**\n\n```js\narray.map(function(currentValue,index,arr), thisValue)；\n//currentValue  必须。当前元素的值\n//index 可选。当前元素的索引值\n//arr   可选。当前元素属于的数组对象\n//thisValue可选。对象作为该执行回调时使用，传递给函数，用作 \"this\" 的值。如果省略了 thisValue，或者传入 null、undefined，那么回调函数的 this 为全局对象。\n```\n\n**3.forEach和map用法一样,也是是遍历数组的每一项，并执行回调函数的操作，不过forEachf返回值是undefined，不可以链式调用。**\n\n```js\narray.forEach(function(currentValue, index, arr), thisValue)\n\n//currentValue  必需。当前元素\n//index 可选。当前元素的索引值。\n//arr   可选。当前元素所属的数组对象。\n//thisValue 可选。传递给函数的值一般用 \"this\" 值。如果这个参数为空， \"undefined\" 会传递给 \"this\" 值\n```\n\n## 代理与反射\n\n# 代理和反射\n\n\u003e 代理是什么？\n\n通过调用 `new Proxy()` ，你可以创建一个代理用来替代另一个对象（被称之为目目标对象） ，这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。\n\n代理允许你拦截目标对象上的底层操作，而这本来是JS引擎的内部能力，拦截行为适用了一个能响应特定操作的函数（被称之为陷阱）；\n\n\u003e 反射是什么？\n\n被`Reflect`对象所代表的反射接口，**是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的**。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数同名，并且接收的参数也与之一致。\n\n\u003e 创建一个简单的代理\n\n使用Proxy构建可以创建一个简单的代理对象，需要传递两个参数：**目标对象以及一个处理器，后者是定义一个或多个陷阱函数的对象**。如果不定义陷阱函数，则依然使用目标对象的默认行为。\n\n### 示例\n\n#### 1、使用Set陷阱函数验证属性值\n\n假如有这样一个场景，必须要求对象的属性值必须只能是数值，这就意味着该对象每个新增属性时都要被验证，并且在属性不为数值属性时就应该抛出错误。因此就需要使用`set`陷阱函数来重写`set`函数的默认行为，`set`陷阱函数接收四个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：需要写入的属性的键；\n3. value：被写入属性的值；\n4. receiver：操作发生的对象（通常是代理对象）\n\n`Reflect.set()`是`set`陷阱函数对应的反射方法，同时也是`set`操作的默认行为，`Reflect.set()`方法与`set`陷阱函数一样，能够接受四个参数。\n\n针对上述场景，示例代码：\n\n```js\n//set陷阱函数\nlet target = {\n\tname:'target'\n}\nlet proxy = new Proxy(target,{\n\tset(tarpTarget,key,value,receiver){\n\n\t\tif(!tarpTarget.hasOwnProperty(key)){\n\t\t\tif(isNaN(value)){\n\t\t\t\tthrow new Error('property must be number');\n\t\t\t}\n\t\t}\n\t\treturn Reflect.set(tarpTarget,key,value,receiver);\n\t}\n});\n\nproxy.msg='hello proxy'; //Uncaught Error: property must be number\n```\n\n通过set陷阱函数就可以检测设置属性时属性值的类型，当属性值不是数字时，就会抛出错误。\n\n#### **2.使用get陷阱函数进行对象外形验证**\n\n**对象外形（Object Shape）指的是对象已有的属性与方法的集合。**能够使用代理很方便进行对象外形验证。由于使用属性验证只需要在读取属性时被触发，因此只需要使用`get陷阱函数`。该函数接受三个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：需要读取的属性的键；\n3. receiver：操作发生的对象（通常是代理对象）；\n\n相应的`Reflect.get()`方法同样拥有这三个参数。进行对象外形验证的示例代码：\n\n```\n//get陷阱函数\n\nlet target={\n\tname:'hello world'\n}\n\nlet proxy = new Proxy(target,{\n\t\tget(tarpTarget,key,receiver){\n\t\t\tif(!(key in tarpTarget)){\n\t\t\t\tthrow new Error('不存在该对象');\n\t\t\t}\n\t\t\treturn Reflect.get(tarpTarget,key,receiver);\n\t\t}\n\t});\nconsole.log(proxy.name); //hello world\nconsole.log(proxy.age); // Uncaught Error: 不存在该对象\n复制代码\n```\n\n使用`get陷阱函数`进行对象外形验证，由于`target`对象存在`name`属性，所以可以正常返回，当获取`age`属性时，由于该属性并不存在，所以会抛出错误。\n\n#### **3.使用has陷阱函数隐藏属性**\n\n`in`运算符用于判断指定对象中是否存在某个属性，如果对象的属性名与指定的字符串或符号值相匹配，那么`in`运算符就会返回`true`。无论该属性是对象自身的属性还是其原型的属性。\n\n`has陷阱函数`会在使用`in`运算符的情况下被调用，控制in运算符返回不同的结果，`has陷阱函数`会传入两个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：属性键；\n\n`Reflect.has()`方法接收相同的参数，并向`in`运算符返回默认的响应结果，用于返回默认响应结果。\n\n例如想要隐藏value属性：\n\n```\n//has陷阱函数\nlet target = {\n\tvalue:'hello world'\n}\n\nlet proxy = new Proxy(target,{\n\thas(tarpTarget,key){\n\t\tif(Object.is(key,'value')){\n\t\t\treturn false;\n\t\t}\n\t\tReflect.has(tarpTarget,key);\n\t}\n})\n\nconsole.log('value' in proxy); //false\n复制代码\n```\n\n使用`has陷阱函数`，能够控制`in`运算符的结果，`value`属性在`target对象`中存在，通过代理的`has陷阱函数`使得在检查`value`属性时返回`false`，达到隐藏属性的效果。\n\n#### **4.使用deleteProperty陷阱函数避免属性被删除**\n\n`deleteProperty` 陷阱函数会在使用`delete` 运算符删除对象属性时被调用，该方法接收两个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：需要删除的键；\n\n`Reflect.deleteProperty()` 方法也接受这两个参数，并提供了 `deleteProperty` 陷阱函数的默认实现。你可以结合 `Reflect.deleteProperty()`方法以及 `deleteProperty` 陷阱函数，来修改 `delete` 运算符的行为。例如，能确保 value 属性不被删除：\n\n```\nlet target = {\n\tname: \"target\",\n\tvalue: 42\n};\nlet proxy = new Proxy(target, {\n\tdeleteProperty(trapTarget, key) {\n\t\tif (key === \"value\") {\n\t\t\treturn false;\n\t\t} else {\n\t\t\treturn Reflect.deleteProperty(trapTarget, key);\n\t\t}\n\t}\n});\n// 尝试删除 proxy.value\nconsole.log(\"value\" in proxy); // true\nlet result1 = delete proxy.value;\nconsole.log(result1); // false\n```\n\n# CSS相关\n\n## 重绘与回流\n\n**回流必将引起重绘，重绘不一定会引起回流。**\n\n### 回流\n\n导致回流的一些操作\n\n- 页面首次渲染\n- 浏览器窗口大小发生改变\n- 元素尺寸或位置发生改变\n- 元素内容变化（文字数量或图片大小等等）\n- 元素字体大小变化\n- 添加或者删除可见的DOM元素\n- 激活CSS伪类（例如：:hover）\n- 查询某些属性或调用某些方法\n\n主要有下面几个API\n\n\u003e 盒子操作相关\n\n- `elem.offsetLeft`, `elem.offsetTop`, `elem.offsetWidth`, `elem.offsetHeight`, `elem.offsetParent`\n- `elem.clientLeft`, `elem.clientTop`, `elem.clientWidth`, `elem.clientHeight`\n- `elem.getClientRects()`, `elem.getBoundingClientRect()`\n\n\u003e 滚动相关\n\n- `elem.scrollBy()`, `elem.scrollTo()`\n- `elem.scrollIntoView()`, `elem.scrollIntoViewIfNeeded()`\n- `elem.scrollWidth`, `elem.scrollHeight`\n- `elem.scrollLeft`, `elem.scrollTop`\n\n### 重绘\n\n当我们操作的节点上的元素并不导致元素位置发生变化时，比如`color`,`background-color`,`visibility(注意虽然节点隐藏了，但是元素还在，并且位置也不会发生变化)`\n\n浏览器会将新的样式赋值给这些节点，我们称这个过程为重绘\n\n### 如何避免\n\n- 避免使用 `table` 布局。\n- 尽可能在 `DOM` 树的最末端改变`class`。\n- 避免设置多层内联样式。\n- 将动画效果应用到`position`属性为`absolute`或`fixed`的元素上。\n- 避免使用`CSS`表达式（例如：`calc()`）。\n- 避免频繁操作样式，最好一次性重写`style`属性，或者将样式列表定义为`class`并一次性更改`class`属性。\n\n-避免频繁操作`DOM`，创建一个`documentFragment`，在它上面应用所有`DOM`操作，最后再把它添加到文档中。\n\n- 也可以先为元素设置`display: none`，操作结束后再把它显示出来。因为在`display`属性为`none`的元素上进行的`DOM`操作不会引发回流和重绘。\n- 避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。\n- 对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。\n\n## CSS 几种单位\n\n### 绝对长度单位\n\n一般来说，常用`px`\n\n### 相对长度单位\n\n| `em`   | 在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width |\n| ------ | ------------------------------------------------------------ |\n| `ex`   | 字符“x”的高度                                                |\n| `ch`   | 数字“0”的宽度                                                |\n| `rem`  | 根元素 `\u003chtml\u003e` 的字体大小                                   |\n| `lh`   | 元素的line-height                                            |\n| `vw`   | 视窗宽度的1%                                                 |\n| `vh`   | 视窗高度的1%                                                 |\n| `vmin` | 视窗较小尺寸的1%                                             |\n| `vmax` | 视图大尺寸的1%                                               |\n\n## CSS 处理字符串\n\n### text-overflow\n\n`clip`\n\n**此为默认值。**这个关键字的意思是\"在内容区域的极限处截断文本\"，因此在字符的中间可能会发生截断。如果你的目标浏览器支持 `text-overflow: ''`，为了能在两个字符过渡处截断，你可以使用一个空字符串值 (`''`) 作为 `text-overflow` 属性的值。\n\n`ellipsis`\n\n这个关键字的意思是“用一个省略号 (`'…'`, `U+2026 HORIZONTAL ELLIPSIS`)来表示被截断的文本”。这个省略号被添加在内容区域中，因此会减少显示的文本。如果空间太小到连省略号都容纳不下，那么这个省略号也会被截断。\n\n`\u003cstring\u003e`\n\n[`\u003cstring\u003e`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/string)用来表示被截断的文本。字符串内容将被添加在内容区域中，所以会减少显示出的文本。如果空间太小到连省略号都容纳不下，那么这个字符串也会被截断。\n\n### overflow-wrap\n\n`normal`\n\n行只能在正常的单词断点处中断。（例如两个单词之间的空格）。\n\n`break-word`\n\n表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行。\n\n### text-transform\n\n`capitalize`\n\n这个关键字强制每个单词的首字母转换为大写。其他的字符保留不变（它们写在元素里的文本保留原始大小写）。字母是Unicode字符集或者数字里定义的字符 ；因此单词开头的任何标点符号或者特殊符号将会被忽略。\n\nAuthors should not expect `capitalize` to follow language-specific titlecasing conventions (such as skipping articles in English).\n\n`uppercase`\n\n这个关键字强制所有字符被转换为大写。\n\n`lowercase`\n\n这个关键字强制所有字符被转换为小写。\n\n`none`\n\n这个关键字阻止所有字符的大小写被转换。\n\n`full-width`\n\n这个关键字强制字符 — 主要是表意字符和拉丁文字 — 书写进一个方形里，并允许它们按照一般的东亚文字（比如中文或日文）对齐。\n\n## 水平垂直居中\n\n### 水平居中\n\n比较简单，可以用`flex`，可以用`text-align`\n\n### 垂直居中\n\n#### 单行内联(`inline-`)元素垂直居中\n\n通过设置内联元素的高度(`height`)和行高(`line-height`)相等，从而使元素垂直居中。\n\n**核心代码：**\n\n```css\n#v-box {\n    height: 120px;\n    line-height: 120px;\n}\n```\n\n#### 利用flex布局（`flex`）\n\n利用flex布局实现垂直居中，其中 `flex-direction: column` 定义主轴方向为纵向。因为flex布局是 `CSS3` 中定义，在较老的浏览器存在兼容性问题。\n\n**核心代码：**\n\n```css\n.center-flex {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n```\n\n## BFC IFC Flex\n\n### BFC\n\n`Block Formatting Context`，块级格式化上下文，一个独立的块级渲染区域，该区域拥有一套渲染规则来约束块级盒子的布局，且与区域外部无关。\n\n#### BFC的应用\n\n- 防止`margin`发生重叠\n- 防止发生因浮动导致的高度塌陷\n\n#### 怎么生成 BFC\n\n- `float`的值不为`none`；\n- `overflow`的值不为`visible`；\n- `display`的值为`inline-block` `table-cell` `table-caption`；\n- `position`的值为`absolute`或`fixed`；\n\n### IFC\n\n`IFC(Inline Formatting Contexts)`直译为\"行内格式化上下文\"，`IFC`的`line box`（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的 `padding/margin` 影响)\n\n#### IFC有的特性\n\n1. `IFC`中的`line box`一般左右都贴紧整个`IFC`，但是会因为`float`元素而扰乱。`float`元素会位于`IFC`与与`line box`之间，使得`line box`宽度缩短。\n2. `IFC`中时不可能有块级元素的，当插入块级元素时（如`p`中插入`div`）会产生两个匿名块与`div`分隔开，即产生两个`IFC`，每个`IFC`对外表现为块级元素，与`div`垂直排列。\n\n#### IFC的应用\n\n1. 水平居中：当一个块要在环境中水平居中时，设置其为`inline-block`则会在外层产生`IFC`，通过`text-align`则可以使其水平居中。\n2. 垂直居中：创建一个`IFC`，用其中一个元素撑开父元素的高度，然后设置其`vertical-align:middle`，其他行内元素则可以在此父元素下垂直居中。\n\n### Flex\n\n#### 容器\n\n```\nflex-direction //方向\nflex-wrap //换行\nflex-flow // 前两个属性的集合\njustify-content  //主轴对齐方式\nalign-items //交叉轴对齐方式\nalign-content //多轴线对齐方式\n```\n\n#### 项目\n\n```\norder //顺序\nflex-grow //放大比例，0为不放大\nflex-shrink //缩小比例，默认1, 0为不缩小\nflex-basis //分配前所占空间\nflex // 上面3个属性的集合\nalign-self  //这个元素的对齐方式，覆盖容器的align-items\n```\n\n#### `flex:1` ？？？\n\n可以使用一个，两个或三个值来指定 `flex`属性。\n\n**单值语法**: 值必须为以下其中之一:\n\n- 一个无单位**数**: 它会被当作`flex:\u003cnumber\u003e 1 0;` `\u003cflex-shrink\u003e`的值被假定为1，然后`\u003cflex-basis\u003e` 的值被假定为`0`。\n- 一个有效的**宽度([`width`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width))**值: 它会被当作 `\u003cflex-basis\u003e的值。`\n- 关键字`none`，`auto`或`initial`.\n\n**双值语法**: 第一个值必须为一个无单位数，并且它会被当作 `\u003cflex-grow\u003e` 的值。第二个值必须为以下之一：\n\n- 一个无单位数：它会被当作 `\u003cflex-shrink\u003e` 的值。\n- 一个有效的宽度值: 它会被当作 `\u003cflex-basis\u003e` 的值。\n\n**三值语法:**\n\n- 第一个值必须为一个无单位数，并且它会被当作 `\u003cflex-grow\u003e` 的值。\n- 第二个值必须为一个无单位数，并且它会被当作 `\u003cflex-shrink\u003e` 的值。\n- 第三个值必须为一个有效的宽度值， 并且它会被当作 `\u003cflex-basis\u003e` 的值。\n\n#### flex取值\n\n- `initial`\n\n  元素会根据自身宽高设置尺寸。它会缩短自身以适应 flex 容器，但不会伸长并吸收 flex 容器中的额外自由空间来适应 flex 容器 。相当于将属性设置为\"`flex: 0 1 auto`\"。\n\n- `auto`\n\n  元素会根据自身的宽度与高度来确定尺寸，但是会伸长并吸收 flex 容器中额外的自由空间，也会缩短自身来适应 flex 容器。这相当于将属性设置为 \"`flex: 1 1 auto`\".\n\n- `none`\n\n  元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器。相当于将属性设置为\"`flex: 0 0 auto`\"。\n\n## 如何做一个三栏布局\n\n1、Flex\n\n2、`inline-block`\n\n3、`float` 实现\n\n```html\n\u003cdiv class=\"wrap\"\u003e\n    \u003cdiv class=\"left\"\u003e左侧\u003c/div\u003e\n    \u003cdiv class=\"right\"\u003e右侧\u003c/div\u003e\n    \u003cdiv class=\"middle\"\u003e中间\u003c/div\u003e\n\u003c/div\u003e\n\n\u003cstyle type=\"text/css\"\u003e\n    .wrap {background: #eee; overflow: hidden; padding: 20px;}  \u003c!-- 生成BFC，计算高度时考虑浮动的元素 --\u003e\n\n    .left {width: 200px; height: 50px; float: left; background: coral;}\n    .right {width: 120px; height:  200px; float: right; background: lightblue;}\n    .middle {margin-left: 220px; background: lightpink; margin-right: 140px;}\n\u003c/style\u003e\n```\n\n# HTML相关\n\n## `meta` 标签\n\n#### [`charset`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-charset)\n\n这个属性声明了文档的字符编码。如果使用了这个属性，其值必须是与 ASCII 大小写无关（ASCII case-insensitive）的\"`utf-8`\"。\n\n#### [**`http-equiv`**](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv)\n\n属性定义了一个编译指示指令。这个属性叫做 `**http-equiv**(alent)` 是因为所有允许的值都是特定 HTTP 头部的名称，如下：\n\n- `content-security-policy`\n  它允许页面作者定义当前页的[内容策略](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)。 内容策略主要指定允许的服务器源和脚本端点，这有助于防止跨站点脚本攻击。\n\n- `content-type`\n  如果使用这个属性，其值必须是\"`text/html; charset=utf-8`\"。注意：该属性只能用于 [MIME type](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) 为 `text/html` 的文档，不能用于 MIME 类型为 XML 的文档。\n\n- `default-style`\n\n  设置默认 [CSS 样式表](https://developer.mozilla.org/zh-CN/docs/Web/CSS)组的名称。\n\n- `x-ua-compatible`\n  如果指定，则 `content` 属性必须具有值 \"`IE=edge`\"。用户代理必须忽略此指示。\n\n- `refresh`\n\n  这个属性指定：\n\n  - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 只包含一个正整数，则为重新载入页面的时间间隔 (秒)；\n  - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 包含一个正整数，并且后面跟着字符串 '`;url=`' 和一个合法的 URL，则是重定向到指定链接的时间间隔 (秒)\n\n#### meta 做 SEO\n\n```\n\u003ctitle\u003eTitle of the page\u003c/title\u003e\n\u003cmeta name=”description” content=”Everything you need to know about meta tags for search engine optimization”\u003e\n\u003cmeta name=”keywords” content=”meta tags,search engine optimization” \u003e\n```\n\n\n\n# 网络相关\n\n## 从输入url到呈现网页\n\n（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。\n\n（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新的请求。\n\n（3）下一步我们首先需要获取的是输入的 URL 中的域名的 IP 地址，首先会判断本地是否有该域名的 IP 地址的缓存，如果有则使用，如果没有则向本地 DNS 服务器发起请求。本地 DNS 服务器也会先检查是否存在缓存，如果没有就会先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的 IP 地址后，本地 DNS 服务器再将这个 IP 地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。\n\n（4）当浏览器得到 IP 地址后，数据传输还需要知道目的主机 MAC 地址，因为应用层下发数据给传输层，TCP 协议会指定源端口号和目的端口号，然后下发给网络层。网络层会将本机地址作为源地址，获取的 IP 地址作为目的地址。然后将下发给数据链路层，数据链路层的发送需要加入通信双方的 MAC 地址，我们本机的 MAC 地址作为源 MAC 地址，目的 MAC 地址需要分情况处理，通过将 IP 地址与我们本机的子网掩码相与，我们可以判断我们是否与请求主机在同一个子网里，如果在同一个子网里，我们可以使用 APR 协议获取到目的主机的 MAC 地址，如果我们不在一个子网里，那么我们的请求应该转发给我们的网关，由它代为转发，此时同样可以通过 ARP 协议来获取网关的 MAC 地址，此时目的主机的 MAC 地址应该为网关的地址。\n\n（5）下面是 TCP 建立连接的三次握手的过程，首先客户端向服务器发送一个 SYN 连接请求报文段和一个随机序号，服务端接收到请求后向服务器端发送一个 SYN ACK报文段，确认连接请求，并且也向客户端发送一个随机序号。客户端接收服务器的确认应答后，进入连接建立的状态，同时向服务器也发送一个 ACK 确认报文段，服务器端接收到确认后，也进入连接建立状态，此时双方的连接就建立起来了。\n\n（6）如果使用的是 HTTPS 协议，在通信前还存在 TLS 的一个四次握手的过程。首先由客户端向服务器端发送使用的协议的版本号、一个随机数和可以使用的加密方法。服务器端收到后，确认加密的方法，也向客户端发送一个随机数和自己的数字证书。客户端收到后，首先检查数字证书是否有效，如果有效，则再生成一个随机数，并使用证书中的公钥对随机数加密，然后发送给服务器端，并且还会提供一个前面所有内容的 hash 值供服务器端检验。服务器端接收后，使用自己的私钥对数据解密，同时向客户端发送一个前面所有内容的 hash 值供客户端检验。这个时候双方都有了三个随机数，按照之前所约定的加密方法，使用这三个随机数生成一把秘钥，以后双方通信前，就使用这个秘钥对数据进行加密后再传输。\n\n（7）当页面请求发送到服务器端后，服务器端会返回一个 html 文件作为响应，浏览器接收到响应后，开始对 html 文件进行解析，开始页面的渲染过程。\n\n（8）浏览器首先会根据 html 文件构建 DOM 树，根据解析到的 css 文件构建 CSSOM 树，如果遇到 script 标签，则判端是否含有 defer 或者 async 属性，要不然 script 的加载和执行会造成页面的渲染的阻塞。当 DOM 树和 CSSOM 树建立好后，根据它们来构建渲染树。渲染树构建好后，会根据渲染树来进行布局。布局完成后，最后使用浏览器的 UI 接口对页面进行绘制。这个时候整个页面就显示出来了。\n\n（9）最后一步是 TCP 断开连接的四次挥手过程。\n\n## HTTP协议\n\n### HTTP 1.0/1.1/2.0/3.0\n\n#### HTTP 1.0/1.1\n\nHTTP 是超文本传输协议，它定义了客户端和服务器之间交换报文的格式和方式，默认使用 80 端口。它使用 TCP 作为传 输层协议，保证了数据传输的可靠性。\n\nHTTP 是一个无状态的协议，HTTP 服务器不会保存关于客户的任何信息。\n\nHTTP 有两种连接模式，一种是持续连接，一种非持续连接。非持续连接指的是服务器必须为每一个请求的对象建立和维护 一个全新的连接。持续连接下，TCP 连接默认不关闭，可以被多个请求复用。在 HTTP1.0 以前使用的非持续的连接，但是可以在请求时，加上 Connection: keep-alive 来要求服务器不要关闭 TCP 连接。HTTP1.1 以后默认采用的是持续的连接。目前对于同一个域，大多数浏览器支持 同时建立 6 个持久连接。\n\n#### HTTP 请求报文\n\n```\nGET / HTTP/1.1\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)\nAccept: */*\n```\n\nHTTP 请求报文的第一行叫做请求行，后面的行叫做首部行，首部行后还可以跟一个实体主体。请求首部之后有一个空行，这个空行不能省略，它用来划分首部与实体。\n\n请求行包含三个字段：方法字段、URL 字段和 HTTP 版本字段。\n\n方法字段可以取几种不同的值，一般有 GET、POST、HEAD、PUT 和 DELETE。一般 GET 方法只被用于向服务器获取数据。 POST 方法用于将实体提交到指定的资源，通常会造成服务器资源的修改。HEAD 方法与 GET 方法类似，但是在返回的响应 中，不包含请求对象。PUT 方法用于上传文件到服务器，DELETE 方法用于删除服务器上的对象，表达的是一种语义上的区别。\n\n#### HTTP 响应报文\n\nHTTP 响应报文的格式如下：\n\n```\nHTTP/1.0 200 OK\nContent-Type: text/plain\nContent-Length: 137582\nExpires: Thu, 05 Dec 1997 16:00:00 GMT\nLast-Modified: Wed, 5 August 1996 15:55:28 GMT\nServer: Apache 0.84\n\n\u003chtml\u003e\n  \u003cbody\u003eHello World\u003c/body\u003e\n\u003c/html\u003e\n```\n\nHTTP 响应报文的第一行叫做状态行，后面的行是首部行，最后是实体主体。\n\n状态行包含了三个字段：协议版本字段、状态码和相应的状态信息。\n\n实体部分是报文的主要部分，它包含了所请求的对象。\n\n##### 常见状态\n\n200-请求成功、202-服务器端已经收到请求消息，但是尚未进行处理 301-永久移动、302-临时移动、304-所请求的资源未修改、 400-客户端请求的语法错误、404-请求的资源不存在 500-服务器内部错误。\n\n一般 1XX 代表服务器接收到请求、2XX 代表成功、3XX 代表重定向、4XX 代表客户端错误、5XX 代表服务器端错误。\n\n#### 首部行\n\n首部可以分为四种首部，请求首部、响应首部、通用首部和实体首部。通用首部和实体首部在请求报文和响应报文中都可以设 置，区别在于请求首部和响应首部。\n\n常见的请求首部有 Accept 可接收媒体资源的类型、Accept-Charset 可接收的字符集、Host 请求的主机名。\n\n常见的响应首部有 ETag 资源的匹配信息，Location 客户端重定向的 URI。\n\n常见的通用首部有 Cache-Control 控制缓存策略、Connection 管理持久连接。\n\n常见的实体首部有 Content-Length 实体主体的大小、Expires 实体主体的过期时间、Last-Modified 资源的最后修改时间。\n\n##### 常见的 Content-Type\n\n- text/html ： HTML格式\n- text/plain ：纯文本格式\n- text/xml ： XML格式\n- image/gif ：gif图片格式\n- image/jpeg ：jpg图片格式\n- image/png：png图片格式\n\n- application/xml： XML数据格式\n- application/json： JSON数据格式\n- application/octet-stream ： 二进制流数据（如常见的文件下载）\n- application/x-www-form-urlencoded ：form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）\n\n- multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式\n\n#### HTTP/1.1 协议缺点\n\nHTTP/1.1 默认使用了持久连接，多个请求可以复用同一个 TCP 连接，但是在同一个 TCP 连接里面，数据请求的通信次序 是固定的。服务器只有处理完一个请求的响应后，才会进行下一个请求的处理，如果前面请求的响应特别慢的话，就会造成许多请求排队等待的情况，这种情况被称为“队头堵塞”。队头阻塞会导致持久连接在达到最大数量时，剩余的资源需要等待其他 资源请求完成后才能发起请求。\n\n为了避免这个问题，一个是减少请求数，一个是同时打开多个持久连接。这就是我们对网站优化时，使用雪碧图、合并脚本的 原因。\n\n### HTTP/2 协议\n\n2009 年，谷歌公开了自行研发的 SPDY 协议，主要解决 HTTP/1.1 效率不高的问题。这个协议在 Chrome 浏览器上证明 可行以后，就被当作 HTTP/2 的基础，主要特性都在 HTTP/2 之中得到继承。2015 年，HTTP/2 发布。\n\nHTTP/2 主要有以下新的特性：\n\n#### 二进制协议\n\nHTTP/2 是一个二进制协议。在 HTTP/1.1 版中，报文的头信息必须是文本（ASCII 编码），数据体可以是文本，也可以是 二进制。HTTP/2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为\"帧\"，可以分为头信息帧和数据帧。 帧的概念是它实现多路复用的基础。\n\n#### 多路复用\n\n**HTTP/2 实现了多路复用，HTTP/2 仍然复用 TCP 连接，但是在一个连接里，客户端和服务器都可以同时发送多个请求或回 应，而且不用按照顺序一一发送，这样就避免了\"队头堵塞\"的问题。**\n\n#### 数据流\n\nHTTP/2 使用了数据流的概念，因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的 请求。因此，必须要对数据包做标记，指出它属于哪个请求。HTTP/2 将每个请求或回应的所有数据包，称为一个数据流。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流 ID ，用来区分它属于哪个数据流。\n\n#### 头信息压缩\n\nHTTP/2 实现了头信息压缩，由于 HTTP 1.1 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是 重复的，比如 Cookie 和 User Agent ，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。\n\nHTTP/2 对这一点做了优化，引入了头信息压缩机制。一方面，头信息使用 gzip 或 compress 压缩后再发送；另一方面， 客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就能提高速度了。\n\n#### 服务器推送\n\nHTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送。使用服务器推送，提前给客户端推送必要的资源 ，这样就可以相对减少一些延迟时间。这里需要注意的是 http2 下服务器主动推送的是静态资源，和 WebSocket 以及使用 SSE 等方式向客户端发送即时数据的推送是不同的。\n\n详细的资料可以参考： [《HTTP 协议入门》](http://www.ruanyifeng.com/blog/2016/08/http.html) [《HTTP/2 服务器推送（Server Push）教程》](http://www.ruanyifeng.com/blog/2018/03/http2_server_push.html)\n\n#### HTTP/2 协议缺点\n\n因为 HTTP/2 使用了多路复用，一般来说同一域名下只需要使用一个 TCP 连接。由于多个数据流使用同一个 TCP 连接，遵守同一个流量状态控制和拥塞控制。只要一个数据流遭遇到拥塞，剩下的数据流就没法发出去，这样就导致了后面的所有数据都 会被阻塞。HTTP/2 出现的这个问题是由于其使用 TCP 协议的问题，与它本身的实现其实并没有多大关系。\n\n#### HTTP/3 协议\n\n由于 TCP 本身存在的一些限制，Google 就开发了一个基于 UDP 协议的 QUIC 协议，并且使用在了 HTTP/3 上。 QUIC 协议在 UDP 协议上实现了多路复用、有序交付、重传等等功能\n\n详细资料可以参考： [《如何看待 HTTP/3 ？》](https://www.zhihu.com/question/302412059)\n\n### HTTPS 协议\n\n#### HTTP 存在的问题\n\n1. HTTP 报文使用明文方式发送，可能被第三方窃听。\n2. HTTP 报文可能被第三方截取后修改通信内容，接收方没有办法发现报文内容的修改。\n3. HTTP 还存在认证的问题，第三方可以冒充他人参与通信。\n\n#### HTTPS 简介\n\nHTTPS 指的是超文本传输安全协议，HTTPS 是基于 HTTP 协议的，不过它会使用 TLS/SSL 来对数据加密。使用 TLS/ SSL 协议，所有的信息都是加密的，第三方没有办法窃听。并且它提供了一种校验机制，信息一旦被篡改，通信的双方会立 刻发现。它还配备了身份证书，防止身份被冒充的情况出现。\n\n#### TLS 握手过程\n\n1. 第一步，客户端向服务器发起请求，请求中包含使用的协议版本号、生成的一个随机数、以及客户端支持的加密方法。\n2. 第二步，服务器端接收到请求后，确认双方使用的加密方法、并给出服务器的证书、以及一个服务器生成的随机数。\n3. 第三步，客户端确认服务器证书有效后，生成一个新的随机数，并使用数字证书中的公钥，加密这个随机数，然后发给服务器。并且还会提供一个前面所有内容的 hash 的值，用来供服务器检验。\n4. 第四步，服务器使用自己的私钥，来解密客户端发送过来的随机数。并提供前面所有内容的 hash 值来供客户端检验。\n5. 第五步，客户端和服务器端根据约定的加密方法使用前面的三个随机数，生成对话秘钥，以后的对话过程都使用这个秘钥 来加密信息。\n\n#### 实现原理\n\nTLS 的握手过程主要用到了三个方法来保证传输的安全。\n\n首先是对称加密的方法，对称加密的方法是，双方使用同一个秘钥对数据进行加密和解密。但是对称加密的存在一个问题，就 是如何保证秘钥传输的安全性，因为秘钥还是会通过网络传输的，一旦秘钥被其他人获取到，那么整个加密过程就毫无作用了。 这就要用到非对称加密的方法。\n\n非对称加密的方法是，我们拥有两个秘钥，一个是公钥，一个是私钥。公钥是公开的，私钥是保密的。用私钥加密的数据，只 有对应的公钥才能解密，用公钥加密的数据，只有对应的私钥才能解密。我们可以将公钥公布出去，任何想和我们通信的客户， 都可以使用我们提供的公钥对数据进行加密，这样我们就可以使用私钥进行解密，这样就能保证数据的安全了。但是非对称加 密有一个缺点就是加密的过程很慢，因此如果每次通信都使用非对称加密的方式的话，反而会造成等待时间过长的问题。\n\n因此我们可以使用对称加密和非对称加密结合的方式，因为对称加密的方式的缺点是无法保证秘钥的安全传输，因此我们可以 非对称加密的方式来对对称加密的秘钥进行传输，然后以后的通信使用对称加密的方式来加密，这样就解决了两个方法各自存 在的问题。\n\n但是现在的方法也不一定是安全的，因为我们没有办法确定我们得到的公钥就一定是安全的公钥。可能存在一个中间人，截取 了对方发给我们的公钥，然后将他自己的公钥发送给我们，当我们使用他的公钥加密后发送的信息，就可以被他用自己的私钥 解密。然后他伪装成我们以同样的方法向对方发送信息，这样我们的信息就被窃取了，然而我们自己还不知道。\n\n为了解决这样的问题，我们可以使用数字证书的方式，首先我们使用一种 Hash 算法来对我们的公钥和其他信息进行加密生成 一个信息摘要，然后让有公信力的认证中心（简称 CA ）用它的私钥对消息摘要加密，形成签名。最后将原始的信息和签名合 在一起，称为数字证书。当接收方收到数字证书的时候，先根据原始信息使用同样的 Hash 算法生成一个摘要，然后使用公证 处的公钥来对数字证书中的摘要进行解密，最后将解密的摘要和我们生成的摘要进行对比，就能发现我们得到的信息是否被更改 了。这个方法最要的是认证中心的可靠性，一般浏览器里会内置一些顶层的认证中心的证书，相当于我们自动信任了他们，只有 这样我们才能保证数据的安全。\n\n### DNS 协议\n\n#### 概况\n\nDNS 协议提供的是一种主机名到 IP 地址的转换服务，就是我们常说的域名系统。它是一个由分层的 DNS 服务器组成的分 布式数据库，是定义了主机如何查询这个分布式数据库的方式的应用层协议。DNS 协议运行在 UDP 协议之上，使用 53 号 端口。\n\n#### 域名的层级结构\n\n域名的层级结构可以如下\n\n```\n主机名.次级域名.顶级域名.根域名\n\n# 即\n\nhost.sld.tld.root\n```\n\n根据域名的层级结构，管理不同层级域名的服务器，可以分为根域名服务器、顶级域名服务器和权威域名服务器。\n\n#### 查询过程\n\nDNS 的查询过程一般为，我们首先将 DNS 请求发送到本地 DNS 服务器，由本地 DNS 服务器来代为请求。\n\n1. 从\"根域名服务器\"查到\"顶级域名服务器\"的 NS 记录和 A 记录（ IP 地址）。\n2. 从\"顶级域名服务器\"查到\"次级域名服务器\"的 NS 记录和 A 记录（ IP 地址）。\n3. 从\"次级域名服务器\"查出\"主机名\"的 IP 地址。\n\n比如我们如果想要查询 [www.baidu.com](http://www.baidu.com/) 的 IP 地址，我们首先会将请求发送到本地的 DNS 服务器中，本地 DNS 服务 器会判断是否存在该域名的缓存，如果不存在，则向根域名服务器发送一个请求，根域名服务器返回负责 .com 的顶级域名 服务器的 IP 地址的列表。然后本地 DNS 服务器再向其中一个负责 .com 的顶级域名服务器发送一个请求，负责 .com 的顶级域名服务器返回负责 .baidu 的权威域名服务器的 IP 地址列表。然后本地 DNS 服务器再向其中一个权威域名服 务器发送一个请求，最后权威域名服务器返回一个对应的主机名的 IP 地址列表。\n\n#### DNS 记录和报文\n\nDNS 服务器中以资源记录的形式存储信息，每一个 DNS 响应报文一般包含多条资源记录。一条资源记录的具体的格式为\n\n（Name，Value，Type，TTL）\n\n其中 TTL 是资源记录的生存时间，它定义了资源记录能够被其他的 DNS 服务器缓存多长时间。\n\n常用的一共有四种 Type 的值，分别是 A、NS、CNAME 和 MX ，不同 Type 的值，对应资源记录代表的意义不同。\n\n1. 如果 Type = A，则 Name 是主机名，Value 是主机名对应的 IP 地址。因此一条记录为 A 的资源记录，提供了标 准的主机名到 IP 地址的映射。\n2. 如果 Type = NS，则 Name 是个域名，Value 是负责该域名的 DNS 服务器的主机名。这个记录主要用于 DNS 链式 查询时，返回下一级需要查询的 DNS 服务器的信息。\n3. 如果 Type = CNAME，则 Name 为别名，Value 为该主机的规范主机名。该条记录用于向查询的主机返回一个主机名 对应的规范主机名，从而告诉查询主机去查询这个主机名的 IP 地址。主机别名主要是为了通过给一些复杂的主机名提供 一个便于记忆的简单的别名。\n4. 如果 Type = MX，则 Name 为一个邮件服务器的别名，Value 为邮件服务器的规范主机名。它的作用和 CNAME 是一 样的，都是为了解决规范主机名不利于记忆的缺点。\n\n#### 递归查询和迭代查询\n\n递归查询指的是查询请求发出后，域名服务器代为向下一级域名服务器发出请求，最后向用户返回查询的最终结果。使用递归 查询，用户只需要发出一次查询请求。\n\n迭代查询指的是查询请求后，域名服务器返回单次查询的结果。下一级的查询由用户自己请求。使用迭代查询，用户需要发出 多次的查询请求。\n\n一般我们向本地 DNS 服务器发送请求的方式就是递归查询，因为我们只需要发出一次请求，然后本地 DNS 服务器返回给我 们最终的请求结果。而本地 DNS 服务器向其他域名服务器请求的过程是迭代查询的过程，因为每一次域名服务器只返回单次 查询的结果，下一级的查询由本地 DNS 服务器自己进行。\n\n#### DNS 缓存\n\nDNS 缓存的原理非常简单，在一个请求链中，当某个 DNS 服务器接收到一个 DNS 回答后，它能够将回答中的信息缓存在本 地存储器中。返回的资源记录中的 TTL 代表了该条记录的缓存的时间。\n\n#### DNS 实现负载平衡\n\nDNS 可以用于在冗余的服务器上实现负载平衡。因为现在一般的大型网站使用多台服务器提供服务，因此一个域名可能会对应 多个服务器地址。当用户发起网站域名的 DNS 请求的时候，DNS 服务器返回这个域名所对应的服务器 IP 地址的集合，但在 每个回答中，会循环这些 IP 地址的顺序，用户一般会选择排在前面的地址发送请求。以此将用户的请求均衡的分配到各个不 同的服务器上，这样来实现负载均衡。\n\n## TCP握手与挥手\n\n### 握手\n\n第一次握手，客户端向服务器发送一个 **SYN** 连接请求报文段，报文段的首部中 SYN 标志位置为 1，序号字段是一个任选的 随机数。它代表的是客户端数据的初始序号。\n\n第二次握手，服务器端接收到客户端发送的 SYN 连接请求报文段后，服务器首先会为该连接**分配 TCP 缓存和变量**，然后向 客户端发送 **SYN ACK** 报文段，报文段的首部中 SYN 和 ACK 标志位都被置为 1，代表这是一个对 SYN 连接请求的确认， 同时序号字段是服务器端产生的一个任选的随机数，它代表的是服务器端数据的初始序号。确认号字段为客户端发送的序号加 一。\n\n第三次握手，客户端接收到服务器的肯定应答后，它也会为这次 TCP 连接**分配缓存和变量**，同时向服务器端发送一个对服务 器端的报文段的确认。**第三次握手可以在报文段中携带数据**。\n\n在我看来，TCP 三次握手的建立连接的过程就是相互确认**初始序号**的过程，告诉对方，什么样**序号**的报文段能够被正确接收。 第三次握手的作用是**客户端对服务器端的初始序号的确认**。如果只使用两次握手，那么服务器就没有办法知道自己的序号是否 已被确认。同时这样也是为了防止失效的请求报文段被服务器接收，而出现错误的情况。\n\n### 挥手\n\n因为 TCP 连接是全双工的，也就是说通信的双方都可以向对方发送和接收消息，所以断开连接需要双方的确认。\n\n第一次挥手，客户端认为没有数据要再发送给服务器端，它就向服务器发送一个 **FIN** 报文段，申请断开客户端到服务器端的 连接。发送后**客户端进入 FIN_WAIT_1** 状态。\n\n第二次挥手，服务器端接收到客户端释放连接的请求后，向客户端发送一个确认报文段，表示已经接收到了客户端释放连接的 请求，以后不再接收客户端发送过来的数据。但是因为连接是全双工的，所以此时，服务器端还可以向客户端发送数据。服务器端进入 **CLOSE_WAIT** 状态。客户端收到确认后，进入 **FIN_WAIT_2** 状态。\n\n第三次挥手，服务器端发送完所有数据后，向客户端发送 **FIN** 报文段，申请断开服务器端到客户端的连接。发送后进入 **LAST_ACK** 状态。\n\n第四次挥手，客户端接收到 **FIN** 请求后，向服务器端发送一个确认应答，并进入 **TIME_WAIT** 阶段。该阶段会持续一段时间， 这个时间为报文段在网络中的最大生存时间，如果该时间内服务端没有重发请求的话，客户端进入 **CLOSED** 的状态。如果收到 服务器的重发请求就重新发送确认报文段。服务器端收到客户端的确认报文段后就进入 **CLOSED** 状态，这样全双工的连接就被 释放了。\n\nTCP 使用四次挥手的原因是因为 TCP 的连接是全双工的，所以需要双方分别释放到对方的连接，单独一方的连接释放，只代 表不能再向对方发送数据，连接处于的是半释放的状态。\n\n最后一次挥手中，客户端会等待一段时间再关闭的原因，是为了**防止发送给服务器的确认报文段丢失或者出错**，从而导致服务器端不能正常关闭。\n\n## 缓存\n\n### 强缓存\n\n#### Expires\n\n**Expires是HTTP 1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回，用GMT格式的字符串表示**，如：`Expires:Thu, 31 Dec 2037 23:55:55 GMT` ，包含了Expires头标签的文件，就说明浏览器对于该文件缓存具有非常大的控制权。\n\n例如，一个文件的Expires值是2020年的1月1日，那么就代表，在2020年1月1日之前，浏览器都可以直接使用该文件的本地缓存文件，而不必去服务器再次请求该文件，哪怕服务器文件发生了变化。\n\n所以，**Expires是优化中最理想的情况，因为它根本不会产生请求**，所以后端也就无需考虑查询快慢。\n\n##### 原理\n\n1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Expires的header。\n\n2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来（所以缓存命中的请求返回的header并不是来自服务器，而是来自之前缓存的header）；\n\n3、浏览器再请求这个资源时，**先从缓存中寻找，找到这个资源后，拿出它的Expires跟当前的请求时间比较**，如果请求时间在Expires指定的时间之前，就能命中缓存，否则就不行；\n\n4、如果缓存没有命中，浏览器直接从服务器加载资源时，Expires Header在重新加载的时候会被更新；\n\n#### Cache-Control\n\n**Cache-Control，这是一个相对时间，在配置缓存的时候，以秒为单位，用数值表示**，如： `Cache-Control:max-age=315360000` 。\n\n##### 原理\n\n1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Cache-Control的header。\n\n2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来；\n\n3、浏览器再请求这个资源时，**先从缓存中寻找，找到这个资源后，根据它第一次的请求时间和Cache-Control设定的有效期**，计算出一个资源过期时间，再拿这个过期时间跟当前的请求时间比较，如果请求时间在过期时间之前，就能命中缓存，否则就不行；\n\n4、如果缓存没有命中，浏览器直接从服务器加载资源时，**Cache-Control Header在重新加载的时候会被更新**；\n\n此外，还可以为 Cache-Control 指定 `public` 或 `private` 标记。**如果使用 private，则表示该资源仅仅属于发出请求的最终用户，这将禁止中间服务器（如代理服务器）缓存此类资源**。对于包含用户个人信息的文件（如一个包含用户名的 HTML 文档），可以设置 private，一方面由于这些缓存对其他用户来说没有任何意义，另一方面用户可能不希望相关文件储存在不受信任的服务器上。需要指出的是，private 并不会使得缓存更加安全，它同样会传给中间服务器（如果网站对于传输的安全性要求很高，应该使用传输层安全措施）。**对于 public，则允许所有服务器缓存该资源**。通常情况下，对于所有人都可以访问的资源（例如网站的 logo、图片、脚本等），**Cache-Control 默认设为 public 是合理的**。\n\n这两个header可以只启用一个，也可以同时启用，**当response header中，Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires**\n\n### 协商缓存\n\n当浏览器对某个资源的请求没有命中强缓存，**就会发一个请求到服务器，验证协商缓存是否命中，如果协商缓存命中，请求响应返回的http状态为304并且会显示一个Not Modified的字符串**。\n\n#### Last-Modified If-Modified-Since\n\n1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，**在response的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间**\n\n2、浏览器再次跟服务器请求这个资源时，**在request的header上加上If-Modified-Since的header**，这个header的值就是上一次请求时返回的Last-Modified的值。\n\n3、服务器再次收到资源请求时，**根据浏览器传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化**，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。**当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header**，因为既然资源没有变化，那么Last-Modified也就不会改变。\n\n4、浏览器收到304的响应后，就会从缓存中加载资源。\n\n5、如果协商缓存没有命中，浏览器直接从服务器加载资源时，**Last-Modified Header在重新加载的时候会被更新**，下次请求时，**If-Modified-Since会启用上次返回的Last-Modified值**。\n\n#### ETag、If-None-Match\n\n1、浏览器第一次跟服务器请求一个资源，**服务器在返回这个资源的同时，在response的header加上ETag的header**，这个header是服务器根据当前请求的资源生成的一个唯一标识，**这个唯一标识是一个字符串，只要资源有变化这个串就不同**，跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题。\n\n2、浏览器再次跟服务器请求这个资源时，**在request的header上加上If-None-Match的header**，这个header的值就是上一次请求时返回的ETag的值：\n\n3、服务器再次收到资源请求时，**根据浏览器传过来If-None-Match和然后再根据资源生成一个新的ETag**，如果这两个值相同就说明资源没有变化，否则就是有变化；如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，**由于ETag重新生成过，response header中还会把这个ETag返回**，即使这个ETag跟之前的没有变化：\n\n4、浏览器收到304的响应后，就会从缓存中加载资源。\n\nEtag和Last-Modified非常相似，都是用来判断一个参数，从而决定是否启用缓存。**但是ETag相对于Last-Modified也有其优势，可以更加准确的判断文件内容是否被修改**，从而在实际操作中实用程度也更高。\n\n协商缓存跟强缓存不一样，强缓存不发请求到服务器，**所以有时候资源更新了浏览器还不知道，但是协商缓存会发请求到服务器**，所以资源是否更新，服务器肯定知道。大部分web服务器都默认开启协商缓存，而且是同时启用【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】。\n\n### 用户操作导致的缓存失效\n\n当用户在按`F5`进行刷新的时候，会忽略Expires/Cache-Control的设置，会再次发送请求去服务器请求，而Last-Modified/Etag还是有效的，服务器会根据情况判断返回304还是200；\n而当用户使用`Ctrl+F5`进行强制刷新的时候，只是所有的缓存机制都将失效，重新从服务器拉去资源。\n\n## CDN\n\n内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。\nCDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。\n\n### **CDN缓存策略**\n\nCDN边缘节点缓存策略因服务商不同而不同，但一般都会遵循http标准协议，通过http响应头中的Cache-control: max-age的字段来设置CDN边缘节点数据缓存时间。\n\n当客户端向CDN节点请求数据时，CDN节点会判断缓存数据是否过期，若缓存数据并没有过期，则直接将缓存数据返回给客户端；否则，CDN节点就会向源站发出回源请求，从源站拉取最新数据，更新本地缓存，并将最新数据返回给客户端。\n\nCDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。\n\nCDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。\n\n### **CDN缓存刷新**\n\nCDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。\n\n# 工程与应用相关\n\n## 懒加载\n\n首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。\n\n先获取所有图片的 `dom`，通过 `document.body.clientHeight` 获取可视区高度，再使用 `element.getBoundingClientRect()` API 直接得到元素相对浏览的 top 值， 遍历每个图片判断当前图片是否到了可视区范围内。\n\n```javascript\nfunction lazyload() {\n  let viewHeight = document.body.clientHeight //获取可视区高度\n  let imgs = document.querySelectorAll('img[data-src]')\n  imgs.forEach((item, index) =\u003e {\n    if (item.dataset.src === '') return\n\n    // 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置\n    let rect = item.getBoundingClientRect()\n    if (rect.bottom \u003e= 0 \u0026\u0026 rect.top \u003c viewHeight) {\n      item.src = item.dataset.src\n      item.removeAttribute('data-src')\n    }\n  })\n}\n```\n\n最后给 window 绑定 `onscroll` 事件\n\n```javascript\nwindow.addEventListener('scroll', lazyload)\n```\n\n**注意运用节流。**\n\n`IntersectionObserver` 是一个新的 API，可以自动\"观察\"元素是否可见，Chrome 51+ 已经支持。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做\"交叉观察器\"。我们来看一下它的用法：\n\n```javascript\nvar io = new IntersectionObserver(callback, option)\n\n// 开始观察\nio.observe(document.getElementById('example'))\n\n// 停止观察\nio.unobserve(element)\n\n// 关闭观察器\nio.disconnect()\n```\n\n### IntersectionObserver\n\n`IntersectionObserver` 是浏览器原生提供的构造函数，接受两个参数：callback 是可见性变化时的回调函数，option 是配置对象（该参数可选）。\n\n目标元素的可见性变化时，就会调用观察器的回调函数 callback。callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。\n\n```javascript\nvar io = new IntersectionObserver((entries) =\u003e {\n  console.log(entries)\n})\n```\n\ncallback 函数的参数`（entries）`是一个数组，每个成员都是一个 `IntersectionObserverEntry` 对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，`entries` 数组就会有两个成员。\n\n- time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒\n- target：被观察的目标元素，是一个 DOM 节点对象\n- isIntersecting: 目标是否可见\n- rootBounds：根元素的矩形区域的信息，`getBoundingClientRect()`方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null\n- boundingClientRect：目标元素的矩形区域的信息\n- intersectionRect：目标元素与视口（或根元素）的交叉区域的信息\n- intersectionRatio：目标元素的可见比例，即 `intersectionRect` 占 `boundingClientRect` 的比例，完全可见时为 1，完全不可见时小于等于 0\n\n下面我们用 `IntersectionObserver` 实现图片懒加载\n\n```javascript\nconst imgs = document.querySelectorAll('img[data-src]')\nconst config = {\n  rootMargin: '0px',\n  threshold: 0,\n}\nlet observer = new IntersectionObserver((entries, self) =\u003e {\n  entries.forEach((entry) =\u003e {\n    if (entry.isIntersecting) {\n      let img = entry.target\n      let src = img.dataset.src\n      if (src) {\n        img.src = src\n        img.removeAttribute('data-src')\n      }\n      // 解除观察\n      self.unobserve(entry.target)\n    }\n  })\n}, config)\n\nimgs.forEach((image) =\u003e {\n  observer.observe(image)\n})\n```\n\n## 前端路由\n\n### hash 模式\n\nhash 就是指 url 后的 # 号以及后面的字符\n\n由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。\n\n```js\nwindow.location.hash = 'hash字符串'; // 用于设置 hash 值\n\nlet hash = window.location.hash; // 获取当前 hash 值\n\n// 监听hash变化，点击浏览器的前进后退会触发\nwindow.addEventListener('hashchange', function(event){ \n    let newURL = event.newURL; // hash 改变后的新 url\n    let oldURL = event.oldURL; // hash 改变前的旧 url\n},false)\n```\n\n### history模式\n\n#### history api\n\n```\nhistory.pushState();         // 添加新的状态到历史状态栈\nhistory.replaceState();      // 用新的状态代替当前状态\nhistory.state                // 返回当前状态对象\n```\n\nhistory.pushState() 和 history.replaceState() 的区别在于：\n\n- history.pushState() 在保留现有历史记录的同时，将 url 加入到历史记录中。\n- history.replaceState() 会将历史记录中的当前页面历史替换为 url。\n\n由于 history.pushState() 和 history.replaceState() 可以改变 url 同时，不会刷新页面，所以在 HTML5 中的 histroy 具备了实现前端路由的能力。\n\n#### `window.location`\n\n##### 常用API\n\n[`Location.href`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/href)\n\n包含整个URL的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)\n\n[`Location.protocol` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)\n\n包含URL对应协议的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，最后有一个\":\"。\n\n[`Location.host`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/host)\n\n包含了域名的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，可能在该串最后带有一个\":\"并跟上URL的端口号。\n\n[`Location.hostname`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hostname)\n\n包含URL域名的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。\n\n[`Location.port` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/port)\n\n包含端口号的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。\n\n[`Location.pathname` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)\n\n包含URL中路径部分的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，开头有一个“`/\"。`\n\n## 前端安全问题以及解决方案\n\n### XSS攻击\n\n#### 存储型\n\n存储型 XSS 的攻击步骤：\n\n1. 攻击者将恶意代码提交到目标网站的数据库中。\n2. \n3. 用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。\n4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。\n\n这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。\n\n#### 反射型\n\n反射型 XSS 的攻击步骤：\n\n1. 攻击者构造出特殊的 URL，其中包含恶意代码。\n2. 用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。\n3. 用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。\n4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。\n\n反射型 XSS 跟存储型 XSS 的区别是：存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。\n\n反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。\n\n由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。\n\nPOST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。\n\n#### DOM型\n\nDOM 型 XSS 的攻击步骤：\n\n1. 攻击者构造出特殊的 URL，其中包含恶意代码。\n2. 用户打开带有恶意代码的 URL。\n3. 用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。\n4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。\n\nDOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。\n\n#### 防范方法\n\n必要的输入过滤\n\n改成纯前端渲染，把代码和数据分隔开。\n\n对 HTML 做充分转义。（在输出时）\n\n使用CSP\n\n##### 预防DOM型\n\n在涉及以下字符串拼接时注意：\n\n```html\n\u003c!-- 内联事件监听器中包含恶意代码 --\u003e\n\u003cimg onclick=\"UNTRUSTED\" onerror=\"UNTRUSTED\" src=\"data:image/png,\"\u003e\n\n\u003c!-- 链接内包含恶意代码 --\u003e\n\u003ca href=\"UNTRUSTED\"\u003e1\u003c/a\u003e\n\n\u003cscript\u003e\n// setTimeout()/setInterval() 中调用恶意代码\nsetTimeout(\"UNTRUSTED\")\nsetInterval(\"UNTRUSTED\")\n\n// location 调用恶意代码\nlocation.href = 'UNTRUSTED'\n\n// eval() 中调用恶意代码\neval(\"UNTRUSTED\")\n\u003c/script\u003e\n\n```\n\n在使用时避免在字符串中拼接不可信数据。\n\n### CSRF 攻击\n\n#### GET型\n\n```html\n \u003cimg src=\"http://bank.example/withdraw?amount=10000\u0026for=hacker\" \u003e \n```\n\n通过一个HTTP请求\n\n#### POST型\n\n```html\n \u003cform action=\"http://bank.example/withdraw\" method=POST\u003e\n    \u003cinput type=\"hidden\" name=\"account\" value=\"xiaoming\" /\u003e\n    \u003cinput type=\"hidden\" name=\"amount\" value=\"10000\" /\u003e\n    \u003cinput type=\"hidden\" name=\"for\" value=\"hacker\" /\u003e\n\u003c/form\u003e\n\u003cscript\u003e document.forms[0].submit(); \u003c/script\u003e \n\n```\n\n通过提交一个自动提交的表单\n\n#### 链接型\n\n```html\n  \u003ca href=\"http://test.com/csrf/withdraw.php?amount=1000\u0026for=hacker\" taget=\"_blank\"\u003e\n  重磅消息！！\n  \u003ca/\u003e\n\n```\n\n用户点击链接触发\n\n#### 防范方法\n\n##### 同源检测\n\n使用Referer Header确定来源域名\n\n根据HTTP协议，在HTTP头中有一个字段叫Referer，记录了该HTTP请求的来源地址。 对于Ajax请求，图片和script等资源请求，Referer为发起请求的页面地址。对于页面跳转，Referer为打开页面历史记录的前一个页面地址。因此我们使用Referer中链接的Origin部分可以得知请求的来源域名。\n\n当Origin和Referer头文件不存在时该怎么办？如果Origin和Referer都不存在，建议直接进行阻止，特别是如果您没有使用随机CSRF Token（参考下方）作为第二次检查。\n\n通过Header的验证，我们可以知道发起请求的来源域名，这些来源域名可能是网站本域，或者子域名，或者有授权的第三方域名，又或者来自不可信的未知域名。\n\n我们已经知道了请求域名是否是来自不可信的域名，我们直接阻止掉这些的请求，就能防御CSRF攻击了吗？\n\n且慢！当一个请求是页面请求（比如网站的主页），而来源是搜索引擎的链接（例如百度的搜索结果），也会被当成疑似CSRF攻击。所以在判断的时候需要过滤掉页面请求情况。\n\nCSRF大多数情况下来自第三方域名，但并不能排除本域发起。如果攻击者有权限在本域发布评论（含链接、图片等，统称UGC），那么它可以直接在本域发起攻击，这种情况下同源策略无法达到防护的作用。\n\n##### CSRF Token\n\nCSRF Token机制是目前比较主流的的防御手段，其核心思路是在需要验证的请求中添加一个无法预测，无法使用浏览器策略直接提交的字段。CSRF Token可以是POST请求的一个参数、或者是一个自定义的HTTP Header，Token可以存放于`\u003cmata\u003e`标签中、JS变量中、Cookie中、浏览器Local Storage中或者DOM的任何位置，Token可以是同步令牌、加密令牌或者HMAC Token。\n\n不同的生成、存储及使用方式，所带来的的安全性也是存在区别的，一般推荐使用HMAC Token、存储于DOM中，并在Ajax请求中添加自定义Header传输Token。使用CSRF Token的优点在于识别准确，后续新开发接口只需按照规则开发便可避免CSRF漏洞。缺点在于推CSRF Token机制需要前端和客户端开发付出大量时间进行调整，且一旦CSRF Token机制运转，旧版本APP可能无法使用。\n\n##### 双重 token\n\n\n\n##### Samesite cookie\n\nCookie 的`SameSite`属性用来限制第三方 Cookie，从而减少安全风险。\n\n它可以设置三个值。\n\n\u003e - Strict\n\u003e - Lax\n\u003e - None\n\n**Strict**\n\n`Strict`最为严格，完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。换言之，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。\n\n\u003e ```bash\n\u003e Set-Cookie: CookieName=CookieValue; SameSite=Strict;\n\u003e ```\n\n这个规则过于严格，可能造成非常不好的用户体验。比如，当前网页有一个 GitHub 链接，用户点击跳转就不会带有 GitHub 的 Cookie，跳转过去总是未登陆状态。\n\n**Lax**\n\n`Lax`规则稍稍放宽，大多数情况也是不发送第三方 Cookie，但是导航到目标网址的 Get 请求除外。\n\n\u003e ```markup\n\u003e Set-Cookie: CookieName=CookieValue; SameSite=Lax;\n\u003e ```\n\n导航到目标网址的 GET 请求，只包括三种情况：链接，预加载请求，GET 表单。详见下表。\n\n| 请求类型  |                 示例                 |    正常情况 | Lax         |\n| :-------- | :----------------------------------: | ----------: | :---------- |\n| 链接      |         `\u003ca href=\"...\"\u003e\u003c/a\u003e`         | 发送 Cookie | 发送 Cookie |\n| 预加载    | `\u003clink rel=\"prerender\" href=\"...\"/\u003e` | 发送 Cookie | 发送 Cookie |\n| GET 表单  |  `\u003cform method=\"GET\" action=\"...\"\u003e`  | 发送 Cookie | 发送 Cookie |\n| POST 表单 | `\u003cform method=\"POST\" action=\"...\"\u003e`  | 发送 Cookie | 不发送      |\n| iframe    |    `\u003ciframe src=\"...\"\u003e\u003c/iframe\u003e`     | 发送 Cookie | 不发送      |\n| AJAX      |            `$.get(\"...\")`            | 发送 Cookie | 不发送      |\n| Image     |          `\u003cimg src=\"...\"\u003e`           | 发送 Cookie | 不发送      |\n\n设置了`Strict`或`Lax`以后，基本就杜绝了 CSRF 攻击。当然，前提是用户浏览器支持 SameSite 属性。\n\n### 点击劫持\n\n#### 原理\n\n1. 访问者被恶意页面吸引。怎样吸引的不重要。\n2. 页面上有一个看起来无害的链接（例如：“变得富有”或者“点我，超好玩！”）。\n3. 恶意页面在该链接上方放置了一个透明的 `\u003ciframe\u003e`，其 `src` 来自于 [facebook.com](http://facebook.com/)，这使得“点赞”按钮恰好位于该链接上面。这通常是通过 `z-index` 实现的。\n4. 用户尝试点击该链接时，实际上点击的是“点赞”按钮。\n\n#### 防范\n\n`samesite` cookie 特性可以阻止点击劫持攻击。\n\n具有 `samesite` 特性的 cookie 仅在网站是通过直接方式打开（而不是通过 frame 或其他方式）的情况下才发送到网站。更多细节请见 [Cookie，document.cookie](https://zh.javascript.info/cookie#samesite)。\n\n如果网站，例如 Facebook，在其身份验证 cookie 中具有 `samesite` 特性，像这样：\n\n```none\nSet-Cookie: authorization=secret; samesite\n```\n\n……那么，当在另一个网站中的 iframe 中打开 Facebook 时，此类 cookie 将不会被发送。因此，攻击将失败。\n\n当不使用 cookie 时，`samesite` cookie 特性将不会有任何影响。这可以使其他网站能够轻松地在 iframe 中显示我们公开的、未进行身份验证的页面。\n\n然而，这也可能会使得劫持攻击在少数情况下起作用。例如，通过检查 IP 地址来防止重复投票的匿名投票网站仍然会受到点击劫持的攻击，因为它不使用 cookie 对用户身份进行验证。\n"},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"2022-3-3-FE_Interview.markdown"},"buildId":"64aZP254HBesmUVGKxvDO","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
+<p>然而，这也可能会使得劫持攻击在少数情况下起作用。例如，通过检查 IP 地址来防止重复投票的匿名投票网站仍然会受到点击劫持的攻击，因为它不使用 cookie 对用户身份进行验证。</p></div></div></div></div><div class="mainLayout_bottom__As9s_"><div class="mainLayout_tag__Ep3_f"><img alt="launcher" src="/_next/static/media/launcher.d8f01379.png" width="1024" height="1024" decoding="async" data-nimg="1" class="mainLayout_tagImg__qoDJq" loading="lazy" style="color:transparent"/></div></div></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"post":"---\nlayout:     post\ntitle:      前端面试知识点查缺补漏\nintro:   \"\"\ndate:       2022-3-3 23:00:00\nauthor:     \"Makinohara\"\ncatalog: true\ntags:\n    - 工程开发\n---\n\n# JS相关\n\n## JS延迟加载\n\njs 的加载、解析和执行会阻塞页面的渲染过程，因此我们希望 js 脚本能够尽可能的延迟加载，提高页面的渲染速度。\n\n我了解到的几种方式是：\n\n第一种方式是我们一般采用的是将 js 脚本放在文档的底部，来使 js 脚本尽可能的在最后来加载执行。\n\n第二种方式是给 js 脚本添加 defer 属性，这个属性会让脚本的加载与文档的解析同步解析，然后在文档解析完成后再执行这个脚本文件，这样的话就能使页面的渲染不被阻塞。多个设置了 defer 属性的脚本按规范来说最后是顺序执行的，但是在一些浏览器中可能不是这样。\n\n第三种方式是给 js 脚本添加 async 属性，这个属性会使脚本异步加载，不会阻塞页面的解析过程，但是当脚本加载完成后立即执行 js 脚本，这个时候如果文档没有解析完成的话同样会阻塞。多个 async 属性的脚本的执行顺序是不可预测的，一般不会按照代码的顺序依次执行。\n\n第四种方式是动态创建 DOM 标签的方式，我们可以对文档的加载事件进行监听，当文档加载完成后再动态的创建 script 标签来引入 js 脚本。\n\n## 事件循环\n\n### 事件循环的基本原理\n\n1. 从 **宏任务** 队列（例如 “script”）中出队（dequeue）并执行最早的任务。\n2. 执行所有微任务：\n   - 当微任务队列非空时：\n     - 出队（dequeue）并执行最早的微任务。\n3. 如果有变更，则将变更渲染出来。\n4. 如果宏任务队列为空，则休眠直到出现宏任务。\n5. 转到步骤 1。\n\n安排（schedule）一个新的 **宏任务**：\n\n- 使用零延迟的 `setTimeout(f)`。\n\n它可被用于将繁重的计算任务拆分成多个部分，以使浏览器能够对用户事件作出反应，并在任务的各部分之间显示任务进度。\n\n此外，也被用于在事件处理程序中，将一个行为（action）安排（schedule）在事件被完全处理（冒泡完成）后。\n\n安排一个新的 **微任务**：\n\n- 使用 `queueMicrotask(f)`。\n- promise 处理程序也会通过微任务队列。\n\n在微任务之间没有 UI 或网络事件的处理：它们一个立即接一个地执行。\n\n所以，我们可以使用 `queueMicrotask` 来在保持环境状态一致的情况下，异步地执行一个函数。\n\n#### 宏任务\n\n- 当外部脚本 `\u003cscript src=\"...\"\u003e` 加载完成时，任务就是执行它。\n- 当用户移动鼠标时，任务就是派生出 `mousemove` 事件和执行处理程序。\n- 当安排的（scheduled）`setTimeout` 时间到达时，任务就是执行其回调。\n\n#### 微任务\n\n每个宏任务之后，引擎会立即执行微任务队列中的所有任务，然后再执行其他的宏任务，或渲染，或进行其他任何操作。\n\n## Promise 与 异步编程\n\n### 手写Promise\n\n没有实现链式调用\n\n```js\nclass MyPromise {\n    constructor(func) {\n        this.status = 'PENDING'; // 初始化状态\n        this.value = undefined; // 成功返回的值\n        this.reason = undefined; //失败返回的值\n\n        this.callbacks = [];//结束后的回调\n        func(this.resolve.bind(this), this.reject.bind(this));//绑定this\n    }\n\n    resolve(value) {\n        this.value = value;\n        this.status = 'FULFILLED'; // 设置状态\n\n        // 通知事件执行\n        this.callbacks.forEach((cb) =\u003e this._handler(cb));\n    }\n\n    reject(reason) {\n        this.reason = reason;\n        this.status = 'REJECTED'; // 设置状态\n\n        // 通知事件执行\n        this.callbacks.forEach((cb) =\u003e this._handler(cb));\n    }\n\n    then(onFulfilled, onRejected) { //这个函数用于注册\n        // 将需要执行的回调函数存储起来\n        this.callbacks.push({\n            onFulfilled,\n            onRejected,\n        });//保存参数\n    }\n\n    //用于执行回调函数\n    _handler(callback) {\n        const { onFulfilled, onRejected } = callback;//回调函数的两个参数\n\n        if (this.status === 'FULFILLED' \u0026\u0026 onFulfilled) {\n            // 传入存储的值\n            onFulfilled(this.value);\n        }\n\n        if (this.status === 'REJECTED' \u0026\u0026 onRejected) {\n            // 传入存储的错误信息\n            onRejected(this.reason);\n        }\n    }\n}\n\nfunction test(success) {\n    return new MyPromise((res, rej) =\u003e {\n        setTimeout(() =\u003e {\n            if (success) {\n                res(\"willem\");\n            } else {\n                rej('error');\n            }\n        }, 0);\n    })\n}\n\ntest(true).then((r, j) =\u003e {\n    console.log(r);\n})\n\ntest(false).then(null, j =\u003e {\n    console.log(j);\n})\n```\n\n### 手写 Promise.all Promise.race\n\n#### Promise.all\n\n```js\nMyAll = function (iterator) {  \n    let count = 0//用于计数，当等于len时就resolve\n    let len = iterator.length\n    let res = []//用于存放结果\n    return new Promise((resolve,reject) =\u003e {\n        for(let e of iterator){\n            //Promise.resolve(value)方法返回一个以给定值解析后的Promise 对象。\n            //如果这个值是一个 promise ，那么将返回这个 promise。\n            Promise.resolve(e)//转化为Promise对象\n            .then((data) =\u003e {\n                res[count] = data;\n                if(++count === len){\n                    resolve(res)\n                }\n            })\n            .catch(e =\u003e {\n                reject(e)\n            })\n        }\n    })\n}\n```\n\n#### Promise.race\n\n```js\nMyRace = function (iterator) {  \n    return new Promise((resolve,reject) =\u003e {\n        for(let e of iterator){\n            Promise.resolve(e)\n            .then((data) =\u003e {\n                    resolve(data)\n            })\n            .catch(e =\u003e {\n                reject(e)\n            })\n        }\n    })\n}\n```\n\n### Async Await\n\n#### Async\n\n```\nasync function name([param[, param[, ... param]]]) {\n    statements \n}\n```\n\nasync函数一定会返回一个promise对象。如果一个async函数的返回值看起来不是promise，那么它将会被隐式地包装在一个promise中。\n\n##### 示例\n\n如下代码:\n\n```\nasync function foo() {\n   return 1\n}\n```\n\n等价于:\n\n```\nfunction foo() {\n   return Promise.resolve(1)\n}\n```\n\nasync函数的函数体可以被看作是由0个或者多个await表达式分割开来的。从第一行代码直到（并包括）第一个await表达式（如果有的话）都是同步运行的。这样的话，一个不含await表达式的async函数是会同步运行的。然而，如果函数体内有一个await表达式，async函数就一定会异步执行。\n\n例如：\n\n```\nasync function foo() {\n   await 1\n}\n```\n\n等价于\n\n```\nfunction foo() {\n   return Promise.resolve(1).then(() =\u003e undefined)\n}\n```\n\n#### Await\n\n`[返回值] = await 表达式;`\n\n`await` 操作符用于等待一个[`Promise`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise) 对象。它只能在异步函数 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function) 中使用。\n\nawait 表达式会暂停当前 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function) 的执行，等待 Promise 处理完成。若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行 [`async function`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/async_function)。\n\n若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。\n\n另外，如果 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。\n\n##### 示例\n\n```js\nfunction resolveAfter2Seconds(x) {\n  return new Promise(resolve =\u003e {\n    setTimeout(() =\u003e {\n      resolve(x);\n    }, 2000);\n  });\n}\n\nasync function f1() {\n  var x = await resolveAfter2Seconds(10);\n  console.log(x); // 10\n}\nf1();\n```\n\n## JS 函数\n\n### 详解 bind apply call\n\n#### bind:绑定 this 指向\n\n`function.bind(thisArg[, arg1[, arg2[, ...]]])`\n\n**`bind()` **方法创建一个新的函数，在 `bind()` 被调用时，这个新函数的 `this` 被指定为 `bind()` 的第一个参数，而其余参数将作为新函数的参数，供调用时使用。\n\n```js\nconst module = {\n  x: 42,\n  getX: function() {\n    return this.x;\n  }\n};\n\nconst unboundGetX = module.getX;\nconsole.log(unboundGetX()); // The function gets invoked at the global scope\n// expected output: undefined\n\nconst boundGetX = unboundGetX.bind(module);\nconsole.log(boundGetX());\n// expected output: 42\n```\n\n#### apply:\t调用一个函数，接受参数数组\n\n`func.apply(thisArg, [argsArray])`\n\n```js\nconst func1 = (a)=\u003e{\n    console.log(`hello,${a}`);\n}\n//apply接受一个参数数组\nfunc1.apply(null,['Mahiru'])\n//如果这个函数处于非严格模式下，则指定为 null 或 undefined 时会自动替换为指向全局对象，原始值会被包装。\n```\n\n#### call：调用一个函数，接受参数\n\n`function.call(thisArg, arg1, arg2, ...)`\n\n```js\nfunction Product(name, price) {\n  this.name = name;\n  this.price = price;\n}\n\nfunction Food(name, price) {\n  Product.call(this, name, price);\n  this.category = 'food';\n}\n\nconsole.log(new Food('cheese', 5).name);\n// expected output: \"cheese\"\n\n```\n\n## 原型与原型链\n\n![js__proto__](https://user-images.githubusercontent.com/30483415/156961492-e97cd912-074c-4b8e-b99f-70dbd2eff676.jpg)\n\n## instanceof\n\n**`instanceof`** **运算符**用于检测构造函数的 `prototype` 属性是否出现在某个实例对象的原型链上。\n\n手写 `instanceof`：\n\n```js\nfunction myInstanceof(obj, obj2) {\n    let proto = obj.__proto__;\n    let prototype = obj2.prototype;\n    let queue = [proto];\n    // 循环 obj 原型链进行获取 __proto__ 与 prototype 对比\n    while(queue.length) {\n        let temp = queue.shift();\n        if(temp === null) return false;//找到原型链顶端，仍不是\n        if(temp === prototype) return true;\n        queue.push(temp.__proto__);\n    }\n}\n```\n\n## new\n\n当执行：\n\n```js\nvar o = new Foo();\n```\n\nJavaScript 实际上执行的是：\n\n```js\nvar o = new Object();\no.__proto__ = Foo.prototype;\nFoo.call(o);\n```\n\n```js\nfunction myNew(F){\n    let result = {};\n    let arg = Array.prototype.slice.call(arguments, 1);\n    // 将实例对象的 __proto__ 指向 F.prototype\n    Object.setPrototypeOf(result, F.prototype);\n    // this 指向实例对象\n    F.apply(result, arg);\n   return result;\n}\n```\n\n### 原型链继承\n\n```js\nfunction Parent(name) {\n    this.name = name; // 实例基本属性 (该属性，强调私有，不共享)\n    this.arr = [1]; // (该属性，强调私有)\n}\nParent.prototype.say = function() { // --- 将需要复用、共享的方法定义在父类原型上 \n    console.log('hello')\n}\nfunction Child(name,like) {\n    Parent.call(this,name,like) // 核心  \n    this.like = like;\n}\nChild.prototype = Object.create(Parent.prototype) // 核心  通过创建中间对象，子类原型和父类原型，就会隔离开。不是同一个啦，有效避免了方式4的缺点。\n\n// \u003c!--这里是修复构造函数指向的代码--\u003e\nChild.prototype.constructor = Child\n\nlet boy1 = new Child('小红','apple')\nlet boy2 = new Child('小明','orange')\nlet p1 = new Parent('小爸爸')\n\n\n// 注意：这种方法也要修复构造函数的\n// 修复代码：Child.prototype.constructor = Child\n// 修复之后：console.log(boy1.constructor); // Child\n          console.log(p1.constructor);// Parent  完美\n```\n\n## 展开运算符\n\n`...`\n\n#### 示例\n\n```js\nfunction sum(x, y, z) {\n  return x + y + z;\n}\n\nconst numbers = [1, 2, 3];\n\nconsole.log(sum(...numbers));\n// expected output: 6\n```\n\n### 数组\n\n```js\nvar arr1 = [0, 1, 2];\nvar arr2 = [3, 4, 5];\narr1 = [...arr2, ...arr1]; // arr1 现在为 [3, 4, 5, 0, 1, 2]\n```\n\n### 对象\n\n```js\nvar obj1 = { foo: 'bar', x: 42 };\nvar obj2 = { foo: 'baz', y: 13 };\n\nvar clonedObj = { ...obj1 };\n// 克隆后的对象: { foo: \"bar\", x: 42 }\n\nvar mergedObj = { ...obj1, ...obj2 };\n// 合并后的对象: { foo: \"baz\", x: 42, y: 13 }\n```\n\n## 剩余参数\n\n**剩余参数**语法允许我们将一个不定数量的参数表示为一个数组。\n\n```js\nfunction(a, b, ...theArgs) {\n  // ...\n}\n```\n\n#### 示例\n\n```js\nfunction multiply(multiplier, ...theArgs) {\n  return theArgs.map(function (element) {\n    return multiplier * element;\n  });\n}\n\nvar arr = multiply(2, 1, 2, 3);\nconsole.log(arr);  // [2, 4, 6]\n```\n\n## 对象的更多方法（待完善）\n\nObject.assign\n\n## 深拷贝\n\n### JSON法\n\n```js\nvar obj2 = JSON.parse(JSON.stringify(obj1));\n```\n\n### 递归拷贝\n\n```js\nfunction deepClone(initalObj, finalObj) {    \n  var obj = finalObj || {};    \n  for (var i in initalObj) {        \n    var prop = initalObj[i];// 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况\n    if(prop === obj) {            \n      continue;\n    }        \n    if (typeof prop === 'object') {\n      obj[i] = (prop.constructor === Array) ? [] : {};            \n      arguments.callee(prop, obj[i]);//调用自身，现在不建议用了\n    } else {\n      obj[i] = prop;\n    }\n  }    \n  return obj;\n}\n```\n\n### Object.create\n\n```js\nfunction deepClone(initalObj, finalObj) {    \n  var obj = finalObj || {};    \n  for (var i in initalObj) {        \n    var prop = initalObj[i];        // 避免相互引用对象导致死循环，如initalObj.a = initalObj的情况\n    if(prop === obj) {            \n      continue;\n    }        \n    if (typeof prop === 'object') {\n      obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);\n    } else {\n      obj[i] = prop;\n    }\n  }    \n  return obj;\n}\n```\n\n### lodash\n\n```js\nvar loadash = require('lodash');\nvar obj1 = {\n    a: 1,\n    b: { f: { g: 1 } },\n    c: [1, 2, 3]\n};\nvar obj2 = loadash.cloneDeep(obj1);\n```\n\n## 闭包与高阶函数\n\n### 闭包\n\n一个函数和对其周围状态（**lexical environment，词法环境**）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是**闭包**（**closure**）。也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域。在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来。\n\n```js\nfunction makeFunc() {\n    var name = \"Mozilla\";\n    function displayName() {\n        alert(name);\n    }\n    return displayName;\n}\n\nvar myFunc = makeFunc();\nmyFunc();\n```\n\n#### 高阶函数\n\nJavaScript的函数其实都指向某个变量。既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。\n\n- 防抖: n 秒后在执行该事件，若在 n 秒内被重复触发，则重新计时\n- 节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效\n\n##### 防抖\n\n```javascript\nfunction debounce(func, wait) {\n    let timeout;\n\n    return function () {\n        let context = this; // 保存this指向\n        let args = arguments; // 拿到event对象\n\n        clearTimeout(timeout)\n        timeout = setTimeout(function(){\n            func.apply(context, args)\n        }, wait);\n    }\n}\n```\n\n##### 节流\n\n```javascript\nfunction throttle(fn,delay){\n    let valid = true\n    return function() {\n       if(!valid){\n           //休息时间 暂不接客\n           return;\n       }\n       // 工作时间，执行函数并且在间隔期内把状态位设为无效\n        valid = false\n        setTimeout(() =\u003e {\n            fn()\n            valid = true;\n        }, delay)\n    }\n}\n```\n\n#### 柯里化与逆柯里化\n\n##### 柯里化\n\n```js\nfunction curry(func) {\n\n  return function curried(...args) {\n    if (args.length \u003e= func.length) {\n      return func.apply(this, args);\n    } else {\n      return function(...args2) {\n        return curried.apply(this, args.concat(args2));\n      }\n    }\n  };\n\n}\n```\n\n##### 逆柯里化\n\n```js\nfunction unCurrying(fn) {\n    const tar = this;\n    return function (...argu) {\n        return fn.apply(tar, argu)\n    }\n}\n```\n\n### 内存泄漏\n\n\n第一种情况是我们由于使用未声明的变量，而意外的创建了一个全局变量，而使这个变量一直留在内存中无法被回收。\n\n第二种情况是我们设置了 setInterval 定时器，而忘记取消它，如果循环函数有对外部变量的引用的话，那么这个变量会被一直留\n在内存中，而无法被回收。\n\n第三种情况是我们获取一个 DOM 元素的引用，而后面这个元素被删除，由于我们一直保留了对这个元素的引用，所以它也无法被回收。\n\n第四种情况是不合理的使用闭包，从而导致某些变量一直被留在内存当中。\n\n## JS 事件模型\n\n### 事件监听函数\n\n```js\naddEventListener(eventType, handler, useCapture)\n```\n\n### 事件对象常用属性\n\n```\ntype用于获取事件类型\n\ntarget获取事件目标\n\nstopPropagation()阻止事件冒泡\n\npreventDefault()阻止事件默认行为\n```\n\n### 事件阶段\n\n捕获阶段 -\u003e 目标阶段 -\u003e 冒泡阶段\n\n### 捕获阶段\n\n事件从document一直向下传播到目标元素, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。\n\n如何将处于冒泡阶段的事件修改成捕获阶段呢？\n\n```js\nparent.addEventListener('click', () =\u003e {      \n    console.log('parent 被点击了');   \n}，true)    \nchild.addEventListener('click', (event) =\u003e {     \n    console.log('child 被点击了');          \n},true)\n```\n\n当处于冒泡阶段时，我们没有必要加第三个参数，因为 `addEventListener` 默认第三个参数为false（第三个参数存在），如果我们要事件处于捕获阶段的话，只要将第三个参数设成true就行。\n\n### 目标阶段\n\n事件到达目标元素, 触发目标元素的监听函数。\n\n### 冒泡阶段\n\n事件从目标元素冒泡到document, 依次检查经过的节点是否绑定了事件监听函数，如果有则执行。\n\n### 事件代理\n\n事件在冒泡过程中会上传到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件，这种方式称为事件代理(Event delegation)。\n\n### target currentTarget\n\n[`Event`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event) 接口的只读属性 `currentTarget` 表示的是当事件沿着 DOM 触发时事件的当前目标。它总是指向事件绑定的元素，而 [`Event.target`](https://developer.mozilla.org/zh-CN/docs/Web/API/Event/target) 则是事件触发的元素。\n\n## Map 与 WeakMap\n\n`WeakMap` 对于值的引用都是不计入垃圾回收机制的，所以名字里面才会有一个\"Weak\"，表示这是弱引用（对对象的弱引用是指当该对象应该被 `GC` 回收时不会阻止 `GC` 的回收行为）。\n\n`Map` 相对于 `WeakMap` ：\n\n- `Map` 的键可以是任意类型，`WeakMap` 只接受对象作为键（null除外），不接受其他类型的值作为键\n- `Map` 的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键； `WeakMap` 的键是弱引用，键所指向的对象可以被垃圾回收，此时键是无效的\n- `Map` 可以被遍历， `WeakMap` 不能被遍历\n\n## 关于 Array\n\n### Map Reduce\n\n**1.reduce是一个累加方法，是对数组累积执行回调函数，返回最终计算结果。**\n\n```js\narray.reduce(function(total, currentValue, currentIndex, arr){\n}, initialValue);\n\n//total 必需。初始值, 或者计算结束后的返回值。\n//currentValue  必需。当前元素\n//currentIndex  可选。当前元素的索引\n//arr   可选。当前元素所属的数组对象。\n//initialValue可选。传递给函数的初始值\n```\n\n**2.map是遍历数组的每一项，并执行回调函数的操作，返回一个对每一项进行操作后的新数组。**\n\n```js\narray.map(function(currentValue,index,arr), thisValue)；\n//currentValue  必须。当前元素的值\n//index 可选。当前元素的索引值\n//arr   可选。当前元素属于的数组对象\n//thisValue可选。对象作为该执行回调时使用，传递给函数，用作 \"this\" 的值。如果省略了 thisValue，或者传入 null、undefined，那么回调函数的 this 为全局对象。\n```\n\n**3.forEach和map用法一样,也是是遍历数组的每一项，并执行回调函数的操作，不过forEachf返回值是undefined，不可以链式调用。**\n\n```js\narray.forEach(function(currentValue, index, arr), thisValue)\n\n//currentValue  必需。当前元素\n//index 可选。当前元素的索引值。\n//arr   可选。当前元素所属的数组对象。\n//thisValue 可选。传递给函数的值一般用 \"this\" 值。如果这个参数为空， \"undefined\" 会传递给 \"this\" 值\n```\n\n## 代理与反射\n\n# 代理和反射\n\n\u003e 代理是什么？\n\n通过调用 `new Proxy()` ，你可以创建一个代理用来替代另一个对象（被称之为目目标对象） ，这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。\n\n代理允许你拦截目标对象上的底层操作，而这本来是JS引擎的内部能力，拦截行为适用了一个能响应特定操作的函数（被称之为陷阱）；\n\n\u003e 反射是什么？\n\n被`Reflect`对象所代表的反射接口，**是给底层操作提供默认行为的方法的集合，这些操作是能够被代理重写的**。每个代理陷阱都有一个对应的反射方法，每个方法都与对应的陷阱函数同名，并且接收的参数也与之一致。\n\n\u003e 创建一个简单的代理\n\n使用Proxy构建可以创建一个简单的代理对象，需要传递两个参数：**目标对象以及一个处理器，后者是定义一个或多个陷阱函数的对象**。如果不定义陷阱函数，则依然使用目标对象的默认行为。\n\n### 示例\n\n#### 1、使用Set陷阱函数验证属性值\n\n假如有这样一个场景，必须要求对象的属性值必须只能是数值，这就意味着该对象每个新增属性时都要被验证，并且在属性不为数值属性时就应该抛出错误。因此就需要使用`set`陷阱函数来重写`set`函数的默认行为，`set`陷阱函数接收四个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：需要写入的属性的键；\n3. value：被写入属性的值；\n4. receiver：操作发生的对象（通常是代理对象）\n\n`Reflect.set()`是`set`陷阱函数对应的反射方法，同时也是`set`操作的默认行为，`Reflect.set()`方法与`set`陷阱函数一样，能够接受四个参数。\n\n针对上述场景，示例代码：\n\n```js\n//set陷阱函数\nlet target = {\n\tname:'target'\n}\nlet proxy = new Proxy(target,{\n\tset(tarpTarget,key,value,receiver){\n\n\t\tif(!tarpTarget.hasOwnProperty(key)){\n\t\t\tif(isNaN(value)){\n\t\t\t\tthrow new Error('property must be number');\n\t\t\t}\n\t\t}\n\t\treturn Reflect.set(tarpTarget,key,value,receiver);\n\t}\n});\n\nproxy.msg='hello proxy'; //Uncaught Error: property must be number\n```\n\n通过set陷阱函数就可以检测设置属性时属性值的类型，当属性值不是数字时，就会抛出错误。\n\n#### **2.使用get陷阱函数进行对象外形验证**\n\n**对象外形（Object Shape）指的是对象已有的属性与方法的集合。**能够使用代理很方便进行对象外形验证。由于使用属性验证只需要在读取属性时被触发，因此只需要使用`get陷阱函数`。该函数接受三个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：需要读取的属性的键；\n3. receiver：操作发生的对象（通常是代理对象）；\n\n相应的`Reflect.get()`方法同样拥有这三个参数。进行对象外形验证的示例代码：\n\n```\n//get陷阱函数\n\nlet target={\n\tname:'hello world'\n}\n\nlet proxy = new Proxy(target,{\n\t\tget(tarpTarget,key,receiver){\n\t\t\tif(!(key in tarpTarget)){\n\t\t\t\tthrow new Error('不存在该对象');\n\t\t\t}\n\t\t\treturn Reflect.get(tarpTarget,key,receiver);\n\t\t}\n\t});\nconsole.log(proxy.name); //hello world\nconsole.log(proxy.age); // Uncaught Error: 不存在该对象\n复制代码\n```\n\n使用`get陷阱函数`进行对象外形验证，由于`target`对象存在`name`属性，所以可以正常返回，当获取`age`属性时，由于该属性并不存在，所以会抛出错误。\n\n#### **3.使用has陷阱函数隐藏属性**\n\n`in`运算符用于判断指定对象中是否存在某个属性，如果对象的属性名与指定的字符串或符号值相匹配，那么`in`运算符就会返回`true`。无论该属性是对象自身的属性还是其原型的属性。\n\n`has陷阱函数`会在使用`in`运算符的情况下被调用，控制in运算符返回不同的结果，`has陷阱函数`会传入两个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：属性键；\n\n`Reflect.has()`方法接收相同的参数，并向`in`运算符返回默认的响应结果，用于返回默认响应结果。\n\n例如想要隐藏value属性：\n\n```\n//has陷阱函数\nlet target = {\n\tvalue:'hello world'\n}\n\nlet proxy = new Proxy(target,{\n\thas(tarpTarget,key){\n\t\tif(Object.is(key,'value')){\n\t\t\treturn false;\n\t\t}\n\t\tReflect.has(tarpTarget,key);\n\t}\n})\n\nconsole.log('value' in proxy); //false\n复制代码\n```\n\n使用`has陷阱函数`，能够控制`in`运算符的结果，`value`属性在`target对象`中存在，通过代理的`has陷阱函数`使得在检查`value`属性时返回`false`，达到隐藏属性的效果。\n\n#### **4.使用deleteProperty陷阱函数避免属性被删除**\n\n`deleteProperty` 陷阱函数会在使用`delete` 运算符删除对象属性时被调用，该方法接收两个参数：\n\n1. trapTarget：代理的目标对象；\n2. key：需要删除的键；\n\n`Reflect.deleteProperty()` 方法也接受这两个参数，并提供了 `deleteProperty` 陷阱函数的默认实现。你可以结合 `Reflect.deleteProperty()`方法以及 `deleteProperty` 陷阱函数，来修改 `delete` 运算符的行为。例如，能确保 value 属性不被删除：\n\n```\nlet target = {\n\tname: \"target\",\n\tvalue: 42\n};\nlet proxy = new Proxy(target, {\n\tdeleteProperty(trapTarget, key) {\n\t\tif (key === \"value\") {\n\t\t\treturn false;\n\t\t} else {\n\t\t\treturn Reflect.deleteProperty(trapTarget, key);\n\t\t}\n\t}\n});\n// 尝试删除 proxy.value\nconsole.log(\"value\" in proxy); // true\nlet result1 = delete proxy.value;\nconsole.log(result1); // false\n```\n\n# CSS相关\n\n## 重绘与回流\n\n**回流必将引起重绘，重绘不一定会引起回流。**\n\n### 回流\n\n导致回流的一些操作\n\n- 页面首次渲染\n- 浏览器窗口大小发生改变\n- 元素尺寸或位置发生改变\n- 元素内容变化（文字数量或图片大小等等）\n- 元素字体大小变化\n- 添加或者删除可见的DOM元素\n- 激活CSS伪类（例如：:hover）\n- 查询某些属性或调用某些方法\n\n主要有下面几个API\n\n\u003e 盒子操作相关\n\n- `elem.offsetLeft`, `elem.offsetTop`, `elem.offsetWidth`, `elem.offsetHeight`, `elem.offsetParent`\n- `elem.clientLeft`, `elem.clientTop`, `elem.clientWidth`, `elem.clientHeight`\n- `elem.getClientRects()`, `elem.getBoundingClientRect()`\n\n\u003e 滚动相关\n\n- `elem.scrollBy()`, `elem.scrollTo()`\n- `elem.scrollIntoView()`, `elem.scrollIntoViewIfNeeded()`\n- `elem.scrollWidth`, `elem.scrollHeight`\n- `elem.scrollLeft`, `elem.scrollTop`\n\n### 重绘\n\n当我们操作的节点上的元素并不导致元素位置发生变化时，比如`color`,`background-color`,`visibility(注意虽然节点隐藏了，但是元素还在，并且位置也不会发生变化)`\n\n浏览器会将新的样式赋值给这些节点，我们称这个过程为重绘\n\n### 如何避免\n\n- 避免使用 `table` 布局。\n- 尽可能在 `DOM` 树的最末端改变`class`。\n- 避免设置多层内联样式。\n- 将动画效果应用到`position`属性为`absolute`或`fixed`的元素上。\n- 避免使用`CSS`表达式（例如：`calc()`）。\n- 避免频繁操作样式，最好一次性重写`style`属性，或者将样式列表定义为`class`并一次性更改`class`属性。\n\n-避免频繁操作`DOM`，创建一个`documentFragment`，在它上面应用所有`DOM`操作，最后再把它添加到文档中。\n\n- 也可以先为元素设置`display: none`，操作结束后再把它显示出来。因为在`display`属性为`none`的元素上进行的`DOM`操作不会引发回流和重绘。\n- 避免频繁读取会引发回流/重绘的属性，如果确实需要多次使用，就用一个变量缓存起来。\n- 对具有复杂动画的元素使用绝对定位，使它脱离文档流，否则会引起父元素及后续元素频繁回流。\n\n## CSS 几种单位\n\n### 绝对长度单位\n\n一般来说，常用`px`\n\n### 相对长度单位\n\n| `em`   | 在 font-size 中使用是相对于父元素的字体大小，在其他属性中使用是相对于自身的字体大小，如 width |\n| ------ | ------------------------------------------------------------ |\n| `ex`   | 字符“x”的高度                                                |\n| `ch`   | 数字“0”的宽度                                                |\n| `rem`  | 根元素 `\u003chtml\u003e` 的字体大小                                   |\n| `lh`   | 元素的line-height                                            |\n| `vw`   | 视窗宽度的1%                                                 |\n| `vh`   | 视窗高度的1%                                                 |\n| `vmin` | 视窗较小尺寸的1%                                             |\n| `vmax` | 视图大尺寸的1%                                               |\n\n## CSS 处理字符串\n\n### text-overflow\n\n`clip`\n\n**此为默认值。**这个关键字的意思是\"在内容区域的极限处截断文本\"，因此在字符的中间可能会发生截断。如果你的目标浏览器支持 `text-overflow: ''`，为了能在两个字符过渡处截断，你可以使用一个空字符串值 (`''`) 作为 `text-overflow` 属性的值。\n\n`ellipsis`\n\n这个关键字的意思是“用一个省略号 (`'…'`, `U+2026 HORIZONTAL ELLIPSIS`)来表示被截断的文本”。这个省略号被添加在内容区域中，因此会减少显示的文本。如果空间太小到连省略号都容纳不下，那么这个省略号也会被截断。\n\n`\u003cstring\u003e`\n\n[`\u003cstring\u003e`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/string)用来表示被截断的文本。字符串内容将被添加在内容区域中，所以会减少显示出的文本。如果空间太小到连省略号都容纳不下，那么这个字符串也会被截断。\n\n### overflow-wrap\n\n`normal`\n\n行只能在正常的单词断点处中断。（例如两个单词之间的空格）。\n\n`break-word`\n\n表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行。\n\n### text-transform\n\n`capitalize`\n\n这个关键字强制每个单词的首字母转换为大写。其他的字符保留不变（它们写在元素里的文本保留原始大小写）。字母是Unicode字符集或者数字里定义的字符 ；因此单词开头的任何标点符号或者特殊符号将会被忽略。\n\nAuthors should not expect `capitalize` to follow language-specific titlecasing conventions (such as skipping articles in English).\n\n`uppercase`\n\n这个关键字强制所有字符被转换为大写。\n\n`lowercase`\n\n这个关键字强制所有字符被转换为小写。\n\n`none`\n\n这个关键字阻止所有字符的大小写被转换。\n\n`full-width`\n\n这个关键字强制字符 — 主要是表意字符和拉丁文字 — 书写进一个方形里，并允许它们按照一般的东亚文字（比如中文或日文）对齐。\n\n## 水平垂直居中\n\n### 水平居中\n\n比较简单，可以用`flex`，可以用`text-align`\n\n### 垂直居中\n\n#### 单行内联(`inline-`)元素垂直居中\n\n通过设置内联元素的高度(`height`)和行高(`line-height`)相等，从而使元素垂直居中。\n\n**核心代码：**\n\n```css\n#v-box {\n    height: 120px;\n    line-height: 120px;\n}\n```\n\n#### 利用flex布局（`flex`）\n\n利用flex布局实现垂直居中，其中 `flex-direction: column` 定义主轴方向为纵向。因为flex布局是 `CSS3` 中定义，在较老的浏览器存在兼容性问题。\n\n**核心代码：**\n\n```css\n.center-flex {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n}\n```\n\n## BFC IFC Flex\n\n### BFC\n\n`Block Formatting Context`，块级格式化上下文，一个独立的块级渲染区域，该区域拥有一套渲染规则来约束块级盒子的布局，且与区域外部无关。\n\n#### BFC的应用\n\n- 防止`margin`发生重叠\n- 防止发生因浮动导致的高度塌陷\n\n#### 怎么生成 BFC\n\n- `float`的值不为`none`；\n- `overflow`的值不为`visible`；\n- `display`的值为`inline-block` `table-cell` `table-caption`；\n- `position`的值为`absolute`或`fixed`；\n\n### IFC\n\n`IFC(Inline Formatting Contexts)`直译为\"行内格式化上下文\"，`IFC`的`line box`（线框）高度由其包含行内元素中最高的实际高度计算而来（不受到竖直方向的 `padding/margin` 影响)\n\n#### IFC有的特性\n\n1. `IFC`中的`line box`一般左右都贴紧整个`IFC`，但是会因为`float`元素而扰乱。`float`元素会位于`IFC`与与`line box`之间，使得`line box`宽度缩短。\n2. `IFC`中时不可能有块级元素的，当插入块级元素时（如`p`中插入`div`）会产生两个匿名块与`div`分隔开，即产生两个`IFC`，每个`IFC`对外表现为块级元素，与`div`垂直排列。\n\n#### IFC的应用\n\n1. 水平居中：当一个块要在环境中水平居中时，设置其为`inline-block`则会在外层产生`IFC`，通过`text-align`则可以使其水平居中。\n2. 垂直居中：创建一个`IFC`，用其中一个元素撑开父元素的高度，然后设置其`vertical-align:middle`，其他行内元素则可以在此父元素下垂直居中。\n\n### Flex\n\n#### 容器\n\n```\nflex-direction //方向\nflex-wrap //换行\nflex-flow // 前两个属性的集合\njustify-content  //主轴对齐方式\nalign-items //交叉轴对齐方式\nalign-content //多轴线对齐方式\n```\n\n#### 项目\n\n```\norder //顺序\nflex-grow //放大比例，0为不放大\nflex-shrink //缩小比例，默认1, 0为不缩小\nflex-basis //分配前所占空间\nflex // 上面3个属性的集合\nalign-self  //这个元素的对齐方式，覆盖容器的align-items\n```\n\n#### `flex:1` ？？？\n\n可以使用一个，两个或三个值来指定 `flex`属性。\n\n**单值语法**: 值必须为以下其中之一:\n\n- 一个无单位**数**: 它会被当作`flex:\u003cnumber\u003e 1 0;` `\u003cflex-shrink\u003e`的值被假定为1，然后`\u003cflex-basis\u003e` 的值被假定为`0`。\n- 一个有效的**宽度([`width`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/width))**值: 它会被当作 `\u003cflex-basis\u003e的值。`\n- 关键字`none`，`auto`或`initial`.\n\n**双值语法**: 第一个值必须为一个无单位数，并且它会被当作 `\u003cflex-grow\u003e` 的值。第二个值必须为以下之一：\n\n- 一个无单位数：它会被当作 `\u003cflex-shrink\u003e` 的值。\n- 一个有效的宽度值: 它会被当作 `\u003cflex-basis\u003e` 的值。\n\n**三值语法:**\n\n- 第一个值必须为一个无单位数，并且它会被当作 `\u003cflex-grow\u003e` 的值。\n- 第二个值必须为一个无单位数，并且它会被当作 `\u003cflex-shrink\u003e` 的值。\n- 第三个值必须为一个有效的宽度值， 并且它会被当作 `\u003cflex-basis\u003e` 的值。\n\n#### flex取值\n\n- `initial`\n\n  元素会根据自身宽高设置尺寸。它会缩短自身以适应 flex 容器，但不会伸长并吸收 flex 容器中的额外自由空间来适应 flex 容器 。相当于将属性设置为\"`flex: 0 1 auto`\"。\n\n- `auto`\n\n  元素会根据自身的宽度与高度来确定尺寸，但是会伸长并吸收 flex 容器中额外的自由空间，也会缩短自身来适应 flex 容器。这相当于将属性设置为 \"`flex: 1 1 auto`\".\n\n- `none`\n\n  元素会根据自身宽高来设置尺寸。它是完全非弹性的：既不会缩短，也不会伸长来适应 flex 容器。相当于将属性设置为\"`flex: 0 0 auto`\"。\n\n## 如何做一个三栏布局\n\n1、Flex\n\n2、`inline-block`\n\n3、`float` 实现\n\n```html\n\u003cdiv class=\"wrap\"\u003e\n    \u003cdiv class=\"left\"\u003e左侧\u003c/div\u003e\n    \u003cdiv class=\"right\"\u003e右侧\u003c/div\u003e\n    \u003cdiv class=\"middle\"\u003e中间\u003c/div\u003e\n\u003c/div\u003e\n\n\u003cstyle type=\"text/css\"\u003e\n    .wrap {background: #eee; overflow: hidden; padding: 20px;}  \u003c!-- 生成BFC，计算高度时考虑浮动的元素 --\u003e\n\n    .left {width: 200px; height: 50px; float: left; background: coral;}\n    .right {width: 120px; height:  200px; float: right; background: lightblue;}\n    .middle {margin-left: 220px; background: lightpink; margin-right: 140px;}\n\u003c/style\u003e\n```\n\n# HTML相关\n\n## `meta` 标签\n\n#### [`charset`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-charset)\n\n这个属性声明了文档的字符编码。如果使用了这个属性，其值必须是与 ASCII 大小写无关（ASCII case-insensitive）的\"`utf-8`\"。\n\n#### [**`http-equiv`**](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-http-equiv)\n\n属性定义了一个编译指示指令。这个属性叫做 `**http-equiv**(alent)` 是因为所有允许的值都是特定 HTTP 头部的名称，如下：\n\n- `content-security-policy`\n  它允许页面作者定义当前页的[内容策略](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)。 内容策略主要指定允许的服务器源和脚本端点，这有助于防止跨站点脚本攻击。\n\n- `content-type`\n  如果使用这个属性，其值必须是\"`text/html; charset=utf-8`\"。注意：该属性只能用于 [MIME type](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types) 为 `text/html` 的文档，不能用于 MIME 类型为 XML 的文档。\n\n- `default-style`\n\n  设置默认 [CSS 样式表](https://developer.mozilla.org/zh-CN/docs/Web/CSS)组的名称。\n\n- `x-ua-compatible`\n  如果指定，则 `content` 属性必须具有值 \"`IE=edge`\"。用户代理必须忽略此指示。\n\n- `refresh`\n\n  这个属性指定：\n\n  - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 只包含一个正整数，则为重新载入页面的时间间隔 (秒)；\n  - 如果 [`content`](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta#attr-content) 包含一个正整数，并且后面跟着字符串 '`;url=`' 和一个合法的 URL，则是重定向到指定链接的时间间隔 (秒)\n\n#### meta 做 SEO\n\n```\n\u003ctitle\u003eTitle of the page\u003c/title\u003e\n\u003cmeta name=”description” content=”Everything you need to know about meta tags for search engine optimization”\u003e\n\u003cmeta name=”keywords” content=”meta tags,search engine optimization” \u003e\n```\n\n\n\n# 网络相关\n\n## 从输入url到呈现网页\n\n（1）首先会对 URL 进行解析，分析所需要使用的传输协议和请求的资源的路径。如果输入的 URL 中的协议或者主机名不合法，将会把地址栏中输入的内容传递给搜索引擎。如果没有问题，浏览器会检查 URL 中是否出现了非法字符，如果存在非法字符，则对非法字符进行转义后再进行下一过程。\n\n（2）浏览器会判断所请求的资源是否在缓存里，如果请求的资源在缓存里并且没有失效，那么就直接使用，否则向服务器发起新的请求。\n\n（3）下一步我们首先需要获取的是输入的 URL 中的域名的 IP 地址，首先会判断本地是否有该域名的 IP 地址的缓存，如果有则使用，如果没有则向本地 DNS 服务器发起请求。本地 DNS 服务器也会先检查是否存在缓存，如果没有就会先向根域名服务器发起请求，获得负责的顶级域名服务器的地址后，再向顶级域名服务器请求，然后获得负责的权威域名服务器的地址后，再向权威域名服务器发起请求，最终获得域名的 IP 地址后，本地 DNS 服务器再将这个 IP 地址返回给请求的用户。用户向本地 DNS 服务器发起请求属于递归请求，本地 DNS 服务器向各级域名服务器发起请求属于迭代请求。\n\n（4）当浏览器得到 IP 地址后，数据传输还需要知道目的主机 MAC 地址，因为应用层下发数据给传输层，TCP 协议会指定源端口号和目的端口号，然后下发给网络层。网络层会将本机地址作为源地址，获取的 IP 地址作为目的地址。然后将下发给数据链路层，数据链路层的发送需要加入通信双方的 MAC 地址，我们本机的 MAC 地址作为源 MAC 地址，目的 MAC 地址需要分情况处理，通过将 IP 地址与我们本机的子网掩码相与，我们可以判断我们是否与请求主机在同一个子网里，如果在同一个子网里，我们可以使用 APR 协议获取到目的主机的 MAC 地址，如果我们不在一个子网里，那么我们的请求应该转发给我们的网关，由它代为转发，此时同样可以通过 ARP 协议来获取网关的 MAC 地址，此时目的主机的 MAC 地址应该为网关的地址。\n\n（5）下面是 TCP 建立连接的三次握手的过程，首先客户端向服务器发送一个 SYN 连接请求报文段和一个随机序号，服务端接收到请求后向服务器端发送一个 SYN ACK报文段，确认连接请求，并且也向客户端发送一个随机序号。客户端接收服务器的确认应答后，进入连接建立的状态，同时向服务器也发送一个 ACK 确认报文段，服务器端接收到确认后，也进入连接建立状态，此时双方的连接就建立起来了。\n\n（6）如果使用的是 HTTPS 协议，在通信前还存在 TLS 的一个四次握手的过程。首先由客户端向服务器端发送使用的协议的版本号、一个随机数和可以使用的加密方法。服务器端收到后，确认加密的方法，也向客户端发送一个随机数和自己的数字证书。客户端收到后，首先检查数字证书是否有效，如果有效，则再生成一个随机数，并使用证书中的公钥对随机数加密，然后发送给服务器端，并且还会提供一个前面所有内容的 hash 值供服务器端检验。服务器端接收后，使用自己的私钥对数据解密，同时向客户端发送一个前面所有内容的 hash 值供客户端检验。这个时候双方都有了三个随机数，按照之前所约定的加密方法，使用这三个随机数生成一把秘钥，以后双方通信前，就使用这个秘钥对数据进行加密后再传输。\n\n（7）当页面请求发送到服务器端后，服务器端会返回一个 html 文件作为响应，浏览器接收到响应后，开始对 html 文件进行解析，开始页面的渲染过程。\n\n（8）浏览器首先会根据 html 文件构建 DOM 树，根据解析到的 css 文件构建 CSSOM 树，如果遇到 script 标签，则判端是否含有 defer 或者 async 属性，要不然 script 的加载和执行会造成页面的渲染的阻塞。当 DOM 树和 CSSOM 树建立好后，根据它们来构建渲染树。渲染树构建好后，会根据渲染树来进行布局。布局完成后，最后使用浏览器的 UI 接口对页面进行绘制。这个时候整个页面就显示出来了。\n\n（9）最后一步是 TCP 断开连接的四次挥手过程。\n\n## HTTP协议\n\n### HTTP 1.0/1.1/2.0/3.0\n\n#### HTTP 1.0/1.1\n\nHTTP 是超文本传输协议，它定义了客户端和服务器之间交换报文的格式和方式，默认使用 80 端口。它使用 TCP 作为传 输层协议，保证了数据传输的可靠性。\n\nHTTP 是一个无状态的协议，HTTP 服务器不会保存关于客户的任何信息。\n\nHTTP 有两种连接模式，一种是持续连接，一种非持续连接。非持续连接指的是服务器必须为每一个请求的对象建立和维护 一个全新的连接。持续连接下，TCP 连接默认不关闭，可以被多个请求复用。在 HTTP1.0 以前使用的非持续的连接，但是可以在请求时，加上 Connection: keep-alive 来要求服务器不要关闭 TCP 连接。HTTP1.1 以后默认采用的是持续的连接。目前对于同一个域，大多数浏览器支持 同时建立 6 个持久连接。\n\n#### HTTP 请求报文\n\n```\nGET / HTTP/1.1\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)\nAccept: */*\n```\n\nHTTP 请求报文的第一行叫做请求行，后面的行叫做首部行，首部行后还可以跟一个实体主体。请求首部之后有一个空行，这个空行不能省略，它用来划分首部与实体。\n\n请求行包含三个字段：方法字段、URL 字段和 HTTP 版本字段。\n\n方法字段可以取几种不同的值，一般有 GET、POST、HEAD、PUT 和 DELETE。一般 GET 方法只被用于向服务器获取数据。 POST 方法用于将实体提交到指定的资源，通常会造成服务器资源的修改。HEAD 方法与 GET 方法类似，但是在返回的响应 中，不包含请求对象。PUT 方法用于上传文件到服务器，DELETE 方法用于删除服务器上的对象，表达的是一种语义上的区别。\n\n#### HTTP 响应报文\n\nHTTP 响应报文的格式如下：\n\n```\nHTTP/1.0 200 OK\nContent-Type: text/plain\nContent-Length: 137582\nExpires: Thu, 05 Dec 1997 16:00:00 GMT\nLast-Modified: Wed, 5 August 1996 15:55:28 GMT\nServer: Apache 0.84\n\n\u003chtml\u003e\n  \u003cbody\u003eHello World\u003c/body\u003e\n\u003c/html\u003e\n```\n\nHTTP 响应报文的第一行叫做状态行，后面的行是首部行，最后是实体主体。\n\n状态行包含了三个字段：协议版本字段、状态码和相应的状态信息。\n\n实体部分是报文的主要部分，它包含了所请求的对象。\n\n##### 常见状态\n\n200-请求成功、202-服务器端已经收到请求消息，但是尚未进行处理 301-永久移动、302-临时移动、304-所请求的资源未修改、 400-客户端请求的语法错误、404-请求的资源不存在 500-服务器内部错误。\n\n一般 1XX 代表服务器接收到请求、2XX 代表成功、3XX 代表重定向、4XX 代表客户端错误、5XX 代表服务器端错误。\n\n#### 首部行\n\n首部可以分为四种首部，请求首部、响应首部、通用首部和实体首部。通用首部和实体首部在请求报文和响应报文中都可以设 置，区别在于请求首部和响应首部。\n\n常见的请求首部有 Accept 可接收媒体资源的类型、Accept-Charset 可接收的字符集、Host 请求的主机名。\n\n常见的响应首部有 ETag 资源的匹配信息，Location 客户端重定向的 URI。\n\n常见的通用首部有 Cache-Control 控制缓存策略、Connection 管理持久连接。\n\n常见的实体首部有 Content-Length 实体主体的大小、Expires 实体主体的过期时间、Last-Modified 资源的最后修改时间。\n\n##### 常见的 Content-Type\n\n- text/html ： HTML格式\n- text/plain ：纯文本格式\n- text/xml ： XML格式\n- image/gif ：gif图片格式\n- image/jpeg ：jpg图片格式\n- image/png：png图片格式\n\n- application/xml： XML数据格式\n- application/json： JSON数据格式\n- application/octet-stream ： 二进制流数据（如常见的文件下载）\n- application/x-www-form-urlencoded ：form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）\n\n- multipart/form-data ： 需要在表单中进行文件上传时，就需要使用该格式\n\n#### HTTP/1.1 协议缺点\n\nHTTP/1.1 默认使用了持久连接，多个请求可以复用同一个 TCP 连接，但是在同一个 TCP 连接里面，数据请求的通信次序 是固定的。服务器只有处理完一个请求的响应后，才会进行下一个请求的处理，如果前面请求的响应特别慢的话，就会造成许多请求排队等待的情况，这种情况被称为“队头堵塞”。队头阻塞会导致持久连接在达到最大数量时，剩余的资源需要等待其他 资源请求完成后才能发起请求。\n\n为了避免这个问题，一个是减少请求数，一个是同时打开多个持久连接。这就是我们对网站优化时，使用雪碧图、合并脚本的 原因。\n\n### HTTP/2 协议\n\n2009 年，谷歌公开了自行研发的 SPDY 协议，主要解决 HTTP/1.1 效率不高的问题。这个协议在 Chrome 浏览器上证明 可行以后，就被当作 HTTP/2 的基础，主要特性都在 HTTP/2 之中得到继承。2015 年，HTTP/2 发布。\n\nHTTP/2 主要有以下新的特性：\n\n#### 二进制协议\n\nHTTP/2 是一个二进制协议。在 HTTP/1.1 版中，报文的头信息必须是文本（ASCII 编码），数据体可以是文本，也可以是 二进制。HTTP/2 则是一个彻底的二进制协议，头信息和数据体都是二进制，并且统称为\"帧\"，可以分为头信息帧和数据帧。 帧的概念是它实现多路复用的基础。\n\n#### 多路复用\n\n**HTTP/2 实现了多路复用，HTTP/2 仍然复用 TCP 连接，但是在一个连接里，客户端和服务器都可以同时发送多个请求或回 应，而且不用按照顺序一一发送，这样就避免了\"队头堵塞\"的问题。**\n\n#### 数据流\n\nHTTP/2 使用了数据流的概念，因为 HTTP/2 的数据包是不按顺序发送的，同一个连接里面连续的数据包，可能属于不同的 请求。因此，必须要对数据包做标记，指出它属于哪个请求。HTTP/2 将每个请求或回应的所有数据包，称为一个数据流。每个数据流都有一个独一无二的编号。数据包发送的时候，都必须标记数据流 ID ，用来区分它属于哪个数据流。\n\n#### 头信息压缩\n\nHTTP/2 实现了头信息压缩，由于 HTTP 1.1 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是 重复的，比如 Cookie 和 User Agent ，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。\n\nHTTP/2 对这一点做了优化，引入了头信息压缩机制。一方面，头信息使用 gzip 或 compress 压缩后再发送；另一方面， 客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就能提高速度了。\n\n#### 服务器推送\n\nHTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送。使用服务器推送，提前给客户端推送必要的资源 ，这样就可以相对减少一些延迟时间。这里需要注意的是 http2 下服务器主动推送的是静态资源，和 WebSocket 以及使用 SSE 等方式向客户端发送即时数据的推送是不同的。\n\n详细的资料可以参考： [《HTTP 协议入门》](http://www.ruanyifeng.com/blog/2016/08/http.html) [《HTTP/2 服务器推送（Server Push）教程》](http://www.ruanyifeng.com/blog/2018/03/http2_server_push.html)\n\n#### HTTP/2 协议缺点\n\n因为 HTTP/2 使用了多路复用，一般来说同一域名下只需要使用一个 TCP 连接。由于多个数据流使用同一个 TCP 连接，遵守同一个流量状态控制和拥塞控制。只要一个数据流遭遇到拥塞，剩下的数据流就没法发出去，这样就导致了后面的所有数据都 会被阻塞。HTTP/2 出现的这个问题是由于其使用 TCP 协议的问题，与它本身的实现其实并没有多大关系。\n\n#### HTTP/3 协议\n\n由于 TCP 本身存在的一些限制，Google 就开发了一个基于 UDP 协议的 QUIC 协议，并且使用在了 HTTP/3 上。 QUIC 协议在 UDP 协议上实现了多路复用、有序交付、重传等等功能\n\n详细资料可以参考： [《如何看待 HTTP/3 ？》](https://www.zhihu.com/question/302412059)\n\n### HTTPS 协议\n\n#### HTTP 存在的问题\n\n1. HTTP 报文使用明文方式发送，可能被第三方窃听。\n2. HTTP 报文可能被第三方截取后修改通信内容，接收方没有办法发现报文内容的修改。\n3. HTTP 还存在认证的问题，第三方可以冒充他人参与通信。\n\n#### HTTPS 简介\n\nHTTPS 指的是超文本传输安全协议，HTTPS 是基于 HTTP 协议的，不过它会使用 TLS/SSL 来对数据加密。使用 TLS/ SSL 协议，所有的信息都是加密的，第三方没有办法窃听。并且它提供了一种校验机制，信息一旦被篡改，通信的双方会立 刻发现。它还配备了身份证书，防止身份被冒充的情况出现。\n\n#### TLS 握手过程\n\n1. 第一步，客户端向服务器发起请求，请求中包含使用的协议版本号、生成的一个随机数、以及客户端支持的加密方法。\n2. 第二步，服务器端接收到请求后，确认双方使用的加密方法、并给出服务器的证书、以及一个服务器生成的随机数。\n3. 第三步，客户端确认服务器证书有效后，生成一个新的随机数，并使用数字证书中的公钥，加密这个随机数，然后发给服务器。并且还会提供一个前面所有内容的 hash 的值，用来供服务器检验。\n4. 第四步，服务器使用自己的私钥，来解密客户端发送过来的随机数。并提供前面所有内容的 hash 值来供客户端检验。\n5. 第五步，客户端和服务器端根据约定的加密方法使用前面的三个随机数，生成对话秘钥，以后的对话过程都使用这个秘钥 来加密信息。\n\n#### 实现原理\n\nTLS 的握手过程主要用到了三个方法来保证传输的安全。\n\n首先是对称加密的方法，对称加密的方法是，双方使用同一个秘钥对数据进行加密和解密。但是对称加密的存在一个问题，就 是如何保证秘钥传输的安全性，因为秘钥还是会通过网络传输的，一旦秘钥被其他人获取到，那么整个加密过程就毫无作用了。 这就要用到非对称加密的方法。\n\n非对称加密的方法是，我们拥有两个秘钥，一个是公钥，一个是私钥。公钥是公开的，私钥是保密的。用私钥加密的数据，只 有对应的公钥才能解密，用公钥加密的数据，只有对应的私钥才能解密。我们可以将公钥公布出去，任何想和我们通信的客户， 都可以使用我们提供的公钥对数据进行加密，这样我们就可以使用私钥进行解密，这样就能保证数据的安全了。但是非对称加 密有一个缺点就是加密的过程很慢，因此如果每次通信都使用非对称加密的方式的话，反而会造成等待时间过长的问题。\n\n因此我们可以使用对称加密和非对称加密结合的方式，因为对称加密的方式的缺点是无法保证秘钥的安全传输，因此我们可以 非对称加密的方式来对对称加密的秘钥进行传输，然后以后的通信使用对称加密的方式来加密，这样就解决了两个方法各自存 在的问题。\n\n但是现在的方法也不一定是安全的，因为我们没有办法确定我们得到的公钥就一定是安全的公钥。可能存在一个中间人，截取 了对方发给我们的公钥，然后将他自己的公钥发送给我们，当我们使用他的公钥加密后发送的信息，就可以被他用自己的私钥 解密。然后他伪装成我们以同样的方法向对方发送信息，这样我们的信息就被窃取了，然而我们自己还不知道。\n\n为了解决这样的问题，我们可以使用数字证书的方式，首先我们使用一种 Hash 算法来对我们的公钥和其他信息进行加密生成 一个信息摘要，然后让有公信力的认证中心（简称 CA ）用它的私钥对消息摘要加密，形成签名。最后将原始的信息和签名合 在一起，称为数字证书。当接收方收到数字证书的时候，先根据原始信息使用同样的 Hash 算法生成一个摘要，然后使用公证 处的公钥来对数字证书中的摘要进行解密，最后将解密的摘要和我们生成的摘要进行对比，就能发现我们得到的信息是否被更改 了。这个方法最要的是认证中心的可靠性，一般浏览器里会内置一些顶层的认证中心的证书，相当于我们自动信任了他们，只有 这样我们才能保证数据的安全。\n\n### DNS 协议\n\n#### 概况\n\nDNS 协议提供的是一种主机名到 IP 地址的转换服务，就是我们常说的域名系统。它是一个由分层的 DNS 服务器组成的分 布式数据库，是定义了主机如何查询这个分布式数据库的方式的应用层协议。DNS 协议运行在 UDP 协议之上，使用 53 号 端口。\n\n#### 域名的层级结构\n\n域名的层级结构可以如下\n\n```\n主机名.次级域名.顶级域名.根域名\n\n# 即\n\nhost.sld.tld.root\n```\n\n根据域名的层级结构，管理不同层级域名的服务器，可以分为根域名服务器、顶级域名服务器和权威域名服务器。\n\n#### 查询过程\n\nDNS 的查询过程一般为，我们首先将 DNS 请求发送到本地 DNS 服务器，由本地 DNS 服务器来代为请求。\n\n1. 从\"根域名服务器\"查到\"顶级域名服务器\"的 NS 记录和 A 记录（ IP 地址）。\n2. 从\"顶级域名服务器\"查到\"次级域名服务器\"的 NS 记录和 A 记录（ IP 地址）。\n3. 从\"次级域名服务器\"查出\"主机名\"的 IP 地址。\n\n比如我们如果想要查询 [www.baidu.com](http://www.baidu.com/) 的 IP 地址，我们首先会将请求发送到本地的 DNS 服务器中，本地 DNS 服务 器会判断是否存在该域名的缓存，如果不存在，则向根域名服务器发送一个请求，根域名服务器返回负责 .com 的顶级域名 服务器的 IP 地址的列表。然后本地 DNS 服务器再向其中一个负责 .com 的顶级域名服务器发送一个请求，负责 .com 的顶级域名服务器返回负责 .baidu 的权威域名服务器的 IP 地址列表。然后本地 DNS 服务器再向其中一个权威域名服 务器发送一个请求，最后权威域名服务器返回一个对应的主机名的 IP 地址列表。\n\n#### DNS 记录和报文\n\nDNS 服务器中以资源记录的形式存储信息，每一个 DNS 响应报文一般包含多条资源记录。一条资源记录的具体的格式为\n\n（Name，Value，Type，TTL）\n\n其中 TTL 是资源记录的生存时间，它定义了资源记录能够被其他的 DNS 服务器缓存多长时间。\n\n常用的一共有四种 Type 的值，分别是 A、NS、CNAME 和 MX ，不同 Type 的值，对应资源记录代表的意义不同。\n\n1. 如果 Type = A，则 Name 是主机名，Value 是主机名对应的 IP 地址。因此一条记录为 A 的资源记录，提供了标 准的主机名到 IP 地址的映射。\n2. 如果 Type = NS，则 Name 是个域名，Value 是负责该域名的 DNS 服务器的主机名。这个记录主要用于 DNS 链式 查询时，返回下一级需要查询的 DNS 服务器的信息。\n3. 如果 Type = CNAME，则 Name 为别名，Value 为该主机的规范主机名。该条记录用于向查询的主机返回一个主机名 对应的规范主机名，从而告诉查询主机去查询这个主机名的 IP 地址。主机别名主要是为了通过给一些复杂的主机名提供 一个便于记忆的简单的别名。\n4. 如果 Type = MX，则 Name 为一个邮件服务器的别名，Value 为邮件服务器的规范主机名。它的作用和 CNAME 是一 样的，都是为了解决规范主机名不利于记忆的缺点。\n\n#### 递归查询和迭代查询\n\n递归查询指的是查询请求发出后，域名服务器代为向下一级域名服务器发出请求，最后向用户返回查询的最终结果。使用递归 查询，用户只需要发出一次查询请求。\n\n迭代查询指的是查询请求后，域名服务器返回单次查询的结果。下一级的查询由用户自己请求。使用迭代查询，用户需要发出 多次的查询请求。\n\n一般我们向本地 DNS 服务器发送请求的方式就是递归查询，因为我们只需要发出一次请求，然后本地 DNS 服务器返回给我 们最终的请求结果。而本地 DNS 服务器向其他域名服务器请求的过程是迭代查询的过程，因为每一次域名服务器只返回单次 查询的结果，下一级的查询由本地 DNS 服务器自己进行。\n\n#### DNS 缓存\n\nDNS 缓存的原理非常简单，在一个请求链中，当某个 DNS 服务器接收到一个 DNS 回答后，它能够将回答中的信息缓存在本 地存储器中。返回的资源记录中的 TTL 代表了该条记录的缓存的时间。\n\n#### DNS 实现负载平衡\n\nDNS 可以用于在冗余的服务器上实现负载平衡。因为现在一般的大型网站使用多台服务器提供服务，因此一个域名可能会对应 多个服务器地址。当用户发起网站域名的 DNS 请求的时候，DNS 服务器返回这个域名所对应的服务器 IP 地址的集合，但在 每个回答中，会循环这些 IP 地址的顺序，用户一般会选择排在前面的地址发送请求。以此将用户的请求均衡的分配到各个不 同的服务器上，这样来实现负载均衡。\n\n## TCP握手与挥手\n\n### 握手\n\n第一次握手，客户端向服务器发送一个 **SYN** 连接请求报文段，报文段的首部中 SYN 标志位置为 1，序号字段是一个任选的 随机数。它代表的是客户端数据的初始序号。\n\n第二次握手，服务器端接收到客户端发送的 SYN 连接请求报文段后，服务器首先会为该连接**分配 TCP 缓存和变量**，然后向 客户端发送 **SYN ACK** 报文段，报文段的首部中 SYN 和 ACK 标志位都被置为 1，代表这是一个对 SYN 连接请求的确认， 同时序号字段是服务器端产生的一个任选的随机数，它代表的是服务器端数据的初始序号。确认号字段为客户端发送的序号加 一。\n\n第三次握手，客户端接收到服务器的肯定应答后，它也会为这次 TCP 连接**分配缓存和变量**，同时向服务器端发送一个对服务 器端的报文段的确认。**第三次握手可以在报文段中携带数据**。\n\n在我看来，TCP 三次握手的建立连接的过程就是相互确认**初始序号**的过程，告诉对方，什么样**序号**的报文段能够被正确接收。 第三次握手的作用是**客户端对服务器端的初始序号的确认**。如果只使用两次握手，那么服务器就没有办法知道自己的序号是否 已被确认。同时这样也是为了防止失效的请求报文段被服务器接收，而出现错误的情况。\n\n### 挥手\n\n因为 TCP 连接是全双工的，也就是说通信的双方都可以向对方发送和接收消息，所以断开连接需要双方的确认。\n\n第一次挥手，客户端认为没有数据要再发送给服务器端，它就向服务器发送一个 **FIN** 报文段，申请断开客户端到服务器端的 连接。发送后**客户端进入 FIN_WAIT_1** 状态。\n\n第二次挥手，服务器端接收到客户端释放连接的请求后，向客户端发送一个确认报文段，表示已经接收到了客户端释放连接的 请求，以后不再接收客户端发送过来的数据。但是因为连接是全双工的，所以此时，服务器端还可以向客户端发送数据。服务器端进入 **CLOSE_WAIT** 状态。客户端收到确认后，进入 **FIN_WAIT_2** 状态。\n\n第三次挥手，服务器端发送完所有数据后，向客户端发送 **FIN** 报文段，申请断开服务器端到客户端的连接。发送后进入 **LAST_ACK** 状态。\n\n第四次挥手，客户端接收到 **FIN** 请求后，向服务器端发送一个确认应答，并进入 **TIME_WAIT** 阶段。该阶段会持续一段时间， 这个时间为报文段在网络中的最大生存时间，如果该时间内服务端没有重发请求的话，客户端进入 **CLOSED** 的状态。如果收到 服务器的重发请求就重新发送确认报文段。服务器端收到客户端的确认报文段后就进入 **CLOSED** 状态，这样全双工的连接就被 释放了。\n\nTCP 使用四次挥手的原因是因为 TCP 的连接是全双工的，所以需要双方分别释放到对方的连接，单独一方的连接释放，只代 表不能再向对方发送数据，连接处于的是半释放的状态。\n\n最后一次挥手中，客户端会等待一段时间再关闭的原因，是为了**防止发送给服务器的确认报文段丢失或者出错**，从而导致服务器端不能正常关闭。\n\n## 缓存\n\n### 强缓存\n\n#### Expires\n\n**Expires是HTTP 1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回，用GMT格式的字符串表示**，如：`Expires:Thu, 31 Dec 2037 23:55:55 GMT` ，包含了Expires头标签的文件，就说明浏览器对于该文件缓存具有非常大的控制权。\n\n例如，一个文件的Expires值是2020年的1月1日，那么就代表，在2020年1月1日之前，浏览器都可以直接使用该文件的本地缓存文件，而不必去服务器再次请求该文件，哪怕服务器文件发生了变化。\n\n所以，**Expires是优化中最理想的情况，因为它根本不会产生请求**，所以后端也就无需考虑查询快慢。\n\n##### 原理\n\n1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Expires的header。\n\n2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来（所以缓存命中的请求返回的header并不是来自服务器，而是来自之前缓存的header）；\n\n3、浏览器再请求这个资源时，**先从缓存中寻找，找到这个资源后，拿出它的Expires跟当前的请求时间比较**，如果请求时间在Expires指定的时间之前，就能命中缓存，否则就不行；\n\n4、如果缓存没有命中，浏览器直接从服务器加载资源时，Expires Header在重新加载的时候会被更新；\n\n#### Cache-Control\n\n**Cache-Control，这是一个相对时间，在配置缓存的时候，以秒为单位，用数值表示**，如： `Cache-Control:max-age=315360000` 。\n\n##### 原理\n\n1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在response的header加上Cache-Control的header。\n\n2、浏览器在接收到这个资源后，会把这个资源连同所有response header一起缓存下来；\n\n3、浏览器再请求这个资源时，**先从缓存中寻找，找到这个资源后，根据它第一次的请求时间和Cache-Control设定的有效期**，计算出一个资源过期时间，再拿这个过期时间跟当前的请求时间比较，如果请求时间在过期时间之前，就能命中缓存，否则就不行；\n\n4、如果缓存没有命中，浏览器直接从服务器加载资源时，**Cache-Control Header在重新加载的时候会被更新**；\n\n此外，还可以为 Cache-Control 指定 `public` 或 `private` 标记。**如果使用 private，则表示该资源仅仅属于发出请求的最终用户，这将禁止中间服务器（如代理服务器）缓存此类资源**。对于包含用户个人信息的文件（如一个包含用户名的 HTML 文档），可以设置 private，一方面由于这些缓存对其他用户来说没有任何意义，另一方面用户可能不希望相关文件储存在不受信任的服务器上。需要指出的是，private 并不会使得缓存更加安全，它同样会传给中间服务器（如果网站对于传输的安全性要求很高，应该使用传输层安全措施）。**对于 public，则允许所有服务器缓存该资源**。通常情况下，对于所有人都可以访问的资源（例如网站的 logo、图片、脚本等），**Cache-Control 默认设为 public 是合理的**。\n\n这两个header可以只启用一个，也可以同时启用，**当response header中，Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires**\n\n### 协商缓存\n\n当浏览器对某个资源的请求没有命中强缓存，**就会发一个请求到服务器，验证协商缓存是否命中，如果协商缓存命中，请求响应返回的http状态为304并且会显示一个Not Modified的字符串**。\n\n#### Last-Modified If-Modified-Since\n\n1、浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，**在response的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间**\n\n2、浏览器再次跟服务器请求这个资源时，**在request的header上加上If-Modified-Since的header**，这个header的值就是上一次请求时返回的Last-Modified的值。\n\n3、服务器再次收到资源请求时，**根据浏览器传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化**，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。**当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header**，因为既然资源没有变化，那么Last-Modified也就不会改变。\n\n4、浏览器收到304的响应后，就会从缓存中加载资源。\n\n5、如果协商缓存没有命中，浏览器直接从服务器加载资源时，**Last-Modified Header在重新加载的时候会被更新**，下次请求时，**If-Modified-Since会启用上次返回的Last-Modified值**。\n\n#### ETag、If-None-Match\n\n1、浏览器第一次跟服务器请求一个资源，**服务器在返回这个资源的同时，在response的header加上ETag的header**，这个header是服务器根据当前请求的资源生成的一个唯一标识，**这个唯一标识是一个字符串，只要资源有变化这个串就不同**，跟最后修改时间没有关系，所以能很好的补充Last-Modified的问题。\n\n2、浏览器再次跟服务器请求这个资源时，**在request的header上加上If-None-Match的header**，这个header的值就是上一次请求时返回的ETag的值：\n\n3、服务器再次收到资源请求时，**根据浏览器传过来If-None-Match和然后再根据资源生成一个新的ETag**，如果这两个值相同就说明资源没有变化，否则就是有变化；如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。与Last-Modified不一样的是，当服务器返回304 Not Modified的响应时，**由于ETag重新生成过，response header中还会把这个ETag返回**，即使这个ETag跟之前的没有变化：\n\n4、浏览器收到304的响应后，就会从缓存中加载资源。\n\nEtag和Last-Modified非常相似，都是用来判断一个参数，从而决定是否启用缓存。**但是ETag相对于Last-Modified也有其优势，可以更加准确的判断文件内容是否被修改**，从而在实际操作中实用程度也更高。\n\n协商缓存跟强缓存不一样，强缓存不发请求到服务器，**所以有时候资源更新了浏览器还不知道，但是协商缓存会发请求到服务器**，所以资源是否更新，服务器肯定知道。大部分web服务器都默认开启协商缓存，而且是同时启用【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】。\n\n### 用户操作导致的缓存失效\n\n当用户在按`F5`进行刷新的时候，会忽略Expires/Cache-Control的设置，会再次发送请求去服务器请求，而Last-Modified/Etag还是有效的，服务器会根据情况判断返回304还是200；\n而当用户使用`Ctrl+F5`进行强制刷新的时候，只是所有的缓存机制都将失效，重新从服务器拉去资源。\n\n## CDN\n\n内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。\nCDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。\n\n### **CDN缓存策略**\n\nCDN边缘节点缓存策略因服务商不同而不同，但一般都会遵循http标准协议，通过http响应头中的Cache-control: max-age的字段来设置CDN边缘节点数据缓存时间。\n\n当客户端向CDN节点请求数据时，CDN节点会判断缓存数据是否过期，若缓存数据并没有过期，则直接将缓存数据返回给客户端；否则，CDN节点就会向源站发出回源请求，从源站拉取最新数据，更新本地缓存，并将最新数据返回给客户端。\n\nCDN服务商一般会提供基于文件后缀、目录多个维度来指定CDN缓存时间，为用户提供更精细化的缓存管理。\n\nCDN缓存时间会对“回源率”产生直接的影响。若CDN缓存时间较短，CDN边缘节点上的数据会经常失效，导致频繁回源，增加了源站的负载，同时也增大的访问延时；若CDN缓存时间太长，会带来数据更新时间慢的问题。开发者需要增对特定的业务，来做特定的数据缓存时间管理。\n\n### **CDN缓存刷新**\n\nCDN边缘节点对开发者是透明的，相比于浏览器Ctrl+F5的强制刷新来使浏览器本地缓存失效，开发者可以通过CDN服务商提供的“刷新缓存”接口来达到清理CDN边缘节点缓存的目的。这样开发者在更新数据后，可以使用“刷新缓存”功能来强制CDN节点上的数据缓存过期，保证客户端在访问时，拉取到最新的数据。\n\n# 工程与应用相关\n\n## 懒加载\n\n首先将页面上的图片的 src 属性设为空字符串，而图片的真实路径则设置在data-original属性中， 当页面滚动的时候需要去监听scroll事件，在scroll事件的回调中，判断我们的懒加载的图片是否进入可视区域,如果图片在可视区内将图片的 src 属性设置为data-original 的值，这样就可以实现延迟加载。\n\n先获取所有图片的 `dom`，通过 `document.body.clientHeight` 获取可视区高度，再使用 `element.getBoundingClientRect()` API 直接得到元素相对浏览的 top 值， 遍历每个图片判断当前图片是否到了可视区范围内。\n\n```javascript\nfunction lazyload() {\n  let viewHeight = document.body.clientHeight //获取可视区高度\n  let imgs = document.querySelectorAll('img[data-src]')\n  imgs.forEach((item, index) =\u003e {\n    if (item.dataset.src === '') return\n\n    // 用于获得页面中某个元素的左，上，右和下分别相对浏览器视窗的位置\n    let rect = item.getBoundingClientRect()\n    if (rect.bottom \u003e= 0 \u0026\u0026 rect.top \u003c viewHeight) {\n      item.src = item.dataset.src\n      item.removeAttribute('data-src')\n    }\n  })\n}\n```\n\n最后给 window 绑定 `onscroll` 事件\n\n```javascript\nwindow.addEventListener('scroll', lazyload)\n```\n\n**注意运用节流。**\n\n`IntersectionObserver` 是一个新的 API，可以自动\"观察\"元素是否可见，Chrome 51+ 已经支持。由于可见（visible）的本质是，目标元素与视口产生一个交叉区，所以这个 API 叫做\"交叉观察器\"。我们来看一下它的用法：\n\n```javascript\nvar io = new IntersectionObserver(callback, option)\n\n// 开始观察\nio.observe(document.getElementById('example'))\n\n// 停止观察\nio.unobserve(element)\n\n// 关闭观察器\nio.disconnect()\n```\n\n### IntersectionObserver\n\n`IntersectionObserver` 是浏览器原生提供的构造函数，接受两个参数：callback 是可见性变化时的回调函数，option 是配置对象（该参数可选）。\n\n目标元素的可见性变化时，就会调用观察器的回调函数 callback。callback 一般会触发两次。一次是目标元素刚刚进入视口（开始可见），另一次是完全离开视口（开始不可见）。\n\n```javascript\nvar io = new IntersectionObserver((entries) =\u003e {\n  console.log(entries)\n})\n```\n\ncallback 函数的参数`（entries）`是一个数组，每个成员都是一个 `IntersectionObserverEntry` 对象。举例来说，如果同时有两个被观察的对象的可见性发生变化，`entries` 数组就会有两个成员。\n\n- time：可见性发生变化的时间，是一个高精度时间戳，单位为毫秒\n- target：被观察的目标元素，是一个 DOM 节点对象\n- isIntersecting: 目标是否可见\n- rootBounds：根元素的矩形区域的信息，`getBoundingClientRect()`方法的返回值，如果没有根元素（即直接相对于视口滚动），则返回 null\n- boundingClientRect：目标元素的矩形区域的信息\n- intersectionRect：目标元素与视口（或根元素）的交叉区域的信息\n- intersectionRatio：目标元素的可见比例，即 `intersectionRect` 占 `boundingClientRect` 的比例，完全可见时为 1，完全不可见时小于等于 0\n\n下面我们用 `IntersectionObserver` 实现图片懒加载\n\n```javascript\nconst imgs = document.querySelectorAll('img[data-src]')\nconst config = {\n  rootMargin: '0px',\n  threshold: 0,\n}\nlet observer = new IntersectionObserver((entries, self) =\u003e {\n  entries.forEach((entry) =\u003e {\n    if (entry.isIntersecting) {\n      let img = entry.target\n      let src = img.dataset.src\n      if (src) {\n        img.src = src\n        img.removeAttribute('data-src')\n      }\n      // 解除观察\n      self.unobserve(entry.target)\n    }\n  })\n}, config)\n\nimgs.forEach((image) =\u003e {\n  observer.observe(image)\n})\n```\n\n## 前端路由\n\n### hash 模式\n\nhash 就是指 url 后的 # 号以及后面的字符\n\n由于 hash 值的变化不会导致浏览器像服务器发送请求，而且 hash 的改变会触发 hashchange 事件，浏览器的前进后退也能对其进行控制，所以在 H5 的 history 模式出现之前，基本都是使用 hash 模式来实现前端路由。\n\n```js\nwindow.location.hash = 'hash字符串'; // 用于设置 hash 值\n\nlet hash = window.location.hash; // 获取当前 hash 值\n\n// 监听hash变化，点击浏览器的前进后退会触发\nwindow.addEventListener('hashchange', function(event){ \n    let newURL = event.newURL; // hash 改变后的新 url\n    let oldURL = event.oldURL; // hash 改变前的旧 url\n},false)\n```\n\n### history模式\n\n#### history api\n\n```\nhistory.pushState();         // 添加新的状态到历史状态栈\nhistory.replaceState();      // 用新的状态代替当前状态\nhistory.state                // 返回当前状态对象\n```\n\nhistory.pushState() 和 history.replaceState() 的区别在于：\n\n- history.pushState() 在保留现有历史记录的同时，将 url 加入到历史记录中。\n- history.replaceState() 会将历史记录中的当前页面历史替换为 url。\n\n由于 history.pushState() 和 history.replaceState() 可以改变 url 同时，不会刷新页面，所以在 HTML5 中的 histroy 具备了实现前端路由的能力。\n\n#### `window.location`\n\n##### 常用API\n\n[`Location.href`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/href)\n\n包含整个URL的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)\n\n[`Location.protocol` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/protocol)\n\n包含URL对应协议的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，最后有一个\":\"。\n\n[`Location.host`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/host)\n\n包含了域名的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，可能在该串最后带有一个\":\"并跟上URL的端口号。\n\n[`Location.hostname`](https://developer.mozilla.org/zh-CN/docs/Web/API/Location/hostname)\n\n包含URL域名的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。\n\n[`Location.port` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/port)\n\n包含端口号的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)。\n\n[`Location.pathname` (en-US)](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname)\n\n包含URL中路径部分的一个[`DOMString`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMString)，开头有一个“`/\"。`\n\n## 前端安全问题以及解决方案\n\n### XSS攻击\n\n#### 存储型\n\n存储型 XSS 的攻击步骤：\n\n1. 攻击者将恶意代码提交到目标网站的数据库中。\n2. \n3. 用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。\n4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。\n\n这种攻击常见于带有用户保存数据的网站功能，如论坛发帖、商品评论、用户私信等。\n\n#### 反射型\n\n反射型 XSS 的攻击步骤：\n\n1. 攻击者构造出特殊的 URL，其中包含恶意代码。\n2. 用户打开带有恶意代码的 URL 时，网站服务端将恶意代码从 URL 中取出，拼接在 HTML 中返回给浏览器。\n3. 用户浏览器接收到响应后解析执行，混在其中的恶意代码也被执行。\n4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。\n\n反射型 XSS 跟存储型 XSS 的区别是：存储型 XSS 的恶意代码存在数据库里，反射型 XSS 的恶意代码存在 URL 里。\n\n反射型 XSS 漏洞常见于通过 URL 传递参数的功能，如网站搜索、跳转等。\n\n由于需要用户主动打开恶意的 URL 才能生效，攻击者往往会结合多种手段诱导用户点击。\n\nPOST 的内容也可以触发反射型 XSS，只不过其触发条件比较苛刻（需要构造表单提交页面，并引导用户点击），所以非常少见。\n\n#### DOM型\n\nDOM 型 XSS 的攻击步骤：\n\n1. 攻击者构造出特殊的 URL，其中包含恶意代码。\n2. 用户打开带有恶意代码的 URL。\n3. 用户浏览器接收到响应后解析执行，前端 JavaScript 取出 URL 中的恶意代码并执行。\n4. 恶意代码窃取用户数据并发送到攻击者的网站，或者冒充用户的行为，调用目标网站接口执行攻击者指定的操作。\n\nDOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属于前端 JavaScript 自身的安全漏洞，而其他两种 XSS 都属于服务端的安全漏洞。\n\n#### 防范方法\n\n必要的输入过滤\n\n改成纯前端渲染，把代码和数据分隔开。\n\n对 HTML 做充分转义。（在输出时）\n\n使用CSP\n\n##### 预防DOM型\n\n在涉及以下字符串拼接时注意：\n\n```html\n\u003c!-- 内联事件监听器中包含恶意代码 --\u003e\n\u003cimg onclick=\"UNTRUSTED\" onerror=\"UNTRUSTED\" src=\"data:image/png,\"\u003e\n\n\u003c!-- 链接内包含恶意代码 --\u003e\n\u003ca href=\"UNTRUSTED\"\u003e1\u003c/a\u003e\n\n\u003cscript\u003e\n// setTimeout()/setInterval() 中调用恶意代码\nsetTimeout(\"UNTRUSTED\")\nsetInterval(\"UNTRUSTED\")\n\n// location 调用恶意代码\nlocation.href = 'UNTRUSTED'\n\n// eval() 中调用恶意代码\neval(\"UNTRUSTED\")\n\u003c/script\u003e\n\n```\n\n在使用时避免在字符串中拼接不可信数据。\n\n### CSRF 攻击\n\n#### GET型\n\n```html\n \u003cimg src=\"http://bank.example/withdraw?amount=10000\u0026for=hacker\" \u003e \n```\n\n通过一个HTTP请求\n\n#### POST型\n\n```html\n \u003cform action=\"http://bank.example/withdraw\" method=POST\u003e\n    \u003cinput type=\"hidden\" name=\"account\" value=\"xiaoming\" /\u003e\n    \u003cinput type=\"hidden\" name=\"amount\" value=\"10000\" /\u003e\n    \u003cinput type=\"hidden\" name=\"for\" value=\"hacker\" /\u003e\n\u003c/form\u003e\n\u003cscript\u003e document.forms[0].submit(); \u003c/script\u003e \n\n```\n\n通过提交一个自动提交的表单\n\n#### 链接型\n\n```html\n  \u003ca href=\"http://test.com/csrf/withdraw.php?amount=1000\u0026for=hacker\" taget=\"_blank\"\u003e\n  重磅消息！！\n  \u003ca/\u003e\n\n```\n\n用户点击链接触发\n\n#### 防范方法\n\n##### 同源检测\n\n使用Referer Header确定来源域名\n\n根据HTTP协议，在HTTP头中有一个字段叫Referer，记录了该HTTP请求的来源地址。 对于Ajax请求，图片和script等资源请求，Referer为发起请求的页面地址。对于页面跳转，Referer为打开页面历史记录的前一个页面地址。因此我们使用Referer中链接的Origin部分可以得知请求的来源域名。\n\n当Origin和Referer头文件不存在时该怎么办？如果Origin和Referer都不存在，建议直接进行阻止，特别是如果您没有使用随机CSRF Token（参考下方）作为第二次检查。\n\n通过Header的验证，我们可以知道发起请求的来源域名，这些来源域名可能是网站本域，或者子域名，或者有授权的第三方域名，又或者来自不可信的未知域名。\n\n我们已经知道了请求域名是否是来自不可信的域名，我们直接阻止掉这些的请求，就能防御CSRF攻击了吗？\n\n且慢！当一个请求是页面请求（比如网站的主页），而来源是搜索引擎的链接（例如百度的搜索结果），也会被当成疑似CSRF攻击。所以在判断的时候需要过滤掉页面请求情况。\n\nCSRF大多数情况下来自第三方域名，但并不能排除本域发起。如果攻击者有权限在本域发布评论（含链接、图片等，统称UGC），那么它可以直接在本域发起攻击，这种情况下同源策略无法达到防护的作用。\n\n##### CSRF Token\n\nCSRF Token机制是目前比较主流的的防御手段，其核心思路是在需要验证的请求中添加一个无法预测，无法使用浏览器策略直接提交的字段。CSRF Token可以是POST请求的一个参数、或者是一个自定义的HTTP Header，Token可以存放于`\u003cmata\u003e`标签中、JS变量中、Cookie中、浏览器Local Storage中或者DOM的任何位置，Token可以是同步令牌、加密令牌或者HMAC Token。\n\n不同的生成、存储及使用方式，所带来的的安全性也是存在区别的，一般推荐使用HMAC Token、存储于DOM中，并在Ajax请求中添加自定义Header传输Token。使用CSRF Token的优点在于识别准确，后续新开发接口只需按照规则开发便可避免CSRF漏洞。缺点在于推CSRF Token机制需要前端和客户端开发付出大量时间进行调整，且一旦CSRF Token机制运转，旧版本APP可能无法使用。\n\n##### 双重 token\n\n\n\n##### Samesite cookie\n\nCookie 的`SameSite`属性用来限制第三方 Cookie，从而减少安全风险。\n\n它可以设置三个值。\n\n\u003e - Strict\n\u003e - Lax\n\u003e - None\n\n**Strict**\n\n`Strict`最为严格，完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。换言之，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。\n\n\u003e ```bash\n\u003e Set-Cookie: CookieName=CookieValue; SameSite=Strict;\n\u003e ```\n\n这个规则过于严格，可能造成非常不好的用户体验。比如，当前网页有一个 GitHub 链接，用户点击跳转就不会带有 GitHub 的 Cookie，跳转过去总是未登陆状态。\n\n**Lax**\n\n`Lax`规则稍稍放宽，大多数情况也是不发送第三方 Cookie，但是导航到目标网址的 Get 请求除外。\n\n\u003e ```markup\n\u003e Set-Cookie: CookieName=CookieValue; SameSite=Lax;\n\u003e ```\n\n导航到目标网址的 GET 请求，只包括三种情况：链接，预加载请求，GET 表单。详见下表。\n\n| 请求类型  |                 示例                 |    正常情况 | Lax         |\n| :-------- | :----------------------------------: | ----------: | :---------- |\n| 链接      |         `\u003ca href=\"...\"\u003e\u003c/a\u003e`         | 发送 Cookie | 发送 Cookie |\n| 预加载    | `\u003clink rel=\"prerender\" href=\"...\"/\u003e` | 发送 Cookie | 发送 Cookie |\n| GET 表单  |  `\u003cform method=\"GET\" action=\"...\"\u003e`  | 发送 Cookie | 发送 Cookie |\n| POST 表单 | `\u003cform method=\"POST\" action=\"...\"\u003e`  | 发送 Cookie | 不发送      |\n| iframe    |    `\u003ciframe src=\"...\"\u003e\u003c/iframe\u003e`     | 发送 Cookie | 不发送      |\n| AJAX      |            `$.get(\"...\")`            | 发送 Cookie | 不发送      |\n| Image     |          `\u003cimg src=\"...\"\u003e`           | 发送 Cookie | 不发送      |\n\n设置了`Strict`或`Lax`以后，基本就杜绝了 CSRF 攻击。当然，前提是用户浏览器支持 SameSite 属性。\n\n### 点击劫持\n\n#### 原理\n\n1. 访问者被恶意页面吸引。怎样吸引的不重要。\n2. 页面上有一个看起来无害的链接（例如：“变得富有”或者“点我，超好玩！”）。\n3. 恶意页面在该链接上方放置了一个透明的 `\u003ciframe\u003e`，其 `src` 来自于 [facebook.com](http://facebook.com/)，这使得“点赞”按钮恰好位于该链接上面。这通常是通过 `z-index` 实现的。\n4. 用户尝试点击该链接时，实际上点击的是“点赞”按钮。\n\n#### 防范\n\n`samesite` cookie 特性可以阻止点击劫持攻击。\n\n具有 `samesite` 特性的 cookie 仅在网站是通过直接方式打开（而不是通过 frame 或其他方式）的情况下才发送到网站。更多细节请见 [Cookie，document.cookie](https://zh.javascript.info/cookie#samesite)。\n\n如果网站，例如 Facebook，在其身份验证 cookie 中具有 `samesite` 特性，像这样：\n\n```none\nSet-Cookie: authorization=secret; samesite\n```\n\n……那么，当在另一个网站中的 iframe 中打开 Facebook 时，此类 cookie 将不会被发送。因此，攻击将失败。\n\n当不使用 cookie 时，`samesite` cookie 特性将不会有任何影响。这可以使其他网站能够轻松地在 iframe 中显示我们公开的、未进行身份验证的页面。\n\n然而，这也可能会使得劫持攻击在少数情况下起作用。例如，通过检查 IP 地址来防止重复投票的匿名投票网站仍然会受到点击劫持的攻击，因为它不使用 cookie 对用户身份进行验证。\n"},"__N_SSG":true},"page":"/posts/[id]","query":{"id":"2022-3-3-FE_Interview.markdown"},"buildId":"MkjpXAVhBc5OxoeFL-xod","isFallback":false,"gsp":true,"scriptLoader":[]}</script></body></html>
