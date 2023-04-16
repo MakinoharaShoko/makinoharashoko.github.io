@@ -21,7 +21,7 @@ export function DeveloperStatusView(props: { user: string }) {
     let totalCount = 0;
     const totalPages = Math.ceil(repoCount / 100);
     for (let i = 0; i < totalPages; i++) {
-      const pageResp = await fetch(`https://api.github.com/users/${props.user}/repos?per_page=100&page=${i}`);
+      const pageResp = await fetch(`https://api.github.com/users/${props.user}/repos?per_page=100&page=${i+1}`);
       const pageData = await pageResp.json();
       for (const repo of pageData) {
         if (!repo.fork) {
