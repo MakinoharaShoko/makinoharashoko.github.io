@@ -2364,7 +2364,14 @@ react-markdown@^8.0.5:
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
 
-react@18.2.0:
+react-usevalue-hook@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-usevalue-hook/-/react-usevalue-hook-1.0.3.tgz#91d090d2e67398e2b88554d34351fcf77e12610f"
+  integrity sha512-dFZklFQERrJWasM/m5sjlMOpdW8UJFOcYjvHtUt0vEzKX1BUmtpAGbtETNn9Chu+IUA7bJ2kyoTDANPL/gT+nQ==
+  dependencies:
+    react "^18.2.0"
+
+react@18.2.0, react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==
