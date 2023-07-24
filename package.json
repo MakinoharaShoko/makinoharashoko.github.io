@@ -1,26 +1,42 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "mahiru-blog",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
-  },
-  "hexo": {
-    "version": "4.2.0"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export",
+    "build-pages": "yarn move-img && yarn export",
+    "move-img": "cp -r posts/article/img/* public/img/"
   },
   "dependencies": {
-    "hexo": "^4.0.0",
-    "hexo-deployer-git": "^2.1.0",
-    "hexo-generator-archive": "^1.0.0",
-    "hexo-generator-category": "^1.0.0",
-    "hexo-generator-index": "^1.0.0",
-    "hexo-generator-tag": "^1.0.0",
-    "hexo-renderer-ejs": "^1.0.0",
-    "hexo-renderer-marked": "^4.1.0",
-    "hexo-renderer-stylus": "^1.1.0",
-    "hexo-server": "^1.0.0"
+    "@next/font": "13.1.6",
+    "@types/katex": "^0.16.0",
+    "@types/marked": "^4.0.8",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "eslint": "8.33.0",
+    "eslint-config-next": "13.1.6",
+    "front-matter": "^4.0.2",
+    "highlight.js": "^11.7.0",
+    "immer": "^9.0.19",
+    "katex": "^0.16.4",
+    "marked": "^4.2.12",
+    "modern-css-reset": "^1.4.0",
+    "next": "13.1.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-markdown": "^8.0.5",
+    "react-usevalue-hook": "^1.0.3",
+    "remark-gfm": "^3.0.1",
+    "remark-slug": "^7.0.1",
+    "sass": "^1.59.3",
+    "slugify": "^1.6.5",
+    "typescript": "4.9.5",
+    "vh-check": "^2.0.5",
+    "zustand": "^4.3.6"
   }
 }

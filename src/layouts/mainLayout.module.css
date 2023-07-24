@@ -1,0 +1,46 @@
+.out{
+    height: calc(100vh - var(--vh-offset, 0px));
+    display: flex;
+    flex-flow: column;
+    background: url("../assets/bg.png");
+}
+
+.mainarea{
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-flow: column;
+}
+
+.bottom{
+    height: 60px;
+    backdrop-filter: blur(3px);
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor:pointer;
+    margin: 0 3px 0 3px;
+}
+
+.tagImg{
+    height: 40px;
+    width: 40px;
+}
+
+.tag:hover{
+    background: rgba(255,255,255,0.15);
+}
+
+.tagActive{
+    background: rgba(255,255,255,0.1);
+}

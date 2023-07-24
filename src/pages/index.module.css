@@ -1,0 +1,33 @@
+.item{
+    user-select: none;
+    /*height: 100px;*/
+    /*max-height: 150px;*/
+    width: 100px;
+    display: flex;
+    flex-flow: column;
+    margin: 5px 5px 0 5px;
+    color: white;
+    transition: background-color 0.33s;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+}
+
+.item:hover{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(3px);
+}
+
+.itemTitle{
+    flex: 1;
+    overflow: hidden;
+    padding: 0 10px 0 10px;
+    font-size: 14px;
+    text-overflow:ellipsis;
+    text-shadow: 2px 2px 5px rgba(0,0,0,1);
+}
+
+.img{
+    height: 40px;
+    object-fit: contain;
+}
