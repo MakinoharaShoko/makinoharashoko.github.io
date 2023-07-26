@@ -24,9 +24,9 @@ tags:
 
 ![img](/img/WebGAL_0.png)
 
-![img](/img/WebGAL_0.png)
+![img](/img/WebGAL_1.png)
 
-![img](/img/WebGAL_0.png)
+![img](/img/WebGAL_2.png)
 
 现在，基本的文字显示功能已经几乎完全实现，分支选择的功能也已经几乎完全实现。切换背景和立绘的功能也几乎完全实现。它们的语法也极其简单：
 
