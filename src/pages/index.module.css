@@ -2,9 +2,9 @@
     user-select: none;
     /*height: 100px;*/
     /*max-height: 150px;*/
-    width: 100px;
+    width: 500px;
     display: flex;
-    flex-flow: column;
+    /*flex-flow: column;*/
     margin: 5px 5px 0 5px;
     color: white;
     transition: background-color 0.33s;

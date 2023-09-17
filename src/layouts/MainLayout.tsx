@@ -23,6 +23,9 @@ export default function MainLayout(props: { children: JSX.Element }) {
     return <div className={s.tag + ' ' + (currentPath === tag.url ? s.tagActive : '')} key={tag.url}
                 onClick={() => switchTag(tag.url)}>
       <Image className={s.tagImg} src={mdpic} alt={'md'}/>
+      <div className={s.tagTitle}>
+        {tag.title}
+      </div>
     </div>
   })
 

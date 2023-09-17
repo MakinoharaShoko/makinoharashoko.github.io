@@ -2,7 +2,8 @@
     height: calc(100vh - var(--vh-offset, 0px));
     display: flex;
     flex-flow: column;
-    background: url("../assets/bg.png");
+    background-size: cover;
+    background-image: url("../assets/bg.png");
 }
 
 .mainarea{
@@ -30,6 +31,7 @@
     border-radius: 5px;
     cursor:pointer;
     margin: 0 3px 0 3px;
+    position: relative;
 }
 
 .tagImg{
@@ -39,8 +41,29 @@
 
 .tag:hover{
     background: rgba(255,255,255,0.15);
+    .tagTitle{
+        opacity: 1;
+    }
 }
 
 .tagActive{
     background: rgba(255,255,255,0.1);
+}
+
+.tagTitle{
+    opacity: 0;
+    transition: opacity 0.33s;
+    position: absolute;
+    left: 0;
+    top: -35px;
+    height: 35px;
+    max-width: 300px;
+    white-space: nowrap;
+    background: rgba(255,255,255,0.8);
+    padding: 5px 10px;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    border-radius: 5px;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
 }

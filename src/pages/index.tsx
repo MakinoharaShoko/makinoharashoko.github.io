@@ -55,7 +55,7 @@ export default function Home({posts}: {
 
   const postList = posts.map(e => {
     return <div key={e.url} className={s.item} onClick={() => addTagElement(e.title, e.url)}>
-      <Image className={s.img} src={mdpic} alt={'markdown'}/>
+      <Image width={50} height={50} className={s.img} src={mdpic} alt={'markdown'}/>
       <div className={s.itemTitle}>
         {e.title}
       </div>
