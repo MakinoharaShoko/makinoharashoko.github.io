@@ -1,0 +1,196 @@
+---
+layout:     post
+title:      Webpack 搭建 React + TS 环境
+intro:   ""
+date:       2022-5-29 18:30:00
+author:     "Mahiru"
+catalog: true
+tags:
+    - 工程开发
+---
+
+# Webpack 基础配置
+
+## 初始化，安装依赖
+最终得到：
+`package.json`
+```json
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "main": "src/main.tsx",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack serve --open --config webpack.dev.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "babel-loader": "^8.2.5",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.2",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
+```
+
+## 编写 `webpack.common.js` 作为主要配置文件
+```js
+const path = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+// 生成随机字符串，用于区分打包产物
+const bundle_random_str = Math.random().toString(36).slice(-6);
+
+module.exports = {
+    // 入口
+    entry: {
+        index: './src/main.tsx'
+    },
+    // 出口
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: `assets/[name].${bundle_random_str}.bundle.js`,
+    },
+    // 对于各个模块的规则
+    module: {
+        rules: [
+            // JavaScript
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    },
+                },
+            },
+            // css
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            // ts
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ]
+    },
+    plugins: [
+        // 打包前清理
+        new CleanWebpackPlugin(),
+        // 打包时处理HTML
+        new HtmlWebpackPlugin({
+            title: 'Webpack Test',
+            template: path.resolve(__dirname, './public/index.html'),
+            filename: 'index.html',
+        }),
+        // 打包成css
+        new MiniCssExtractPlugin({
+            filename: `assets/style.${bundle_random_str}.css`
+        }),
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+    }
+}
+```
+
+### 在index中引入 Webpack 变量的方法
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+<div id="root"></div>
+</body>
+</html>
+
+```
+
+## 编写开发环境配置文件
+`webpack.dev.js`
+
+```js
+const {merge} = require('webpack-merge');
+const common = require('./webpack.common.js');
+const path = require("path");
+
+module.exports = merge(common, {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    // 启用devServer
+    devServer: {
+        static: {
+            publicPath: path.join(__dirname, 'public')
+        },
+        hot: true,
+        compress: true,
+        port: 3000,
+    },
+});
+
+```
+
+## 编写生产环境配置文件
+`webpack.prod.js`
+```js
+const {merge} = require('webpack-merge');
+const common = require('./webpack.common.js');
+
+module.exports = merge(common, {
+    mode: 'production',
+});
+
+```
+
+# 配置 TS Babel
+
+## 配置TS
+`tsconfig.json`
+```json
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    // "rootDir": "./src",
+    "sourceMap": true, // 开启sourcemap
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowJs": false,
+    "strict": true
+  }
+}
+
+```
+
+## 配置 Babel
+`babel.config.json`
+```json
+{
+    "presets": ["@babel/preset-env"]
+}
+```

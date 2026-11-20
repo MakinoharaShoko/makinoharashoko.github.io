@@ -1,0 +1,200 @@
+---
+layout:     post
+title:      "Maven"
+intro:   ""
+date:       2021-3-20 12:00:00
+author:     "Makinohara"
+catalog: true
+tags:
+    - 工程开发
+  
+---
+
+
+
+
+
+# Maven基础内容
+
+## Maven构建
+
+清理、编译、测试、报告、打包、安装、（部署）
+
+编译命令：`mvn compile`
+
+换源 阿里源：
+
+```
+<mirror>
+        <id>nexus-aliyun</id>
+        <mirrorOf>central</mirrorOf>
+        <name>Nexus aliyun</name>
+        <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+    </mirror>
+```
+
+仓库使用：
+
+本地仓库->私服->镜像->中央仓库
+
+常用命令：
+
+```
+mvn clean 清理
+mvn compile 编译主程序
+	resources的文件会拷贝到target/classes/ 下
+mvn test-compile 编译测试程序
+mvn test 测试
+mvn package 打包主程序
+mvn install 安装主程序
+mvn deploy 部署主程序
+```
+
+
+
+## 项目对象模型pom
+
+```
+modelVersion Maven模型版本
+坐标：
+groupId 组织名称
+artifactId 项目名称
+version 项目版本号 -SNAPSHOT不稳定版本
+packging 项目打包类型
+dependencies 依赖
+properties 属性
+build 构建（一般涉及jdk版本等）
+```
+
+## Maven相关概念：
+
+生命周期：maven构建项目的过程：清理、编译、测试、报告、打包、安装、（部署）
+
+maven命令：maven可以使用命令完成生命周期执行
+
+maven插件：maven执行时完成功能的工具
+
+## 单元测试jUnit
+
+测试的类中的方法，方法是测试的基本单位（单元）。
+
+maven可以借助单元测试测试类中方法。
+
+### 使用步骤
+
+1、加入Junit依赖
+
+```
+<dependency>
+<groupId>junit</groupId>
+<artifactId>junit</artifactId>
+<version>4.11</version>
+<scope>test</scope>
+</dependency>
+```
+
+2、创建测试类、测试程序（可以加入注解@Test）
+
+3、测试方法的限制：public；**没有返回值**；加@Test注解
+
+测试程序范例：
+
+```
+package com.icsii.mavenlearn;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class TestDemo {
+    int add(int n1,int n2){
+        return n1+n2;
+    }
+    @Test //要在测试方法之前加上@Test
+    public void testAdd(){
+        TestDemo test = new TestDemo();
+        int res = test.add(10,20);
+        Assert.assertEquals(30,res);//期望值，实际值，相等正确，不等抛出异常
+    }
+}
+
+```
+
+## 打包
+
+将项目相关的资源和类等打包为压缩文件，存放才target内
+
+打包时不会包含测试文件
+
+## 安装
+
+mvn install 将项目打包后安装到仓库中
+
+## 部署
+
+mvn deploy 部署到远程私服仓库
+
+## 配置插件
+
+用于配置插件的一些设置
+
+```
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <!-- 配置代码编译与运行的jdk版本-->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+## 依赖、依赖范围
+
+```
+<dependency>
+<groupId>junit</groupId>
+<artifactId>junit</artifactId>
+<version>4.11</version>
+<!-- 依赖范围，指的是该依赖在项目中起作用的阶段 -->
+<!--test/compile/provided(提供者使用，打包后不依赖)/-->
+<scope>test</scope>
+</dependency>
+```
+
+## 属性设置、资源插件
+
+```
+<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <java.version>16</java.version>
+        <!--jdk版本-->
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <!--全局变量的使用-->
+        <spring.version>5.2.5</spring.version>
+        <!--使用：${spring.version}-->
+</properties>
+```
+
+```
+    <build>
+        <resources>
+            <resource>
+                <!--在以下目录中包含的文件种类，在编译时保留-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+```
+

@@ -1,0 +1,20 @@
+.main{
+  background: white;
+  display: block;
+  overflow: auto;
+  padding: 30px;
+}
+
+.info{
+  display: flex;
+  align-items: center;
+}
+
+.pic{
+  width: 80px;
+  height: 80px;
+}
+
+.repo{
+  padding: 5px;
+}
